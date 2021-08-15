@@ -1,1 +1,1 @@
-# w15-solo-authentication
+# sb-solo-project

@@ -8,6 +8,9 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      name: {
+        type: Sequelize.STRING
+      },
       genreId: {
         type: Sequelize.INTEGER,
         references: { model: "Genres" }

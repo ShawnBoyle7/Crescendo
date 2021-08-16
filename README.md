@@ -7,4 +7,4 @@ Crescendo centralizes your musical interests so you can easily find what you wan
 
 (Roughly a spotify clone with minimal user feedback and social aspects)
 
-[You can access TBD here!](https://sb-tbd.herokuapp.com/)
+[You can access  here!](https://sb-tbd.herokuapp.com/)

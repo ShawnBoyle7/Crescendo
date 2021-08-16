@@ -7,7 +7,7 @@ module.exports = {
       { name: "Shane Ivers", genreId: 1, createdAt: new Date(), updatedAt: new Date() },
       { name: "Benjamin Tissot", genreId: 2, createdAt: new Date(), updatedAt: new Date() },
       { name: "Mr. Ryan", genreId: 3, createdAt: new Date(), updatedAt: new Date() },
-      { name: "MusicToday80", genreId: 4, createdAt: new Date(), updatedAt: new Date() },
+      { name: "Alexander Nakarada", genreId: 4, createdAt: new Date(), updatedAt: new Date() },
       { name: "Jay Someday", genreId: 5, createdAt: new Date(), updatedAt: new Date() }
     ])  
   },

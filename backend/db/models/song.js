@@ -6,7 +6,15 @@ module.exports = (sequelize, DataTypes) => {
     albumId: DataTypes.INTEGER
   }, {});
   Song.associate = function(models) {
-    Song.belongsTo(models.Album, { foreignKey: albumId });
+    const columnMappingPlaylists = {
+      through: "Song_Playlist_Join",
+      foreignKey: "songId",
+      otherKey: "playlistId"
+    };
+
+    Song.belongsToMany(models.Playlist, columnMappingPlaylists);
+    Song.belongsTo(models.Album, { foreignKey: "albumId" });
+    Song.belongsTo(models.Genre, { foreignKey: "genreId" });
   };
   return Song;
 };

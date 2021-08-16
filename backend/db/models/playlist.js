@@ -5,7 +5,14 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.INTEGER
   }, {});
   Playlist.associate = function(models) {
-    // associations can be defined here
+    const columnMappingSongs = {
+      through: "Song_Playlist_Join",
+      foreignKey: "playlistId",
+      otherKey: "songId"
+    };
+
+    Playlist.belongsToMany(models.Song, columnMappingSongs);
+    Playlist.belongsTo(models.User, { foreignKey: "userId" });
   };
   return Playlist;
 };

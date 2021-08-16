@@ -13,6 +13,8 @@ module.exports = (sequelize, DataTypes) => {
 
     Artist.belongsToMany(models.User, columnMapping);
     Artist.hasMany(models.Album, { foreignKey: "artistId" });
+    Artist.hasMany(models.Song, { foreignKey: "artistId" });
+    Artist.belongsTo(models.Genre, { foreignKey: "genreId" });
   };
   return Artist;
 };

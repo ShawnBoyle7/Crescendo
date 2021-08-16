@@ -9,10 +9,10 @@ module.exports = (sequelize, DataTypes) => {
       through: "User_Artist_Join",
       foreignKey: "artistId",
       otherKey: "userId"
-    }
+    };
 
-    Artist.belongsToMany(models.User, columnMapping)
-    Artist.hasMany(models.Album, { foreignKey: "artistId" })
+    Artist.belongsToMany(models.User, columnMapping);
+    Artist.hasMany(models.Album, { foreignKey: "artistId" });
   };
   return Artist;
 };

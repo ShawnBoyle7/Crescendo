@@ -8,7 +8,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      name: {
+        type: Sequelize.STRING(50),
+        allowNull: false,
+        unique: true
+      },
       artistId: {
+        allowNull: false,
         type: Sequelize.INTEGER,
         references: { model: "Artists" }
       },

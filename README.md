@@ -5,6 +5,6 @@ From here you're able to add an artist or album to your personal library, or eve
 
 Crescendo centralizes your musical interests so you can easily find what you want to listen to based on your sorting.  
 
-(Roughly a spotify clone without user feedback or social aspects)
+(Roughly a spotify clone with minimal user feedback and social aspects)
 
 [You can access TBD here!](https://sb-tbd.herokuapp.com/)

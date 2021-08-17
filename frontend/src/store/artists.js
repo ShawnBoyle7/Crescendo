@@ -1,0 +1,1 @@
+import { Artists } from '../../../backend/db/models/artist'

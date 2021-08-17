@@ -1,17 +1,17 @@
-import { useDispatch, useSelector } from "react-redux";
-import { getArtists } from "../../store/artists";
-import { useEffect } from "react";
+// import { useDispatch, useSelector } from "react-redux";
+// import { getArtists } from "../../store/artists";
+// import { useEffect } from "react";
 import { Link } from 'react-router-dom';
 
-const Artists = () => {
-  const dispatch = useDispatch();
+const Artists = ({ artists }) => {
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getArtists());
-  }, [dispatch])
+  // useEffect(() => {
+  //   dispatch(getArtists());
+  // }, [dispatch])
 
-  const artistsSlice = useSelector(state => state.artists)
-  const artists = Object.values(artistsSlice)
+  // const artistsSlice = useSelector(state => state.artists)
+  // const artists = Object.values(artistsSlice)
 
   return(
     <>

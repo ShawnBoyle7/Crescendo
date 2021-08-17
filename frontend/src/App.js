@@ -10,6 +10,7 @@ import Artist from "./components/Artist";
 import { getArtists } from "./store/artists";
 import { getUsers } from "./store/users";
 import { getGenres } from "./store/genres";
+import { getAlbums } from "./store/albums";
 
 // Re evaluate all the dispatching below
 
@@ -22,25 +23,30 @@ function App() {
     dispatch(getArtists());
     dispatch(getUsers());
     dispatch(getGenres());
+    dispatch(getAlbums());
   }, [dispatch])
 
   // Artists Slice of state below
 
-  const artistsSlice = useSelector(state => state.artists)
+  const artistsSlice = useSelector(state => state.artists);
 
   const artists = Object.values(artistsSlice)
 
   // Users slice of state below
 
-  const usersSlice = useSelector(state => state.users)
+  const usersSlice = useSelector(state => state.users);
 
   // const users = Object.values(usersSlice)
 
   // Genres slice of state below
 
-  const genresSlice = useSelector(state => state.genres)
+  const genresSlice = useSelector(state => state.genres);
 
   // const genres = Object.values(genresSlice)
+
+  // Albums slice of state below
+
+  const albumsSlice = useSelector(state => state.albums);
   
   return (
     <>

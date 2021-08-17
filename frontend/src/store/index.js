@@ -4,12 +4,14 @@ import sessionReducer from './session';
 import userReducer from './users';
 import artistReducer from './artists';
 import genreReducer from './genres';
+import albumReducer from './albums';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   artists: artistReducer,
   users: userReducer,
-  genres: genreReducer
+  genres: genreReducer,
+  albums: albumReducer,
 });
 
 let enhancer;

@@ -11,6 +11,7 @@ import { getArtists } from "./store/artists";
 import { getUsers } from "./store/users";
 import { getGenres } from "./store/genres";
 import { getAlbums } from "./store/albums";
+import { getPlaylists } from "./store/playlists";
 
 // Re evaluate all the dispatching below
 
@@ -24,6 +25,7 @@ function App() {
     dispatch(getUsers());
     dispatch(getGenres());
     dispatch(getAlbums());
+    dispatch(getPlaylists());
   }, [dispatch])
 
   // Artists Slice of state below
@@ -47,6 +49,14 @@ function App() {
   // Albums slice of state below
 
   const albumsSlice = useSelector(state => state.albums);
+
+  // const albums = Object.values(albumsSlice)
+
+  // Playlists slice of state below
+
+  const playlistsSlice = useSelector(state => state.playlists);
+
+  // const playlists = Object.values(playlistsSlice)
   
   return (
     <>

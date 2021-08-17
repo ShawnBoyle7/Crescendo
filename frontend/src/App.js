@@ -6,6 +6,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Artists from "./components/Artists";
+import Artist from "./components/Artist";
 
 function App() {
   const dispatch = useDispatch();
@@ -19,14 +20,29 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          
+          <Route exact path="/">
+            hey
+          </Route>
+          
           <Route path="/login">
             <LoginFormPage />
           </Route>
+
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/artists">
+           
+          <Route exact path="/artists">
             <Artists/>
+          </Route>
+
+          <Route path="/artists/:artistId">
+            <Artist/>
+          </Route>
+
+          <Route>
+            404 not found
           </Route>
         </Switch>
       )}

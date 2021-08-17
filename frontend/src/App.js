@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import Artists from "./components/Artists";
 import Artist from "./components/Artist";
 import { getArtists } from "./store/artists";
+import { getUsers } from "./store/users";
 
 // Re evaluate all the dispatching below
 
@@ -17,17 +18,21 @@ function App() {
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
-  }, [dispatch]);
+    dispatch(getArtists());
+    dispatch(getUsers());
+  }, [dispatch])
 
   // Artists Slice of state below
 
   const artistsSlice = useSelector(state => state.artists)
 
-  useEffect(() => {
-    dispatch(getArtists());
-  }, [dispatch])
-
   const artists = Object.values(artistsSlice)
+
+  // Users slice of state below
+
+  const usersSlice = useSelector(state => state.users)
+
+  const users = Object.values(usersSlice)
   
   return (
     <>
@@ -46,13 +51,13 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-           
-          <Route exact path="/artists">
-            <Artists artists={artists}/>
-          </Route>
 
           <Route path="/artists/:artistId">
             <Artist artists={artists}/>
+          </Route>
+
+          <Route path="/artists">
+            <Artists artists={artists}/>
           </Route>
 
           <Route>

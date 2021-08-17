@@ -5,7 +5,6 @@ const Artist = ({ artists }) => {
   const artist = artists.find(artist => artist.id === +artistId)
 
   return(
-    // <h1>{artist ? artist.name: ''}</h1>
     <h1>{artist && artist.name}</h1>
 
   )

@@ -17,6 +17,9 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { model: "Genres" },
       },
+      artistsImgUrl: {
+        type: Sequelize.STRING
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

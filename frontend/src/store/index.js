@@ -1,13 +1,15 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import artistReducer from './artists';
 import sessionReducer from './session';
 import userReducer from './users';
+import artistReducer from './artists';
+import genreReducer from './genres';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   artists: artistReducer,
-  users: userReducer
+  users: userReducer,
+  genres: genreReducer
 });
 
 let enhancer;

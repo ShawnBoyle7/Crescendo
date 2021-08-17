@@ -9,6 +9,7 @@ import Artists from "./components/Artists";
 import Artist from "./components/Artist";
 import { getArtists } from "./store/artists";
 import { getUsers } from "./store/users";
+import { getGenres } from "./store/genres";
 
 // Re evaluate all the dispatching below
 
@@ -20,6 +21,7 @@ function App() {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
     dispatch(getArtists());
     dispatch(getUsers());
+    dispatch(getGenres());
   }, [dispatch])
 
   // Artists Slice of state below
@@ -32,7 +34,13 @@ function App() {
 
   const usersSlice = useSelector(state => state.users)
 
-  const users = Object.values(usersSlice)
+  // const users = Object.values(usersSlice)
+
+  // Genres slice of state below
+
+  const genresSlice = useSelector(state => state.genres)
+
+  // const genres = Object.values(genresSlice)
   
   return (
     <>

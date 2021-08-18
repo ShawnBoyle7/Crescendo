@@ -11,7 +11,7 @@ const Artists = () => {
       <Route exact path="/artists">
         <h1>This is the artists component</h1> 
         <ul>
-          {artists.map(artist => <li key={artist.id}> <Link to={`/artists/${artist.id}`}> {artist.name} {artist.Genre.name} {} </Link></li>)}
+          {artists.map(artist => <li key={artist.id}> <Link to={`/artists/${artist.id}`}> {artist.name} {artist.Genre.name} </Link></li>)}
         </ul>
       </Route>
 

@@ -1,5 +1,5 @@
 import { Link, Route } from 'react-router-dom';
-import Album from '../Album';
+// import Album from '../Album';
 
 const Albums = ({ albums }) => {
   return(

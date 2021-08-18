@@ -8,6 +8,7 @@ const artistsRouter = require('./artists');
 const genresRouter = require('./genres');
 const albumsRouter = require('./albums');
 const playlistsRouter = require('./playlists');
+const songsRouter = require('./songs');
 
 router.use('/session', sessionRouter);
 router.use('/users', usersRouter);
@@ -15,6 +16,7 @@ router.use('/artists', artistsRouter);
 router.use('/genres', genresRouter);
 router.use('/albums', albumsRouter);
 router.use('/playlists', playlistsRouter);
+router.use('/songs', songsRouter);
 
 router.post('/test', function(req, res) {
     res.json({ requestBody: req.body });

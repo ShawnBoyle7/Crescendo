@@ -11,6 +11,7 @@ import { getUsers } from "./store/users";
 import { getGenres } from "./store/genres";
 import { getAlbums } from "./store/albums";
 import { getPlaylists } from "./store/playlists";
+import { getSongs } from "./store/songs";
 
 function App() {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ function App() {
     dispatch(getGenres());
     dispatch(getAlbums());
     dispatch(getPlaylists());
+    dispatch(getSongs());
   }, [dispatch])
   
   return (

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
@@ -7,6 +7,8 @@ import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Artists from "./components/Artists";
 import Home from "./components/Home";
+import Search from "./components/Search";
+import Genre from "./components/Genre";
 import { getArtists } from "./store/artists";
 import { getUsers } from "./store/users";
 import { getGenres } from "./store/genres";
@@ -28,6 +30,9 @@ function App() {
     dispatch(getSongs());
   }, [dispatch])
   
+  const genresSlice = useSelector(state => state.genres);
+  const genres = Object.values(genresSlice);
+
   return (
     <>
       <Navigation isLoaded={isLoaded} />
@@ -46,6 +51,10 @@ function App() {
             <SignupFormPage />
           </Route>
 
+          <Route path="/search">
+            <Search/>
+          </Route>
+
           <Route path="/artists">
             <Artists/>
           </Route>
@@ -54,9 +63,14 @@ function App() {
             Album component goes here
           </Route>
 
+          <Route path="/genres/:genreId">
+            <Genre genres={genres}/>
+          </Route>
+
           <Route>
             404 not found
           </Route>
+          
         </Switch>
       )}
     </>

@@ -1,7 +1,3 @@
-// const albumState = useSelector(state => state.albums)
-// const albums = Object.values(albumState)
-// const artistAlbums = albums.filter(album => album.artistId === +artistId) // Why didn't === artist.artistId work?
-
 import { useParams } from "react-router-dom";
 import { Link, Route } from "react-router-dom";
 import Albums from "../Albums";

@@ -4,7 +4,7 @@ const GenreSongs = ({ propSongs }) => {
   return(
     <>
       <ul>
-      {propSongs && propSongs.map(genreSong => <li key={genreSong.id}><Link to={`/artists/${genreSong.artistId}/${genreSong.id}`}>{genreSong.name}</Link></li>)}
+      {propSongs && propSongs.map(genreSong => <li key={genreSong.id}><Link to={`/songs/${genreSong.id}`}>{genreSong.name}</Link></li>)}
       </ul>
       <Route path="/artists/:artistId/:songId">
         songs go here?

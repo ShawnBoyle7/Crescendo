@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { Link, Route } from "react-router-dom";
 import GenreArtists from "../GenreArtists";
 import GenreSongs from "../GenreSongs";
+import './Genre.css'
 
 const Genre = ({ genres }) => {
   const { genreId } = useParams()
@@ -23,14 +24,13 @@ const Genre = ({ genres }) => {
   return(
     <>
       <h1>{genre && genre.name}</h1>
-      <h1>Artists</h1>
-      <Link to={`/genres/${genreId}/artists`}>{genre && genre.name} Artists</Link>
+      <div className="artists-songs-div"> <Link to={`/genres/${genreId}/artists`}><h2>{genre && genre.name} Artists </h2></Link> 
+      <Link to={`/genres/${genreId}/songs`}><h2>{genre && genre.name} Songs </h2></Link> </div>
+
       <Route exact path="/genres/:genreId/artists">
         <GenreArtists propArtists={genreArtists}/>
       </Route>
 
-      <h1>Songs</h1>
-      <Link to={`/genres/${genreId}/songs`}>{genre && genre.name} Songs</Link>
       <Route exact path="/genres/:genreId/songs">
         <GenreSongs propSongs={genreSongs}/>
       </Route>

@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux'; 
 import { Link } from 'react-router-dom';
- 
+import './Home.css'
+
 const Home = () => {
 
   const songsSlice = useSelector(state => state.songs)
@@ -16,6 +17,8 @@ const Home = () => {
 
   return(
     <>
+      <Link to="/search">Search Page</Link>
+      
       <h1>Popular Artists</h1>
       <ul>
         {artistsByPopularity.map(artist => <li key={artist.id}> <Link to={`/artists/${artist.id}`}> {artist.name} </Link></li>)}

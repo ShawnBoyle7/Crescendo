@@ -1,4 +1,5 @@
 import { Link, Route } from "react-router-dom";
+import './GenreSongs.css'
 
 const GenreSongs = ({ propSongs }) => {
   return(

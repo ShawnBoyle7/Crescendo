@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom";
+import './Song.css'
 
 const Song = ({ songs }) => {
   const { songId } = useParams()

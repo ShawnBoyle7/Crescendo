@@ -1,6 +1,7 @@
 import { Link, Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Artist from '../Artist';
+import './Artists.css'
 
 const Artists = () => {
   const artistsSlice = useSelector(state => state.artists);

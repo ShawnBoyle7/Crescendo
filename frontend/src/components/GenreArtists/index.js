@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import './GenreArtists.css'
 
 const GenreArtists = ({ propArtists }) => {
   return(

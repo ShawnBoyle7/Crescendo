@@ -1,4 +1,5 @@
 import { Link, Route } from 'react-router-dom';
+import './Albums.css';
 // import Album from '../Album';
 
 const Albums = ({ albums }) => {

@@ -97,10 +97,17 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "userId",
       otherKey: "albumId"
     };
-    
-    User.hasMany(models.Playlist, { foreignKey: "userId" });
+
+    const columnMappingSongs = {
+      through: "Song_User_Join",
+      foreignKey: "userId",
+      otherKey: "songId"
+    }
+
+    User.belongsToMany(models.Song, columnMappingSongs);
     User.belongsToMany(models.Artist, columnMappingArtists);
     User.belongsToMany(models.Album, columnMappingAlbums);
+    User.hasMany(models.Playlist, { foreignKey: "userId" });
   };
 
   return User;

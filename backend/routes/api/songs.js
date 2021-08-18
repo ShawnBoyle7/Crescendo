@@ -1,6 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { Song, Genre, Artist, Album } = require('../../db/models');
+const { Song, Genre, Artist, Album, User } = require('../../db/models');
 const router = express.Router();
 
 router.get('/', asyncHandler(async (req, res) => {
@@ -8,7 +8,8 @@ router.get('/', asyncHandler(async (req, res) => {
     include: [
       Genre,
       Artist,
-      Album
+      Album,
+      User
     ]
   });
 

@@ -6,6 +6,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Artists from "./components/Artists";
+import Home from "./components/Home";
 import { getArtists } from "./store/artists";
 import { getUsers } from "./store/users";
 import { getGenres } from "./store/genres";
@@ -34,7 +35,7 @@ function App() {
         <Switch>
           
           <Route exact path="/">
-            hey
+            <Home/>
           </Route>
           
           <Route path="/login">

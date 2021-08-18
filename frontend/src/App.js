@@ -1,19 +1,37 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import Artists from "./components/Artists";
-import Artist from "./components/Artist";
+import Home from "./components/Home";
+import Search from "./components/Search";
+import Genre from "./components/Genre";
+import { getArtists } from "./store/artists";
+import { getUsers } from "./store/users";
+import { getGenres } from "./store/genres";
+import { getAlbums } from "./store/albums";
+import { getPlaylists } from "./store/playlists";
+import { getSongs } from "./store/songs";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
-  }, [dispatch]);
+    dispatch(getArtists());
+    dispatch(getUsers());
+    dispatch(getGenres());
+    dispatch(getAlbums());
+    dispatch(getPlaylists());
+    dispatch(getSongs());
+  }, [dispatch])
+  
+  const genresSlice = useSelector(state => state.genres);
+  const genres = Object.values(genresSlice);
 
   return (
     <>
@@ -22,7 +40,7 @@ function App() {
         <Switch>
           
           <Route exact path="/">
-            hey
+            <Home/>
           </Route>
           
           <Route path="/login">
@@ -32,18 +50,27 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-           
-          <Route exact path="/artists">
+
+          <Route path="/search">
+            <Search/>
+          </Route>
+
+          <Route path="/artists">
             <Artists/>
           </Route>
 
-          <Route path="/artists/:artistId">
-            <Artist/>
+          <Route path="/albums/:albumId">
+            Album component goes here
+          </Route>
+
+          <Route path="/genres/:genreId">
+            <Genre genres={genres}/>
           </Route>
 
           <Route>
             404 not found
           </Route>
+          
         </Switch>
       )}
     </>

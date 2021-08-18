@@ -1,19 +1,19 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { Artist, Genre, Album, User, Song } = require('../../db/models');
+const { Song, Genre, Artist, Album, User } = require('../../db/models');
 const router = express.Router();
 
 router.get('/', asyncHandler(async (req, res) => {
-  const artists = await Artist.findAll({
+  const songs = await Song.findAll({
     include: [
       Genre,
+      Artist,
       Album,
-      User,
-      Song
+      User
     ]
   });
 
-  return res.json(artists)
+  return res.json(songs)
 }));
 
 module.exports = router;

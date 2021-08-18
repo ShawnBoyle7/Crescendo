@@ -13,9 +13,17 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: "playlistId"
     };
 
+    const columnMappingUsers = {
+      through: "Song_User_Join",
+      foreignKey: "songId",
+      otherKey: "userId"
+    }
+
+    Song.belongsToMany(models.User, columnMappingUsers);
     Song.belongsToMany(models.Playlist, columnMappingPlaylists);
     Song.belongsTo(models.Album, { foreignKey: "albumId" });
     Song.belongsTo(models.Genre, { foreignKey: "genreId" });
+    Song.belongsTo(models.Artist, { foreignKey: "artistId" });
   };
   return Song;
 };

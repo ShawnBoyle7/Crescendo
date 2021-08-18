@@ -21,7 +21,7 @@ const Home = () => {
       </ul>
       <h1>Popular Songs</h1>
       <ul>
-        {songsByPopularity.map(song => <li key={song.id}> <Link to={`/artists/${song.Artist.id}/${song.id}`}> {song.name} </Link></li>)}
+        {songsByPopularity.map(song => <li key={song.id}> <Link to={`/songs/${song.id}`}> {song.name} </Link></li>)}
       </ul>
       
     </>

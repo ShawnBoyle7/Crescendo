@@ -8,7 +8,7 @@ const Artist = ({ artists }) => {
   const artist = artists.find(artist => artist.id === +artistId)
   return(
     <>
-      <h1>{artist && artist.name} {artist && artist.Genre.name} </h1>
+      <h1>{artist && artist.name} {artist && artist.Genre.name}</h1>
       <Route exact path="/artists/:artistId">
 
       <ul>

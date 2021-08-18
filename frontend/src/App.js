@@ -9,6 +9,7 @@ import Artists from "./components/Artists";
 import Home from "./components/Home";
 import Search from "./components/Search";
 import Genre from "./components/Genre";
+import Songs from "./components/Songs";
 import { getArtists } from "./store/artists";
 import { getUsers } from "./store/users";
 import { getGenres } from "./store/genres";
@@ -57,6 +58,10 @@ function App() {
 
           <Route path="/artists">
             <Artists/>
+          </Route>
+
+          <Route path="/songs">
+            <Songs/>
           </Route>
 
           <Route path="/albums/:albumId">

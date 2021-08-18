@@ -1,12 +1,6 @@
 import { useSelector } from "react-redux";
 import { Link} from "react-router-dom";
 
-// import Genre from "../Genre";
-// <Route path="/genres/:genreId">
-//   <Genre genres={genres}/>
-// </Route> 
-
-
 const Search = () => {
   const genresSlice = useSelector(state => state.genres);
   const genres = Object.values(genresSlice);

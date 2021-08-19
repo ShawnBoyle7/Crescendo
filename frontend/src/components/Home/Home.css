@@ -1,0 +1,33 @@
+.home-page {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-areas:
+    "artists songs"
+}
+
+.artists {
+  grid-area: artists;
+  margin: 0em 2em;
+}
+
+.songs {
+  grid-area: songs;
+  margin: 0em 2em;
+}
+
+.home-page ul {
+  list-style-type: none;
+}
+
+.home-page a {
+  text-decoration: none;
+}
+
+.home-page a:hover {
+  font-weight: bold;
+  color:cornflowerblue;
+  transition-duration: 150ms;
+}
+
+
+

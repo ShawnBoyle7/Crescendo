@@ -17,20 +17,23 @@ const Home = () => {
   return(
     <div className="home-page">
       
-      <h1>Popular Artists</h1>
-      <ul>
-        {artistsByPopularity.map(artist => <li key={artist.id}> <Link to={`/artists/${artist.id}`}> {artist.name} </Link></li>)}
-      </ul>
+      <div className="artists">
+        <h1>Popular Artists</h1>
+        <ul>
+          {artistsByPopularity.map(artist => <li key={artist.id}> <Link to={`/artists/${artist.id}`}> {artist.name} </Link></li>)}
+        </ul>
 
-      <Link to="/artists">Browse All Artists</Link>
+        <Link to="/artists">Browse All Artists</Link>
+      </div>
 
-      <h1>Popular Songs</h1>
-      <ul>
-        {songsByPopularity.map(song => <li key={song.id}> <Link to={`/songs/${song.id}`}> {song.name} </Link></li>)}
-      </ul>
-      
-      <Link to="/songs">Browse All Songs</Link>
-
+      <div className="songs">
+        <h1>Popular Songs</h1>
+        <ul>
+          {songsByPopularity.map(song => <li key={song.id}> <Link to={`/songs/${song.id}`}> {song.name} </Link></li>)}
+        </ul>
+        
+        <Link to="/songs">Browse All Songs</Link>
+      </div>
     </div>
   )
 }

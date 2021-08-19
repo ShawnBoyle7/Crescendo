@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING,
     genreId: DataTypes.INTEGER,
     artistId: DataTypes.INTEGER,
-    albumId: DataTypes.INTEGER
+    albumId: DataTypes.INTEGER,
+    songImgUrl: DataTypes.STRING
   }, {});
   Song.associate = function(models) {
     const columnMappingPlaylists = {

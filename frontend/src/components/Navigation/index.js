@@ -20,11 +20,13 @@ function Navigation({ isLoaded }){
       </>
     );
   }
-
   return (
-    <ul>
+    <ul className="nav-list">
       <li>
-        <NavLink exact to="/">Home</NavLink>
+        <NavLink exact to="/"><i className="fas fa-home"></i></NavLink>
+        <NavLink to="/search"><i className="fas fa-search"></i></NavLink>
+        <NavLink to="/library"><i className="fas fa-headphones"></i></NavLink>
+        
         {isLoaded && sessionLinks}
       </li>
     </ul>

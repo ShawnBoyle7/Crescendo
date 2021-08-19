@@ -1,0 +1,81 @@
+.home-page {
+  display: grid;
+  grid-template-rows: 50% 50%;
+  grid-template-areas:
+    "artists songs";
+}
+
+.welcome-message {
+  display: flex;
+  align-items: center; 
+}
+
+.artists-section {
+  grid-area: artists;
+  margin: 0em 2em;
+}
+
+.artist-divs {
+  display: flex;
+}
+
+.popular-artists {
+
+}
+
+.artists-item {
+
+}
+
+.artists-name {
+
+}
+
+.artists-image {
+  height: 10em;
+  width: 10em;
+}
+
+.all-artists {
+  display: flex;
+  justify-content: center;
+}
+
+.songs-section {
+  grid-area: songs;
+  margin: 0em 2em;
+}
+
+.song-divs {
+  display: flex;
+}
+
+.popular-songs {
+
+}
+
+.songs-item {
+
+}
+
+.songs-name {
+
+}
+
+.songs-image {
+  height: 10em;
+  width: 10em;
+}
+
+.all-songs {
+  display: flex;
+  justify-content: center;
+}
+
+.home-page a:hover {
+  color:cornflowerblue;
+  transition-duration: 150ms;
+}
+
+
+

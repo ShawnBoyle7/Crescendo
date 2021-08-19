@@ -13,13 +13,11 @@ const Genre = ({ genres }) => {
   const songs = Object.values(songsSlice)
 
   const genreSongs = songs.filter(song => song.Genre.id === +genreId)
-  console.log(genreSongs)
 
   const artistsSlice = useSelector(state => state.artists)
   const artists = Object.values(artistsSlice)
 
   const genreArtists = artists.filter(artist => artist.Genre.id === +genreId)
-  console.log(genreArtists)
   
   return(
     <>

@@ -1,6 +1,7 @@
 import { Link, Route } from "react-router-dom"
 import { useSelector } from "react-redux"
 import Song from '../Song'
+import './Songs.css'
 
 const Songs = () => {
   const songsSlice = useSelector(state => state.songs);

@@ -1,4 +1,26 @@
 const LOAD_PLAYLISTS = "playlists/LOAD_PLAYLISTS";
+const ADD_PLAYLIST = "playlists/ADD_PLAYLIST";
+
+const addPlaylist = (playlist) => ({
+  type: ADD_PLAYLIST,
+  playlist,
+});
+
+export const newPlaylist = (formData) => async (dispatch) => {
+  const response = await fetch('/api/playlists', {
+    method: "POST",
+    body: JSON.stringify(formData),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+  
+  if (response.ok) {
+    const playlist = await response.json()
+    dispatch((addPlaylist(playlist)));
+    return playlist;
+  }
+};
 
 const loadPlaylists = (playlists) => ({
   type: LOAD_PLAYLISTS,
@@ -25,6 +47,7 @@ const playlistReducer = (state = initialState, action) => {
       })
       return allPlaylists;
     }
+    case ADD_PLAYLIST:
       default: 
       return state;
   }

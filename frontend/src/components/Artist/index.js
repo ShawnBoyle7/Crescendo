@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { Link, Route } from "react-router-dom";
 import Albums from "../Albums";
+import './Artist.css'
 
 const Artist = ({ artists }) => {
 

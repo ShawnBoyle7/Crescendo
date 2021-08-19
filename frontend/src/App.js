@@ -1,3 +1,4 @@
+import './index.css';
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
@@ -10,6 +11,8 @@ import Home from "./components/Home";
 import Search from "./components/Search";
 import Genre from "./components/Genre";
 import Songs from "./components/Songs";
+import Album from "./components/Album";
+import Error404 from "./components/Error404";
 import { getArtists } from "./store/artists";
 import { getUsers } from "./store/users";
 import { getGenres } from "./store/genres";
@@ -33,6 +36,9 @@ function App() {
   
   const genresSlice = useSelector(state => state.genres);
   const genres = Object.values(genresSlice);
+
+  const albumsSlice = useSelector(state => state.albums);
+  const albums = Object.values(albumsSlice);
 
   return (
     <>
@@ -65,7 +71,7 @@ function App() {
           </Route>
 
           <Route path="/albums/:albumId">
-            Album component goes here
+            <Album albums={albums && albums}/>
           </Route>
 
           <Route path="/genres/:genreId">
@@ -73,7 +79,7 @@ function App() {
           </Route>
 
           <Route>
-            404 not found
+            <Error404/>
           </Route>
           
         </Switch>

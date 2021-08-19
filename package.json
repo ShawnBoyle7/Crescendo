@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/ShawnBoyle7/w15-solo-authentication/issues"
   },
-  "homepage": "https://github.com/ShawnBoyle7/w15-solo-authentication#readme"
+  "homepage": "https://github.com/ShawnBoyle7/w15-solo-authentication#readme",
+  "dependencies": {
+    "react-h5-audio-player": "^3.7.1"
+  }
 }

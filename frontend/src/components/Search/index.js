@@ -67,9 +67,11 @@ const Search = () => {
       : <></>}
     </form>
 
+      {!albumArray.length && !artistArray.length && !songArray.length ? 
       <div>        
         {genres.map(genre => <div key={genre.id}><Link to={`/genres/${genre.id}`}>{genre.name}</Link></div>)}
       </div>
+      : <></>}
     </>
   )
 }

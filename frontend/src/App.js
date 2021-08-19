@@ -19,6 +19,7 @@ import { getGenres } from "./store/genres";
 import { getAlbums } from "./store/albums";
 import { getPlaylists } from "./store/playlists";
 import { getSongs } from "./store/songs";
+import PlaylistForm from './components/PlaylistForm';
 
 function App() {
   const dispatch = useDispatch();
@@ -76,6 +77,10 @@ function App() {
 
           <Route path="/genres/:genreId">
             <Genre genres={genres}/>
+          </Route>
+
+          <Route path="/playlists/new">
+            <PlaylistForm/>
           </Route>
 
           <Route>

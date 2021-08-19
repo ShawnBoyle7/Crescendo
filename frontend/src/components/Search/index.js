@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
-import { Link} from "react-router-dom";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import './Search.css';
 
 const Search = () => {
@@ -22,7 +22,6 @@ const Search = () => {
   const [songArray, setSongArray] = useState([]);
 
   useEffect(() => {
-    if (userInput) {
 
       // const filteredArtists = artists.filter(artist => ((artist.name).toLowerCase()).includes((userInput.toLowerCase())))
       // const filteredAlbums = albums.filter(album => ((album.name).toLowerCase()).includes((userInput.toLowerCase())))
@@ -30,18 +29,22 @@ const Search = () => {
       // setArtistArray(filteredArtists)
       // setAlbumArray(filteredAlbums)
       // setSongArray(filteredSongs)
-
-      let filteredArtists = artists
-      let filteredAlbums = albums
-      let filteredSongs = songs
-
-      filteredArtists = artists.filter(artist => ((artist.name).toLowerCase()).includes((userInput.toLowerCase())))
-      filteredAlbums = albums.filter(album => ((album.name).toLowerCase()).includes((userInput.toLowerCase())))
-      filteredSongs = songs.filter(song => song.name.toLowerCase().includes(userInput.toLowerCase()))
+      
+      const filteredArtists = artists.filter(artist => ((artist.name).toLowerCase()).includes((userInput.toLowerCase())))
+      const filteredAlbums = albums.filter(album => ((album.name).toLowerCase()).includes((userInput.toLowerCase())))
+      const filteredSongs = songs.filter(song => song.name.toLowerCase().includes(userInput.toLowerCase()))
       setArtistArray(filteredArtists)
       setAlbumArray(filteredAlbums)
       setSongArray(filteredSongs)
-    }
+
+      if (!userInput) {
+        setArtistArray([])
+        setAlbumArray([])
+        setSongArray([])
+      }
+
+    
+
   }, [userInput])
 
   return(

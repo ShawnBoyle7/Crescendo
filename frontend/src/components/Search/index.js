@@ -9,25 +9,38 @@ const Search = () => {
 
   const artistsSlice = useSelector(state => state.artists);
   const artists = Object.values(artistsSlice);
+  
+  const albumsSlice = useSelector(state => state.albums);
+  const albums = Object.values(albumsSlice);
 
   const songsSlice = useSelector(state => state.songs);
   const songs = Object.values(songsSlice);
 
-  const albumsSlice = useSelector(state => state.albums);
-  const albums = Object.values(albumsSlice);
-
   const [userInput, setUserInput] = useState("");
   const [albumArray, setAlbumArray] = useState([]);
   const [artistArray, setArtistArray] = useState([]);
+  const [songArray, setSongArray] = useState([]);
 
   useEffect(() => {
     if (userInput) {
-      let filteredAlbums = albums;
-      let filteredArtists = artists;
-      filteredAlbums = filteredAlbums.filter(album => ((album.name).toLowerCase()).includes((userInput.toLowerCase())))
-      filteredArtists = filteredArtists.filter(artist => ((artist.name).toLowerCase()).includes((userInput.toLowerCase())))
+
+      // const filteredArtists = artists.filter(artist => ((artist.name).toLowerCase()).includes((userInput.toLowerCase())))
+      // const filteredAlbums = albums.filter(album => ((album.name).toLowerCase()).includes((userInput.toLowerCase())))
+      // const filteredSongs = songs.filter(song => song.name.toLowerCase().includes(userInput.toLowerCase()))
+      // setArtistArray(filteredArtists)
+      // setAlbumArray(filteredAlbums)
+      // setSongArray(filteredSongs)
+
+      let filteredArtists = artists
+      let filteredAlbums = albums
+      let filteredSongs = songs
+
+      filteredArtists = artists.filter(artist => ((artist.name).toLowerCase()).includes((userInput.toLowerCase())))
+      filteredAlbums = albums.filter(album => ((album.name).toLowerCase()).includes((userInput.toLowerCase())))
+      filteredSongs = songs.filter(song => song.name.toLowerCase().includes(userInput.toLowerCase()))
       setArtistArray(filteredArtists)
       setAlbumArray(filteredAlbums)
+      setSongArray(filteredSongs)
     }
   }, [userInput])
 
@@ -36,114 +49,33 @@ const Search = () => {
     <form>
       <input
        type="text"
-       //  placeholder="Search for songs, artists, and albums!"
+       placeholder="Search for songs, artists, and albums!"
        value={userInput}
        onChange={e => setUserInput(e.target.value)}
        ></input>
-        {albumArray.length ? 
-        <div>
-          {albumArray.map(album => <div key={album.id}><Link to={`/albums/${album.id}`}>{album.name}</Link></div>)} 
-        </div> 
-        : <></>}
+
+      {albumArray.length ? 
+      <div>
+        {albumArray.map(album => <div key={album.id}><Link to={`/albums/${album.id}`}>{album.name}</Link></div>)} 
+      </div> 
+      : <></>}
 
       {artistArray.length ? 
       <div>
         {artistArray.map(artist => <div key={artist.id}><Link to={`/artists/${artist.id}`}>{artist.name}</Link></div>)}
       </div> 
-      : <></>} 
+      : <></>}
 
+      {songArray.length ? 
+      <div>
+        {songArray.map(song => <div key={song.id}><Link to={`/songs/${song.id}`}>{song.name}</Link></div>)}
+      </div>  
+      : <></>}
     </form>
 
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <ul>
-      {genres.map(genre => <li key={genre.id}> <Link to={`/genres/${genre.id}`}> {genre.name} </Link></li>)}
-      </ul>
+      <div>        
+        {genres.map(genre => <div key={genre.id}><Link to={`/genres/${genre.id}`}>{genre.name}</Link></div>)}
+      </div>
     </>
   )
 }

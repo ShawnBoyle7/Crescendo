@@ -9,11 +9,11 @@ router.get('/', asyncHandler(async (req, res) => {
   return res.json(playlists)
 }));
 
-
+// 3.
 router.post('/', asyncHandler(async (req, res) => {
-  const { name } = req.body
-  // const userId = 
+  const newPlaylist = await Playlist.create(req.body);
 
+  return res.json(newPlaylist);
 }));
 
 module.exports = router;

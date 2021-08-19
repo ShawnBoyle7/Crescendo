@@ -8,6 +8,7 @@ const Search = () => {
 
   return(
     <>
+      <input type="text"></input>
       <ul>
       {genres.map(genre => <li key={genre.id}> <Link to={`/genres/${genre.id}`}> {genre.name} </Link></li>)}
       </ul>

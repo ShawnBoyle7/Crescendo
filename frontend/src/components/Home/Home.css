@@ -1,30 +1,78 @@
 .home-page {
   display: grid;
-  grid-template-columns: 50% 50%;
+  grid-template-rows: 50% 50%;
   grid-template-areas:
-    "artists songs"
+    "artists songs";
 }
 
-.artists {
+.welcome-message {
+  display: flex;
+  align-items: center; 
+}
+
+.artists-section {
   grid-area: artists;
   margin: 0em 2em;
 }
 
-.songs {
+.artist-divs {
+  display: flex;
+}
+
+.popular-artists {
+
+}
+
+.artists-item {
+
+}
+
+.artists-name {
+
+}
+
+.artists-image {
+  height: 10em;
+  width: 10em;
+}
+
+.all-artists {
+  display: flex;
+  justify-content: center;
+}
+
+.songs-section {
   grid-area: songs;
   margin: 0em 2em;
 }
 
-.home-page ul {
-  list-style-type: none;
+.song-divs {
+  display: flex;
 }
 
-.home-page a {
-  text-decoration: none;
+.popular-songs {
+
+}
+
+.songs-item {
+
+}
+
+.songs-name {
+
+}
+
+.songs-image {
+  height: 10em;
+  width: 10em;
+}
+
+.all-songs {
+  display: flex;
+  justify-content: center;
 }
 
 .home-page a:hover {
-  font-weight: bold;
   color:cornflowerblue;
   transition-duration: 150ms;
 }

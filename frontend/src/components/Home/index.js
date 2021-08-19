@@ -13,11 +13,9 @@ const Home = () => {
   const artistsByPopularity = Object.values(artistsSlice).sort((a, b) => {
     return b.Users.length - a.Users.length
   }); 
-  
 
   return(
-    <>
-      <Link to="/search">Search Page</Link>
+    <div className="home-page">
       
       <h1>Popular Artists</h1>
       <ul>
@@ -30,10 +28,10 @@ const Home = () => {
       <ul>
         {songsByPopularity.map(song => <li key={song.id}> <Link to={`/songs/${song.id}`}> {song.name} </Link></li>)}
       </ul>
-
-      <Link to="/songs">Browse All Songs</Link>
       
-    </>
+      <Link to="/songs">Browse All Songs</Link>
+
+    </div>
   )
 }
 

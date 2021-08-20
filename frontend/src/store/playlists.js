@@ -31,8 +31,8 @@ export const deletePlaylist = (playlistId) => async dispatch => {
   }
 }
 
-export const editPlaylist = (formData, userId) => async dispatch => {
-  const response = await csrfFetch(`/api/playlists/${userId}`, {
+export const editPlaylist = (formData, playlistId) => async dispatch => {
+  const response = await csrfFetch(`/api/playlists/${playlistId}`, {
     method: "PUT",
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(formData)

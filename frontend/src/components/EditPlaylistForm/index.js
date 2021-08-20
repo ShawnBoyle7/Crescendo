@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { editPlaylist } from "../../store/playlists";
+import { useParams } from "react-router-dom";
 
 const EditPlaylistForm = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
 
-  const sessionUser = useSelector(state => state.session.user);
+  const { playlistId } = useParams();
   const [name, setName] = useState('');
   const [validationErrors, setValidationErrors] = useState([]);
-  const history = useHistory();
   let number = 0;
   
   useEffect(() => {
@@ -25,14 +26,11 @@ const EditPlaylistForm = () => {
     e.preventDefault()
 
     const formValues = {
-      name,
-      
+      name
     }
-    const userId = sessionUser ? sessionUser.id : undefined;
-    
 
     // 1.
-    const createdPlaylist = await dispatch(editPlaylist(formValues, userId))
+    const createdPlaylist = await dispatch(editPlaylist(formValues, playlistId))
       if (createdPlaylist) {
         console.log(formValues)
         history.push('/')

@@ -8,9 +8,6 @@ const addPlaylist = (playlist) => ({
   playlist,
 });
 
-// Fetch to backend first, after fetch to backend is ok, the playlist will be added to the backend server.
-// Dispatch the action to the reducer, so the reducer can add it to the store.
-
 // 2.
 export const createPlaylist = (formData) => async (dispatch) => {
   const response = await csrfFetch('/api/playlists', {

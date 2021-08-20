@@ -12,6 +12,8 @@ import Search from "./components/Search";
 import Genre from "./components/Genre";
 import Songs from "./components/Songs";
 import Album from "./components/Album";
+import Library from './components/Library';
+import PlaylistForm from './components/PlaylistForm';
 import Error404 from "./components/Error404";
 import { getArtists } from "./store/artists";
 import { getUsers } from "./store/users";
@@ -19,7 +21,6 @@ import { getGenres } from "./store/genres";
 import { getAlbums } from "./store/albums";
 import { getPlaylists } from "./store/playlists";
 import { getSongs } from "./store/songs";
-import PlaylistForm from './components/PlaylistForm';
 
 function App() {
   const dispatch = useDispatch();
@@ -81,6 +82,10 @@ function App() {
 
           <Route path="/playlists/new">
             <PlaylistForm/>
+          </Route>
+
+          <Route path="/library">
+            <Library/>
           </Route>
 
           <Route>

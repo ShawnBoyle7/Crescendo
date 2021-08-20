@@ -22,7 +22,7 @@ function Navigation({ isLoaded }){
   }
   return (
     <ul className="nav-list">
-      <li>
+      <li id="nav-links">
         <NavLink to="/playlists/new">Create Playlist</NavLink>
         <NavLink exact to="/"><i className="fas fa-home"></i></NavLink>
         <NavLink to="/search"><i className="fas fa-search"></i></NavLink>

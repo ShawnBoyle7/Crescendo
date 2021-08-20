@@ -4,10 +4,25 @@
   padding: 0;
 }
 
+a {
+  margin: 0px 0px;
+}
+
+#nav-links {
+  font-size: 1.5em;
+}
+
 .nav-list a {
   margin: 0px 0.3em;
 }
 
-.nav-list button {
-  margin: 0px 0.3em
+.profile-button {
+  background-color: transparent;
+  border: none;
+  font-size: 1em;
+  margin: 0px 0.3em;
+}
+
+.profile-button:hover {
+  cursor: pointer;
 }

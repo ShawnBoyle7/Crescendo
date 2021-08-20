@@ -9,7 +9,7 @@ const Album = ({ albums }) => {
   return(
     <>
       <h1>{album && album.name} {album && album.Artist.name} </h1>
-      {songs.map(song => <Link to={`/songs/${song.id}`}>{song.name}</Link>)}
+      {songs.map(song => <Link key={song.id} to={`/songs/${song.id}`}>{song.name}</Link>)}
     </>
   )
 }

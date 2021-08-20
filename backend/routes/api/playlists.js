@@ -16,4 +16,10 @@ router.post('/', asyncHandler(async (req, res) => {
   return res.json(newPlaylist);
 }));
 
+router.put('/:id', asyncHandler(async (req, res) => {
+  const playlist = await Playlist.findByPk(+req.params.id)
+  const updatedPlaylist = await playlist.update(req.body)
+  return res.json(updatedPlaylist)
+}));
+
 module.exports = router;

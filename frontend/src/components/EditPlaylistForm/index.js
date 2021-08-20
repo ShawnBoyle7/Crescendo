@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { createPlaylist } from "../../store/playlists";
-import EditPlaylistForm from "../EditPlaylistForm";
+import { editPlaylist } from "../../store/playlists";
 
-const PlaylistForm = () => {
+const EditPlaylistForm = () => {
   const dispatch = useDispatch();
 
   const sessionUser = useSelector(state => state.session.user);
@@ -27,11 +26,12 @@ const PlaylistForm = () => {
 
     const formValues = {
       name,
-      userId: sessionUser.id
     }
+    
+    const userId = sessionUser ? sessionUser.id : undefined;
 
     // 1.
-    const createdPlaylist = await dispatch(createPlaylist(formValues))
+    const createdPlaylist = await dispatch(editPlaylist(formValues, userId))
       if (createdPlaylist) {
         console.log(formValues)
         history.push('/')
@@ -40,7 +40,7 @@ const PlaylistForm = () => {
   
   return(
     <form className="playlist-form" onSubmit={submitHandler}>  
-      <h2>Create your Playlist!</h2>
+      <h2>Update your Playlist name!</h2>
       <ul className="errors">
         {validationErrors.length > 0 ? validationErrors.map(error => <li key={number++}>{error}</li>) : <></>}
       </ul>
@@ -58,11 +58,11 @@ const PlaylistForm = () => {
         type="submit"
         disabled={validationErrors.length > 0}
       >
-        Create Playlist
+        Update Playlist
       </button>
     </form>
   )
 }
 
 
-export default PlaylistForm;
+export default EditPlaylistForm;

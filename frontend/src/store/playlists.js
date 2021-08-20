@@ -2,11 +2,32 @@ import { csrfFetch } from "./csrf"
 
 const LOAD_PLAYLISTS = "playlists/LOAD_PLAYLISTS";
 const ADD_PLAYLIST = "playlists/ADD_PLAYLIST";
+const RENAME_PLAYLIST = "playlists/RENAME_PLAYLIST"
+
+const renamePlaylist = (playlist) => ({
+  type: RENAME_PLAYLIST,
+  playlist,
+});
 
 const addPlaylist = (playlist) => ({
   type: ADD_PLAYLIST,
   playlist,
 });
+
+
+export const editPlaylist = (formData, userId) => async dispatch => {
+  const res = await csrfFetch(`/api/playlists/${userId}`, {
+    method: "PUT",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(formData)
+  });
+
+  if (res.ok) {
+    const updatedPlaylist = await res.json();
+    dispatch(renamePlaylist(updatedPlaylist));
+    return updatedPlaylist;
+  }
+}
 
 // 2.
 export const createPlaylist = (formData) => async (dispatch) => {
@@ -56,6 +77,10 @@ const playlistReducer = (state = initialState, action) => {
       const newState = {...state}
       newState[action.playlist.id] = action.playlist
       return newState;
+    case RENAME_PLAYLIST:
+      const newNewState = {...state}
+      newNewState[action.playlist.id] = action.playlist
+      return newNewState;
     default: 
       return state;
   }

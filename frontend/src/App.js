@@ -21,6 +21,7 @@ import { getGenres } from "./store/genres";
 import { getAlbums } from "./store/albums";
 import { getPlaylists } from "./store/playlists";
 import { getSongs } from "./store/songs";
+import Playlists from './components/Playlists';
 
 function App() {
   const dispatch = useDispatch();
@@ -86,6 +87,10 @@ function App() {
 
           <Route path="/library">
             <Library/>
+          </Route>
+
+          <Route path="/playlists">
+            <Playlists/>
           </Route>
 
           <Route>

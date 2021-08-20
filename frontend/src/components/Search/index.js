@@ -72,9 +72,14 @@ const Search = () => {
 
       {!albumArray.length && !artistArray.length && !songArray.length ? 
       <div className="search-genres-div">        
-        {genres.map(genre => <div key={genre.id}><Link to={`/genres/${genre.id}`}>{genre.name}</Link></div>)}
+        {!userInput && genres.map(genre => <div key={genre.id}><Link to={`/genres/${genre.id}`}>{genre.name}</Link></div>)}
       </div>
       : <></>}
+
+      {userInput && !albumArray.length && !artistArray.length && !songArray.length ?
+      <h1>No results found for {userInput}</h1>
+      : <></>}
+
     </>
   )
 }

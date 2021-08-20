@@ -7,6 +7,14 @@ const { User, Artist, Album } = require('../../db/models');
 
 const router = express.Router();
 
+const validateUserEdit = [
+  check('username')
+  .exists({ checkFalsy: true })
+  .isLength({ min: 4 })
+  .withMessage('Please provide a username with at least 4 characters.'),
+  handleValidationErrors,
+];
+
 const validateSignup = [
   check('email')
     .exists({ checkFalsy: true })
@@ -54,5 +62,18 @@ router.post(
     });
   }),
 );
+
+router.put('/:id', validateUserEdit, asyncHandler(async (req, res) => {
+  const userId = +req.params.id
+  const user = await User.findByPk(userId)
+
+  const {username} = req.body
+
+  await user.update({
+    username
+  })
+  res.json(user)
+
+}));
 
 module.exports = router;

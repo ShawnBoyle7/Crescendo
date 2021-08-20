@@ -1,10 +1,35 @@
-const LOAD_USERS = "users/LOAD_USERS";
+import { csrfFetch } from "./csrf";
 
+const LOAD_USERS = "users/LOAD_USERS";
+const EDIT_USERNAME = "users/EDIT_USERNAME"
+
+const editUsername = (user) => ({
+  type: EDIT_USERNAME,
+  user
+});
 
 const loadUsers = (users) => ({
   type: LOAD_USERS,
   users
 });
+
+export const updateUsername = (formData) => async (dispatch) => {
+  const { id, username } = formData
+  const response = await csrfFetch(`/api/users/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      username
+    })
+  });
+
+  if (response.ok) {
+    const updatedUsername = await response.json();
+    dispatch(editUsername(updatedUsername));
+  }
+}
 
 export const getUsers = () => async (dispatch) => {
   const response = await fetch('/api/users')
@@ -26,6 +51,8 @@ const userReducer = (state = initialState, action) => {
       })
       return allUsers;
     }
+    case EDIT_USERNAME:
+      return { ...state, [action.user.id]: {...state[action.user.id], ...action.user} }
       default: 
       return state;
   }

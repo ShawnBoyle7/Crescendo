@@ -22,6 +22,7 @@ import { getAlbums } from "./store/albums";
 import { getPlaylists } from "./store/playlists";
 import { getSongs } from "./store/songs";
 import Playlists from './components/Playlists';
+import Profile from './components/Profile';
 
 function App() {
   const dispatch = useDispatch();
@@ -37,6 +38,8 @@ function App() {
     dispatch(getSongs());
   }, [dispatch])
   
+  const sessionUser = useSelector(state => state.session.user)
+
   const genresSlice = useSelector(state => state.genres);
   const genres = Object.values(genresSlice);
 
@@ -91,6 +94,10 @@ function App() {
 
           <Route path="/playlists">
             <Playlists/>
+          </Route>
+
+          <Route path="/profile">
+            <Profile user={sessionUser}/>
           </Route>
 
           <Route>

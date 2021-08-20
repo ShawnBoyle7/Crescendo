@@ -1,6 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { Playlist, Song, Artist, Album } = require('../../db/models');
+const { Playlist } = require('../../db/models');
 const router = express.Router();
 
 router.get('/', asyncHandler(async (req, res) => {

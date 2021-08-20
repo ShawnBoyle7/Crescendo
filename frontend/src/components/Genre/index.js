@@ -22,7 +22,8 @@ const Genre = ({ genres }) => {
   return(
     <>
       <h1>{genre && genre.name}</h1>
-      <div className="artists-songs-div"> <Link to={`/genres/${genreId}/artists`}><h2>{genre && genre.name} Artists </h2></Link> 
+      <div className="artists-songs-div">
+      <Link to={`/genres/${genreId}/artists`}><h2>{genre && genre.name} Artists </h2></Link> 
       <Link to={`/genres/${genreId}/songs`}><h2>{genre && genre.name} Songs </h2></Link> </div>
 
       <Route exact path="/genres/:genreId/artists">

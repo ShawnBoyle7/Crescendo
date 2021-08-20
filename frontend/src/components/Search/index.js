@@ -35,7 +35,7 @@ const Search = () => {
         setAlbumArray([])
         setSongArray([])
       }
-
+  // eslint-disable-next-line
   }, [userInput])
 
   return(
@@ -48,27 +48,30 @@ const Search = () => {
        onChange={e => setUserInput(e.target.value)}
        ></input>
 
+      <div className="search-container">
+    
+      {artistArray.length ? 
+      <div className="artists-results-div">
+        {artistArray.map(artist => <div className="artist-card" key={artist.id}><Link to={`/artists/${artist.id}`}>{artist.name} <img className="artists-image" src={artist.artistImgUrl}/></Link></div>)}
+      </div> 
+      : <></>}
+
       {albumArray.length ? 
-      <div>
+      <div className="albums-results-div">
         {albumArray.map(album => <div key={album.id}><Link to={`/albums/${album.id}`}>{album.name}</Link></div>)} 
       </div> 
       : <></>}
 
-      {artistArray.length ? 
-      <div>
-        {artistArray.map(artist => <div key={artist.id}><Link to={`/artists/${artist.id}`}>{artist.name}</Link></div>)}
-      </div> 
-      : <></>}
-
       {songArray.length ? 
-      <div>
+      <div className="songs-results-div">
         {songArray.map(song => <div key={song.id}><Link to={`/songs/${song.id}`}>{song.name}</Link></div>)}
       </div>  
       : <></>}
+      </div>
     </form>
 
       {!albumArray.length && !artistArray.length && !songArray.length ? 
-      <div>        
+      <div className="search-genres-div">        
         {genres.map(genre => <div key={genre.id}><Link to={`/genres/${genre.id}`}>{genre.name}</Link></div>)}
       </div>
       : <></>}

@@ -1,0 +1,47 @@
+.search-container {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas: 
+  "artists"
+  "albums"
+  "songs"
+  ;
+}
+
+.artists-results-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  grid-area: artists;
+  margin: 1em;
+  height: 13em;  
+}
+
+.albums-results-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  grid-area: albums;
+  margin: 1em;
+  border: 2px solid black;
+  height: 13em;
+}
+
+.songs-results-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  grid-area: songs;
+  margin: 1em;
+  border: 2px solid black;
+  height: 13em;
+}
+
+.artist-card {
+  border: 2px solid black;
+}
+
+.search-genres-div {
+
+}
+

@@ -26,9 +26,10 @@ const EditPlaylistForm = () => {
 
     const formValues = {
       name,
+      
     }
-    
     const userId = sessionUser ? sessionUser.id : undefined;
+    
 
     // 1.
     const createdPlaylist = await dispatch(editPlaylist(formValues, userId))

@@ -22,4 +22,10 @@ router.put('/:id', asyncHandler(async (req, res) => {
   return res.json(updatedPlaylist)
 }));
 
+router.delete('/:id', asyncHandler(async (req, res) => {
+  const playlist = await Playlist.findByPk(req.params.id);
+  playlist.destroy()
+  return res.json({ message: "Playlist Destroyed" })
+}));
+
 module.exports = router;

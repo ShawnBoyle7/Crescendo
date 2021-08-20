@@ -9,7 +9,7 @@ router.get('/', asyncHandler(async (req, res) => {
       Genre,
       Album,
       User,
-      Song
+      Song,
     ]
   });
 

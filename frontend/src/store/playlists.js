@@ -1,3 +1,5 @@
+import { csrfFetch } from "./csrf"
+
 const LOAD_PLAYLISTS = "playlists/LOAD_PLAYLISTS";
 const ADD_PLAYLIST = "playlists/ADD_PLAYLIST";
 
@@ -6,8 +8,9 @@ const addPlaylist = (playlist) => ({
   playlist,
 });
 
-export const newPlaylist = (formData) => async (dispatch) => {
-  const response = await fetch('/api/playlists', {
+// 2.
+export const createPlaylist = (formData) => async (dispatch) => {
+  const response = await csrfFetch('/api/playlists', {
     method: "POST",
     body: JSON.stringify(formData),
     headers: {
@@ -15,6 +18,7 @@ export const newPlaylist = (formData) => async (dispatch) => {
     }
   });
   
+  // 4.
   if (response.ok) {
     const playlist = await response.json()
     dispatch((addPlaylist(playlist)));
@@ -38,6 +42,7 @@ export const getPlaylists = () => async (dispatch) => {
 
 const initialState = {}
 
+// 5.
 const playlistReducer = (state = initialState, action) => {
   switch(action.type) {
     case LOAD_PLAYLISTS: {
@@ -48,7 +53,10 @@ const playlistReducer = (state = initialState, action) => {
       return allPlaylists;
     }
     case ADD_PLAYLIST:
-      default: 
+      const newState = {...state}
+      newState[action.playlist.id] = action.playlist
+      return newState;
+    default: 
       return state;
   }
 }

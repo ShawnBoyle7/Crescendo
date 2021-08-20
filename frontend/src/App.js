@@ -12,6 +12,8 @@ import Search from "./components/Search";
 import Genre from "./components/Genre";
 import Songs from "./components/Songs";
 import Album from "./components/Album";
+import Library from './components/Library';
+import PlaylistForm from './components/PlaylistForm';
 import Error404 from "./components/Error404";
 import { getArtists } from "./store/artists";
 import { getUsers } from "./store/users";
@@ -76,6 +78,14 @@ function App() {
 
           <Route path="/genres/:genreId">
             <Genre genres={genres}/>
+          </Route>
+
+          <Route path="/playlists/new">
+            <PlaylistForm/>
+          </Route>
+
+          <Route path="/library">
+            <Library/>
           </Route>
 
           <Route>

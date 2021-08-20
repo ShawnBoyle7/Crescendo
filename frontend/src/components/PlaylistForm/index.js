@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
 import { createPlaylist } from "../../store/playlists";
-import EditPlaylistForm from "../EditPlaylistForm";
 
 const PlaylistForm = () => {
   const dispatch = useDispatch();

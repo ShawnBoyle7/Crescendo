@@ -8,7 +8,6 @@ const Playlist = ({ playlists }) => {
   const history = useHistory();
   const { playlistId } = useParams();
   const playlist = playlists.find(playlist => playlist.id === +playlistId)
-  console.log(playlist)
 
   const deletePlaylistFunction = () => {
     dispatch(deletePlaylist(playlist.id))

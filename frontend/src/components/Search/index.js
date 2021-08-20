@@ -52,7 +52,7 @@ const Search = () => {
     
       {artistArray.length ? 
       <div className="artists-results-div">
-        {artistArray.map(artist => <div className="artist-card" key={artist.id}><Link to={`/artists/${artist.id}`}>{artist.name} <img className="artists-image" src={artist.artistImgUrl}/></Link></div>)}
+        {artistArray.map(artist => <div className="artist-card" key={artist.id}><Link to={`/artists/${artist.id}`}>{artist.name} <img className="artists-image" alt={"artist"} src={artist.artistImgUrl}/></Link></div>)}
       </div> 
       : <></>}
 

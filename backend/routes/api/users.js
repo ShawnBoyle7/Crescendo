@@ -76,10 +76,5 @@ router.put('/:id', validateUserEdit, asyncHandler(async (req, res) => {
 
 }));
 
-router.delete('/:id', asyncHandler(async (req, res) => {
-  const user = await User.findByPk(+req.params.id)
-  user.destroy()
-  return res.json({ message: "User Destroyed" })
-}));
 
 module.exports = router;

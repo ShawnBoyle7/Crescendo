@@ -1,7 +1,7 @@
 import './index.css';
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
@@ -15,14 +15,15 @@ import Album from "./components/Album";
 import Library from './components/Library';
 import PlaylistForm from './components/PlaylistForm';
 import Error404 from "./components/Error404";
+import Playlists from './components/Playlists';
+import Profile from './components/Profile';
+import Splash from './components/Splash';
 import { getArtists } from "./store/artists";
 import { getUsers } from "./store/users";
 import { getGenres } from "./store/genres";
 import { getAlbums } from "./store/albums";
 import { getPlaylists } from "./store/playlists";
 import { getSongs } from "./store/songs";
-import Playlists from './components/Playlists';
-import Profile from './components/Profile';
 
 function App() {
   const dispatch = useDispatch();
@@ -38,7 +39,6 @@ function App() {
     dispatch(getSongs());
   }, [dispatch])
   
-  const sessionUser = useSelector(state => state.session.user)
 
   const genresSlice = useSelector(state => state.genres);
   const genres = Object.values(genresSlice);
@@ -46,8 +46,12 @@ function App() {
   const albumsSlice = useSelector(state => state.albums);
   const albums = Object.values(albumsSlice);
 
+  const sessionUser = useSelector(state => state.session.user)
+
+
   return (
     <>
+    {sessionUser ? <>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
@@ -105,7 +109,34 @@ function App() {
           </Route>
           
         </Switch>
-      )}
+      ) 
+
+      }
+    </> : 
+        <>
+
+        <Switch>
+
+        <Route exact path="/">
+          <Splash/>
+        </Route>  
+      
+        <Route path="/login">
+          <LoginFormPage/>
+        </Route>
+
+        <Route path="/signup">
+          <SignupFormPage/>
+        </Route>
+
+        <Route>
+          <Redirect to='/'></Redirect>
+        </Route>
+
+        </Switch>
+        
+        </>
+    } 
     </>
   );
 }

@@ -1,8 +1,11 @@
 .home-page {
   display: grid;
   grid-template-rows: 50% 50%;
+  grid-gap: 3em;
   grid-template-areas:
-    "artists songs";
+    "artists" 
+    "songs";
+  margin-top: 6em;
 }
 
 .welcome-message {
@@ -15,8 +18,9 @@
   margin: 0em 2em;
 }
 
-.artist-divs {
+.artists-divs {
   display: flex;
+  justify-content: space-around;
 }
 
 .popular-artists {
@@ -24,11 +28,14 @@
 }
 
 .artists-item {
-
+  border: 2px solid black;
+  height: 16em;
+  width: 13em;
 }
 
 .artists-name {
-
+  display: flex;
+  justify-content: center;
 }
 
 .artists-image {
@@ -49,6 +56,7 @@
 
 .song-divs {
   display: flex;
+  justify-content: space-around;
 }
 
 .popular-songs {
@@ -56,16 +64,23 @@
 }
 
 .songs-item {
-
+  border: 2px solid black;
+  height: 16em;
+  width: 13em;
 }
 
 .songs-name {
-
+  display: flex;
+  justify-content: center;
 }
 
 .songs-image {
+  /* display: flex;
+  justify-content: center;
+  margin: 0; */
   height: 10em;
   width: 10em;
+  border-radius: 50%;
 }
 
 .all-songs {

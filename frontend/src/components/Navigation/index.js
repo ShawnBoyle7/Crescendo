@@ -21,16 +21,16 @@ function Navigation({ isLoaded }){
     );
   }
   return (
-    <ul className="nav-list">
-      <li id="nav-links">
-        <NavLink to="/playlists/new">Create Playlist</NavLink>
-        <NavLink exact to="/"><i className="fas fa-home"></i></NavLink>
-        <NavLink to="/search"><i className="fas fa-search"></i></NavLink>
-        <NavLink to="/library"><i className="fas fa-headphones"></i></NavLink>
+    <div className="nav-bar">
+      <div id="nav-links">
+        <NavLink exact to="/"><i className="fas fa-home"> Home</i></NavLink>
+        <NavLink to="/search"><i className="fas fa-search"> Search</i></NavLink>
+        <NavLink to="/library"><i className="fas fa-headphones"> Your Library</i></NavLink>
+        <NavLink to="/playlists/new"> <i className="far fa-plus-square"></i> Create Playlist</NavLink>
         
         {isLoaded && sessionLinks}
-      </li>
-    </ul>
+      </div>
+    </div>
   );
 }
 

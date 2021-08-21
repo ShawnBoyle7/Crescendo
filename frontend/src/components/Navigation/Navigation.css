@@ -1,26 +1,36 @@
-.nav-list {
-  list-style: none;
-  margin: 0.3em 0em;
+.nav-bar {
+  margin: 0em 0em;
   padding: 0;
-}
-
-a {
-  margin: 0px 0px;
+  background-color: #000000;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 15em;
+  /* overflow-x: hidden; */
 }
 
 #nav-links {
   font-size: 1.5em;
+  display: flex;
+  flex-direction: column;
 }
 
-.nav-list a {
-  margin: 0px 0.3em;
+.nav-bar a {
+  margin: 1em 0em;
+  text-decoration: none;
+  color: grey;
 }
 
 .profile-button {
+  display: flex;
   background-color: transparent;
   border: none;
   font-size: 1em;
-  margin: 0px 0.3em;
+  margin: 0px 0px;
+  position: fixed;
+  left: 8em;
 }
 
 .profile-button:hover {

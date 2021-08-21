@@ -28,9 +28,13 @@
 }
 
 .artists-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 2px solid black;
   height: 16em;
   width: 13em;
+  background-color:darkgray;
 }
 
 .artists-name {

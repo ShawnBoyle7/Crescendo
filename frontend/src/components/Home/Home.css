@@ -6,12 +6,12 @@
     "welcome"
     "artists" 
     "songs";
-  margin-top: 6em;
+  margin-top: 2em;
 }
 
 .welcome-message {
   grid-area: welcome;
-  margin-left: 10em;
+  margin-left: 1.37em
 }
 
 .artists-section {
@@ -25,7 +25,7 @@
 }
 
 .popular-artists {
-
+  margin-left: 0.52em
 }
 
 .artists-item {
@@ -35,7 +35,7 @@
   border: 2px solid black;
   height: 16em;
   width: 13em;
-  background-color:darkgray;
+  background-color: #242424
 }
 
 .artists-name {
@@ -65,13 +65,17 @@
 }
 
 .popular-songs {
-
+  margin-left: 0.52em
 }
 
 .songs-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 2px solid black;
   height: 16em;
   width: 13em;
+  background-color: #242424
 }
 
 .songs-name {

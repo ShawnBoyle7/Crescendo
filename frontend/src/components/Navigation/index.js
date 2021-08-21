@@ -3,9 +3,13 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
+import Playlist from '../Playlist';
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
+  const playlistsSlice = useSelector(state => state.playlists);
+  const allPlaylists = Object.values(playlistsSlice);
+  const userPlaylists = allPlaylists.filter(playlist => playlist.userId === +sessionUser.id)
 
   let sessionLinks;
   if (sessionUser) {
@@ -27,7 +31,7 @@ function Navigation({ isLoaded }){
         <NavLink to="/search"><i className="fas fa-search"> Search</i></NavLink>
         <NavLink to="/library"><i className="fas fa-headphones"> Your Library</i></NavLink>
         <NavLink to="/playlists/new"> <i className="far fa-plus-square"></i> Create Playlist</NavLink>
-        
+        {userPlaylists.map(playlist => <NavLink to={`/playlists/${playlist.id}`}>{playlist.name}</NavLink>)}
         {isLoaded && sessionLinks}
       </div>
     </div>

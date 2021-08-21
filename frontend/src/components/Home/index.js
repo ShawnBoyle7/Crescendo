@@ -18,7 +18,7 @@ const Home = () => {
 
   return(
     <div className="home-page">
-      {/* <h1 className="welcome-message">Welcome!</h1> */}
+      <h1 className="welcome-message">Welcome!</h1>
 
       <div className="artists-section">
       <h1 className="popular-artists">Popular Artists</h1>

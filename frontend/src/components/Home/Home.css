@@ -1,16 +1,17 @@
 .home-page {
   display: grid;
-  grid-template-rows: 50% 50%;
-  grid-gap: 3em;
+  grid-template-rows: 6% 47% 47%;
+  grid-gap: 2em;
   grid-template-areas:
+    "welcome"
     "artists" 
     "songs";
   margin-top: 6em;
 }
 
 .welcome-message {
-  display: flex;
-  align-items: center; 
+  grid-area: welcome;
+  margin-left: 10em;
 }
 
 .artists-section {

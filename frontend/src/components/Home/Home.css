@@ -54,6 +54,7 @@
   justify-content: center;
 }
 
+
 .songs-section {
   grid-area: songs;
   margin: 0em 2em;
@@ -84,9 +85,6 @@
 }
 
 .songs-image {
-  /* display: flex;
-  justify-content: center;
-  margin: 0; */
   height: 10em;
   width: 10em;
   border-radius: 50%;
@@ -96,11 +94,4 @@
   display: flex;
   justify-content: center;
 }
-
-.home-page a:hover {
-  color:cornflowerblue;
-  transition-duration: 150ms;
-}
-
-
 

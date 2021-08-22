@@ -43,37 +43,3 @@
   width: 13em;
   background-color: #242424
 }
-
-/* .artists-results-div {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  grid-area: artists;
-  margin: 1em;
-  height: 13em;  
-}
-
-.albums-results-div {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  grid-area: albums;
-  margin: 1em;
-  border: 2px solid black;
-  height: 13em;
-}
-
-.songs-results-div {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  grid-area: songs;
-  margin: 1em;
-  border: 2px solid black;
-  height: 13em;
-} */
-
-/* .search-genres-div {
-
-} */
-

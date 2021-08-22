@@ -13,6 +13,9 @@ module.exports = {
         allowNull: false,
         unique: true
       },
+      albumImgUrl: {
+        type: Sequelize.STRING()
+      },
       artistId: {
         allowNull: false,
         type: Sequelize.INTEGER,

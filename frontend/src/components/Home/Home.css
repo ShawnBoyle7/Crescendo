@@ -59,7 +59,7 @@
   margin: 0em 2em;
 }
 
-.song-divs {
+.songs-divs {
   display: flex;
   justify-content: space-around;
 }

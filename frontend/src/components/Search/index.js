@@ -50,54 +50,66 @@ const Search = () => {
        onChange={e => setUserInput(e.target.value)}
        ></input>
 
-      <div className="search-container">
+    <div className="search-container">
     
-        {artistArray.length ? 
-          <div className="artists-results-div">
+      {artistArray.length ? 
+        <div className="artists-section">
+          <div className="artists-divs">
             {artistArray.map(artist =>
               <div className="artists-item" key={artist.id}>
               <Link to={`/artists/${artist.id}`}>
               <img className="artists-image" alt={"artist"} src={artist.artistImgUrl}/>
-              {artist.name}
-              </Link></div>)}
-        </div> 
+              <div className="artists-name">{artist.name}</div>  
+              </Link>
+              </div>)}
+          </div> 
+        </div>
         : <></>}
 
-        {albumArray.length ? 
-          <div className="albums-results-div">
-            {artistArray.map(album =>
+      {albumArray.length ? 
+        <div className="albums-section">
+          <div className="albums-divs">
+            {albumArray.map(album =>
               <div className="albums-item" key={album.id}>
               <Link to={`/albums/${album.id}`}>
               <img className="albums-image" alt={"album"} src={album.albumImgUrl}/>
-              {album.name}
-              </Link></div>)}
+              <div className="albums-name">{album.name}</div>  
+              </Link>
+              </div>)}
+          </div>
         </div> 
         : <></>}
 
-        {songArray.length ? 
-        <div className="songs-results-div">
-          {songArray.map(song =>
-          <div className="songs-item"key={song.id}>
-          <Link to={`/songs/${song.id}`}>
-          <img className="songs-image" alt={"song"} src={song.songImgUrl}/>
-          {song.name}
-          </Link></div>)}
+      {songArray.length ? 
+        <div className="songs-section">
+          <div className="songs-divs">
+           {songArray.map(song =>
+            <div className="songs-item"key={song.id}>
+            <Link to={`/songs/${song.id}`}>
+            <img className="songs-image" alt={"song"} src={song.songImgUrl}/>
+            <div className="songs-name">{song.name}</div>  
+            </Link>
+            </div>)}
+          </div>
         </div>  
         : <></>}
-      </div>    
+    </div>
 
-        {!albumArray.length && !artistArray.length && !songArray.length ? 
-          <div className="search-genres-div">
-            {!userInput && genres.map(genre =>
+      {!albumArray.length && !artistArray.length && !songArray.length ? 
+        <div className="search-genres-section">
+          <div className="genres-divs">
+          {!userInput && genres.map(genre =>
             <div className="genres-item"key={genre.id}>
             <Link to={`/genres/${genre.id}`}>
-            <img className="genre-image" alt={"genre"} src={genre.genreImgUrl}/>
-            {genre.name}
-            </Link></div>)}
+            <div className="genres-name">{genre.name}</div>  
+            </Link>
+            </div>)}
           </div>
-          : <></>}
+        </div>
+        : <></>}
 
     </form>
+          
       {userInput && !albumArray.length && !artistArray.length && !songArray.length ?
       <h1>No results found for {userInput}</h1>
       : <></>}

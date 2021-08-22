@@ -1,47 +1,45 @@
 .search-container {
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-template-areas: 
+  grid-template-rows: 33% 33% 33%;
+  grid-gap: 2em;
+  grid-template-areas:
   "artists"
-  "albums"
-  "songs"
-  ;
+  "albums" 
+  "songs";
+  margin-top: 2em;
 }
 
-.artists-results-div {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  grid-area: artists;
-  margin: 1em;
-  height: 13em;  
+.search-bar {
+  border: 0;
+  border-radius: 500px;
+  color: #000;
+  height: 30px;
+  padding: 6px 48px;
+  text-overflow: ellipsis;
+  width: 20%;
 }
 
-.albums-results-div {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+.albums-image {
+  height: 10em;
+  width: 10em;
+  border-radius: 50%;
+}
+
+.albums-section {
   grid-area: albums;
-  margin: 1em;
-  border: 2px solid black;
-  height: 13em;
 }
 
-.songs-results-div {
+.albums-divs {
   display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  grid-area: songs;
-  margin: 1em;
+  justify-content: space-around;
+}
+
+.albums-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 2px solid black;
-  height: 13em;
+  height: 16em;
+  width: 13em;
+  background-color: #242424
 }
-
-.artist-card {
-  border: 2px solid black;
-}
-
-.search-genres-div {
-
-}
-

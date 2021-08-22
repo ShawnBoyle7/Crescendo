@@ -37,7 +37,7 @@ const Home = () => {
 
       <div className="songs-section">
       <h1 className="popular-songs">Popular Songs</h1>
-      <div className="song-divs">
+      <div className="songs-divs">
         {songsByPopularity.map(song =>
           <div className="songs-item" key={song.id}>
           <Link to={`/songs/${song.id}`}>

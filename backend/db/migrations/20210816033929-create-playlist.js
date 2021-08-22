@@ -13,6 +13,9 @@ module.exports = {
         allowNull: false,
         unique: true
       },
+      playlistImgUrl: {
+        type: Sequelize.STRING
+      },
       userId: {
         type: Sequelize.INTEGER,
         references: { model: "Users" }

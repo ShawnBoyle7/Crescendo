@@ -20,6 +20,21 @@ const addPlaylist = (playlist) => ({
   playlist,
 });
 
+export const addPlaylistSong = (something) => async(dispatch) => {
+  const response = await csrfFetch('/api/playlists/new-song', {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(something)
+  });
+
+  if (response.ok) {  
+    const playlists = await response.json();
+    dispatch(loadPlaylists(playlists))
+  }
+} 
+
 export const deletePlaylist = (playlistId) => async dispatch => {
   const response = await csrfFetch(`/api/playlists/${playlistId}`, {
     method: "DELETE"

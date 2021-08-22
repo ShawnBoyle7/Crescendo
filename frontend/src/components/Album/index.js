@@ -6,10 +6,27 @@ const Album = ({ albums }) => {
   const { albumId } = useParams();
   const album = albums.find(album => album.Artist.id === +albumId)
   const songs = album.Songs 
+
   return(
     <>
-      <h1>{album && album.name} {album && album.Artist.name} </h1>
-      {songs.map(song => <Link key={song.id} to={`/songs/${song.id}`}>{song.name}</Link>)}
+      <div className="album-name">
+        <h1>{album && album.name}</h1>
+      </div>
+      <div className="artist-name">
+        <h1>{album && album.Artist.name} </h1>
+      </div>
+      
+      <div className="songs-section">
+        <div className="songs-divs">
+          {songs.map(song =>
+            <div className="songs-item"key={song.id}>
+            <Link to={`/songs/${song.id}`} key={song.id}>
+            <img className="songs-image" alt={"song"} src={song.songImgUrl}/>
+            <div className="songs-name">{song.name}</div>  
+            </Link>
+            </div>)}
+        </div>
+      </div>
     </>
   )
 }

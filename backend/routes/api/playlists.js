@@ -1,6 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const { Playlist, Song } = require('../../db/models');
+const { Playlist, Song, User, Song_Playlist_Join } = require('../../db/models');
 const router = express.Router();
 
 router.get('/', asyncHandler(async (req, res) => {
@@ -9,6 +9,16 @@ router.get('/', asyncHandler(async (req, res) => {
   });
 
   return res.json(playlists)
+}));
+
+router.post('/new-song', asyncHandler(async (req, res) => {
+  await Song_Playlist_Join.create(req.body)
+
+  const playlists = await Playlist.findAll({
+    include: [Song, User]
+  });
+  
+  return res.json(playlists);
 }));
 
 // 3.

@@ -45,7 +45,7 @@ const Search = () => {
       // <i class="fas fa-search"></i>
        className="search-bar"
        type="text"
-       placeholder="Search for songs, artists, and albums!"
+       placeholder="🔎 Search for songs, artists, and albums!"
        value={userInput}
        onChange={e => setUserInput(e.target.value)}
        ></input>

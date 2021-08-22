@@ -17,6 +17,8 @@
   padding: 6px 48px;
   text-overflow: ellipsis;
   width: 20%;
+  text-align: center;
+  margin-left: 3em;
 }
 
 .albums-image {

@@ -1,3 +1,22 @@
-.artists-songs-div {
-  display: flex;
+.artists-songs-section {
+  display: grid;
+  grid-template-rows: 6% 47% 47%;
+  grid-gap: 2em;
+  grid-template-areas:
+    ". genre ."
+    "artists . songs";
+  margin-top: 2em;
+}
+
+.genre-name{
+  grid-area: genre;
+  margin-left: 1.37em;
+}
+
+.artists-search {
+  grid-area: artists;
+}
+
+.songs-search {
+  grid-area: songs;
 }

@@ -21,10 +21,25 @@ const Genre = ({ genres }) => {
   
   return(
     <>
-      <h1>{genre && genre.name}</h1>
-      <div className="artists-songs-div">
-      <Link to={`/genres/${genreId}/artists`}><h2>{genre && genre.name} Artists </h2></Link> 
-      <Link to={`/genres/${genreId}/songs`}><h2>{genre && genre.name} Songs </h2></Link> </div>
+      <div className="genre-name">
+        <h1>{genre && genre.name}</h1>
+      </div>
+      <div className="artists-songs-section">
+        <div className="artists-search">
+          <Link to={`/genres/${genreId}/artists`}>
+          <div className="artist-header">
+            <h2>{genre && genre.name} Artists </h2>
+          </div>
+          </Link> 
+        </div>
+        <div className="songs-search">
+          <Link to={`/genres/${genreId}/songs`}>
+          <div className="song-header">
+            <h2>{genre && genre.name} Songs </h2>
+          </div>
+          </Link>
+        </div>
+      </div>
 
       <Route exact path="/genres/:genreId/artists">
         <GenreArtists propArtists={genreArtists}/>

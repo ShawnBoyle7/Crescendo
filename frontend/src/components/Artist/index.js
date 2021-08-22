@@ -9,17 +9,26 @@ const Artist = ({ artists }) => {
   const artist = artists.find(artist => artist.id === +artistId)
   return(
     <>
-      <h1>{artist && artist.name} {artist && artist.Genre.name}</h1>
+      <div className="artist-name">
+        <h1>{artist && artist.name}</h1> 
+      </div>
+      <div className="artist-genre">
+        {artist && artist.Genre.name}
+      </div>
       <Route exact path="/artists/:artistId">
-
-      <ul>
-        {/* This map will create a link for each album from my artist. I'll use this to render a select few on the artist's page. */}
-        {artist && artist.Albums.map(artistAlbum => <li key={artistAlbum.artistId}> 
-        <Link to={`/albums/${artistAlbum.id}`}> {artistAlbum.name} </Link> </li>)}
-      </ul>
-
-      {/* This link below will render all the albums of my artist. I'll use this for a directory of all my artist's albums. */}
-      <Link to={`/artists/${artistId}/albums`}> See All Albums </Link>
+        <div className="albums-section">
+          <div className="albums-divs">
+            {artist && artist.Albums.map(album =>
+              <div className="albums-item" key={album.id}>
+              <Link to={`/albums/${album.id}`}>
+              <img className="albums-image" alt={"album"} src={album.albumImgUrl}/>
+              <div className="albums-name">{album.name}</div>  
+              </Link> 
+              </div>)}
+          </div>
+        </div> 
+      
+        <Link to={`/artists/${artistId}/albums`}>See All Albums</Link>
       </Route>
 
       <Route path="/artists/:artistId/albums">

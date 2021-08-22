@@ -9,6 +9,7 @@ const PlaylistForm = () => {
   const sessionUser = useSelector(state => state.session.user);
   const [name, setName] = useState('');
   const [validationErrors, setValidationErrors] = useState([]);
+  const [showErrors, setShowErrors] = useState(false)
   const history = useHistory();
   let number = 0;
   
@@ -40,15 +41,16 @@ const PlaylistForm = () => {
   return(
     <form className="playlist-form" onSubmit={submitHandler}>  
       <h2>Create your Playlist!</h2>
-      <ul className="errors">
+      {showErrors && <ul className="errors">
         {validationErrors.length > 0 ? validationErrors.map(error => <li key={number++}>{error}</li>) : <></>}
-      </ul>
+      </ul>}
   
       <label>
         Name
         <input
           type="text"
           name="name"
+          onBlur={() => setShowErrors(true)}
           onChange={e => setName(e.target.value)}
           value={name}
         />

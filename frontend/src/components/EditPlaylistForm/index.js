@@ -11,6 +11,7 @@ const EditPlaylistForm = () => {
   const { playlistId } = useParams();
   const [name, setName] = useState('');
   const [validationErrors, setValidationErrors] = useState([]);
+  const [showErrors, setShowErrors] = useState(false)
   let number = 0;
   
   useEffect(() => {
@@ -40,15 +41,16 @@ const EditPlaylistForm = () => {
   return(
     <form className="playlist-form" onSubmit={submitHandler}>  
       <h2>Update your Playlist name!</h2>
-      <ul className="errors">
+      {showErrors && <ul className="errors">
         {validationErrors.length > 0 ? validationErrors.map(error => <li key={number++}>{error}</li>) : <></>}
-      </ul>
+      </ul>}
   
       <label>
         Name
         <input
           type="text"
           name="name"
+          onBlur={() => setShowErrors(true)}
           onChange={e => setName(e.target.value)}
           value={name}
         />

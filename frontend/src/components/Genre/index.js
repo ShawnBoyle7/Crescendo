@@ -41,13 +41,17 @@ const Genre = ({ genres }) => {
         </div>
       </div>
 
-      <Route exact path="/genres/:genreId/artists">
-        <GenreArtists propArtists={genreArtists}/>
-      </Route>
+      <div className="genre-artists-component">
+        <Route exact path="/genres/:genreId/artists">
+          <GenreArtists propArtists={genreArtists}/>
+        </Route>
+      </div>
 
-      <Route exact path="/genres/:genreId/songs">
-        <GenreSongs propSongs={genreSongs}/>
-      </Route>
+      <div className="genre-songs-component">
+        <Route exact path="/genres/:genreId/songs">
+          <GenreSongs propSongs={genreSongs}/>
+        </Route>
+      </div>
     </>
   )
 }

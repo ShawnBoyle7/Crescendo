@@ -4,8 +4,8 @@ import './GenreArtists.css'
 const GenreArtists = ({ propArtists }) => {
   return(
     <>
-        <div className="artists-section">
-          <div className="artists-divs">
+        <div className="artist-section">
+          <div className="artist-divs">
             {propArtists.map(artist =>
               <div className="artists-item" key={artist.id}>
               <Link to={`/artists/${artist.id}`}>

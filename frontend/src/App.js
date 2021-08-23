@@ -24,6 +24,7 @@ import { getGenres } from "./store/genres";
 import { getAlbums } from "./store/albums";
 import { getPlaylists } from "./store/playlists";
 import { getSongs } from "./store/songs";
+import ProfileButton from './components/Navigation/ProfileButton';
 
 function App() {
   const dispatch = useDispatch();
@@ -53,6 +54,10 @@ function App() {
     <>
     {sessionUser ? <>
       <Navigation isLoaded={isLoaded} />
+      {sessionUser && 
+      <> 
+      <ProfileButton/>
+      </>}
       {isLoaded && (
         <Switch>
           

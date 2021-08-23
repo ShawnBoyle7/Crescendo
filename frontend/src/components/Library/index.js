@@ -55,17 +55,17 @@ const Library = () => {
           </Route>
 
           <Route path="/library/playlists">
-            <div className="playlists-section">
-              <div className="playlists-divs">
+            <div className="playlists-divs">
+              {/* <div className="playlists-divs"> */}
                 {userPlaylists ? userPlaylists.map(playlist =>
                   <div className="playlists-item" key={playlist.id}>
                   <Link to={`/playlists/${playlist.id}`}>
-                  <img className="playlists-image" alt={"playlist"} src={playlist.playlistImgUrl}/>
+                  <img className="playlists-image" alt={"playlist"} src={"https://i.imgur.com/rUCUYPz.png"}/>
                   <div className="playlists-name">{playlist.name}</div>  
                   </Link>
                   </div>)
                   : <></>}
-              </div>
+              {/* </div> */}
             </div>
           </Route>
           <Route>

@@ -35,8 +35,18 @@ router.put('/:id', asyncHandler(async (req, res) => {
 }));
 
 router.delete('/:id', asyncHandler(async (req, res) => {
+  const joinsEntries = await Song_Playlist_Join.findAll({
+    where: {
+      playlistId: req.params.id
+    }
+  });
+
+  joinsEntries.forEach(async entry => {
+    await entry.destroy()
+  });
+
   const playlist = await Playlist.findByPk(req.params.id);
-  playlist.destroy()
+  await playlist.destroy()
   return res.json({ message: "Playlist Destroyed" })
 }));
 

@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import './Navigation.css';
 import Profile from "../Profile";
 import { Route, Link } from "react-router-dom";
 
-function ProfileButton({ user }) {
+function ProfileButton() {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
-  
+  const sessionUser = useSelector(state => state.session.user) 
+  const user = useSelector(state => state.users[sessionUser?.id])
+
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
@@ -46,8 +48,8 @@ function ProfileButton({ user }) {
           <li>
             <button onClick={logout}>Log Out</button>
           </li>
-          <li>{user.username}</li>
-          <li>{user.email}</li>
+          <li>{user?.username}</li>
+          <li>{sessionUser?.email}</li>
         </ul>
       )}
     </>

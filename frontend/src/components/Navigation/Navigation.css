@@ -14,7 +14,7 @@
   font-size: 1.5em;
   display: flex;
   flex-direction: column;
-  margin-left: 0.6em
+  margin-left: 0.6em;
 }
 
 .nav-bar a {
@@ -33,10 +33,22 @@
   border: none;
   font-size: 1em;
   margin: 0px 0px;
-  position: fixed;
-  left: 7.6em;
+  position: absolute;
+  right: 1em;
+  top: -1.5em;
+}
+
+.profile-dropdown {
+  position: absolute;
+  right: 1em;
+  list-style-type: none;
+  text-align: right;
 }
 
 .profile-button:hover {
   cursor: pointer;
+}
+
+.playlists {
+  border-top: 0.05em solid white;
 }

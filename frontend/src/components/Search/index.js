@@ -99,11 +99,11 @@ const Search = () => {
         <div className="search-genres-section">
           <div className="genres-divs">
           {!userInput && genres.map(genre =>
-            <div className="genres-item"key={genre.id}>
             <Link to={`/genres/${genre.id}`}>
+            <div className="genres-item"key={genre.id}>
             <div className="genres-name">{genre.name}</div>  
-            </Link>
-            </div>)}
+            </div>
+            </Link>)}
           </div>
         </div>
         : <></>}

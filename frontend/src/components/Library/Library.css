@@ -7,14 +7,18 @@
   background-color: #262626;
 }
 
-.playlists-section {
+/* .playlists-section {
   grid-area: playlists;
   margin: 0em 2em;
-}
+} */
 
 .playlists-divs {
   display: flex;
   justify-content: space-around;
+  overflow-x: auto;
+  max-width: fit-content;
+  scroll-snap-align: start;
+  transform: translate(0.2%, 0%);
 }
 
 .playlists-item {

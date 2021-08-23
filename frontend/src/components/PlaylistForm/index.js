@@ -34,7 +34,7 @@ const PlaylistForm = () => {
     const createdPlaylist = await dispatch(createPlaylist(formValues))
       if (createdPlaylist) {
         console.log(formValues)
-        history.push('/playlists')
+        history.push(`/library/playlists`)
     }
   }
   

@@ -1,4 +1,4 @@
-'use strict'; x 
+'use strict';
 
 module.exports = {
   up: (queryInterface, Sequelize) => {

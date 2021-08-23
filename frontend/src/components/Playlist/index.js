@@ -2,6 +2,7 @@ import { useHistory, useParams, Link } from "react-router-dom";
 import EditPlaylistForm from "../EditPlaylistForm";
 import { useDispatch } from "react-redux";
 import { deletePlaylist } from "../../store/playlists";
+import { useState } from "react";
 
 const Playlist = ({ playlists }) => {
   const dispatch = useDispatch();
@@ -10,9 +11,15 @@ const Playlist = ({ playlists }) => {
   const playlist = playlists.find(playlist => playlist.id === +playlistId)
   const songs = playlist.Songs
 
+  const [showEditForm, setShowEditForm] = useState(false)
+  const [showDeleteForm, setShowDeleteForm] = useState(false)
+
+
   const deletePlaylistFunction = () => {
     dispatch(deletePlaylist(playlist.id))
-    history.push('/playlists')
+    history.push('/library/playlists')
+    setShowEditForm(false)
+    setShowDeleteForm(false)
   }
 
   return(
@@ -25,10 +32,19 @@ const Playlist = ({ playlists }) => {
           </Link>)}
       </div>
 
-      <EditPlaylistForm/>
+      <button onClick={() => setShowEditForm(true)}>Edit Playlist Name</button>
+      <button onClick={() => setShowDeleteForm(true)}>Delete Playlist</button>
+
+      {showEditForm &&
+      <EditPlaylistForm setShowEditForm={setShowEditForm}/>}
+
+      {showDeleteForm &&
+      <>
       <button type="button" onClick={deletePlaylistFunction}>
-        Delete Playlist
+        Confirm Delete
       </button>
+      <button onClick={e => setShowDeleteForm(false)}>Cancel Delete</button>
+      </>}
     </>
   )
 }

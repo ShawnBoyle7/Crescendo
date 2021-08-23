@@ -25,29 +25,34 @@ const Genre = ({ genres }) => {
         <h1>{genre && genre.name}</h1>
       </div>
       <div className="artists-songs-section">
-        <div className="artists-search">
+        <div className="artists-filter">
           <Link to={`/genres/${genreId}/artists`}>
           <div className="artist-header">
             <h2>{genre && genre.name} Artists </h2>
           </div>
           </Link> 
         </div>
-        <div className="songs-search">
+        <div className="songs-filter">
           <Link to={`/genres/${genreId}/songs`}>
           <div className="song-header">
             <h2>{genre && genre.name} Songs </h2>
           </div>
           </Link>
         </div>
+
+      <div className="genre-artists-component">
+        <Route exact path="/genres/:genreId/artists">
+          <GenreArtists propArtists={genreArtists}/>
+        </Route>
       </div>
 
-      <Route exact path="/genres/:genreId/artists">
-        <GenreArtists propArtists={genreArtists}/>
-      </Route>
+      <div className="genre-songs-component">
+        <Route exact path="/genres/:genreId/songs">
+          <GenreSongs propSongs={genreSongs}/>
+        </Route>
+      </div>
+    </div>
 
-      <Route exact path="/genres/:genreId/songs">
-        <GenreSongs propSongs={genreSongs}/>
-      </Route>
     </>
   )
 }

@@ -4,14 +4,14 @@ import { useDispatch } from "react-redux";
 import { editPlaylist } from "../../store/playlists";
 import { useParams } from "react-router-dom";
 
-const EditPlaylistForm = () => {
-  const history = useHistory();
+const EditPlaylistForm = ({ setShowEditForm }) => {
   const dispatch = useDispatch();
 
   const { playlistId } = useParams();
   const [name, setName] = useState('');
   const [validationErrors, setValidationErrors] = useState([]);
   const [showErrors, setShowErrors] = useState(false)
+
   let number = 0;
   
   useEffect(() => {
@@ -34,7 +34,8 @@ const EditPlaylistForm = () => {
     const createdPlaylist = await dispatch(editPlaylist(formValues, playlistId))
       if (createdPlaylist) {
         console.log(formValues)
-        history.push('/')
+        setShowEditForm(false)
+        
     }
   }
   
@@ -58,6 +59,7 @@ const EditPlaylistForm = () => {
         disabled={validationErrors.length > 0}>
         Update Playlist
       </button>
+      <button onClick={e => setShowEditForm(false)}>Cancel Edit</button>
     </form>
   )
 }

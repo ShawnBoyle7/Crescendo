@@ -4,8 +4,8 @@ import './GenreSongs.css'
 const GenreSongs = ({ propSongs }) => {
   return(
     <>
-        <div className="songs-section">
-          <div className="songs-divs">
+        <div className="song-section">
+          <div className="song-divs">
            {propSongs.map(song =>
             <div className="songs-item"key={song.id}>
             <Link to={`/songs/${song.id}`}>

@@ -15,7 +15,7 @@
   color: #000;
   height: 30px;
   padding: 6px 48px;
-  text-overflow: ellipsis;
+  /* text-overflow: ellipsis; */
   width: 20%;
   text-align: center;
   margin-left: 3em;
@@ -46,7 +46,75 @@
   background-color: #b3abab
 }
 
-.genres-name:hover {
-  transition-duration: 250ms;
-  background-color: #262626;
+.genres-item:hover {
+  background: #262626;
 }
+
+.genres-item {
+  margin-top: 1em;
+  background: linear-gradient(20deg, #353535 0%, #282828 80%);
+  border-radius: 8px;
+  padding: 35px;
+  color: white;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  cursor: pointer;
+}
+
+.song-section {
+  display: flex;
+}
+
+/* .search-genres-section {
+  overflow-y: auto;
+  height: 5%;
+} */
+
+/* .genres-item {
+  background: linear-gradient(0deg, #935d14 0%, #f49a23 100%);
+  border-radius: 8px;
+  padding: 35px;
+  color: white;
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.genres-item {
+  background: linear-gradient(0deg, #935d14 0%, #f49a23 100%);
+  border-radius: 8px;
+  padding: 35px;
+  color: white;
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.genres-item {
+  background: linear-gradient(0deg, #935d14 0%, #f49a23 100%);
+  border-radius: 8px;
+  padding: 35px;
+  color: white;
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.genres-item {
+  background: linear-gradient(0deg, #935d14 0%, #f49a23 100%);
+  border-radius: 8px;
+  padding: 35px;
+  color: white;
+  font-size: 30px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+} */

@@ -66,7 +66,13 @@ router.post(
 
 router.put('/:id', validateUserEdit, asyncHandler(async (req, res) => {
   const userId = +req.params.id
-  const user = await User.findByPk(userId)
+  const user = await User.findByPk(userId, {
+    include: [
+      Artist,
+      Album,
+      Playlist
+    ]
+  });
 
   const {username} = req.body
 

@@ -16,8 +16,8 @@ const Album = ({ albums }) => {
         <h1>{album && album.Artist.name} </h1>
       </div>
       
-      <div className="songs-section">
-        <div className="songs-divs">
+      <div className="song-section">
+        <div className="song-divs">
           {songs.map(song =>
             <div className="songs-item"key={song.id}>
             <Link to={`/songs/${song.id}`} key={song.id}>

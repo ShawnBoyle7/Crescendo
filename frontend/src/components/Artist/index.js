@@ -17,7 +17,7 @@ const Artist = ({ artists }) => {
       </div>
       <Route exact path="/artists/:artistId">
         <div className="albums-section">
-          <div className="albums-divs">
+          <div className="album-divs">
             {artist && artist.Albums.map(album =>
               <div className="albums-item" key={album.id}>
               <Link to={`/albums/${album.id}`}>

@@ -18,6 +18,7 @@ import Error404 from "./components/Error404";
 import Playlists from './components/Playlists';
 import Profile from './components/Profile';
 import Splash from './components/Splash';
+import ProfileButton from './components/Navigation/ProfileButton';
 import { getArtists } from "./store/artists";
 import { getUsers } from "./store/users";
 import { getGenres } from "./store/genres";
@@ -48,10 +49,10 @@ function App() {
 
   const sessionUser = useSelector(state => state.session.user)
 
-
   return (
     <>
     {sessionUser ? <>
+      <ProfileButton/>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
@@ -110,31 +111,29 @@ function App() {
           
         </Switch>
       ) 
-
-      }
+    }
     </> : 
         <>
+          <Switch>
 
-        <Switch>
-
-        <Route exact path="/">
-          <Splash/>
-        </Route>  
-      
-        <Route path="/login">
-          <LoginFormPage/>
-        </Route>
-
-        <Route path="/signup">
-          <SignupFormPage/>
-        </Route>
-
-        <Route>
-          <Redirect to='/'></Redirect>
-        </Route>
-
-        </Switch>
+          <Route exact path="/">
+            <Splash/>
+          </Route>  
         
+          <Route path="/login">
+            <LoginFormPage/>
+          </Route>
+
+          <Route path="/signup">
+            <SignupFormPage/>
+          </Route>
+
+          <Route>
+            <Redirect to='/'></Redirect>
+          </Route>
+
+          </Switch>
+          
         </>
     } 
     </>

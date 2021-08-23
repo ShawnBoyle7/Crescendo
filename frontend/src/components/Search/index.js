@@ -53,8 +53,8 @@ const Search = () => {
     <div className="search-container">
     
       {artistArray.length ? 
-        <div className="artists-section">
-          <div className="artists-divs">
+        <div className="artist-section">
+          <div className="artist-divs">
             {artistArray.map(artist =>
               <div className="artists-item" key={artist.id}>
               <Link to={`/artists/${artist.id}`}>
@@ -67,8 +67,8 @@ const Search = () => {
         : <></>}
 
       {albumArray.length ? 
-        <div className="albums-section">
-          <div className="albums-divs">
+        <div className="album-section">
+          <div className="album-divs">
             {albumArray.map(album =>
               <div className="albums-item" key={album.id}>
               <Link to={`/albums/${album.id}`}>
@@ -81,7 +81,7 @@ const Search = () => {
         : <></>}
 
       {songArray.length ? 
-        <div className="songs-section">
+        <div className="song-section">
           <div className="songs-divs">
            {songArray.map(song =>
             <div className="songs-item"key={song.id}>
@@ -99,11 +99,11 @@ const Search = () => {
         <div className="search-genres-section">
           <div className="genres-divs">
           {!userInput && genres.map(genre =>
-            <div className="genres-item"key={genre.id}>
             <Link to={`/genres/${genre.id}`}>
+            <div className="genres-item"key={genre.id}>
             <div className="genres-name">{genre.name}</div>  
-            </Link>
-            </div>)}
+            </div>
+            </Link>)}
           </div>
         </div>
         : <></>}

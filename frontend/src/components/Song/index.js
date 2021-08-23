@@ -77,29 +77,9 @@ const Song = ({ songs }) => {
         <button onClick={e => setShowForm(false)}>Cancel</button>
       </> }
 
-      
-      
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
       <div className="player-div">
         <AudioPlayer
-        src="https://cf-media.sndcdn.com/YGm1t3FIDVZ2.128.mp3?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiKjovL2NmLW1lZGlhLnNuZGNkbi5jb20vWUdtMXQzRklEVloyLjEyOC5tcDMqIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNjI5Mzk0MjY5fX19XX0_&Signature=TcuDtP2~1tE2Q27Kmnf5kPUJF4c~whXmESnosblLhwp23Srbql1~s~OCbXFj1ajApaohAAw9lB~lNDHwKkVet3Jpl1rN3NSGfCcdfOZ7H08LpGrbm-Tk3bdl4jY4S8TEpR9w~lfjjLOulY22KwQCigxWDZDAihhlh6GvkO3IBohYhgHPFe5SkgRoWAtk7OUM22gc2uguHf5dYE74Wy7Wu1xiMkHhAUoBdylPZ36F--C753yhDpmXNmJGP0rfI~rehXcA-GfXDb2LoruaDJxfQIO9CtCePirHb4lXOW6VPUmi37Pm7gGCTtASRHloVmiXmrINeTNC8ZZjdDp6n1~E6Q__&Key-Pair-Id=APKAI6TU7MMXM5DG6EPQ"
+        src="https://cf-media.sndcdn.com/YGm1t3FIDVZ2.128.mp3?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiKjovL2NmLW1lZGlhLnNuZGNkbi5jb20vWUdtMXQzRklEVloyLjEyOC5tcDMqIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNjI5NzEyMDMzfX19XX0_&Signature=VmjgO2U3Lpg00NjSgvTVV0pHw8pZpYjvcW7~sZUJjP-AxskZxH92zYuXu84LxHI9s~KsR8s7PYrKLF33Ct5rboO~71dfWNWTlE33OHzIk3iSOa3-uX42nnQwjiGgbwg8aAXgvVlyK3LXyAOzoLUMZ~15f9HMXbXyHb0xd-x1mUDcDuwxdxSipmP8SUN8Ba4jNTPQEE6el6MaMSXuQvkBqLsbx-riWyknptYPkyCxKMZK1H9vdaC3f8z-4J58ZsBavjNIZOBlzZi7b7LuxRNaCY~2TPFlRSsXS7NxW8QzUbBdxytBL1Mmr~jDVBnoa4uC7YX4ZLingGRFQxKBZHl2ew__&Key-Pair-Id=APKAI6TU7MMXM5DG6EPQ"
         onPlay={e => console.log("onPlay")}
         />
       </div>

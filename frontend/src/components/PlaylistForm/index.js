@@ -34,7 +34,7 @@ const PlaylistForm = () => {
     const createdPlaylist = await dispatch(createPlaylist(formValues))
       if (createdPlaylist) {
         console.log(formValues)
-        history.push('/')
+        history.push('/playlists')
     }
   }
   
@@ -45,22 +45,19 @@ const PlaylistForm = () => {
         {validationErrors.length > 0 ? validationErrors.map(error => <li key={number++}>{error}</li>) : <></>}
       </ul>}
   
-      <label>
-        Name
-        <input
-          type="text"
-          name="name"
-          onBlur={() => setShowErrors(true)}
-          onChange={e => setName(e.target.value)}
-          value={name}
-        />
-      </label>
-      <button
-        type="submit"
-        disabled={validationErrors.length > 0}
-      >
-        Create Playlist
-      </button>
+      <div>
+        <label htmlFor="name"> Name </label>
+          <input
+            id="name"
+            type="text"
+            onBlur={() => setShowErrors(true)}
+            onChange={e => setName(e.target.value)}
+            value={name}/>
+        </div>
+        <button
+          disabled={validationErrors.length > 0}>
+          Create Playlist
+        </button>
     </form>
   )
 }

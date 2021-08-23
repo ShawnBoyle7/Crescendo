@@ -23,6 +23,10 @@
   color: grey;
 }
 
+.playlist-item {
+  margin-top: 1em;
+}
+
 .profile-button {
   display: flex;
   background-color: transparent;

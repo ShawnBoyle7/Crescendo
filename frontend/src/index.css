@@ -27,3 +27,10 @@ body {
   /* background: rgb(36,36,36);
   background: linear-gradient(0deg, rgba(36,36,36,1) 0%, rgba(58,58,58,1) 66%, rgba(32,32,32,1) 100%); */
 }
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+

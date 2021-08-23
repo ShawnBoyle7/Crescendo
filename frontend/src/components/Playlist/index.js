@@ -19,7 +19,7 @@ const Playlist = ({ playlists }) => {
     <>
       <h1>{playlist && playlist.name}</h1>
       <div>
-        {songs.map(song =>
+        {songs && songs.map(song =>
           <Link to= {`/songs/${song.id}`} key={song.id}>
           <div className="song-name">{song.name}</div>
           </Link>)}

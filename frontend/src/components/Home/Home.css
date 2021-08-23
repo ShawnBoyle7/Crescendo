@@ -35,7 +35,12 @@
   border: 2px solid black;
   height: 16em;
   width: 13em;
-  background-color: #242424
+  background-color: #242424;
+}
+
+.artists-item:hover {
+  transition-duration: 250ms;
+  background-color: #262626;
 }
 
 .artists-name {
@@ -52,6 +57,11 @@
 .all-artists {
   display: flex;
   justify-content: center;
+}
+
+.all-artists:hover {
+  transition-duration: 250ms;
+  background-color: #262626;
 }
 
 
@@ -79,6 +89,11 @@
   background-color: #242424
 }
 
+.songs-item:hover {
+  transition-duration: 250ms;
+  background-color: #262626;
+}
+
 .songs-name {
   display: flex;
   justify-content: center;
@@ -93,5 +108,10 @@
 .all-songs {
   display: flex;
   justify-content: center;
+}
+
+.all-songs:hover {
+  transition-duration: 250ms;
+  background-color: #262626;
 }
 

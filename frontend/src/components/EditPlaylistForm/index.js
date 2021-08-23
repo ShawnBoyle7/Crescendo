@@ -45,20 +45,17 @@ const EditPlaylistForm = () => {
         {validationErrors.length > 0 ? validationErrors.map(error => <li key={number++}>{error}</li>) : <></>}
       </ul>}
   
-      <label>
-        Name
+    <div>
+      <label htmlFor="name"> Name </label>
         <input
           type="text"
           name="name"
           onBlur={() => setShowErrors(true)}
           onChange={e => setName(e.target.value)}
-          value={name}
-        />
-      </label>
+          value={name}/>
+    </div>
       <button
-        type="submit"
-        disabled={validationErrors.length > 0}
-      >
+        disabled={validationErrors.length > 0}>
         Update Playlist
       </button>
     </form>

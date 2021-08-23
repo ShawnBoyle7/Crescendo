@@ -43,5 +43,10 @@
   border: 2px solid black;
   height: 16em;
   width: 13em;
-  background-color: #242424
+  background-color: #b3abab
+}
+
+.genres-name:hover {
+  transition-duration: 250ms;
+  background-color: #262626;
 }

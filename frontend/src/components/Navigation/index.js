@@ -31,7 +31,14 @@ function Navigation({ isLoaded }){
         <NavLink to="/search"><i className="fas fa-search"> Search</i></NavLink>
         <NavLink to="/library"><i className="fas fa-headphones"> Your Library</i></NavLink>
         <NavLink to="/playlists/new"> <i className="far fa-plus-square"></i> Create Playlist</NavLink>
-        {userPlaylists.map(playlist => <NavLink to={`/playlists/${playlist.id}`}>{playlist.name}</NavLink>)}
+        <div className="playlists">
+          {userPlaylists.map(playlist =>
+            <div className="playlist-item" key={playlist.id}>
+            <NavLink to={`/playlists/${playlist.id}`}>
+            <div className="playlist-name">{playlist.name}</div>
+            </NavLink>
+            </div>)}
+        </div>
         {isLoaded && sessionLinks}
       </div>
     </div>

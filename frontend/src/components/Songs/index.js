@@ -10,10 +10,17 @@ const Songs = () => {
   return(
     <>
       <Route exact path="/songs">
-        <h1>This is the songs component</h1>
-        <ul>
-          {songs.map(song => <li key={song.id}> <Link to={`/songs/${song.id}`}> {song.name} {song.Genre.name}</Link></li>)}
-        </ul>
+      <div className="song-section">
+          <div className="songs-divs">
+           {songs.map(song =>
+            <div className="songs-item"key={song.id}>
+            <Link to={`/songs/${song.id}`}>
+            <img className="songs-image" alt={"song"} src={song.songImgUrl}/>
+            <div className="songs-name">{song.name}</div>  
+            </Link>
+            </div>)}
+          </div>
+        </div>  
       </Route>
 
       <Route path="/songs/:songId">

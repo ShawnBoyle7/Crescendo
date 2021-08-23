@@ -62,6 +62,10 @@
   cursor: pointer;
 }
 
+.song-section {
+  display: flex;
+}
+
 /* .search-genres-section {
   overflow-y: auto;
   height: 5%;

@@ -25,8 +25,8 @@ const Library = () => {
         
           <Switch>
           <Route path="/library/artists">
-            <div className="artists-section">
-              <div className="artists-divs">
+            <div className="artist-section">
+              <div className="artist-divs">
                 {followedArtists ? followedArtists.map(artist =>
                   <div className="artists-item" key={artist.id}>
                   <Link to={`/artists/${artist.id}`}>
@@ -41,7 +41,7 @@ const Library = () => {
 
           <Route path="/library/albums">
             <div className="albums-section">
-              <div className="albums-divs">
+              <div className="album-divs">
                 {likedAlbums ? likedAlbums.map(album =>
                   <div className="albums-item" key={album.id}>
                   <Link to={`/albums/${album.id}`}>
@@ -69,8 +69,8 @@ const Library = () => {
             </div>
           </Route>
           <Route>
-          <div className="artists-section">
-              <div className="artists-divs">
+          <div className="artist-section">
+              <div className="artist-divs">
                 {followedArtists ? followedArtists.map(artist =>
                   <div className="artists-item" key={artist.id}>
                   <Link to={`/artists/${artist.id}`}>

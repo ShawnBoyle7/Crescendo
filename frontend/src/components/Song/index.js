@@ -23,8 +23,8 @@ const Song = ({ songs }) => {
   const playlistsWithoutSong = userPlaylists?.filter(playlist => {
     let canAdd = true;
 
-    playlist.Songs.forEach(song => {
-      if (song.id === +songId) {
+    playlist?.Songs.forEach(song => {
+      if (song?.id === +songId) {
         canAdd = false;
       };
     });

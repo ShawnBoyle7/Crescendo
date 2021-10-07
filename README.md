@@ -1,6 +1,6 @@
 # Crescendo
 
-# Table of Contents
+## Table of Contents
 
 1. [Introduction](#introduction)
 2. [Technologies](#technologies)
@@ -32,6 +32,8 @@
 * [Frontend Routes](https://github.com/ShawnBoyle7/Crescendo/wiki/Frontend-Routes)
 
 ## Development
+
+## How To Use
 
 ## What I Learned
 

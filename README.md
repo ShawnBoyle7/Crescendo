@@ -1,10 +1,38 @@
 # Crescendo
 
-Crescendo is a WIP spotify clone platform for organized music.  
-You can browse artists and songs sorted by a genre, as well as view an artist's page and their albums.  
-From here you're able to add an artist or album to your personal library, or even create a playlist of songs for your library.  
-If you like, you can just view all the artists or songs, go to a particular song and press play!  
+# Table of Contents
 
-Crescendo centralizes your musical interests so you can easily find what you want to listen to based on your sorting.
+1. [Introduction](#introduction)
+2. [Technologies](#technologies)
+3. [Documentation](#documentation)
+4. [Development](#development)
+5. [How To Use](#how-to-use)
+6. [What I Learned](#what-i-learned)
+7. [Future Plans](#future-plans)
 
-[You can access Crescendo here!](https://crescendo-live.herokuapp.com/)
+## Introduction
+
+### Visit the website [here!](https://crescendo-live.herokuapp.com/)
+
+## Technologies
+
+* PostgreSQL
+* Sequelize
+* Express
+* React
+* Redux
+
+## Documentation
+
+* [Database Schema](https://github.com/ShawnBoyle7/Crescendo/wiki/Database-Schema)
+* [Redux State](https://github.com/ShawnBoyle7/Crescendo/wiki/Redux-State)
+* [User Stories](https://github.com/ShawnBoyle7/Crescendo/wiki/User-Stories)
+* [Feature List](https://github.com/ShawnBoyle7/Crescendo/wiki/Feature-List)
+* [API Routes](https://github.com/ShawnBoyle7/Crescendo/wiki/API-Routes)
+* [Frontend Routes](https://github.com/ShawnBoyle7/Crescendo/wiki/Frontend-Routes)
+
+## Development
+
+## What I Learned
+
+## Future Plans

@@ -18,8 +18,8 @@ const Genre = ({ genres }) => {
   const artists = Object.values(artistsSlice)
 
   const genreArtists = artists.filter(artist => artist.Genre.id === +genreId)
-  
-  return(
+
+  return (
     <>
       <div className="genre-name">
         <h1>{genre && genre.name}</h1>
@@ -27,31 +27,31 @@ const Genre = ({ genres }) => {
       <div className="artists-songs-section">
         <div className="artists-filter">
           <Link to={`/genres/${genreId}/artists`}>
-          <div className="artist-header">
-            <h2>{genre && genre.name} Artists </h2>
-          </div>
-          </Link> 
+            <div className="artist-header">
+              <h2>{genre && genre.name} Artists </h2>
+            </div>
+          </Link>
         </div>
         <div className="songs-filter">
           <Link to={`/genres/${genreId}/songs`}>
-          <div className="song-header">
-            <h2>{genre && genre.name} Songs </h2>
-          </div>
+            <div className="song-header">
+              <h2>{genre && genre.name} Songs </h2>
+            </div>
           </Link>
         </div>
 
-      <div className="genre-artists-component">
-        <Route exact path="/genres/:genreId/artists">
-          <GenreArtists propArtists={genreArtists}/>
-        </Route>
-      </div>
+        <div className="genre-artists-component">
+          <Route exact path="/genres/:genreId/artists">
+            <GenreArtists propArtists={genreArtists} />
+          </Route>
+        </div>
 
-      <div className="genre-songs-component">
-        <Route exact path="/genres/:genreId/songs">
-          <GenreSongs propSongs={genreSongs}/>
-        </Route>
+        <div className="genre-songs-component">
+          <Route exact path="/genres/:genreId/songs">
+            <GenreSongs propSongs={genreSongs} />
+          </Route>
+        </div>
       </div>
-    </div>
 
     </>
   )

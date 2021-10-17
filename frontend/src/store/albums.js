@@ -17,7 +17,7 @@ export const getAlbums = () => async (dispatch) => {
 const initialState = {}
 
 const albumReducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case LOAD_ALBUMS: {
       const allAlbums = {}
       action.albums.forEach(album => {
@@ -25,7 +25,7 @@ const albumReducer = (state = initialState, action) => {
       })
       return allAlbums;
     }
-      default: 
+    default:
       return state;
   }
 }

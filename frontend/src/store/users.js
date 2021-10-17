@@ -44,7 +44,7 @@ export const getUsers = () => async (dispatch) => {
 const initialState = {}
 
 const userReducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case LOAD_USERS:
       const allUsers = {}
       action.users.forEach(user => {
@@ -52,7 +52,7 @@ const userReducer = (state = initialState, action) => {
       })
       return allUsers;
     case EDIT_USERNAME:
-      const newState = {...state}
+      const newState = { ...state }
       newState[action.user.id] = action.user
       return newState;
 

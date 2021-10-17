@@ -7,10 +7,10 @@ const Artist = ({ artists }) => {
 
   const { artistId } = useParams()
   const artist = artists.find(artist => artist.id === +artistId)
-  return(
+  return (
     <>
       <div className="artist-name">
-        <h1>{artist && artist.name}</h1> 
+        <h1>{artist && artist.name}</h1>
       </div>
       <div className="artist-genre">
         {artist && artist.Genre.name}
@@ -20,19 +20,19 @@ const Artist = ({ artists }) => {
           <div className="album-divs">
             {artist && artist.Albums.map(album =>
               <div className="albums-item" key={album.id}>
-              <Link to={`/albums/${album.id}`}>
-              <img className="albums-image" alt={"album"} src={album.albumImgUrl}/>
-              <div className="albums-name">{album.name}</div>  
-              </Link> 
+                <Link to={`/albums/${album.id}`}>
+                  <img className="albums-image" alt={"album"} src={album.albumImgUrl} />
+                  <div className="albums-name">{album.name}</div>
+                </Link>
               </div>)}
           </div>
-        </div> 
-      
+        </div>
+
         <Link to={`/artists/${artistId}/albums`}>See All Albums</Link>
       </Route>
 
       <Route path="/artists/:artistId/albums">
-        <Albums albums={artist && artist.Albums}/>
+        <Albums albums={artist && artist.Albums} />
       </Route>
     </>
   )

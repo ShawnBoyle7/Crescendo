@@ -17,7 +17,7 @@ export const getArtists = () => async (dispatch) => {
 const initialState = {}
 
 const artistReducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case LOAD_ARTISTS: {
       const allArtists = {}
       action.artists.forEach(artist => {
@@ -25,7 +25,7 @@ const artistReducer = (state = initialState, action) => {
       })
       return allArtists;
     }
-      default: 
+    default:
       return state;
   }
 }

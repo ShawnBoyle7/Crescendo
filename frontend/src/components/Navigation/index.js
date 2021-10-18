@@ -5,7 +5,7 @@ import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import Playlist from '../Playlist';
 
-function Navigation({ isLoaded }){
+function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
   const playlistsSlice = useSelector(state => state.playlists);
   const allPlaylists = Object.values(playlistsSlice);
@@ -14,7 +14,7 @@ function Navigation({ isLoaded }){
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <ProfileButton/>
+      <ProfileButton />
     );
   } else {
     sessionLinks = (
@@ -34,9 +34,9 @@ function Navigation({ isLoaded }){
         <div className="playlists">
           {userPlaylists.map(playlist =>
             <div className="playlist-item" key={playlist.id}>
-            <NavLink to={`/playlists/${playlist.id}`}>
-            <div className="playlist-name">{playlist.name}</div>
-            </NavLink>
+              <NavLink to={`/playlists/${playlist.id}`}>
+                <div className="playlist-name">{playlist.name}</div>
+              </NavLink>
             </div>)}
         </div>
         {/* {isLoaded && sessionLinks} */}

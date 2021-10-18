@@ -17,7 +17,7 @@ export const getGenres = () => async (dispatch) => {
 const initialState = {}
 
 const genreReducer = (state = initialState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case LOAD_GENRES: {
       const allGenres = {}
       action.genres.forEach(genre => {
@@ -25,7 +25,7 @@ const genreReducer = (state = initialState, action) => {
       })
       return allGenres;
     }
-      default: 
+    default:
       return state;
   }
 }

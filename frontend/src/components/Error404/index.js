@@ -1,5 +1,5 @@
 const Error404 = () => {
-  return(
+  return (
     <h1>:( There's nothing here :(</h1>
   )
 }

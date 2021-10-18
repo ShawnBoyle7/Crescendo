@@ -22,13 +22,13 @@ const Playlist = ({ playlists }) => {
     setShowDeleteForm(false)
   }
 
-  return(
+  return (
     <>
       <h1>{playlist && playlist.name}</h1>
       <div>
         {songs && songs.map(song =>
-          <Link to= {`/songs/${song.id}`} key={song.id}>
-          <div className="song-name">{song.name}</div>
+          <Link to={`/songs/${song.id}`} key={song.id}>
+            <div className="song-name">{song.name}</div>
           </Link>)}
       </div>
 
@@ -36,15 +36,15 @@ const Playlist = ({ playlists }) => {
       <button onClick={() => setShowDeleteForm(true)}>Delete Playlist</button>
 
       {showEditForm &&
-      <EditPlaylistForm setShowEditForm={setShowEditForm}/>}
+        <EditPlaylistForm setShowEditForm={setShowEditForm} />}
 
       {showDeleteForm &&
-      <>
-      <button type="button" onClick={deletePlaylistFunction}>
-        Confirm Delete
-      </button>
-      <button onClick={e => setShowDeleteForm(false)}>Cancel Delete</button>
-      </>}
+        <>
+          <button type="button" onClick={deletePlaylistFunction}>
+            Confirm Delete
+          </button>
+          <button onClick={e => setShowDeleteForm(false)}>Cancel Delete</button>
+        </>}
     </>
   )
 }

@@ -8,7 +8,7 @@ const Playlists = () => {
   const allPlaylists = Object.values(playlistsSlice);
   const userPlaylists = allPlaylists.filter(playlist => playlist.userId === +sessionUser.id)
   // console.log(userPlaylists)
-  return(
+  return (
     <>
 
       <Route exact path="/playlists">
@@ -18,7 +18,7 @@ const Playlists = () => {
       </Route>
 
       <Route path="/playlists/:playlistId">
-        <Playlist playlists={userPlaylists}/>
+        <Playlist playlists={userPlaylists} />
       </Route>
     </>
 

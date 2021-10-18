@@ -7,24 +7,24 @@ const Artists = () => {
   const artistsSlice = useSelector(state => state.artists);
   const artists = Object.values(artistsSlice);
 
-  return(
+  return (
     <>
       <Route exact path="/artists">
-      <div className="artist-section">
+        <div className="artist-section">
           <div className="artist-divs">
             {artists.map(artist =>
               <div className="artists-item" key={artist.id}>
-              <Link to={`/artists/${artist.id}`}>
-              <img className="artists-image" alt={"artist"} src={artist.artistImgUrl}/>
-              <div className="artists-name">{artist.name}</div>  
-              </Link>
+                <Link to={`/artists/${artist.id}`}>
+                  <img className="artists-image" alt={"artist"} src={artist.artistImgUrl} />
+                  <div className="artists-name">{artist.name}</div>
+                </Link>
               </div>)}
-          </div> 
+          </div>
         </div>
       </Route>
 
       <Route path="/artists/:artistId">
-        <Artist artists={artists}/>
+        <Artist artists={artists} />
       </Route>
     </>
   )

@@ -39,7 +39,7 @@ function App() {
     dispatch(getPlaylists());
     dispatch(getSongs());
   }, [dispatch])
-  
+
 
   const genresSlice = useSelector(state => state.genres);
   const genres = Object.values(genresSlice);
@@ -51,91 +51,91 @@ function App() {
 
   return (
     <>
-    {sessionUser ? <>
-      <ProfileButton/>
-      <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
-        <Switch>
-          
-          <Route exact path="/">
-            <Home/>
-          </Route>
-          
-          <Route path="/login">
-            <LoginFormPage />
-          </Route>
+      {sessionUser ? <>
+        <ProfileButton />
+        <Navigation isLoaded={isLoaded} />
+        {isLoaded && (
+          <Switch>
 
-          <Route path="/signup">
-            <SignupFormPage />
-          </Route>
+            <Route exact path="/">
+              <Home />
+            </Route>
 
-          <Route path="/search">
-            <Search/>
-          </Route>
+            <Route path="/login">
+              <LoginFormPage />
+            </Route>
 
-          <Route path="/artists">
-            <Artists/>
-          </Route>
+            <Route path="/signup">
+              <SignupFormPage />
+            </Route>
 
-          <Route path="/songs">
-            <Songs/>
-          </Route>
+            <Route path="/search">
+              <Search />
+            </Route>
 
-          <Route path="/albums/:albumId">
-            <Album albums={albums && albums}/>
-          </Route>
+            <Route path="/artists">
+              <Artists />
+            </Route>
 
-          <Route path="/genres/:genreId">
-            <Genre genres={genres}/>
-          </Route>
+            <Route path="/songs">
+              <Songs />
+            </Route>
 
-          <Route path="/playlists/new">
-            <PlaylistForm/>
-          </Route>
+            <Route path="/albums/:albumId">
+              <Album albums={albums && albums} />
+            </Route>
 
-          <Route path="/library">
-            <Library/>
-          </Route>
+            <Route path="/genres/:genreId">
+              <Genre genres={genres} />
+            </Route>
 
-          <Route path="/playlists">
-            <Playlists/>
-          </Route>
+            <Route path="/playlists/new">
+              <PlaylistForm />
+            </Route>
 
-          <Route path="/profile">
-            <Profile user={sessionUser}/>
-          </Route>
+            <Route path="/library">
+              <Library />
+            </Route>
 
-          <Route>
-            <Error404/>
-          </Route>
-          
-        </Switch>
-      ) 
-    }
-    </> : 
+            <Route path="/playlists">
+              <Playlists />
+            </Route>
+
+            <Route path="/profile">
+              <Profile user={sessionUser} />
+            </Route>
+
+            <Route>
+              <Error404 />
+            </Route>
+
+          </Switch>
+        )
+        }
+      </> :
         <>
           <Switch>
 
-          <Route exact path="/">
-            <Splash/>
-          </Route>  
-        
-          <Route path="/login">
-            <LoginFormPage/>
-          </Route>
+            <Route exact path="/">
+              <Splash />
+            </Route>
 
-          <Route path="/signup">
-            <SignupFormPage/>
-          </Route>
+            <Route path="/login">
+              <LoginFormPage />
+            </Route>
 
-          <Route>
-            <Redirect to='/'></Redirect>
-          </Route>
+            <Route path="/signup">
+              <SignupFormPage />
+            </Route>
+
+            <Route>
+              <Redirect to='/'></Redirect>
+            </Route>
 
           </Switch>
-          
+
         </>
-    } 
+      }
     </>
   );
 }

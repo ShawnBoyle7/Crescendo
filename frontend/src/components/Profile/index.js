@@ -7,10 +7,10 @@ const Profile = ({ user }) => {
 
   const dispatch = useDispatch()
 
-  return(
+  return (
     <>
       {sessionUser?.username}
-      <EditUserForm user={sessionUser}/>
+      <EditUserForm user={sessionUser} />
     </>
   )
 };

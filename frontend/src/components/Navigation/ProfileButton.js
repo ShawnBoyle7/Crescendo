@@ -8,14 +8,14 @@ import { Route, Link } from "react-router-dom";
 function ProfileButton() {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
-  const sessionUser = useSelector(state => state.session.user) 
+  const sessionUser = useSelector(state => state.session.user)
   const user = useSelector(state => state.users[sessionUser?.id])
 
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
   };
-  
+
   useEffect(() => {
     if (!showMenu) return;
 
@@ -24,7 +24,7 @@ function ProfileButton() {
     };
 
     document.addEventListener('click', closeMenu);
-  
+
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
@@ -37,8 +37,8 @@ function ProfileButton() {
   return (
     <>
       <button onClick={openMenu}
-      className="profile-button">
-      👤
+        className="profile-button">
+        👤
       </button>
       {showMenu && (
         <ul className="profile-dropdown">

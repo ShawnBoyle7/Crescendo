@@ -14,15 +14,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ShawnBoyle7/w15-solo-authentication.git"
+    "url": "git+https://github.com/ShawnBoyle7/Crescendo.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/ShawnBoyle7/w15-solo-authentication/issues"
+    "url": "https://github.com/ShawnBoyle7/Crescendo/issues"
   },
-  "homepage": "https://github.com/ShawnBoyle7/w15-solo-authentication#readme",
+  "homepage": "https://github.com/ShawnBoyle7/Crescendo#readme",
   "dependencies": {
     "react-h5-audio-player": "^3.7.1"
   }

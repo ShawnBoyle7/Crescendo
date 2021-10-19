@@ -26,7 +26,7 @@ const songReducer = (state = initialState, action) => {
       return allSongs;
     }
       default: 
-      return stFate;
+      return state;
   }
 }
 

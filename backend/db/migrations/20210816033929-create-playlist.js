@@ -13,7 +13,7 @@ module.exports = {
         allowNull: false,
         unique: true
       },
-      playlistImgUrl: {
+      imgUrl: {
         type: Sequelize.STRING
       },
       userId: {

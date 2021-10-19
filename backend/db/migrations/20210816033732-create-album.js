@@ -13,7 +13,7 @@ module.exports = {
         allowNull: false,
         unique: true
       },
-      albumImgUrl: {
+      imgUrl: {
         type: Sequelize.STRING
       },
       artistId: {

@@ -1,26 +1,18 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Songs', {
+    return queryInterface.createTable('song_genre_joins', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      name: {
-        type: Sequelize.STRING
+      genreId: {
+        type: Sequelize.INTEGER
       },
-      artistId: {
-        type: Sequelize.INTEGER,
-        references: { model: "Artists" }
-      },
-      albumId: {
-        type: Sequelize.INTEGER,
-        references: { model: "Albums" }
-      },
-      imgUrl: {
-        type: Sequelize.STRING
+      songId: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -33,6 +25,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Songs');
+    return queryInterface.dropTable('song_genre_joins');
   }
 };

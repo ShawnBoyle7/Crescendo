@@ -13,11 +13,7 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
-      genreId: {
-        type: Sequelize.INTEGER,
-        references: { model: "Genres" },
-      },
-      artistImgUrl: {
+      imgUrl: {
         type: Sequelize.STRING
       },
       createdAt: {

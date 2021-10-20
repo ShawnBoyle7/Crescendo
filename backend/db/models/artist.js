@@ -6,13 +6,20 @@ module.exports = (sequelize, DataTypes) => {
     artistImgUrl: DataTypes.STRING
   }, {});
   Artist.associate = function(models) {
-    const columnMapping = {
+    const columnMappingUsers = {
       through: "User_Artist_Join",
       foreignKey: "artistId",
       otherKey: "userId"
     };
 
-    Artist.belongsToMany(models.User, columnMapping);
+    const columnMappingGenres = {
+      through: "Artist_Genre_Join",
+      foreignKey: "artistId",
+      otherKey: "genreId"
+    }
+
+    Artist.belongsToMany(models.User, columnMappingUsers);
+    Artist.belongsToMany(models.Genre, columnMappingGenres);
     Artist.hasMany(models.Album, { foreignKey: "artistId" });
     Artist.hasMany(models.Song, { foreignKey: "artistId" });
     Artist.belongsTo(models.Genre, { foreignKey: "genreId" });

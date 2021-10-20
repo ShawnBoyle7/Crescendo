@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     songId: DataTypes.INTEGER
   }, {});
   song_genre_join.associate = function(models) {
-    // associations can be defined here
+    
   };
   return song_genre_join;
 };

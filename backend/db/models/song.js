@@ -20,8 +20,15 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: "userId"
     }
 
+    const columnMappingGenres = {
+      through: "Song_Genre_Join",
+      foreignKey: "songId",
+      otherKey: "genreId"
+    }
+
     Song.belongsToMany(models.User, columnMappingUsers);
     Song.belongsToMany(models.Playlist, columnMappingPlaylists);
+    Song.belongsTomany(models.Genre, columnMappingGenres)
     Song.belongsTo(models.Album, { foreignKey: "albumId" });
     Song.belongsTo(models.Genre, { foreignKey: "genreId" });
     Song.belongsTo(models.Artist, { foreignKey: "artistId" });

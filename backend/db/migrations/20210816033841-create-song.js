@@ -19,6 +19,9 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: { model: "Albums" }
       },
+      songUrl: {
+        type: Sequelize.STRING
+      },
       imgUrl: {
         type: Sequelize.STRING
       },

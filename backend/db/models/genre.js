@@ -19,8 +19,6 @@ module.exports = (sequelize, DataTypes) => {
   Genre.associate = function(models) {
     Genre.belongsToMany(models.Song, columnMappingSongs)
     Genre.belongsToMany(models.Artist, columnMappingArtists)
-    Genre.hasMany(models.Song, { foreignKey: "genreId" });
-    Genre.hasMany(models.Artist, { foreignKey: "genreId" });
   };
   return Genre;
 };

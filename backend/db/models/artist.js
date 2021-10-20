@@ -2,8 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const Artist = sequelize.define('Artist', {
     name: DataTypes.STRING,
-    genreId: DataTypes.INTEGER,
-    artistImgUrl: DataTypes.STRING
+    imgUrl: DataTypes.STRING
   }, {});
   Artist.associate = function(models) {
     const columnMappingUsers = {
@@ -22,7 +21,6 @@ module.exports = (sequelize, DataTypes) => {
     Artist.belongsToMany(models.Genre, columnMappingGenres);
     Artist.hasMany(models.Album, { foreignKey: "artistId" });
     Artist.hasMany(models.Song, { foreignKey: "artistId" });
-    Artist.belongsTo(models.Genre, { foreignKey: "genreId" });
   };
   return Artist;
 };

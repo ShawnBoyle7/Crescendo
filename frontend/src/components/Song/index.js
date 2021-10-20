@@ -1,12 +1,11 @@
 import AudioPlayer from 'react-h5-audio-player';
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import { addPlaylistSong } from '../../store/playlists';
 import './Song.css'
 import { useState } from 'react';
 
 const Song = ({ songs }) => {
-  const history = useHistory()
   const dispatch = useDispatch()
 
   const { songId } = useParams()
@@ -51,10 +50,6 @@ const Song = ({ songs }) => {
         <h2>{song && song.name}</h2>
       </div>
 
-      <div className="genre-header">
-        <h2>{song && song.Genre.name}</h2>
-      </div>
-
       <div className="album-header">
         <h2>{song && song.Album.name}</h2>
       </div>
@@ -79,7 +74,7 @@ const Song = ({ songs }) => {
 
       <div className="player-div">
         <AudioPlayer
-          src="https://cf-media.sndcdn.com/YGm1t3FIDVZ2.128.mp3?Policy=eyJTdGF0ZW1lbnQiOlt7IlJlc291cmNlIjoiKjovL2NmLW1lZGlhLnNuZGNkbi5jb20vWUdtMXQzRklEVloyLjEyOC5tcDMqIiwiQ29uZGl0aW9uIjp7IkRhdGVMZXNzVGhhbiI6eyJBV1M6RXBvY2hUaW1lIjoxNjI5NzEyMDMzfX19XX0_&Signature=VmjgO2U3Lpg00NjSgvTVV0pHw8pZpYjvcW7~sZUJjP-AxskZxH92zYuXu84LxHI9s~KsR8s7PYrKLF33Ct5rboO~71dfWNWTlE33OHzIk3iSOa3-uX42nnQwjiGgbwg8aAXgvVlyK3LXyAOzoLUMZ~15f9HMXbXyHb0xd-x1mUDcDuwxdxSipmP8SUN8Ba4jNTPQEE6el6MaMSXuQvkBqLsbx-riWyknptYPkyCxKMZK1H9vdaC3f8z-4J58ZsBavjNIZOBlzZi7b7LuxRNaCY~2TPFlRSsXS7NxW8QzUbBdxytBL1Mmr~jDVBnoa4uC7YX4ZLingGRFQxKBZHl2ew__&Key-Pair-Id=APKAI6TU7MMXM5DG6EPQ"
+          src={song.songUrl}
           onPlay={e => console.log("onPlay")}
         />
       </div>

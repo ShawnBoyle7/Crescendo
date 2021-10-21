@@ -12,16 +12,13 @@ const Artist = ({ artists }) => {
       <div className="artist-name">
         <h1>{artist && artist.name}</h1>
       </div>
-      <div className="artist-genre">
-        {artist && artist.Genre.name}
-      </div>
       <Route exact path="/artists/:artistId">
         <div className="albums-section">
           <div className="album-divs">
             {artist && artist.Albums.map(album =>
               <div className="albums-item" key={album.id}>
                 <Link to={`/albums/${album.id}`}>
-                  <img className="albums-image" alt={"album"} src={album.albumImgUrl} />
+                  <img className="albums-image" alt={"album"} src={album.imgUrl} />
                   <div className="albums-name">{album.name}</div>
                 </Link>
               </div>)}

@@ -21,7 +21,7 @@ const Album = ({ albums }) => {
           {songs.map(song =>
             <div className="songs-item" key={song.id}>
               <Link to={`/songs/${song.id}`} key={song.id}>
-                <img className="songs-image" alt={"song"} src={song.songImgUrl} />
+                <img className="songs-image" alt={"song"} src={album.imgUrl} />
                 <div className="songs-name">{song.name}</div>
               </Link>
             </div>)}

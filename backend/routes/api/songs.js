@@ -6,7 +6,6 @@ const router = express.Router();
 router.get('/', asyncHandler(async (req, res) => {
   const songs = await Song.findAll({
     include: [
-      Genre,
       Artist,
       Album,
       User

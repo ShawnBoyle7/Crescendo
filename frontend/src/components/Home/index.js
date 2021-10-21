@@ -14,8 +14,6 @@ const Home = () => {
     return b.Users.length - a.Users.length
   });
 
-
-
   return (
     <div className="home-page">
       <h1 className="welcome-message">Welcome!</h1>
@@ -26,7 +24,7 @@ const Home = () => {
           {artistsByPopularity.map(artist =>
             <div className="artists-item" key={artist.id}>
               <Link to={`/artists/${artist.id}`}>
-                <img className="artists-image" src={artist.artistImgUrl} alt="Artist" />
+                <img className="artists-image" src={artist.imgUrl} alt="Artist" />
                 <div className="artists-name">{artist.name}</div>
               </Link></div>)}
         </div>
@@ -41,7 +39,8 @@ const Home = () => {
           {songsByPopularity.map(song =>
             <div className="songs-item" key={song.id}>
               <Link to={`/songs/${song.id}`}>
-                <img className="songs-image" src={song.songImgUrl} alt="Song" />
+                {console.log(song)}
+                <img className="songs-image" src={song.Album.imgUrl} alt="Song" />
                 <div className="songs-name">{song.name}</div>
               </Link></div>)}
         </div>

@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import ArtistDiv from '../ArtistDiv';
 import './Home.css'
 
 const Home = () => {
@@ -22,11 +23,7 @@ const Home = () => {
         <h1 className="popular-artists">Popular Artists</h1>
         <div className="artists-divs">
           {artistsByPopularity.map(artist =>
-            <div className="artists-item" key={artist.id}>
-              <Link to={`/artists/${artist.id}`}>
-                <img className="artists-image" src={artist.imgUrl} alt="Artist" />
-                <div className="artists-name">{artist.name}</div>
-              </Link></div>)}
+              <ArtistDiv artist={artist}/>)}
         </div>
         <div className="all-artists">
           <Link to="/artists">Browse All Artists</Link>

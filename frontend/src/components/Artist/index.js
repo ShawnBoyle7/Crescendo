@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { Link, Route } from "react-router-dom";
 import Albums from "../Albums";
+import ArtistDiv from "../ArtistDiv";
 import './Artist.css'
 
 const Artist = ({ artists }) => {
@@ -9,10 +10,8 @@ const Artist = ({ artists }) => {
   const artist = artists.find(artist => artist.id === +artistId)
   return (
     <>
-      <div className="artist-name">
-        <h1>{artist && artist.name}</h1>
-      </div>
       <Route exact path="/artists/:artistId">
+      <ArtistDiv artist={artist}/>
         <div className="albums-section">
           <div className="album-divs">
             {artist && artist.Albums.map(album =>

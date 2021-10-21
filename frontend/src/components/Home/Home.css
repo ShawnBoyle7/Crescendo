@@ -1,117 +1,117 @@
 .home-page {
-  display: grid;
-  grid-template-rows: 6% 47% 47%;
-  grid-gap: 2em;
-  grid-template-areas:
-    "welcome"
-    "artists" 
-    "songs";
-  margin-top: 2em;
+    display: grid;
+    grid-template-rows: 6% 47% 47%;
+    grid-gap: 2em;
+    grid-template-areas:
+        "welcome"
+        "artists" 
+        "songs";
+    margin-top: 2em;
 }
 
 .welcome-message {
-  grid-area: welcome;
-  margin-left: 1.37em
+    grid-area: welcome;
+    margin-left: 1.37em
 }
 
 .artists-section {
-  grid-area: artists;
-  margin: 0em 2em;
+    grid-area: artists;
+    margin: 0em 2em;
 }
 
 .artists-divs {
-  display: flex;
-  justify-content: space-around;
+    display: flex;
+    justify-content: space-around;
 }
 
 .popular-artists {
-  margin-left: 0.52em
+    margin-left: 0.52em
 }
 
 .artists-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid black;
-  height: 16em;
-  width: 13em;
-  background-color: #242424;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    height: 16em;
+    width: 13em;
+    background-color: #242424;
 }
 
 .artists-item:hover {
-  transition-duration: 250ms;
-  background-color: #262626;
+    transition-duration: 250ms;
+    background-color: #262626;
 }
 
 .artists-name {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .artists-image {
-  height: 10em;
-  width: 10em;
-  border-radius: 50%;
+    height: 10em;
+    width: 10em;
+    border-radius: 50%;
 }
 
 .all-artists {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .all-artists:hover {
-  transition-duration: 250ms;
-  background-color: #262626;
+    transition-duration: 250ms;
+    background-color: #262626;
 }
 
 
 .songs-section {
-  grid-area: songs;
-  margin: 0em 2em;
+    grid-area: songs;
+    margin: 0em 2em;
 }
 
 .songs-divs {
-  display: flex;
-  justify-content: space-around;
+    display: flex;
+    justify-content: space-around;
 }
 
 .popular-songs {
-  margin-left: 0.52em
+    margin-left: 0.52em
 }
 
 .songs-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid black;
-  height: 16em;
-  width: 13em;
-  background-color: #242424
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    height: 16em;
+    width: 13em;
+    background-color: #242424
 }
 
 .songs-item:hover {
-  transition-duration: 250ms;
-  background-color: #262626;
+    transition-duration: 250ms;
+    background-color: #262626;
 }
 
 .songs-name {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .songs-image {
-  height: 10em;
-  width: 10em;
-  border-radius: 50%;
+    height: 10em;
+    width: 10em;
+    border-radius: 50%;
 }
 
 .all-songs {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .all-songs:hover {
-  transition-duration: 250ms;
-  background-color: #262626;
+    transition-duration: 250ms;
+    background-color: #262626;
 }
 

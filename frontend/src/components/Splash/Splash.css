@@ -1,31 +1,31 @@
 /* body {
-  background-image: url(https://i.imgur.com/20xVRLv.jpeg);
-  background-repeat: no-repeat;
-  background-size: 100%;
-}  */
+    background-image: url(https://i.imgur.com/20xVRLv.jpeg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}    */
 
 /* .splash-home {
-  background-image: url(https://i.imgur.com/20xVRLv.jpeg);
-  background-repeat: no-repeat;
-  background-size: 100%;
+    background-image: url(https://i.imgur.com/20xVRLv.jpeg);
+    background-repeat: no-repeat;
+    background-size: 100%;
 } */
 
 .message {
-  display: flex;
-  justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 .splash-auth {
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 1em;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 1em;
 }
 
 .splash-auth a:hover {
-  transition-duration: 150ms;
-  color: #1DB954;
+    transition-duration: 150ms;
+    color: #1DB954;
 }
 
 .login {
-  margin-right: 1em;
+    margin-right: 1em;
 }

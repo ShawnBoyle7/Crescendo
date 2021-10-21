@@ -1,120 +1,120 @@
 .search-container {
-  display: grid;
-  grid-template-rows: 33% 33% 33%;
-  grid-gap: 2em;
-  grid-template-areas:
-  "artists"
-  "albums" 
-  "songs";
-  margin-top: 2em;
+    display: grid;
+    grid-template-rows: 33% 33% 33%;
+    grid-gap: 2em;
+    grid-template-areas:
+    "artists"
+    "albums" 
+    "songs";
+    margin-top: 2em;
 }
 
 .search-bar {
-  border: 0;
-  border-radius: 500px;
-  color: #000;
-  height: 30px;
-  padding: 6px 48px;
-  /* text-overflow: ellipsis; */
-  width: 20%;
-  text-align: center;
-  margin-left: 3em;
+    border: 0;
+    border-radius: 500px;
+    color: #000;
+    height: 30px;
+    padding: 6px 48px;
+    /* text-overflow: ellipsis; */
+    width: 20%;
+    text-align: center;
+    margin-left: 3em;
 }
 
 .albums-image {
-  height: 10em;
-  width: 10em;
-  border-radius: 50%;
+    height: 10em;
+    width: 10em;
+    border-radius: 50%;
 }
 
 .albums-section {
-  grid-area: albums;
+    grid-area: albums;
 }
 
 .albums-divs {
-  display: flex;
-  justify-content: space-around;
+    display: flex;
+    justify-content: space-around;
 }
 
 .albums-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid black;
-  height: 16em;
-  width: 13em;
-  background-color: #b3abab
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    height: 16em;
+    width: 13em;
+    background-color: #b3abab
 }
 
 .genres-item:hover {
-  background: #262626;
+    background: #262626;
 }
 
 .genres-item {
-  margin-top: 1em;
-  background: linear-gradient(20deg, #353535 0%, #282828 80%);
-  border-radius: 8px;
-  padding: 35px;
-  color: white;
-  font-size: 32px;
-  font-weight: 500;
-  letter-spacing: 0.2px;
-  cursor: pointer;
+    margin-top: 1em;
+    background: linear-gradient(20deg, #353535 0%, #282828 80%);
+    border-radius: 8px;
+    padding: 35px;
+    color: white;
+    font-size: 32px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    cursor: pointer;
 }
 
 .song-section {
-  display: flex;
+    display: flex;
 }
 
 /* .search-genres-section {
-  overflow-y: auto;
-  height: 5%;
+    overflow-y: auto;
+    height: 5%;
 } */
 
 /* .genres-item {
-  background: linear-gradient(0deg, #935d14 0%, #f49a23 100%);
-  border-radius: 8px;
-  padding: 35px;
-  color: white;
-  font-size: 30px;
-  font-weight: 500;
-  letter-spacing: 0.2px;
-  transition: 0.2s ease-in-out;
-  cursor: pointer;
+    background: linear-gradient(0deg, #935d14 0%, #f49a23 100%);
+    border-radius: 8px;
+    padding: 35px;
+    color: white;
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
 }
 
 .genres-item {
-  background: linear-gradient(0deg, #935d14 0%, #f49a23 100%);
-  border-radius: 8px;
-  padding: 35px;
-  color: white;
-  font-size: 30px;
-  font-weight: 500;
-  letter-spacing: 0.2px;
-  transition: 0.2s ease-in-out;
-  cursor: pointer;
+    background: linear-gradient(0deg, #935d14 0%, #f49a23 100%);
+    border-radius: 8px;
+    padding: 35px;
+    color: white;
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
 }
 
 .genres-item {
-  background: linear-gradient(0deg, #935d14 0%, #f49a23 100%);
-  border-radius: 8px;
-  padding: 35px;
-  color: white;
-  font-size: 30px;
-  font-weight: 500;
-  letter-spacing: 0.2px;
-  transition: 0.2s ease-in-out;
-  cursor: pointer;
+    background: linear-gradient(0deg, #935d14 0%, #f49a23 100%);
+    border-radius: 8px;
+    padding: 35px;
+    color: white;
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
 }
 
 .genres-item {
-  background: linear-gradient(0deg, #935d14 0%, #f49a23 100%);
-  border-radius: 8px;
-  padding: 35px;
-  color: white;
-  font-size: 30px;
-  font-weight: 500;
-  letter-spacing: 0.2px;
-  transition: 0.2s ease-in-out;
-  cursor: pointer;
+    background: linear-gradient(0deg, #935d14 0%, #f49a23 100%);
+    border-radius: 8px;
+    padding: 35px;
+    color: white;
+    font-size: 30px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+    transition: 0.2s ease-in-out;
+    cursor: pointer;
 } */

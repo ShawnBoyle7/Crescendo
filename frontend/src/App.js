@@ -27,117 +27,117 @@ import { getPlaylists } from "./store/playlists";
 import { getSongs } from "./store/songs";
 
 function App() {
-  const dispatch = useDispatch();
-  const [isLoaded, setIsLoaded] = useState(false);
+    const dispatch = useDispatch();
+    const [isLoaded, setIsLoaded] = useState(false);
 
-  useEffect(() => {
-    dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
-    dispatch(getArtists());
-    dispatch(getUsers());
-    dispatch(getGenres());
-    dispatch(getAlbums());
-    dispatch(getPlaylists());
-    dispatch(getSongs());
-  }, [dispatch])
+    useEffect(() => {
+        dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+        dispatch(getArtists());
+        dispatch(getUsers());
+        dispatch(getGenres());
+        dispatch(getAlbums());
+        dispatch(getPlaylists());
+        dispatch(getSongs());
+    }, [dispatch])
 
 
-  const genresSlice = useSelector(state => state.genres);
-  const genres = Object.values(genresSlice);
+    const genresSlice = useSelector(state => state.genres);
+    const genres = Object.values(genresSlice);
 
-  const albumsSlice = useSelector(state => state.albums);
-  const albums = Object.values(albumsSlice);
+    const albumsSlice = useSelector(state => state.albums);
+    const albums = Object.values(albumsSlice);
 
-  const sessionUser = useSelector(state => state.session.user)
+    const sessionUser = useSelector(state => state.session.user)
 
-  return (
-    <>
-      {sessionUser ? <>
-        <ProfileButton />
-        <Navigation isLoaded={isLoaded} />
-        {isLoaded && (
-          <Switch>
-
-            <Route exact path="/">
-              <Home />
-            </Route>
-
-            <Route path="/login">
-              <LoginFormPage />
-            </Route>
-
-            <Route path="/signup">
-              <SignupFormPage />
-            </Route>
-
-            <Route path="/search">
-              <Search />
-            </Route>
-
-            <Route path="/artists">
-              <Artists />
-            </Route>
-
-            <Route path="/songs">
-              <Songs />
-            </Route>
-
-            <Route path="/albums/:albumId">
-              <Album albums={albums && albums} />
-            </Route>
-
-            <Route path="/genres/:genreId">
-              <Genre genres={genres} />
-            </Route>
-
-            <Route path="/playlists/new">
-              <PlaylistForm />
-            </Route>
-
-            <Route path="/library">
-              <Library />
-            </Route>
-
-            <Route path="/playlists">
-              <Playlists />
-            </Route>
-
-            <Route path="/profile">
-              <Profile user={sessionUser} />
-            </Route>
-
-            <Route>
-              <Error404 />
-            </Route>
-
-          </Switch>
-        )
-        }
-      </> :
+    return (
         <>
-          <Switch>
+            {sessionUser ? <>
+                <ProfileButton />
+                <Navigation isLoaded={isLoaded} />
+                {isLoaded && (
+                    <Switch>
 
-            <Route exact path="/">
-              <Splash />
-            </Route>
+                        <Route exact path="/">
+                            <Home />
+                        </Route>
 
-            <Route path="/login">
-              <LoginFormPage />
-            </Route>
+                        <Route path="/login">
+                            <LoginFormPage />
+                        </Route>
 
-            <Route path="/signup">
-              <SignupFormPage />
-            </Route>
+                        <Route path="/signup">
+                            <SignupFormPage />
+                        </Route>
 
-            <Route>
-              <Redirect to='/'></Redirect>
-            </Route>
+                        <Route path="/search">
+                            <Search />
+                        </Route>
 
-          </Switch>
+                        <Route path="/artists">
+                            <Artists />
+                        </Route>
 
+                        <Route path="/songs">
+                            <Songs />
+                        </Route>
+
+                        <Route path="/albums/:albumId">
+                            <Album albums={albums && albums} />
+                        </Route>
+
+                        <Route path="/genres/:genreId">
+                            <Genre genres={genres} />
+                        </Route>
+
+                        <Route path="/playlists/new">
+                            <PlaylistForm />
+                        </Route>
+
+                        <Route path="/library">
+                            <Library />
+                        </Route>
+
+                        <Route path="/playlists">
+                            <Playlists />
+                        </Route>
+
+                        <Route path="/profile">
+                            <Profile user={sessionUser} />
+                        </Route>
+
+                        <Route>
+                            <Error404 />
+                        </Route>
+
+                    </Switch>
+                )
+                }
+            </> :
+                <>
+                    <Switch>
+
+                        <Route exact path="/">
+                            <Splash />
+                        </Route>
+
+                        <Route path="/login">
+                            <LoginFormPage />
+                        </Route>
+
+                        <Route path="/signup">
+                            <SignupFormPage />
+                        </Route>
+
+                        <Route>
+                            <Redirect to='/'></Redirect>
+                        </Route>
+
+                    </Switch>
+
+                </>
+            }
         </>
-      }
-    </>
-  );
+    );
 }
 
 export default App;

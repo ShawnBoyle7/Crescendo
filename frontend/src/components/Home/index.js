@@ -1,6 +1,8 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ArtistDiv from '../ArtistDiv';
+import Song from '../Song';
+import SongDiv from '../SongDiv';
 import './Home.css'
 
 const Home = () => {
@@ -34,12 +36,7 @@ const Home = () => {
                 <h1 className="popular-songs">Popular Songs</h1>
                 <div className="songs-divs">
                     {songsByPopularity.map(song =>
-                        <div className="songs-item" key={song.id}>
-                            <Link to={`/songs/${song.id}`}>
-                                {console.log(song)}
-                                <img className="songs-image" src={song.Album.imgUrl} alt="Song" />
-                                <div className="songs-name">{song.name}</div>
-                            </Link></div>)}
+                        <SongDiv song={song}/>)}
                 </div>
                 <div className="all-songs">
                     <Link to="/songs">Browse All Songs</Link>

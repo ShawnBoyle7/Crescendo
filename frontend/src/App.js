@@ -25,10 +25,14 @@ import { getGenres } from "./store/genres";
 import { getAlbums } from "./store/albums";
 import { getPlaylists } from "./store/playlists";
 import { getSongs } from "./store/songs";
+import { useNowPlaying } from './context/NowPlayingContext';
+import AudioPlayer from 'react-h5-audio-player'
 
 function App() {
     const dispatch = useDispatch();
     const [isLoaded, setIsLoaded] = useState(false);
+
+    const { nowPlaying, setNowPlaying } = useNowPlaying();
 
     useEffect(() => {
         dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
@@ -39,7 +43,6 @@ function App() {
         dispatch(getPlaylists());
         dispatch(getSongs());
     }, [dispatch])
-
 
     const genresSlice = useSelector(state => state.genres);
     const genres = Object.values(genresSlice);
@@ -136,6 +139,7 @@ function App() {
 
                 </>
             }
+            <footer><AudioPlayer onEnded={e=>setNowPlaying('')} layout='horizontal' src={nowPlaying} volume={0.3}/></footer>
         </>
     );
 }

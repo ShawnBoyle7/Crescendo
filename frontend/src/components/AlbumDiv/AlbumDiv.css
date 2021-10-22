@@ -1,26 +1,35 @@
-.album-item {
+.album-card {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 2px solid black;
-    height: 16em;
-    width: 13em;
-    background-color: #242424
+    height: 16.5em;
+    width: 12em;
+    background: #181818;
+    border-radius: 4px;
+    padding: 16px;
 }
 
-.album-item:hover {
+.album-card:hover {
     transition-duration: 250ms;
     background-color: #262626;
 }
 
-.album-name {
-    display: flex;
-    justify-content: center;
-    margin-top: 3%;
+.album-image {
+    height: 160px;
+    width: 160px; 
+    border-radius: 2px;
+    margin-bottom: 10%;
 }
 
-.album-image {
-    height: 10em;
-    width: 10em;
-    border-radius: 50%;
+.album-name {
+    display: flex;
+    justify-content: flex-start;
+    font-weight: bold;
+    font-size: 0.95em;
+}
+
+.album-artist {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 5%;
+    font-size: 0.83em;
+    color: darkgray;
 }

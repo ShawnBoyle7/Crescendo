@@ -4,10 +4,11 @@ import "./ArtistDiv.css"
 const ArtistDiv = ({ artist }) => {
         return (
             <>
-                <div className="artist-item" key={artist?.id}>
+                <div className="artist-card" key={artist?.id}>
                     <Link to={`/artists/${artist?.id}`}>
-                    <img className="artist-image" alt={"artist"} src={artist?.imgUrl} />
-                    <div className="artist-name">{artist?.name}</div>
+                        <img className="artist-image" alt={"artist"} src={artist?.imgUrl} />
+                        <span className="artist-name">{artist?.name}</span>
+                        <span className="artist-text">Artist</span>
                     </Link>
                 </div>
             </>

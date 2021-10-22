@@ -7,7 +7,7 @@ const AlbumDiv = ({ album }) => {
 
     return (
         <>
-            <div className="album-item" key={album.id}>
+            <div className="album-card" key={album.id}>
                 <Link to={`/albums/${album.id}`}>
                     <img className="album-image" alt={"album"} src={album.imgUrl} />
                     <div className="album-name">{album.name}</div>

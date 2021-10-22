@@ -1,9 +1,20 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     margin-left: 14em;
     overflow-x: hidden;
     background-color: #121212;
     color: white;
+    font-family: 'Gotham', sans-serif;
+    /* font-family: 'Gotham Book', sans-serif; */
+    /* font-family: 'Gotham Black', sans-serif; */
+    /* font-family: 'Gotham Light', sans-serif; */
+    /* font-family: 'Gotham Thin', sans-serif; */
+    /* font-family: 'Gotham XLight', sans-serif; */
+    /* font-family: 'Gotham Ultra', sans-serif; */
 
     /* background-color: #101010; */
     /* background-color: #414141;    */

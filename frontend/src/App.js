@@ -139,7 +139,7 @@ function App() {
 
                 </>
             }
-            <footer><AudioPlayer onEnded={e=>setNowPlaying('')} layout='horizontal' src={nowPlaying} volume={0.3}/></footer>
+            <footer><AudioPlayer onEnded={e=>setNowPlaying('')} layout='horizontal' src={nowPlaying} volume={0.1}/></footer>
         </>
     );
 }

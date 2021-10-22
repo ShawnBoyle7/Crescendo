@@ -1,46 +1,46 @@
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ArtistDiv from '../ArtistDiv';
-import Song from '../Song';
-import SongDiv from '../SongDiv';
+import AlbumDiv from '../AlbumDiv';
 import './Home.css'
 
 const Home = () => {
 
-    const songsSlice = useSelector(state => state.songs)
-    const songsByPopularity = Object.values(songsSlice).sort((a, b) => {
+    const sessionUsername = useSelector(state => state.session.user.username)
+
+    const albumsSlice = Object.values(useSelector(state => state.albums))
+    let albumsByPopularity = albumsSlice.sort((a, b) => {
         return b.Users.length - a.Users.length
     });
 
-    const artistsSlice = useSelector(state => state.artists)
-    const artistsByPopularity = Object.values(artistsSlice).sort((a, b) => {
+    const artistsSlice = Object.values(useSelector(state => state.artists))
+    let artistsByPopularity = artistsSlice.sort((a, b) => {
         return b.Users.length - a.Users.length
     });
-
+    
+    if (artistsByPopularity.length > 5) artistsByPopularity = artistsByPopularity.slice(0, 5)
+    if (albumsByPopularity.length > 5) albumsByPopularity = albumsByPopularity.slice(0, 5)
+    
     return (
         <div className="home-page">
-            <h1 className="welcome-message">Welcome!</h1>
+            <h1 className="welcome-message">Welcome, {sessionUsername}</h1>
 
             <div className="artists-section">
-                <h1 className="popular-artists">Popular Artists</h1>
-                <div className="artists-divs">
+                <h2 className="popular-header">Popular Artists</h2>
+                <div className="artists-div">
                     {artistsByPopularity.map(artist =>
-                            <ArtistDiv artist={artist}/>)}
+                        <ArtistDiv artist={artist}/>)}
                 </div>
-                <div className="all-artists">
-                    <Link to="/artists">Browse All Artists</Link>
-                </div>
+                <Link className="gallery-link" to="/artists">Browse All Artists</Link>
             </div>
 
-            <div className="songs-section">
-                <h1 className="popular-songs">Popular Songs</h1>
-                <div className="songs-divs">
-                    {songsByPopularity.map(song =>
-                        <SongDiv song={song}/>)}
+            <div className="albums-section">
+                <h2 className="popular-header">Popular Albums</h2>
+                <div className="albums-div">
+                    {albumsByPopularity.map(album =>
+                        <AlbumDiv album={album}/>)}
                 </div>
-                <div className="all-songs">
-                    <Link to="/songs">Browse All Songs</Link>
-                </div>
+                <Link className="gallery-link" to="/albums">Browse All Albums</Link>
             </div>
         </div>
     )

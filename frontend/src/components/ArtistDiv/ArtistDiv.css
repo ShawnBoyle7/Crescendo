@@ -1,0 +1,26 @@
+.artist-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    height: 16em;
+    width: 13em;
+    background-color: #242424;
+}
+
+.artist-item:hover {
+    transition-duration: 250ms;
+    background-color: #262626;
+}
+
+.artist-name {
+    display: flex;
+    justify-content: center;
+    margin-top: 3%;
+}
+
+.artist-image {
+    /* height: 10em; 
+    width: 10em;  */
+    border-radius: 50%;
+}

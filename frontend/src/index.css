@@ -3,7 +3,9 @@
 }
 
 body {
+    border: 0;
     margin: 0;
+    padding: 0;
     margin-left: 14em;
     overflow-x: hidden;
     background-color: #121212;
@@ -37,6 +39,10 @@ body {
     background: linear-gradient(0deg, rgba(36,36,36,1) 0%, rgba(32,32,32,1) 100%); */
     /* background: rgb(36,36,36);
     background: linear-gradient(0deg, rgba(36,36,36,1) 0%, rgba(58,58,58,1) 66%, rgba(32,32,32,1) 100%); */
+}
+
+.audio-footer {
+
 }
 
 #root {

@@ -5,7 +5,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
-import Navigation from "./components/Navigation";
+import Navigation from "./components/SideNavigation";
 import Artists from "./components/Artists";
 import Home from "./components/Home";
 import Search from "./components/Search";
@@ -18,7 +18,7 @@ import Error404 from "./components/Error404";
 import Playlists from './components/Playlists';
 import Profile from './components/Profile';
 import Splash from './components/Splash';
-import ProfileButton from './components/Navigation/ProfileButton';
+import ProfileButton from './components/SideNavigation/ProfileButton';
 import { getArtists } from "./store/artists";
 import { getUsers } from "./store/users";
 import { getGenres } from "./store/genres";
@@ -139,7 +139,11 @@ function App() {
 
                 </>
             }
-            <footer><AudioPlayer onEnded={e=>setNowPlaying('')} layout='horizontal' src={nowPlaying} volume={0.1}/></footer>
+            <footer className="audio-footer"><AudioPlayer onEnded={e=>setNowPlaying('')} layout='horizontal' src={nowPlaying} volume={0.1}/>
+                <div className=""></div>
+                <div className=""></div>
+                <div className=""></div>
+            </footer>
         </>
     );
 }

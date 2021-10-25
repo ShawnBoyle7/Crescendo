@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from '../../store/session';
-import './Navigation.css';
-import Profile from "../Profile";
-import { Route, Link } from "react-router-dom";
+import './TopNavigation.css';
+import { Link } from "react-router-dom";
 
 function ProfileButton() {
     const dispatch = useDispatch();

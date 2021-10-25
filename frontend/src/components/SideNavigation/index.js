@@ -1,31 +1,23 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import ProfileButton from './ProfileButton';
-import './Navigation.css';
-import Playlist from '../Playlist';
+import './SideNavigation.css';
 
-function Navigation({ isLoaded }) {
+function SideNavigation() {
     const sessionUser = useSelector(state => state.session.user);
     const playlistsSlice = useSelector(state => state.playlists);
     const allPlaylists = Object.values(playlistsSlice);
-    const userPlaylists = allPlaylists.filter(playlist => playlist.userId === +sessionUser.id)
+    const userPlaylists = allPlaylists.filter(playlist => playlist?.userId === +sessionUser?.id)
 
     let sessionLinks;
-    if (sessionUser) {
-        sessionLinks = (
-            <ProfileButton />
-        );
-    } else {
         sessionLinks = (
             <>
                 <NavLink to="/login">Log In</NavLink>
                 <NavLink to="/signup">Sign Up</NavLink>
             </>
         );
-    }
     return (
-        <div className="nav-bar">
+        <div className="side-navigation-bar">
             <div id="nav-links">
                 <NavLink exact to="/"><i className="fas fa-home"></i>Home</NavLink>
                 <NavLink to="/search"><i className="fas fa-search"></i>Search</NavLink>
@@ -39,10 +31,9 @@ function Navigation({ isLoaded }) {
                             </NavLink>
                         </div>)}
                 </div>
-                {/* {isLoaded && sessionLinks} */}
             </div>
         </div>
     );
 }
 
-export default Navigation;
+export default SideNavigation;

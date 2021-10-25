@@ -1,4 +1,4 @@
-.nav-bar {
+.side-navigation-bar {
     margin: 0em 0em;
     padding: 0;
     background-color: #000000;
@@ -6,7 +6,7 @@
     z-index: 1;
     top: 0;
     left: 0;
-    height: 100%;
+    height: calc(100vh - 91px);
     width: 14em;
 }
 
@@ -17,7 +17,7 @@
     margin-left: 0.6em;
 }
 
-.nav-bar a {
+.side-navigation-bar a {
     margin: 1em 0em;
     text-decoration: none;
     color: grey;
@@ -27,7 +27,7 @@
     margin-top: 1em;
 }
 
-.profile-button {
+/* .profile-button {
     display: flex;
     background-color: transparent;
     border: none;
@@ -36,7 +36,7 @@
     position: absolute;
     right: 1em;
     top: -1.5em;
-}
+} */
 
 .profile-dropdown {
     position: absolute;

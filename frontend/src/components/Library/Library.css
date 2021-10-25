@@ -20,7 +20,7 @@
 .playlists-divs {
     display: flex;
     justify-content: space-around;
-    overflow-x: auto;
+    /* overflow-x: auto; */
     max-width: fit-content;
     scroll-snap-align: start;
     transform: translate(0.2%, 0%);

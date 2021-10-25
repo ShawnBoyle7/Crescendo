@@ -8,6 +8,7 @@
     height: calc(100vh - 91px);
     width: 228px;
     grid-area: side-navigation;
+    background-color: #121212;
 }
 
 #nav-links {

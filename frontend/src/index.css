@@ -2,12 +2,22 @@
     box-sizing: border-box;
 }
 
+#root {
+    width: 100%;
+    height: 100%;
+}
+
 body {
     border: 0;
     margin: 0;
     padding: 0;
-    margin-left: 14em;
-    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    overscroll-behavior-y: none;
+    position: fixed;
+    width: 100%;
+    height: 100%;
     background-color: #121212;
     color: white;
     font-family: 'Gotham', sans-serif;
@@ -15,24 +25,32 @@ body {
 
 .application {
     display: grid;
+    grid-template-areas: "side-navigation main main" "footer footer footer";
     height: 100vh;
+    width: 100vw;
+    position: relative;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 60px auto 90px;
+}
+
+.content {
+    grid-area: main;
+    height: calc(100vh - 150px);
+    width: calc(100vw - 229px);
 }
 
 .audio-footer {
     height: 90px;
-    width: 100%;
+    width: calc(100vw - 229px);
     border-top: 1px solid #282828;
     background-color: #181818;
     position: fixed;
     bottom: 0%;
-    z-index: 5;
+    z-index: 100;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-#root {
-    position: relative;
+    grid-area: footer;
 }
 
 a {

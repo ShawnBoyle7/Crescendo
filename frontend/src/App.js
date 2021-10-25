@@ -56,9 +56,11 @@ function App() {
         <>
             {isLoaded && (
                 <div className="application">
-                    <TopNavigation/>
                     {sessionUser && 
-                        <SideNavigation/>
+                        <>
+                            <SideNavigation/>
+                            <TopNavigation/>
+                        </>
                     }
                     <div className="content">
                         <Switch>
@@ -121,9 +123,9 @@ function App() {
                     </div>
                     {sessionUser &&
                         <footer className="audio-footer"><AudioPlayer onEnded={e=>setNowPlaying('')} layout='horizontal' src={nowPlaying} volume={0.1}/>
+                            {/* <div className=""></div>
                             <div className=""></div>
-                            <div className=""></div>
-                            <div className=""></div>
+                            <div className=""></div> */}
                         </footer>
                     }
                 </div>

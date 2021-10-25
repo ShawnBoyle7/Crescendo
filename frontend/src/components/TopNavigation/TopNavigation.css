@@ -1,0 +1,10 @@
+.top-navigation-bar {
+    display: grid;
+    position: fixed;
+    /* grid-template-columns: 33.333333333333333333333333333333% 33.333333333333333333333333333333% 33.333333333333333333333333333333%; */
+    top: 0%;
+    width: calc(100vw - 229px);
+    height: 60px;
+    z-index: 5;
+    grid-area: main
+}

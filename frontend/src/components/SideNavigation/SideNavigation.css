@@ -3,18 +3,18 @@
     padding: 0;
     background-color: #000000;
     position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
+    z-index: 5;
+    left: 0%;
     height: calc(100vh - 91px);
-    width: 14em;
+    width: 228px;
+    grid-area: side-navigation;
 }
 
 #nav-links {
-    font-size: 1.5em;
+    font-size: 1.45em;
     display: flex;
     flex-direction: column;
-    margin-left: 0.6em;
+    /* margin-left: 0.6em; */
 }
 
 .side-navigation-bar a {
@@ -38,7 +38,7 @@
     top: -1.5em;
 } */
 
-.profile-dropdown {
+/* .profile-dropdown {
     position: absolute;
     right: 1em;
     list-style-type: none;
@@ -47,7 +47,7 @@
 
 .profile-button:hover {
     cursor: pointer;
-}
+} */
 
 .playlists {
     border-top: 0.05em solid white;

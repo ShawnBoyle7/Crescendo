@@ -3,18 +3,18 @@
     padding: 0;
     background-color: #000000;
     position: fixed;
-    z-index: 5;
+    z-index: 1;
     left: 0%;
-    height: calc(100vh - 91px);
+    height: calc(100% - 91px);
     width: 228px;
-    grid-area: side-navigation;
-    background-color: #121212;
+    grid-area: side-navigation-bar;
 }
 
-#nav-links {
+#side-nav-elements {
     font-size: 1.45em;
     display: flex;
     flex-direction: column;
+    height: 100%;
     /* margin-left: 0.6em; */
 }
 

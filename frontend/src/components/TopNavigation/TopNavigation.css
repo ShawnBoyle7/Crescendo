@@ -1,10 +1,11 @@
 .top-navigation-bar {
     display: grid;
     position: fixed;
-    /* grid-template-columns: 33.333333333333333333333333333333% 33.333333333333333333333333333333% 33.333333333333333333333333333333%; */
+    grid-template-columns: 90% 10%;
     top: 0%;
-    width: 100%;
+    left: 229px;
+    width: calc(100% - 229px);
     height: 60px;
-    /* z-index: 5; */
-    grid-area: main
+    z-index: 1;
+    grid-area: top-navigation-bar;
 }

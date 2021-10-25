@@ -122,10 +122,10 @@ function App() {
                         </Switch>
                     </div>
                     {sessionUser &&
-                        <footer className="audio-footer"><AudioPlayer onEnded={e=>setNowPlaying('')} layout='horizontal' src={nowPlaying} volume={0.1}/>
-                            {/* <div className=""></div>
-                            <div className=""></div>
-                            <div className=""></div> */}
+                        <footer className="playbar"><AudioPlayer onEnded={e=>setNowPlaying('')} layout='horizontal' src={nowPlaying} volume={0.1}/>
+                            <div className="song-info-div"></div>
+                            <div className="song-time-controls-div"></div>
+                            <div className="song-volume-div"></div>
                         </footer>
                     }
                 </div>

@@ -8,9 +8,14 @@ const TopNavigation = () => {
     
     return (
         <>
-            <div className="top-navigation-bar">
-                <ProfileButton/>
-            </div>
+            <nav className="top-navigation-bar">
+                <div className="top-nav-elements">
+                    
+                </div>
+                <div className="user-dropdown">
+                    <ProfileButton/>
+                </div>
+            </nav>
         </>
     )
 }

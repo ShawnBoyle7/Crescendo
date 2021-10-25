@@ -18,7 +18,7 @@ function SideNavigation() {
         );
     return (
         <div className="side-navigation-bar">
-            <div id="nav-links">
+            <div id="side-nav-elements">
                 <NavLink exact to="/"><i className="fas fa-home"></i>Home</NavLink>
                 <NavLink to="/search"><i className="fas fa-search"></i>Search</NavLink>
                 <NavLink to="/library"><i className="fas fa-headphones"></i>Your Library</NavLink>

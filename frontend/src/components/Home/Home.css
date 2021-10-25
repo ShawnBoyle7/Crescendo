@@ -1,12 +1,11 @@
 .home-page {
     display: grid;
-    grid-template-rows: 6% 47% 47%;
-    grid-gap: 3%;
+    grid-template-rows: 6% 45% 45%;
+    /* grid-gap: 1%; */
     grid-template-areas:
     "welcome"
     "artists" 
     "albums";
-    margin-top: 1.5%;
 }
 
 .welcome-message {
@@ -33,7 +32,7 @@
 
 .artists-section {
     grid-area: artists;
-    margin: 0 1.5%;
+    margin: 0.5% 1.5%;
 }
 
 .artists-div {

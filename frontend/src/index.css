@@ -16,6 +16,13 @@ html, body {
     height: 100%;
 }
 
+div {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+
 .application {
     display: grid;
     grid-template-columns: 228px calc(100vw - 228px);

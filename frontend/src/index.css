@@ -11,6 +11,11 @@ html, body {
     background-color: #121212;
 }
 
+#root {
+    position: relative;
+    height: 100%;
+}
+
 .application {
     display: grid;
     grid-template-columns: 228px calc(100vw - 228px);
@@ -19,14 +24,14 @@ html, body {
     "side-navigation-bar top-navigation-bar"
     "side-navigation-bar main-content"
     "footer footer";
-    background-color: #121212;
+    
 }
 
 .content {
     grid-area: main-content;
     height: fit-content;
     width: 100%;
-    background-color: #121212;
+    overflow-y: auto;
 }
 
 .playbar {
@@ -35,7 +40,7 @@ html, body {
     border-top: 1px solid #282828;
     background-color: #181818;
     position: fixed;
-    bottom: 0%;
+    bottom: 0;
     z-index: 1;
     display: flex;
     justify-content: center;

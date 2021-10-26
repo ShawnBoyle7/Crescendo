@@ -1,10 +1,7 @@
 .side-navigation-bar {
-    margin: 0em 0em;
-    padding: 0;
     background-color: #000000;
     position: fixed;
     z-index: 1;
-    left: 0%;
     height: calc(100% - 91px);
     width: 228px;
     grid-area: side-navigation-bar;
@@ -15,7 +12,6 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    /* margin-left: 0.6em; */
 }
 
 .side-navigation-bar a {
@@ -28,28 +24,7 @@
     margin-top: 1em;
 }
 
-/* .profile-button {
-    display: flex;
-    background-color: transparent;
-    border: none;
-    font-size: 1em;
-    margin: 0px 0px;
-    position: absolute;
-    right: 1em;
-    top: -1.5em;
-} */
-
-/* .profile-dropdown {
-    position: absolute;
-    right: 1em;
-    list-style-type: none;
-    text-align: right;
-}
-
-.profile-button:hover {
-    cursor: pointer;
-} */
-
 .playlists {
     border-top: 0.05em solid white;
+    overflow-y: auto;
 }

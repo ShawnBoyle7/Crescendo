@@ -42,7 +42,6 @@ const Search = () => {
         <>
             <form>
                 <input
-                    // <i class="fas fa-search"></i>
                     className="search-bar"
                     type="text"
                     placeholder="🔎 Search for songs, artists, and albums!"

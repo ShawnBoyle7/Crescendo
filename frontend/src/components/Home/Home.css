@@ -1,7 +1,6 @@
 .home-page {
     display: grid;
-    grid-template-rows: 6% 45% 45%;
-    /* grid-gap: 1%; */
+    grid-template-rows: 6% 47% 47%;
     grid-template-areas:
     "welcome"
     "artists" 

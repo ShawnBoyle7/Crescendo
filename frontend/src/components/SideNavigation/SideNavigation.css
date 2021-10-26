@@ -1,0 +1,30 @@
+.side-navigation-bar {
+    background-color: #000000;
+    position: fixed;
+    z-index: 1;
+    height: calc(100% - 91px);
+    width: 228px;
+    grid-area: side-navigation-bar;
+}
+
+#side-nav-elements {
+    font-size: 1.45em;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.side-navigation-bar a {
+    margin: 1em 0em;
+    text-decoration: none;
+    color: grey;
+}
+
+.playlist-item {
+    margin-top: 1em;
+}
+
+.playlists {
+    border-top: 0.05em solid white;
+    overflow-y: auto;
+}

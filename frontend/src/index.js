@@ -7,30 +7,33 @@ import App from './App';
 import { restoreCSRF, csrfFetch } from './store/csrf';
 import configureStore from './store';
 import * as sessionActions from './store/session';
+import NowPlayingProvider from './context/NowPlayingContext';
 
 const store = configureStore();
 
 if (process.env.NODE_ENV !== 'production') {
-  restoreCSRF();
+    restoreCSRF();
 
-  window.csrfFetch = csrfFetch;
-  window.store = store;
-  window.sessionActions = sessionActions;
+    window.csrfFetch = csrfFetch;
+    window.store = store;
+    window.sessionActions = sessionActions;
 }
 
 function Root() {
-  return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </Provider>
-  );
+    return (
+        <Provider store={store}>
+            <NowPlayingProvider>
+                <BrowserRouter>
+                    <App />
+                </BrowserRouter>
+            </NowPlayingProvider>
+        </Provider>
+    );
 }
 
 ReactDOM.render(
-  <React.StrictMode>
-    <Root />
-  </React.StrictMode>,
-  document.getElementById('root'),
+    <React.StrictMode>
+        <Root />
+    </React.StrictMode>,
+    document.getElementById('root'),
 );

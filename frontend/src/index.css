@@ -1,40 +1,63 @@
-body {
-  margin: 0;
-  margin-left: 14em;
-  overflow-x: hidden;
-  background-color: #121212;
-  color: white;
+* {
+    box-sizing: border-box;
+}
 
-  /* background-color: #101010; */
-  /* background-color: #414141;  */
-  /* background-color: #242424; */
-  /* background-color: rgb(37, 150, 190); */
-  /* background: rgb(36,36,36); */
-  /* background: linear-gradient(0deg, rgba(36,36,36,1) 25%, rgba(86,56,14,1) 100%);  */
-  /* background-color: #191414; */
-  /* background-color: #121212; */
-  /* background: linear-gradient(#121212, #242424) */
-  /* background: rgb(29,29,29);
-  background: linear-gradient(0deg, rgba(29,29,29,1) 0%, rgba(16,16,16,1) 100%); */
-  /* background: rgb(29,29,29);
-  background: linear-gradient(0deg, rgba(29,29,29,1) 0%, rgba(28,28,28,1) 10%, rgba(26,26,26,1) 28%, rgba(24,24,24,1) 39%, rgba(16,16,16,1) 73%); */
-  /* background: rgb(36,36,36);
-  background: linear-gradient(0deg, rgba(36,36,36,1) 0%, rgba(80,80,80,1) 70%); */
-  /* background: rgb(36,36,36);
-  background: linear-gradient(0deg, rgba(36,36,36,1) 0%, rgba(58,58,58,1) 100%); */
-  /* background: rgb(36,36,36);
-  background: linear-gradient(0deg, rgba(36,36,36,1) 0%, rgba(32,32,32,1) 100%); */
-  /* background: rgb(36,36,36);
-  background: linear-gradient(0deg, rgba(36,36,36,1) 0%, rgba(58,58,58,1) 66%, rgba(32,32,32,1) 100%); */
+html, body {
+    margin: 0;
+    border: 0;
+    padding: 0;
+    color: white;
+    font-family: 'Gotham', sans-serif;
+    background-color: #121212;
 }
 
 #root {
-  position: relative;
+    position: relative;
+    height: 100%;
+}
+
+div {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    vertical-align: baseline;
+}
+
+.application {
+    display: grid;
+    grid-template-columns: 228px calc(100vw - 228px);
+    grid-template-rows: 60px calc(100% - 90px) 90px;
+    grid-template-areas: 
+    "side-navigation-bar top-navigation-bar"
+    "side-navigation-bar main-content"
+    "footer footer";
+    
+}
+
+.content {
+    grid-area: main-content;
+    height: fit-content;
+    width: 100%;
+    overflow-y: auto;
+}
+
+.playbar {
+    height: 90px;
+    width: 100%;
+    border-top: 1px solid #282828;
+    background-color: #181818;
+    position: fixed;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: footer;
 }
 
 a {
-  color: white;
-  text-decoration: none;
+    color: white;
+    text-decoration: none;
 }
 
 

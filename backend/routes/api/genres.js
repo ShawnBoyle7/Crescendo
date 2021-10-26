@@ -4,9 +4,9 @@ const { Genre, Artist, Song } = require('../../db/models');
 const router = express.Router();
 
 router.get('/', asyncHandler(async (req, res) => {
-  const genres = await Genre.findAll();
+    const genres = await Genre.findAll();
 
-  return res.json(genres)
+    return res.json(genres)
 }));
 
 module.exports = router;

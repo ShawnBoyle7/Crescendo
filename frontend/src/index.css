@@ -9,6 +9,8 @@ html, body {
     color: white;
     font-family: 'Gotham', sans-serif;
     background-color: #121212;
+    /* background: rgb(60,7,23);
+    background: linear-gradient(0deg, rgba(60,7,23,1) 11%, rgba(240,112,113,1) 56%, rgba(255,140,140,1) 73%, rgba(255,97,97,1) 100%); */
 }
 
 #root {

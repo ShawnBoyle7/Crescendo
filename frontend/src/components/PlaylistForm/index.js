@@ -13,17 +13,19 @@ const PlaylistForm = () => {
     const history = useHistory();
     let number = 0;
 
-    useEffect(() => {
-        const errors = []
+    // useEffect(() => {
+    //     const errors = []
 
-        if (!name.length) errors.push("Your playlist must have a name!")
-        if (name.length > 40) errors.push("Your playlist name must be 40 character or less.")
+    //     if (!name.length) errors.push("Your playlist must have a name!")
+    //     if (name.length > 40) errors.push("Your playlist name must be 40 character or less.")
 
-        setValidationErrors(errors)
-    }, [name])
+    //     setValidationErrors(errors)
+    // }, [name])
 
     const submitHandler = async (e) => {
         e.preventDefault()
+
+        const userPlaylists = Object.values(sessionUser.playlists)
 
         const formValues = {
             name,

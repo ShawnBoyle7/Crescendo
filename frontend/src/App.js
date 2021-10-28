@@ -44,13 +44,14 @@ function App() {
         dispatch(getSongs());
     }, [dispatch])
 
+    const sessionUser = useSelector(state => state.session.user)
+
     const genresSlice = useSelector(state => state.genres);
     const genres = Object.values(genresSlice);
-
+    
     const albumsSlice = useSelector(state => state.albums);
     const albums = Object.values(albumsSlice);
 
-    const sessionUser = useSelector(state => state.session.user)
 
     return (
         <>

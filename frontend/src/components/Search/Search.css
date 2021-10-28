@@ -1,4 +1,31 @@
-.search-container {
+.search-div {
+    width: 100%;
+}
+
+.search-form {
+    width: 40%;
+    position: relative;
+}
+
+.search-form > input {
+    border: 0;
+    border-radius: 500px;
+    color: #000;
+    height: 40px;
+    padding: 6px 48px;
+    text-overflow: ellipsis;
+    width: 100%;
+}
+
+.search-form .fa-search {
+    position: absolute;
+    top: 20%;
+    left: 0.3em;
+    color: black;
+    /* opacity: 0.5; */
+}
+
+.search-results {
     display: grid;
     grid-template-rows: 33% 33% 33%;
     grid-gap: 2em;
@@ -7,18 +34,6 @@
     "albums" 
     "songs";
     margin-top: 2em;
-}
-
-.search-bar {
-    border: 0;
-    border-radius: 500px;
-    color: #000;
-    height: 30px;
-    padding: 6px 48px;
-    /* text-overflow: ellipsis; */
-    width: 20%;
-    text-align: center;
-    margin-left: 3em;
 }
 
 .albums-image {
@@ -36,7 +51,7 @@
     justify-content: space-around;
 }
 
-.albumsa-item {
+.albums-item {
     display: flex;
     justify-content: center;
     align-items: center;

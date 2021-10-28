@@ -32,24 +32,31 @@ function ProfileButton() {
         dispatch(sessionActions.logout());
     };
 
-
     return (
         <>
-            <button onClick={openMenu}
-                className="profile-button">
-                👤
-            </button>
+            <div className="profile-button" onClick={openMenu}>
+                <div className="nav-profile-image-div">
+                    <img className="nav-profile-image" src="https://i.imgur.com/3x2W04X.jpg"/>
+                </div>
+                <span className="nav-profile-name">
+                    {user?.username}
+                </span>
+                { showMenu ?
+                    <i className="fas fa-caret-up"></i>
+                    : 
+                    <i className="fas fa-caret-down"></i>
+                }
+            </div>
+
             {showMenu && (
-                <ul className="profile-dropdown">
-                    <li>
+                <div className="profile-dropdown">
+                    <div className="menu-div">
                         <Link to="/profile">Profile</Link>
-                    </li>
-                    <li>
-                        <button onClick={logout}>Log Out</button>
-                    </li>
-                    <li>{user?.username}</li>
-                    <li>{sessionUser?.email}</li>
-                </ul>
+                    </div>
+                    <div className="menu-div">
+                        <span onClick={logout}>Log Out</span>
+                    </div>
+                </div>
             )}
         </>
     );

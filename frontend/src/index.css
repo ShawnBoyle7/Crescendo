@@ -41,7 +41,7 @@ div {
     overflow-y: auto;
 }
 
-.playbar {
+.playbar-container {
     height: 90px;
     width: 100%;
     border-top: 1px solid #282828;
@@ -50,8 +50,8 @@ div {
     bottom: 0;
     z-index: 1;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    /* align-items: center; */
     grid-area: footer;
 }
 

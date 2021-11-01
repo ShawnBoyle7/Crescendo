@@ -1,0 +1,44 @@
+/* Currently Playing */
+
+.playbar-currently-playing-song-div {
+    display: flex;
+    align-items: center;
+    width: 30%;
+    padding: 0 16px;
+}
+
+.playbar-song-art-div {
+    height: 56px;
+    width: 56px;
+}
+
+.playbar-song-art-shadow {
+    box-shadow: 0 0 10px rgb(0 0 0 / 30%);
+}
+
+.playbar-song-art {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.playbar-song-info-div {
+    display: flex;
+    flex-direction: column;
+    margin: 0 14px;
+    height: 40px;
+    justify-content: space-evenly;
+}
+
+.playbar-song-title {
+    font-size: 14px;
+}
+
+.playbar-song-artist-title {
+    font-size: 11px;
+    color: #b3b3b3;
+}
+
+.playbar-heart-div {
+    margin-left: 3%;
+}

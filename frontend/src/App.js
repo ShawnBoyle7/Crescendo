@@ -24,7 +24,8 @@ import { getAlbums } from "./store/albums";
 import { getPlaylists } from "./store/playlists";
 import { getSongs } from "./store/songs";
 import { useNowPlaying } from './context/NowPlayingContext';
-import AudioPlayer from 'react-h5-audio-player'
+// import AudioPlayer from 'react-h5-audio-player'
+import AudioPlayer from './components/AudioPlayer';
 import TopNavigation from './components/TopNavigation';
 
 function App() {
@@ -117,11 +118,16 @@ function App() {
                             </Route>
                         </Switch>
                     </div>
-                    {sessionUser &&
+                    {/* {sessionUser &&
                         <footer className="playbar"><AudioPlayer onEnded={e=>setNowPlaying('')} layout='horizontal' src={nowPlaying} volume={0.1}/>
                             <div className="song-info-div"></div>
                             <div className="song-time-controls-div"></div>
                             <div className="song-volume-div"></div>
+                        </footer>
+                    } */}
+                    {sessionUser &&
+                        <footer className="playbar-container">
+                            <AudioPlayer/>
                         </footer>
                     }
                 </div>

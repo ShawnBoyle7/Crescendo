@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import './TopNavigation.css';
-import { Link } from "react-router-dom";
 
 function ProfileButton() {
     const dispatch = useDispatch();
+    const history = useHistory();
+
     const [showMenu, setShowMenu] = useState(false);
     const sessionUser = useSelector(state => state.session.user)
     const user = useSelector(state => state.users[sessionUser?.id])
@@ -30,6 +32,7 @@ function ProfileButton() {
     const logout = (e) => {
         e.preventDefault();
         dispatch(sessionActions.logout());
+        history.push("/")
     };
 
     return (
@@ -50,9 +53,11 @@ function ProfileButton() {
 
             {showMenu && (
                 <div className="profile-dropdown">
-                    <div className="menu-div">
-                        <Link to="/profile">Profile</Link>
-                    </div>
+                    <Link to="/profile">
+                        <div className="menu-div">
+                            <span>Profile</span>
+                        </div>
+                    </Link>
                     <div className="menu-div">
                         <span onClick={logout}>Log Out</span>
                     </div>

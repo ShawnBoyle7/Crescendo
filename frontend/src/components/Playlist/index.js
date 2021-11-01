@@ -9,11 +9,10 @@ const Playlist = ({ playlists }) => {
     const history = useHistory();
     const { playlistId } = useParams();
     const playlist = playlists.find(playlist => playlist.id === +playlistId)
-    const songs = playlist.Songs
+    const songs = playlist?.Songs
 
     const [showEditForm, setShowEditForm] = useState(false)
     const [showDeleteForm, setShowDeleteForm] = useState(false)
-
 
     const deletePlaylistFunction = () => {
         dispatch(deletePlaylist(playlist.id))

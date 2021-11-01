@@ -40,7 +40,7 @@ const Search = () => {
 
     return (
         <>
-            <div className="search-div">
+            {/* <div className="search-div">
                 <form className="search-form">
                     <i className="fas fa-search"></i>
                     <input
@@ -48,7 +48,7 @@ const Search = () => {
                         value={userInput}
                         onChange={e => setUserInput(e.target.value)}/>
                 </form>
-            </div>
+            </div> */}
 
             <div className="search-results">
                 {artistArray.length ?

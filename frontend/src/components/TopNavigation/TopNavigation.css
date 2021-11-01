@@ -27,7 +27,7 @@
 
 .top-nav-features {
     width: 80%;
-
+    display: flex;
 }
 
 .history-buttons-div {

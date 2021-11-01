@@ -42,3 +42,57 @@
 .playbar-heart-div {
     margin-left: 3%;
 }
+
+/* Time Controls */
+
+.playbar-controls-div {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.playbar-controls-buttons-div {
+    display: flex;
+    justify-content: space-around;
+    width: 200px;
+    height: 54px;
+    align-items: center;
+    gap: 8px;
+    flex-flow: row nowrap;
+}
+
+.playbar-controls-button-div {
+    height: 32px;
+    width: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.playbar-controls-div .fa-play-circle {
+    font-size: 32px;
+}
+
+.progress-bar-div {
+    
+}
+
+.song-progress {
+
+}
+
+.progress-bar {
+
+}
+
+.song-duration {
+
+}
+
+/* Volume Controls */
+
+.playbar-volume-div {
+    width: 30%;
+}

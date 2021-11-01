@@ -27,8 +27,29 @@ const AudioPlayer = () => {
                 </div>
             </div>
 
-            <div className="playbar-time-controls-div">
+            <div className="playbar-controls-div">
+                <div className="playbar-controls-buttons-div">
+                    <div className="playbar-controls-button-div">
+                        <i className="far fa-random"></i>
+                    </div>
+                    <div className="playbar-controls-button-div">
+                        <i className="fas fa-step-backward"></i>
+                    </div>
 
+                        <i className="fas fa-play-circle"></i>
+                
+                    <div className="playbar-controls-button-div">
+                        <i className="fas fa-step-forward"></i>
+                    </div>
+                    <div className="playbar-controls-button-div">
+                        <i className="fas fa-repeat"></i>
+                    </div>
+                </div>
+                <div className="progress-bar-div">
+                    <span className="song-progress">0:01</span>
+                    <input className="progress-bar" type="range" min="0" max={songs[0]}/>
+                    <span className="song-duration">3:00</span>
+                </div>
             </div>
 
             <div className="playbar-volume-div">

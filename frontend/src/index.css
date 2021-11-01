@@ -51,7 +51,7 @@ div {
     z-index: 1;
     display: flex;
     justify-content: space-between;
-    /* align-items: center; */
+    align-items: center;
     grid-area: footer;
 }
 

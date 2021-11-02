@@ -161,6 +161,23 @@ input:hover[type=range]::-moz-range-thumb, .volume-bar::-moz-range-thumb {
     align-items: center;
 }
 
+.playbar-volume-div > i:hover {
+    cursor: pointer;
+}
+
 .volume-bar {
     margin: 0 15px;
+}
+
+.volume-bar::before {
+    content: "";
+    height: 4px;
+    width: var(--seek-before-width);
+    background-color: #b3b3b3;
+    border-radius: 2px;
+    position: absolute;
+}
+
+.volume-bar:hover::before {
+    background-color: #1DB954;
 }

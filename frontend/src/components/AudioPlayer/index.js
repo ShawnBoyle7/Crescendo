@@ -10,17 +10,18 @@ const AudioPlayer = () => {
     const [currentTime, setCurrentTime] = useState(0)
     const [isPlaying, setIsPlaying] = useState(false)
 
-    // Establish references to manipulate what they are attached to in the DOM
-    const audioPlayer = useRef();
+    // Essentially establishing state variables for objects, keeping reference to them on re-render.
+    const audioElement = useRef();
     const progressBar = useRef();
+    const volumeBar = useRef();
     const animationRef = useRef();
 
     // If the audio element loaded the mp3 file, set the duration state variable and progress bar max value to the length of it
     useEffect(() => {
-        const seconds = Math.floor(audioPlayer?.current?.duration)
+        const seconds = Math.floor(audioElement?.current?.duration)
         setDuration(seconds);
         progressBar.current.max = seconds;
-    }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState])
+    }, [audioElement?.current?.loadedmetadata, audioElement?.current?.readyState])
 
     // Convert current time or duration to a rounded format for rendering
     const calculateTime = (seconds) => {
@@ -34,40 +35,68 @@ const AudioPlayer = () => {
         return `${minutes}:${secs}`
     }
     
+    // I use this to update the current time state variable and the rendered current time of the progress bar when the progress bar value changes
+    const updateCurrentTime = () => {
+        // Update current time state variable
+        setCurrentTime(progressBar?.current?.value)
+        // Update rendered elapsed time on progress bar 
+        progressBar?.current?.style?.setProperty('--seek-before-width', `${progressBar?.current?.value / duration * 100}%`)
+    }
+
     // Update the current time when dragging the input range slider
-    const changeRange = () => {
-        audioPlayer.current.currentTime = progressBar?.current?.value
-        changePlayerCurrentTime()
+    const updateTimeWithSlider = () => {
+        audioElement.current.currentTime = progressBar?.current?.value
+        updateCurrentTime()
     }
     
     // Update the current time when time elapses
     const whilePlaying = () => {
-        progressBar.current.value = audioPlayer?.current?.currentTime
-        changePlayerCurrentTime()
+        // Update progress bar value to match the audio element, since the audio element tracks the MP3 duration
+        progressBar.current.value = audioElement?.current?.currentTime
+        // Update the current time to match it
+        updateCurrentTime()
+        // Update the animation reference value with whilePlaying as the callback
         animationRef.current = requestAnimationFrame(whilePlaying)
-    }
-
-    // Update the rendered current time of the progress bar
-    const changePlayerCurrentTime = () => {
-        progressBar?.current?.style?.setProperty('--seek-before-width', `${progressBar?.current?.value / duration * 100}%`)
-        setCurrentTime(progressBar?.current?.value)
     }
 
     // Conditional for pause or play and update current time rendering frames
     const playPauseToggle = () => {
         setIsPlaying(!isPlaying)
+        // If not is playing, then play and begin animation of time change
         if (!isPlaying) {
-            audioPlayer?.current?.play()
+            audioElement?.current?.play()
             animationRef.current = requestAnimationFrame(whilePlaying)
+        // Else pause and stop animation of time change
         } else {
-            audioPlayer?.current.pause()
+            audioElement?.current.pause()
             cancelAnimationFrame(animationRef?.current)
         }
     }
 
+    // Update volume when dragging the input range slider
+    const changeVolume = () => {
+        // Update audio element's volume when moving the volume bar slider
+        audioElement.current.volume = volumeBar.current.value
+        // Update rendered volume value on volume bar 
+        volumeBar?.current?.style?.setProperty('--seek-before-width', `${volumeBar?.current?.value / duration * 1000}%`)
+    }
+
+    // Trying to get toggle working
+    const mute = () => {
+        volumeBar.current.value = 0
+        audioElement.current.volume = 0
+        volumeBar?.current?.style?.setProperty('--seek-before-width', `${volumeBar?.current?.value / duration * 1000}%`)
+    }
+
+    // const unmute = () => {
+    //     volumeBar.current.value = 0.1
+    //     audioElement.current.volume = 0.1
+    //     volumeBar?.current?.style?.setProperty('--seek-before-width', `${volumeBar?.current?.value / duration * 1000}%`)
+    // }
+
     return (
         <>
-            <audio ref={audioPlayer} src="https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/In+My+Life+(Remastered+2009).mp3"></audio>
+            <audio ref={audioElement} src="https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/In+My+Life+(Remastered+2009).mp3"></audio>
 
             <div className="playbar-currently-playing-song-div">
                 <Link to={`/albums/${songs[0]?.Album?.id}`}>
@@ -114,14 +143,14 @@ const AudioPlayer = () => {
 
                 <div className="progress-bar-div">
                     <span className="song-progress">{duration ? calculateTime(currentTime) : "0:00"}</span>
-                    <input className="progress-bar" type="range" defaultValue="0" min="0" max="3:00" ref={progressBar} onChange={changeRange} />
+                    <input className="progress-bar" type="range" defaultValue="0" min="0" max="3:00" ref={progressBar} onChange={updateTimeWithSlider} />
                     <span className="song-duration">{duration ? calculateTime(duration) : "0:00"}</span>
                 </div>
             </div>
 
             <div className="playbar-volume-div">
-                <i className="fas fa-volume"></i>
-                <input className="volume-bar" type="range" defaultValue="0.1" min="0" step="0.02" max="1" />
+                <i onClick={mute} className="fas fa-volume"></i>
+                <input className="volume-bar" type="range" defaultValue="0.1" min="0" step="0.02" max="1" ref={volumeBar} onChange={changeVolume}  />
             </div>
         </>
     )

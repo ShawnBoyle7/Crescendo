@@ -47,7 +47,7 @@ const AudioPlayer = () => {
                 </div>
                 <div className="progress-bar-div">
                     <span className="song-progress">0:01</span>
-                    <input className="progress-bar" type="range" min="0" max={songs[0]}/>
+                    <input className="progress-bar" type="range" min="0" max="3:00"/>
                     <span className="song-duration">3:00</span>
                 </div>
             </div>

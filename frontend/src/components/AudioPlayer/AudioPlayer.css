@@ -51,6 +51,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-bottom: 12px;
 }
 
 .playbar-controls-buttons-div {
@@ -76,19 +77,72 @@
 }
 
 .progress-bar-div {
-    
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    position: relative;
 }
 
-.song-progress {
-
-}
+.song-progress, .song-duration {
+    color: rgb(179, 179, 179);
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 16px;
+    text-transform: none;
+} 
 
 .progress-bar {
-
+    width: 100%;
+    margin: 0 8px;
+    background: none;
 }
 
-.song-duration {
+input[type=range] {
+    -webkit-appearance: none;
+    height: 4px;
+    background-color: #535353;
+    border-radius: 2px;
+}
 
+input[type=range]::-webkit-slider-thumb {
+    display: none;
+}
+
+input:hover[type="range"]::-webkit-slider-thumb {
+    display: inherit;
+    -webkit-appearance: none;
+    height: 12px;
+    width: 12px;
+    background: #FFFFFF;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 50%);
+    border: none;
+    transform: translateY(-10%);
+    /* margin-top: -4px; */
+    /* z-index: 100; */
+    /* position: absolute; */
+    /* top: 50%; */
+    /* margin-left: -6px; */
+}
+
+input:hover[type=range]::-moz-range-thumb {
+    display: inherit;
+    -webkit-appearance: none;
+    height: 12px;
+    width: 12px;
+    background: #FFFFFF;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px 0 rgb(0 0 0 / 50%);
+    border: none;
+    transform: translateY(-10%);
+    /* margin-top: -4px; */
+    /* z-index: 100; */
+    /* position: absolute; */
+    /* top: 50%; */
+    /* margin-left: -6px; */
 }
 
 /* Volume Controls */

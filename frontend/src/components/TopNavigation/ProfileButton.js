@@ -39,7 +39,7 @@ function ProfileButton() {
         <>
             <div className="profile-button" onClick={openMenu}>
                 <div className="nav-profile-image-div">
-                    <img className="nav-profile-image" src="https://i.imgur.com/3x2W04X.jpg"/>
+                    <img className="nav-profile-image" src="https://i.imgur.com/3x2W04X.jpg" alt="profile" />
                 </div>
                 <span className="nav-profile-name">
                     {user?.username}

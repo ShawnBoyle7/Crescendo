@@ -12,14 +12,6 @@ function SideNavigation() {
     const allPlaylists = Object.values(playlistsSlice);
     const userPlaylists = allPlaylists.filter(playlist => playlist?.userId === +sessionUser?.id).reverse();
 
-    let sessionLinks;
-        sessionLinks = (
-            <>
-                <NavLink to="/login">Log In</NavLink>
-                <NavLink to="/signup">Sign Up</NavLink>
-            </>
-        );
-
     const newPlaylist = async (e) => {
         e.preventDefault()
 

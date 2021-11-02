@@ -61,7 +61,7 @@ const Song = ({ songs }) => {
             </div>
 
             <div className="song-album-image">
-                <img src={song && song.Album.imgUrl} />
+                <img src={song && song.Album.imgUrl} alt="song-art" />
             </div>
 
             { nowPlaying !== song.songUrl 

@@ -5,9 +5,9 @@ import ArtistDiv from "../ArtistDiv";
 import './Artist.css'
 
 const Artist = ({ artists }) => {
-
     const { artistId } = useParams()
     const artist = artists.find(artist => artist.id === +artistId)
+    
     return (
         <>
             <Route exact path="/artists/:artistId">

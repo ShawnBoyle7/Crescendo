@@ -48,8 +48,8 @@ const TopNavigation = () => {
             <nav className="top-navigation-bar-default">
                 <div className="top-nav-features">
                     <div className="history-buttons-div">
-                        <button className="history-button" onClick={() => history.go(-1)}><i class="fas fa-chevron-left"></i></button>
-                        <button className="history-button" onClick={() => history.go(1)}><i class="fas fa-chevron-right"></i></button>
+                        <button className="history-button" onClick={() => history.go(-1)}><i className="fas fa-chevron-left"></i></button>
+                        <button className="history-button" onClick={() => history.go(1)}><i className="fas fa-chevron-right"></i></button>
                     </div>
                     {navComponent}
                 </div>

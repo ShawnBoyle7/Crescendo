@@ -118,13 +118,6 @@ function App() {
                             </Route>
                         </Switch>
                     </div>
-                    {/* {sessionUser &&
-                        <footer className="playbar"><AudioPlayer onEnded={e=>setNowPlaying('')} layout='horizontal' src={nowPlaying} volume={0.1}/>
-                            <div className="song-info-div"></div>
-                            <div className="song-time-controls-div"></div>
-                            <div className="song-volume-div"></div>
-                        </footer>
-                    } */}
                     {sessionUser &&
                         <footer className="playbar-container">
                             <AudioPlayer/>

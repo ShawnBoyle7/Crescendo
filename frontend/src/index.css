@@ -48,6 +48,7 @@ div {
     background-color: #181818;
     position: fixed;
     bottom: 0;
+    padding: 0 16px;
     z-index: 1;
     display: flex;
     justify-content: space-between;

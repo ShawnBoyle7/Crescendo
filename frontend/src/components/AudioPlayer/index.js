@@ -9,11 +9,13 @@ const AudioPlayer = () => {
     return (
         <>
             <div className="playbar-currently-playing-song-div">
-                <div className="playbar-song-art-div">
-                    <div className="playbar-song-art-shadow">
-                        <img className="playbar-song-art" src={songs[0]?.Album?.imgUrl} />
+                <Link to={`/albums/${songs[0]?.Album?.id}`}>
+                    <div className="playbar-song-art-div">
+                        <div className="playbar-song-art-shadow">
+                            <img className="playbar-song-art" src={songs[0]?.Album?.imgUrl} />
+                        </div>
                     </div>
-                </div>
+                </Link>
                 <div className="playbar-song-info-div">
                     <div className="playbar-song-title-div">
                         <Link className="playbar-song-title" to={`/albums/${songs[0]?.Album?.id}`} >{songs[0]?.name}</Link>
@@ -53,7 +55,8 @@ const AudioPlayer = () => {
             </div>
 
             <div className="playbar-volume-div">
-
+                <i class="fas fa-volume"></i>
+                <input className="volume-bar" type="range" min="0" step="0.02" max="1"/>
             </div>
         </>
     )

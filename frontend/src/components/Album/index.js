@@ -10,21 +10,20 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
 
     let audio;
 
+    // Use effect to grab the audio to ensure it's loaded first to avoid grabbing a null audio element
     useEffect(() => {
         audio = document.querySelector("audio")
-        console.log("AUDIO", audio) 
     });
 
     const playSong = (e) => {
-        e.preventDefault()
         const song = songs?.find(song => song?.id === +e?.target?.id)
         setNowPlaying(song)
+
         audio.play()
         setIsPlaying(true)
     }
 
-    const stopSong = (e) => {
-        e.preventDefault()
+    const stopSong = () => {
         audio.pause()
         setIsPlaying(false)
     }
@@ -49,8 +48,8 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
                             {(!isPlaying || nowPlaying !== song) &&
                                 <button id={song.id} onClick={playSong}>Play</button>
                             }
-                            {isPlaying && nowPlaying === song &&
-                                <button id={song.id} onClick={stopSong}>Pause</button>
+                            {(isPlaying && nowPlaying === song) &&
+                                <button onClick={stopSong}>Pause</button>
                             }
                         </div>)}
                 </div>

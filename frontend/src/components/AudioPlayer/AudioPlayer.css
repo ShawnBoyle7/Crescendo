@@ -44,13 +44,23 @@
 
 /* Time Controls */
 
-.playbar-controls-div {
+.playbar-controls-div-playing {
     width: 40%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     margin-bottom: 12px;
+}
+
+.playbar-controls-div-not-playing {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 12px;
+    margin-left: 30%;
 }
 
 .playbar-controls-buttons-div {
@@ -71,7 +81,17 @@
     align-items: center;
 }
 
-.playbar-controls-div .fa-play-circle, .playbar-controls-div .fa-pause-circle {
+.playbar-controls-button-div button {
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+
+.fa-play-circle, .fa-pause-circle {
     font-size: 32px;
 }
 
@@ -100,7 +120,7 @@
     position: relative;
 }
 
-.progress-bar::before {
+/* .progress-bar::before {
     content: "";
     height: 4px;
     width: var(--seek-before-width);
@@ -111,7 +131,7 @@
 
 .progress-bar:hover::before {
     background-color: #1DB954;
-}
+} */
 
 input[type=range] {
     -webkit-appearance: none;
@@ -120,16 +140,16 @@ input[type=range] {
     border-radius: 2px;
 }
 
-input[type="range"]::-webkit-slider-thumb, .volume-bar::-webkit-slider-thumb {
+/* input[type="range"]::-webkit-slider-thumb, .volume-bar::-webkit-slider-thumb {
     display: none;
 }
 
 input[type="range"]::-moz-range-thumb, .volume-bar::-moz-range-thumb {
     display: none;
-}
+} */
 
-input:hover[type="range"]::-webkit-slider-thumb, .volume-bar::-webkit-slider-thumb {
-    display: inherit;
+input[type="range"]::-webkit-slider-thumb, .volume-bar::-webkit-slider-thumb {
+    /* display: inherit; */
     -webkit-appearance: none;
     height: 12px;
     width: 12px;
@@ -140,8 +160,8 @@ input:hover[type="range"]::-webkit-slider-thumb, .volume-bar::-webkit-slider-thu
     transform: translateY(-10%);
 }
 
-input:hover[type=range]::-moz-range-thumb, .volume-bar::-moz-range-thumb {
-    display: inherit;
+input[type=range]::-moz-range-thumb, .volume-bar::-moz-range-thumb {
+    /* display: inherit; */
     -webkit-appearance: none;
     height: 12px;
     width: 12px;
@@ -165,7 +185,7 @@ input:hover[type=range]::-moz-range-thumb, .volume-bar::-moz-range-thumb {
     margin: 0 15px;
 }
 
-.volume-bar::before {
+/* .volume-bar::before {
     content: "";
     height: 4px;
     width: var(--seek-before-width);
@@ -176,4 +196,4 @@ input:hover[type=range]::-moz-range-thumb, .volume-bar::-moz-range-thumb {
 
 .volume-bar:hover::before {
     background-color: #1DB954;
-}
+} */

@@ -6,6 +6,7 @@ const AudioPlayer = ({ nowPlaying, isPlaying, setIsPlaying }) => {
     const [duration, setDuration] = useState(0)
     const [currentTime, setCurrentTime] = useState(0)
     const [volume, setVolume] = useState(0.1)
+    const [previousVolume, setPreviousVolume] = useState(0)
 
     // Essentially establishing state variables for objects, keeping reference to them on re-render.
     const audioElement = useRef();
@@ -92,79 +93,91 @@ const AudioPlayer = ({ nowPlaying, isPlaying, setIsPlaying }) => {
         volumeBar?.current?.style?.setProperty('--seek-before-width', `${volumeBar?.current?.value / duration * 1000}%`)
     }
 
-    // Trying to get toggle working
-    const mute = () => {
-        volumeBar.current.value = 0
-        audioElement.current.volume = 0
-        volumeBar?.current?.style?.setProperty('--seek-before-width', `${volumeBar?.current?.value / duration * 1000}%`)
+    const muteToggle = () => {
+        if (volume !== 0) {
+            setPreviousVolume(volume)
+            setVolume(0)
+            volumeBar.current.value = 0
+            audioElement.current.volume = 0
+            volumeBar?.current?.style?.setProperty('--seek-before-width', `${volumeBar?.current?.value / duration * 1000}%`)
+        } else {
+            setVolume(previousVolume)
+            volumeBar.current.value = previousVolume
+            audioElement.current.volume = previousVolume
+            volumeBar?.current?.style?.setProperty('--seek-before-width', `${volumeBar?.current?.value / duration * 1000}%`)
+        }
     }
-
-    // const unmute = () => {
-    //     volumeBar.current.value = 0.1
-    //     audioElement.current.volume = 0.1
-    //     volumeBar?.current?.style?.setProperty('--seek-before-width', `${volumeBar?.current?.value / duration * 1000}%`)
-    // }
 
     return (
         <>
             <audio ref={audioElement} src={nowPlaying.songUrl} autoPlay={true} volume={volume} ></audio>
 
-            <div className="playbar-currently-playing-song-div">
-                <Link to={`/albums/${nowPlaying?.Album?.id}`}>
-                    <div className="playbar-song-art-div">
-                        <div className="playbar-song-art-shadow">
-                            <img className="playbar-song-art" src={nowPlaying?.Album?.imgUrl} alt="song-art" />
+            {nowPlaying && 
+                <div className="playbar-currently-playing-song-div">
+                    <Link to={`/albums/${nowPlaying?.Album?.id}`}>
+                        <div className="playbar-song-art-div">
+                            <div className="playbar-song-art-shadow">
+                                <img className="playbar-song-art" src={nowPlaying?.Album?.imgUrl} alt="song-art" />
+                            </div>
+                        </div>
+                    </Link>
+                    <div className="playbar-song-info-div">
+                        <div className="playbar-song-title-div">
+                            <Link className="playbar-song-title" to={`/albums/${nowPlaying?.Album?.id}`} >{nowPlaying?.name}</Link>
+                        </div>
+                        <div className="playbar-song-artist-title-div">
+                            <Link className="playbar-song-artist-title" to={`/artists/${nowPlaying?.Artist?.id}`} >{nowPlaying?.Artist?.name}</Link>
                         </div>
                     </div>
-                </Link>
-                <div className="playbar-song-info-div">
-                    <div className="playbar-song-title-div">
-                        <Link className="playbar-song-title" to={`/albums/${nowPlaying?.Album?.id}`} >{nowPlaying?.name}</Link>
-                    </div>
-                    <div className="playbar-song-artist-title-div">
-                        <Link className="playbar-song-artist-title" to={`/artists/${nowPlaying?.Artist?.id}`} >{nowPlaying?.Artist?.name}</Link>
+                    <div className="playbar-heart-div">
+                        <i className="far fa-heart"></i>
                     </div>
                 </div>
-                <div className="playbar-heart-div">
-                    <i className="far fa-heart"></i>
-                </div>
-            </div>
+            }
 
-            <div className="playbar-controls-div">
+            <div className={`${ nowPlaying ? "playbar-controls-div-playing" : "playbar-controls-div-not-playing"}`}>
                 <div className="playbar-controls-buttons-div">
                     <div className="playbar-controls-button-div">
-                        <i className="far fa-random"></i>
+                        <button disabled={!nowPlaying ? true : false}>
+                            <i className="fas fa-random"></i>
+                        </button>
                     </div>
+
                     <div className="playbar-controls-button-div">
-                        <i className="fas fa-step-backward"></i>
+                        <button disabled={!nowPlaying ? true : false}>
+                            <i className="fas fa-step-backward"></i>
+                        </button>
                     </div>
 
-                    {/* Troubleshooting conditional rendering */}
-                    {/* <i {isPlaying ? className="fas fa-pause-circle" : className="fas fa-play-circle"} ></i> */}
-
-                    {isPlaying ?
-                        <i onClick={playPauseToggle} className="fas fa-pause-circle"></i>
-                    : 
-                        <i onClick={playPauseToggle} className="fas fa-play-circle"></i>} 
+                    <div className="playbar-controls-button-div">
+                        <button onClick={playPauseToggle} disabled={!nowPlaying ? true : false}>
+                            <i className={`${ isPlaying ? "fas fa-pause-circle" : "fas fa-play-circle"}`}></i>
+                        </button>
+                    </div>
                 
                     <div className="playbar-controls-button-div">
-                        <i className="fas fa-step-forward"></i>
+                        <button disabled={!nowPlaying ? true : false}>
+                            <i className="fas fa-step-forward"></i>
+                        </button>
                     </div>
+
                     <div className="playbar-controls-button-div">
-                        <i className="fas fa-repeat"></i>
+                        <button disabled={!nowPlaying ? true : false}>
+                            <i className="fas fa-repeat"></i>
+                        </button>
                     </div>
                 </div>
 
                 <div className="progress-bar-div">
                     <span className="song-progress">{duration ? calculateTime(currentTime) : "0:00"}</span>
-                    <input className="progress-bar" type="range" defaultValue="0" min="0" max={audioElement?.current?.length} ref={progressBar} onChange={updateTimeWithSlider} />
+                    <input className="progress-bar" type="range" defaultValue="0" min="0" max={audioElement?.current?.length} ref={progressBar} onChange={updateTimeWithSlider} disabled={!nowPlaying ? true : false} />
                     <span className="song-duration">{duration ? calculateTime(duration) : "0:00"}</span>
                 </div>
             </div>
 
             <div className="playbar-volume-div">
                 {/* Troubleshooting mute toggle */}
-                <i onClick={mute} className="fas fa-volume"></i>
+                <i onClick={muteToggle} className="fas fa-volume"></i>
                 <input className="volume-bar" type="range" defaultValue="0.1" min="0" step="0.02" max="1" ref={volumeBar} value={volume} onChange={changeVolume}  />
             </div>
         </>

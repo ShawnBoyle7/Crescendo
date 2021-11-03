@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./AudioPlayer.css"
 
-const AudioPlayer = () => {
+const AudioPlayer = ({ nowPlaying, setNowPlaying }) => {
     const songs = Object.values(useSelector(state => state?.songs))
 
     const [duration, setDuration] = useState(0)
@@ -21,6 +21,8 @@ const AudioPlayer = () => {
         const seconds = Math.floor(audioElement?.current?.duration)
         setDuration(seconds);
         progressBar.current.max = seconds;
+
+        // setNowPlaying(audioElement.current.songUrl)
     }, [audioElement?.current?.loadedmetadata, audioElement?.current?.readyState])
 
     // Convert current time or duration to a rounded format for rendering
@@ -96,22 +98,22 @@ const AudioPlayer = () => {
 
     return (
         <>
-            <audio ref={audioElement} src="https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/In+My+Life+(Remastered+2009).mp3"></audio>
+            <audio ref={audioElement} src={nowPlaying.songUrl}></audio>
 
             <div className="playbar-currently-playing-song-div">
-                <Link to={`/albums/${songs[0]?.Album?.id}`}>
+                <Link to={`/albums/${nowPlaying?.Album?.id}`}>
                     <div className="playbar-song-art-div">
                         <div className="playbar-song-art-shadow">
-                            <img className="playbar-song-art" src={songs[0]?.Album?.imgUrl} alt="song-art" />
+                            <img className="playbar-song-art" src={nowPlaying?.Album?.imgUrl} alt="song-art" />
                         </div>
                     </div>
                 </Link>
                 <div className="playbar-song-info-div">
                     <div className="playbar-song-title-div">
-                        <Link className="playbar-song-title" to={`/albums/${songs[0]?.Album?.id}`} >{songs[0]?.name}</Link>
+                        <Link className="playbar-song-title" to={`/albums/${nowPlaying?.Album?.id}`} >{nowPlaying?.name}</Link>
                     </div>
                     <div className="playbar-song-artist-title-div">
-                        <Link className="playbar-song-artist-title" to={`/artists/${songs[0]?.Artist?.id}`} >{songs[0]?.Artist?.name}</Link>
+                        <Link className="playbar-song-artist-title" to={`/artists/${nowPlaying?.Artist?.id}`} >{nowPlaying?.Artist?.name}</Link>
                     </div>
                 </div>
                 <div className="playbar-heart-div">
@@ -127,6 +129,9 @@ const AudioPlayer = () => {
                     <div className="playbar-controls-button-div">
                         <i className="fas fa-step-backward"></i>
                     </div>
+
+                    {/* Troubleshooting conditional rendering */}
+                    {/* <i {isPlaying ? className="fas fa-pause-circle" : className="fas fa-play-circle"} ></i> */}
 
                     {isPlaying ?
                         <i onClick={playPauseToggle} className="fas fa-pause-circle"></i>
@@ -149,6 +154,7 @@ const AudioPlayer = () => {
             </div>
 
             <div className="playbar-volume-div">
+                {/* Troubleshooting mute toggle */}
                 <i onClick={mute} className="fas fa-volume"></i>
                 <input className="volume-bar" type="range" defaultValue="0.1" min="0" step="0.02" max="1" ref={volumeBar} onChange={changeVolume}  />
             </div>

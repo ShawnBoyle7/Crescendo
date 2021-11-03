@@ -1,11 +1,20 @@
+import React from "react"
 import { useParams } from "react-router"
 import { Link } from "react-router-dom";
 import './Album.css';
 
-const Album = ({ albums }) => {
+const Album = ({ setNowPlaying, nowPlaying, albums }) => {
     const { albumId } = useParams();
-    const album = albums.find(album => album.Artist.id === +albumId)
-    const songs = album.Songs
+    const album = albums?.find(album => album?.Artist?.id === +albumId)
+    const songs = album?.Songs
+
+    const getSong = (e) => {
+        e.preventDefault()
+        const song = songs?.find(song => song?.id === +e?.target?.id)
+        setNowPlaying(song)
+        console.log("IN ALBUM NOW PLAYING", nowPlaying)
+    }
+
 
     return (
         <>
@@ -18,12 +27,13 @@ const Album = ({ albums }) => {
 
             <div className="song-section">
                 <div className="song-divs">
-                    {songs.map(song =>
+                    {songs?.map(song =>
                         <div className="songs-item" key={song.id}>
                             <Link to={`/songs/${song.id}`} key={song.id}>
                                 <img className="songs-image" alt={"song"} src={album.imgUrl} />
                                 <div className="songs-name">{song.name}</div>
                             </Link>
+                            <button id={song.id} onClick={getSong}>Play</button>
                         </div>)}
                 </div>
             </div>

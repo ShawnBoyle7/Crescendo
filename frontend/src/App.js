@@ -24,7 +24,6 @@ import { getAlbums } from "./store/albums";
 import { getPlaylists } from "./store/playlists";
 import { getSongs } from "./store/songs";
 import { useNowPlaying } from './context/NowPlayingContext';
-// import AudioPlayer from 'react-h5-audio-player'
 import AudioPlayer from './components/AudioPlayer';
 import TopNavigation from './components/TopNavigation';
 
@@ -32,8 +31,7 @@ function App() {
     const dispatch = useDispatch();
     const [isLoaded, setIsLoaded] = useState(false);
 
-    const { nowPlaying, setNowPlaying } = useNowPlaying();
-
+    
     useEffect(() => {
         dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
         dispatch(getArtists());
@@ -43,15 +41,16 @@ function App() {
         dispatch(getPlaylists());
         dispatch(getSongs());
     }, [dispatch])
-
+    
     const sessionUser = useSelector(state => state.session.user)
-
+    
     const genresSlice = useSelector(state => state.genres);
     const genres = Object.values(genresSlice);
     
     const albumsSlice = useSelector(state => state.albums);
     const albums = Object.values(albumsSlice);
-
+    
+    const { nowPlaying, setNowPlaying } = useNowPlaying();
 
     return (
         <>
@@ -94,7 +93,7 @@ function App() {
                             </Route>
 
                             <Route path="/albums/:albumId">
-                                <Album albums={albums && albums} />
+                                <Album setNowPlaying={setNowPlaying} nowPlaying={nowPlaying} albums={albums && albums} />
                             </Route>
 
                             <Route path="/genres/:genreId">
@@ -120,7 +119,7 @@ function App() {
                     </div>
                     {sessionUser &&
                         <footer className="playbar-container">
-                            <AudioPlayer/>
+                            <AudioPlayer nowPlaying={nowPlaying} setNowPlaying={setNowPlaying} />
                         </footer>
                     }
                 </div>

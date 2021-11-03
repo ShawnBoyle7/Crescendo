@@ -161,10 +161,6 @@ input:hover[type=range]::-moz-range-thumb, .volume-bar::-moz-range-thumb {
     align-items: center;
 }
 
-.playbar-volume-div > i:hover {
-    cursor: pointer;
-}
-
 .volume-bar {
     margin: 0 15px;
 }

@@ -1,20 +1,33 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useParams } from "react-router"
 import { Link } from "react-router-dom";
 import './Album.css';
 
-const Album = ({ setNowPlaying, nowPlaying, albums }) => {
+const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) => {
     const { albumId } = useParams();
     const album = albums?.find(album => album?.Artist?.id === +albumId)
     const songs = album?.Songs
 
-    const getSong = (e) => {
+    let audio;
+
+    useEffect(() => {
+        audio = document.querySelector("audio")
+        console.log("AUDIO", audio) 
+    });
+
+    const playSong = (e) => {
         e.preventDefault()
         const song = songs?.find(song => song?.id === +e?.target?.id)
         setNowPlaying(song)
-        console.log("IN ALBUM NOW PLAYING", nowPlaying)
+        audio.play()
+        setIsPlaying(true)
     }
 
+    const stopSong = (e) => {
+        e.preventDefault()
+        audio.pause()
+        setIsPlaying(false)
+    }
 
     return (
         <>
@@ -33,7 +46,12 @@ const Album = ({ setNowPlaying, nowPlaying, albums }) => {
                                 <img className="songs-image" alt={"song"} src={album.imgUrl} />
                                 <div className="songs-name">{song.name}</div>
                             </Link>
-                            <button id={song.id} onClick={getSong}>Play</button>
+                            {(!isPlaying || nowPlaying !== song) &&
+                                <button id={song.id} onClick={playSong}>Play</button>
+                            }
+                            {isPlaying && nowPlaying === song &&
+                                <button id={song.id} onClick={stopSong}>Pause</button>
+                            }
                         </div>)}
                 </div>
             </div>

@@ -8,6 +8,7 @@ import { restoreCSRF, csrfFetch } from './store/csrf';
 import configureStore from './store';
 import * as sessionActions from './store/session';
 import NowPlayingProvider from './context/NowPlayingContext';
+import IsPlayingProvider from './context/IsPlayingContext';
 
 const store = configureStore();
 
@@ -23,9 +24,11 @@ function Root() {
     return (
         <Provider store={store}>
             <NowPlayingProvider>
-                <BrowserRouter>
-                    <App />
-                </BrowserRouter>
+                <IsPlayingProvider>
+                    <BrowserRouter>
+                        <App />
+                    </BrowserRouter>
+                </IsPlayingProvider>
             </NowPlayingProvider>
         </Provider>
     );

@@ -23,6 +23,7 @@ import { getGenres } from "./store/genres";
 import { getAlbums } from "./store/albums";
 import { getPlaylists } from "./store/playlists";
 import { getSongs } from "./store/songs";
+import { useIsPlaying } from './context/IsPlayingContext';
 import { useNowPlaying } from './context/NowPlayingContext';
 import AudioPlayer from './components/AudioPlayer';
 import TopNavigation from './components/TopNavigation';
@@ -30,7 +31,6 @@ import TopNavigation from './components/TopNavigation';
 function App() {
     const dispatch = useDispatch();
     const [isLoaded, setIsLoaded] = useState(false);
-
     
     useEffect(() => {
         dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
@@ -51,6 +51,7 @@ function App() {
     const albums = Object.values(albumsSlice);
     
     const { nowPlaying, setNowPlaying } = useNowPlaying();
+    const { isPlaying, setIsPlaying } = useIsPlaying();
 
     return (
         <>
@@ -93,7 +94,7 @@ function App() {
                             </Route>
 
                             <Route path="/albums/:albumId">
-                                <Album setNowPlaying={setNowPlaying} nowPlaying={nowPlaying} albums={albums && albums} />
+                                <Album setNowPlaying={setNowPlaying} nowPlaying={nowPlaying} albums={albums && albums} isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
                             </Route>
 
                             <Route path="/genres/:genreId">
@@ -119,7 +120,7 @@ function App() {
                     </div>
                     {sessionUser &&
                         <footer className="playbar-container">
-                            <AudioPlayer nowPlaying={nowPlaying} setNowPlaying={setNowPlaying} />
+                            <AudioPlayer nowPlaying={nowPlaying} setNowPlaying={setNowPlaying} isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
                         </footer>
                     }
                 </div>

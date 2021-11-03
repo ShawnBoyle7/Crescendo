@@ -1,14 +1,11 @@
 import React, { useState, useRef, useEffect } from "react"
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import "./AudioPlayer.css"
 
-const AudioPlayer = ({ nowPlaying, setNowPlaying }) => {
-    const songs = Object.values(useSelector(state => state?.songs))
-
+const AudioPlayer = ({ nowPlaying, isPlaying, setIsPlaying }) => {
     const [duration, setDuration] = useState(0)
     const [currentTime, setCurrentTime] = useState(0)
-    const [isPlaying, setIsPlaying] = useState(false)
+    const [volume, setVolume] = useState(0.1)
 
     // Essentially establishing state variables for objects, keeping reference to them on re-render.
     const audioElement = useRef();
@@ -16,11 +13,20 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying }) => {
     const volumeBar = useRef();
     const animationRef = useRef();
 
+    const playPauseCallback = () => {
+        updateCurrentTime()
+        animationRef.current = requestAnimationFrame(whilePlaying)
+    }
+
     // If the audio element loaded the mp3 file, set the duration state variable and progress bar max value to the length of it
     useEffect(() => {
         const seconds = Math.floor(audioElement?.current?.duration)
         setDuration(seconds);
         progressBar.current.max = seconds;
+        audioElement.current.volume = volume
+        
+        audioElement.current.addEventListener("play", playPauseCallback)
+        audioElement.current.addEventListener("pause", playPauseCallback)
 
         // setNowPlaying(audioElement.current.songUrl)
     }, [audioElement?.current?.loadedmetadata, audioElement?.current?.readyState])
@@ -63,9 +69,10 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying }) => {
 
     // Conditional for pause or play and update current time rendering frames
     const playPauseToggle = () => {
-        setIsPlaying(!isPlaying)
+        const previousValue = isPlaying
+        setIsPlaying(!previousValue)
         // If not is playing, then play and begin animation of time change
-        if (!isPlaying) {
+        if (!previousValue) {
             audioElement?.current?.play()
             animationRef.current = requestAnimationFrame(whilePlaying)
         // Else pause and stop animation of time change
@@ -76,9 +83,11 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying }) => {
     }
 
     // Update volume when dragging the input range slider
-    const changeVolume = () => {
+    const changeVolume = (e) => {
+        // Set volume state variable to target value
+        setVolume(+e.target.value)
         // Update audio element's volume when moving the volume bar slider
-        audioElement.current.volume = volumeBar.current.value
+        audioElement.current.volume = volume
         // Update rendered volume value on volume bar 
         volumeBar?.current?.style?.setProperty('--seek-before-width', `${volumeBar?.current?.value / duration * 1000}%`)
     }
@@ -98,7 +107,7 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying }) => {
 
     return (
         <>
-            <audio ref={audioElement} src={nowPlaying.songUrl}></audio>
+            <audio ref={audioElement} src={nowPlaying.songUrl} autoPlay={true} volume={volume} ></audio>
 
             <div className="playbar-currently-playing-song-div">
                 <Link to={`/albums/${nowPlaying?.Album?.id}`}>
@@ -148,7 +157,7 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying }) => {
 
                 <div className="progress-bar-div">
                     <span className="song-progress">{duration ? calculateTime(currentTime) : "0:00"}</span>
-                    <input className="progress-bar" type="range" defaultValue="0" min="0" max="3:00" ref={progressBar} onChange={updateTimeWithSlider} />
+                    <input className="progress-bar" type="range" defaultValue="0" min="0" max={audioElement?.current?.length} ref={progressBar} onChange={updateTimeWithSlider} />
                     <span className="song-duration">{duration ? calculateTime(duration) : "0:00"}</span>
                 </div>
             </div>
@@ -156,7 +165,7 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying }) => {
             <div className="playbar-volume-div">
                 {/* Troubleshooting mute toggle */}
                 <i onClick={mute} className="fas fa-volume"></i>
-                <input className="volume-bar" type="range" defaultValue="0.1" min="0" step="0.02" max="1" ref={volumeBar} onChange={changeVolume}  />
+                <input className="volume-bar" type="range" defaultValue="0.1" min="0" step="0.02" max="1" ref={volumeBar} value={volume} onChange={changeVolume}  />
             </div>
         </>
     )

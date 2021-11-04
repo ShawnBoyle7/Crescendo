@@ -83,12 +83,15 @@
 
 .playbar-controls-button-div button {
     background: none;
-	color: inherit;
 	border: none;
 	padding: 0;
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
+}
+
+i {
+    color: white;
 }
 
 .fa-play-circle, .fa-pause-circle {

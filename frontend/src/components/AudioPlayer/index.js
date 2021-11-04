@@ -5,11 +5,28 @@ import "./AudioPlayer.css"
 
 const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
     const songs = Object.values(useSelector(state => state.songs))
+    const album = nowPlaying?.Album
+    const albumSongs = songs?.filter(song => song?.albumId === album?.id)
+    // const [queue, setQueue] = useState([])
+    const queue = [...albumSongs]
+    const nextSong = queue.find(song => (nowPlaying.id + 1) === song.id)
+    const previousSong = queue.find(song => (nowPlaying.id - 1) === song.id)
+    // let nextSong;
+    // let previousSong;
+    
+    // useEffect(() => {
+    //     let currentSong = queue.find(song => song.id === nowPlaying.id)
+    //     let currentIndex = queue.indexOf(currentSong)
+    //     nextSong = queue[currentIndex + 1]
+    //     previousSong = queue[currentIndex - 1]
+    // }, [nowPlaying])
 
     const [duration, setDuration] = useState(0)
     const [currentTime, setCurrentTime] = useState(0)
-    const [volume, setVolume] = useState(0.5)
+    const [volume, setVolume] = useState(0.3)
     const [previousVolume, setPreviousVolume] = useState(0)
+    const [repeatStatus, setRepeatStatus] = useState("none")
+    const [shuffle, setShuffle] = useState(false)
 
     // Essentially establishing state variables for objects, keeping reference to them on re-render.
     const audioElement = useRef();
@@ -26,35 +43,26 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
         
         audioElement.current.addEventListener("play", playPauseCallback)
         audioElement.current.addEventListener("pause", playPauseCallback)
-        audioElement.current.addEventListener("ended", playNextSongInAlbum)
+        audioElement.current.addEventListener("ended", songEnded)
         
     }, [audioElement?.current?.loadedmetadata, audioElement?.current?.readyState])
 
-    const playNextSongInAlbum = () => {
-        const album = nowPlaying?.Album
-        const albumSongs = songs?.filter(song => song?.albumId === album?.id)
-        const nextSong = albumSongs.find(albumSong => (nowPlaying.id + 1) === albumSong.id)
-
-        setNowPlaying(nextSong)
-        audioElement.current.src = nextSong?.songUrl
-        audioElement?.current?.play()
-    }
-
+    
     // Convert current time or duration to a rounded format for rendering
     const playPauseCallback = () => {
         updateCurrentTime()
         animationRef.current = requestAnimationFrame(whilePlaying)
     }
-
+    
     // Convert seconds to clean readable format
     const calculateTime = (seconds) => {
         const minutes = Math.floor(seconds / 60);
         let secs = Math.floor(seconds % 60);
-
+        
         if (secs < 10) {
             secs = "0" + secs;
         }
-    
+        
         return `${minutes}:${secs}`
     }
     
@@ -65,7 +73,7 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
         // Update rendered elapsed time on progress bar 
         progressBar?.current?.style?.setProperty('--seek-before-width', `${progressBar?.current?.value / duration * 100}%`)
     }
-
+    
     // Update the current time when dragging the input range slider
     const updateTimeWithSlider = () => {
         audioElement.current.currentTime = progressBar?.current?.value
@@ -81,7 +89,7 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
         // Update the animation reference value with whilePlaying as the callback
         animationRef.current = requestAnimationFrame(whilePlaying)
     }
-
+    
     // Conditional for pause or play and update current time rendering frames
     const playPauseToggle = () => {
         const previousValue = isPlaying
@@ -90,13 +98,13 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
         if (!previousValue) {
             audioElement?.current?.play()
             animationRef.current = requestAnimationFrame(whilePlaying)
-        // Else pause and stop animation of time change
+            // Else pause and stop animation of time change
         } else {
             audioElement?.current.pause()
             cancelAnimationFrame(animationRef?.current)
         }
     }
-
+    
     // Update volume when dragging the input range slider
     const changeVolume = (e) => {
         // Set volume state variable to target value
@@ -106,7 +114,7 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
         // Update rendered volume value on volume bar 
         volumeBar?.current?.style?.setProperty('--seek-before-width', `${volumeBar?.current?.value / duration * 1000}%`)
     }
-
+    
     // Set volume to 0 if not muted, otherwise set volume to what it was before it was muted
     const muteToggle = () => {
         if (volume !== 0) {
@@ -122,10 +130,114 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
             volumeBar?.current?.style?.setProperty('--seek-before-width', `${volumeBar?.current?.value / duration * 1000}%`)
         }
     }
+    
+    // Play the next song in the album after a song ends or when the button is clicked
+    const songEnded = () => {
+        if (!nextSong && repeatStatus !== "all") {
+            setNowPlaying("")
+            audioElement.current.src = ""
+            setIsPlaying(false)
+        }
+
+        if (!nextSong && repeatStatus === "all") {
+            setNowPlaying(queue[0])
+            audioElement.current.src = queue[0]?.songUrl
+            audioElement.current.play()
+            setIsPlaying(true)
+        }
+
+        if (nextSong) {
+            setNowPlaying(nextSong)
+            audioElement.current.src = nextSong?.songUrl
+            audioElement?.current?.play()
+            setIsPlaying(true)
+        }
+    }
+
+    // Skip song to play the next in the track
+    const skipSong = () => {
+        if (nextSong) {
+            setNowPlaying(nextSong)
+            audioElement.current.src = nextSong?.songUrl
+            audioElement?.current?.play()
+            setIsPlaying(true)
+        }
+
+        if (!nextSong && repeatStatus !== "all") {
+            setNowPlaying("")
+            audioElement.current.src = ""
+            setIsPlaying(false)
+        }
+
+        if (!nextSong && repeatStatus === "all") {
+            setNowPlaying(queue[0])
+            audioElement.current.src = queue[0]?.songUrl
+            audioElement.current.play()
+            setIsPlaying(true)
+        }
+
+        if (repeatStatus === "one") {
+            setRepeatStatus("all")
+        }
+    }
+
+    // Play the previous song in the album after a song ends or when the button is clicked
+    const playPreviousSongInAlbum = () => {
+        if (!previousSong) {
+            setNowPlaying(nowPlaying)
+            audioElement.current.src = nowPlaying?.songUrl
+            audioElement.current.play()
+            setIsPlaying(true)
+        } else {
+            setNowPlaying(previousSong)
+            audioElement.current.src = previousSong?.songUrl
+            audioElement.current.play()
+            setIsPlaying(true)
+        }
+    }
+
+    const loopToggle = () => {
+        const loopIcon = document.getElementById("repeat")
+
+        switch (repeatStatus) {
+            case "none":
+                setRepeatStatus("all")
+                loopIcon?.style?.setProperty("color", "#1DB954")
+                break;
+            case "all":
+                setRepeatStatus("one")
+                break;
+            case "one":
+                setRepeatStatus("none")
+                loopIcon?.style?.setProperty("color", "white")
+                break;
+            default:
+                break;
+        }
+    }
+
+    // const shuffleFunction = () => {
+    //     let queueCopy = [...queue]
+    //     for (let i = 0; i < queueCopy.length; i++) {
+    //         let j = Math.floor(Math.random()*queueCopy.length);
+    //         [queueCopy[i], queueCopy[j]] = [queueCopy[j], queueCopy[i]]
+    //     }
+    //     setQueue(queueCopy)
+    // }
+
+    // const shuffleToggle = () => {
+    //     if (!shuffle) {
+    //         shuffleFunction()
+    //         setShuffle(true)
+    //     } else {
+    //         setQueue([...albumSongs])
+    //         setShuffle(false)
+    //     }
+    // }
 
     return (
         <>
-            <audio ref={audioElement} src={nowPlaying?.songUrl} autoPlay={true} volume={volume} ></audio>
+            <audio ref={audioElement} src={nowPlaying?.songUrl} autoPlay={isPlaying? true : false} volume={volume} loop={repeatStatus === "one" ? true : false} ></audio>
 
             {nowPlaying && 
                 <div className="playbar-currently-playing-song-div">
@@ -159,7 +271,7 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
                     </div>
 
                     <div className="playbar-controls-button-div">
-                        <button disabled={!nowPlaying ? true : false}>
+                        <button onClick={playPreviousSongInAlbum} disabled={!nowPlaying ? true : false}>
                             <i className="fas fa-step-backward"></i>
                         </button>
                     </div>
@@ -171,14 +283,14 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
                     </div>
                 
                     <div className="playbar-controls-button-div">
-                        <button disabled={!nowPlaying ? true : false}>
+                        <button onClick={skipSong} disabled={!nowPlaying ? true : false}>
                             <i className="fas fa-step-forward"></i>
                         </button>
                     </div>
 
                     <div className="playbar-controls-button-div">
-                        <button disabled={!nowPlaying ? true : false}>
-                            <i className="fas fa-repeat"></i>
+                        <button onClick={loopToggle} disabled={!nowPlaying ? true : false}>
+                            <i id="repeat" className={`${repeatStatus !== "one" ? "fas fa-repeat" : "fas fa-repeat-1"}`}></i>
                         </button>
                     </div>
                 </div>
@@ -192,7 +304,7 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
 
             <div className="playbar-volume-div">
                 <i onClick={muteToggle} className="fas fa-volume"></i>
-                <input className="volume-bar" type="range" defaultValue="0.1" min="0" step="0.02" max="1" ref={volumeBar} value={volume} onChange={changeVolume}  />
+                <input className="volume-bar" type="range" min="0" step="0.02" max="1" ref={volumeBar} value={volume} onChange={changeVolume}  />
             </div>
         </>
     )

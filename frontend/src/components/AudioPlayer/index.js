@@ -1,11 +1,14 @@
 import React, { useState, useRef, useEffect } from "react"
+import { useSelector } from "react-redux"
 import { Link } from "react-router-dom";
 import "./AudioPlayer.css"
 
-const AudioPlayer = ({ nowPlaying, isPlaying, setIsPlaying }) => {
+const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
+    const songs = Object.values(useSelector(state => state.songs))
+
     const [duration, setDuration] = useState(0)
     const [currentTime, setCurrentTime] = useState(0)
-    const [volume, setVolume] = useState(0.1)
+    const [volume, setVolume] = useState(0.5)
     const [previousVolume, setPreviousVolume] = useState(0)
 
     // Essentially establishing state variables for objects, keeping reference to them on re-render.
@@ -13,11 +16,6 @@ const AudioPlayer = ({ nowPlaying, isPlaying, setIsPlaying }) => {
     const progressBar = useRef();
     const volumeBar = useRef();
     const animationRef = useRef();
-
-    const playPauseCallback = () => {
-        updateCurrentTime()
-        animationRef.current = requestAnimationFrame(whilePlaying)
-    }
 
     // If the audio element loaded the mp3 file, set the duration state variable and progress bar max value to the length of it
     useEffect(() => {
@@ -28,11 +26,27 @@ const AudioPlayer = ({ nowPlaying, isPlaying, setIsPlaying }) => {
         
         audioElement.current.addEventListener("play", playPauseCallback)
         audioElement.current.addEventListener("pause", playPauseCallback)
-
-        // setNowPlaying(audioElement.current.songUrl)
+        audioElement.current.addEventListener("ended", playNextSongInAlbum)
+        
     }, [audioElement?.current?.loadedmetadata, audioElement?.current?.readyState])
 
+    const playNextSongInAlbum = () => {
+        const album = nowPlaying?.Album
+        const albumSongs = songs?.filter(song => song?.albumId === album?.id)
+        const nextSong = albumSongs.find(albumSong => (nowPlaying.id + 1) === albumSong.id)
+
+        setNowPlaying(nextSong)
+        audioElement.current.src = nextSong?.songUrl
+        audioElement?.current?.play()
+    }
+
     // Convert current time or duration to a rounded format for rendering
+    const playPauseCallback = () => {
+        updateCurrentTime()
+        animationRef.current = requestAnimationFrame(whilePlaying)
+    }
+
+    // Convert seconds to clean readable format
     const calculateTime = (seconds) => {
         const minutes = Math.floor(seconds / 60);
         let secs = Math.floor(seconds % 60);
@@ -93,6 +107,7 @@ const AudioPlayer = ({ nowPlaying, isPlaying, setIsPlaying }) => {
         volumeBar?.current?.style?.setProperty('--seek-before-width', `${volumeBar?.current?.value / duration * 1000}%`)
     }
 
+    // Set volume to 0 if not muted, otherwise set volume to what it was before it was muted
     const muteToggle = () => {
         if (volume !== 0) {
             setPreviousVolume(volume)
@@ -110,7 +125,7 @@ const AudioPlayer = ({ nowPlaying, isPlaying, setIsPlaying }) => {
 
     return (
         <>
-            <audio ref={audioElement} src={nowPlaying.songUrl} autoPlay={true} volume={volume} ></audio>
+            <audio ref={audioElement} src={nowPlaying?.songUrl} autoPlay={true} volume={volume} ></audio>
 
             {nowPlaying && 
                 <div className="playbar-currently-playing-song-div">
@@ -176,7 +191,6 @@ const AudioPlayer = ({ nowPlaying, isPlaying, setIsPlaying }) => {
             </div>
 
             <div className="playbar-volume-div">
-                {/* Troubleshooting mute toggle */}
                 <i onClick={muteToggle} className="fas fa-volume"></i>
                 <input className="volume-bar" type="range" defaultValue="0.1" min="0" step="0.02" max="1" ref={volumeBar} value={volume} onChange={changeVolume}  />
             </div>

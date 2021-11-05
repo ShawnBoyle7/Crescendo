@@ -8,7 +8,7 @@ router.get('/', asyncHandler(async (req, res) => {
         include: [
             Artist,
             Album,
-            User
+            User,
         ]
     });
 

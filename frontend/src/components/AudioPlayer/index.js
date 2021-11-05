@@ -1,32 +1,27 @@
-import React, { useState, useRef, useEffect } from "react"
-import { useSelector } from "react-redux"
+import React, { useState, useRef, useEffect } from "react"  
+import { useSelector, useDispatch } from "react-redux"
+import { deleteLike, likeSong } from "../../store/users";
 import { Link } from "react-router-dom";
 import "./AudioPlayer.css"
 
 const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
+    const dispatch = useDispatch()
     const songs = Object.values(useSelector(state => state.songs))
+    const sessionUser = useSelector(state => state.session?.user)
+    const sessionUserLike = nowPlaying?.Users?.find(user => user?.id === sessionUser?.id)
+    const liked = sessionUserLike?.id === sessionUser?.id
+
     const album = nowPlaying?.Album
     const albumSongs = songs?.filter(song => song?.albumId === album?.id)
-    // const [queue, setQueue] = useState([])
     const queue = [...albumSongs]
     const nextSong = queue.find(song => (nowPlaying.id + 1) === song.id)
     const previousSong = queue.find(song => (nowPlaying.id - 1) === song.id)
-    // let nextSong;
-    // let previousSong;
-    
-    // useEffect(() => {
-    //     let currentSong = queue.find(song => song.id === nowPlaying.id)
-    //     let currentIndex = queue.indexOf(currentSong)
-    //     nextSong = queue[currentIndex + 1]
-    //     previousSong = queue[currentIndex - 1]
-    // }, [nowPlaying])
 
     const [duration, setDuration] = useState(0)
     const [currentTime, setCurrentTime] = useState(0)
     const [volume, setVolume] = useState(0.3)
     const [previousVolume, setPreviousVolume] = useState(0)
     const [repeatStatus, setRepeatStatus] = useState("none")
-    const [shuffle, setShuffle] = useState(false)
 
     // Essentially establishing state variables for objects, keeping reference to them on re-render.
     const audioElement = useRef();
@@ -216,6 +211,36 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
         }
     }
 
+    const likeCurrentSong = () => {
+        if (!liked) {
+            const payload = {
+                songId: nowPlaying.id,
+                userId: sessionUser.id
+            }
+            dispatch(likeSong(payload))
+        } else {
+            const payload = {
+                songId: nowPlaying.id,
+                userId: sessionUser.id
+            }
+            dispatch(deleteLike(payload))
+        }
+        
+    }
+
+    // const [shuffle, setShuffle] = useState(false)
+
+    // const [queue, setQueue] = useState([])
+    // let nextSong;
+    // let previousSong;
+    
+    // useEffect(() => {
+    //     let currentSong = queue.find(song => song.id === nowPlaying.id)
+    //     let currentIndex = queue.indexOf(currentSong)
+    //     nextSong = queue[currentIndex + 1]
+    //     previousSong = queue[currentIndex - 1]
+    // }, [nowPlaying])
+
     // const shuffleFunction = () => {
     //     let queueCopy = [...queue]
     //     for (let i = 0; i < queueCopy.length; i++) {
@@ -257,18 +282,20 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
                         </div>
                     </div>
                     <div className="playbar-heart-div">
-                        <i className="far fa-heart"></i>
+                        <button onClick={likeCurrentSong}>
+                            <i id={!liked ? "heart-default" : "heart-liked"} className="far fa-heart"></i>
+                        </button>
                     </div>
                 </div>
             }
 
             <div className={`${ nowPlaying ? "playbar-controls-div-playing" : "playbar-controls-div-not-playing"}`}>
                 <div className="playbar-controls-buttons-div">
-                    <div className="playbar-controls-button-div">
+                    {/* <div className="playbar-controls-button-div">
                         <button disabled={!nowPlaying ? true : false}>
                             <i className="fas fa-random"></i>
                         </button>
-                    </div>
+                    </div> */}
 
                     <div className="playbar-controls-button-div">
                         <button onClick={playPreviousSongInAlbum} disabled={!nowPlaying ? true : false}>

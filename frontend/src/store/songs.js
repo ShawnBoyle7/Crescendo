@@ -17,15 +17,15 @@ export const getSongs = () => async (dispatch) => {
 const initialState = {}
 
 const songReducer = (state = initialState, action) => {
+    const stateCopy = {...state}
     switch(action.type) {
         case LOAD_SONGS: {
-            const allSongs = {}
             action.songs.forEach(song => {
-                allSongs[song.id] = song
+                stateCopy[song.id] = song
             })
-            return allSongs;
+            return stateCopy;
         }
-            default: 
+        default: 
             return state;
     }
 }

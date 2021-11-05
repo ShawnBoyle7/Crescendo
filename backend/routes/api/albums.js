@@ -8,8 +8,9 @@ router.get('/', asyncHandler(async (req, res) => {
         include: [
             Artist,
             User,
+            
             {
-                model: Song, include: [Artist, Album]
+                model: Song, include: [Artist, Album, User]
             }
         ]
     });

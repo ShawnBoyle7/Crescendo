@@ -9,6 +9,10 @@
 	outline: inherit;
 }
 
+.playbar-container i {
+    color: white;
+}
+
 .playbar-currently-playing-song-div {
     display: flex;
     align-items: center;
@@ -88,10 +92,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-i {
-    color: white;
 }
 
 #heart-liked {

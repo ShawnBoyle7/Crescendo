@@ -23,7 +23,7 @@ function SideBar() {
             name: `New Playlist #${userPlaylists.length + 1}`,
             userId: sessionUser.id
         }
-        
+
         await dispatch(createPlaylist(formValues))
     }
     return (
@@ -43,7 +43,7 @@ function SideBar() {
                     <p>Search</p>
                 </button>
 
-                <button className={currentPath === "library" ? "current": "side-bar-button"} onClick={() => history.push('/library')}>
+                <button className={currentPath === "library" ? "current-side-bar-button": "side-bar-button"} onClick={() => history.push('/library')}>
                     <i className="medium material-icons">library_music</i>
                     <p>Your Library</p>
                 </button>

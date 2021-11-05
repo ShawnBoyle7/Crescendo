@@ -16,7 +16,6 @@ const Library = () => {
     return (
         <>
             <div className="library-page">
-
                 <div className="library-nav-links">
                     <NavLink to="/library/artists">Artists</NavLink>
                     <NavLink to="/library/albums">Albums</NavLink>
@@ -60,7 +59,7 @@ const Library = () => {
                             {userPlaylists ? userPlaylists.map(playlist =>
                                 <div className="playlists-item" key={playlist.id}>
                                     <Link to={`/playlists/${playlist.id}`}>
-                                        <img className="playlists-image" alt={"playlist"} src={"https://i.imgur.com/rUCUYPz.png"} />
+                                        <img className="playlists-image" alt={"playlist"} src={ playlist.Songs.length ? playlist.Songs[0].Album.imgUrl : "https://i.imgur.com/KKVhCBg.png"}/>
                                         <div className="playlists-name">{playlist.name}</div>
                                     </Link>
                                 </div>)
@@ -68,6 +67,7 @@ const Library = () => {
                             {/* </div> */}
                         </div>
                     </Route>
+                    
                     <Route>
                         <div className="artist-section">
                             <div className="artist-divs">

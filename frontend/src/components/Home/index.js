@@ -29,7 +29,7 @@ const Home = () => {
                 <h2 className="popular-header">Popular Artists</h2>
                 <div className="artists-div">
                     {artistsByPopularity.map(artist =>
-                        <ArtistDiv artist={artist}/>)}
+                        <ArtistDiv key={artist.id} artist={artist}/>)}
                 </div>
                 <Link className="gallery-link" to="/artists">Browse All Artists</Link>
             </div>
@@ -38,7 +38,7 @@ const Home = () => {
                 <h2 className="popular-header">Popular Albums</h2>
                 <div className="albums-div">
                     {albumsByPopularity.map(album =>
-                        <AlbumDiv album={album}/>)}
+                        <AlbumDiv key={album.id} album={album}/>)}
                 </div>
                 <Link className="gallery-link" to="/albums">Browse All Albums</Link>
             </div>

@@ -13,7 +13,6 @@ import Genre from "./components/Genre";
 import Songs from "./components/Songs";
 import Album from "./components/Album";
 import Library from './components/Library';
-import PlaylistForm from './components/PlaylistForm';
 import Error404 from "./components/Error404";
 import Playlists from './components/Playlists';
 import Profile from './components/Profile';
@@ -24,16 +23,15 @@ import { getGenres } from "./store/genres";
 import { getAlbums } from "./store/albums";
 import { getPlaylists } from "./store/playlists";
 import { getSongs } from "./store/songs";
+import { useIsPlaying } from './context/IsPlayingContext';
 import { useNowPlaying } from './context/NowPlayingContext';
-import AudioPlayer from 'react-h5-audio-player'
+import AudioPlayer from './components/AudioPlayer';
 import TopNavigation from './components/TopNavigation';
 
 function App() {
     const dispatch = useDispatch();
     const [isLoaded, setIsLoaded] = useState(false);
-
-    const { nowPlaying, setNowPlaying } = useNowPlaying();
-
+    
     useEffect(() => {
         dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
         dispatch(getArtists());
@@ -43,14 +41,17 @@ function App() {
         dispatch(getPlaylists());
         dispatch(getSongs());
     }, [dispatch])
-
+    
+    const sessionUser = useSelector(state => state.session.user)
+    
     const genresSlice = useSelector(state => state.genres);
     const genres = Object.values(genresSlice);
-
+    
     const albumsSlice = useSelector(state => state.albums);
     const albums = Object.values(albumsSlice);
-
-    const sessionUser = useSelector(state => state.session.user)
+    
+    const { nowPlaying, setNowPlaying } = useNowPlaying();
+    const { isPlaying, setIsPlaying } = useIsPlaying();
 
     return (
         <>
@@ -93,15 +94,11 @@ function App() {
                             </Route>
 
                             <Route path="/albums/:albumId">
-                                <Album albums={albums && albums} />
+                                <Album setNowPlaying={setNowPlaying} nowPlaying={nowPlaying} albums={albums && albums} isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
                             </Route>
 
                             <Route path="/genres/:genreId">
                                 <Genre genres={genres} />
-                            </Route>
-
-                            <Route path="/playlists/new">
-                                <PlaylistForm />
                             </Route>
 
                             <Route path="/library">
@@ -122,10 +119,8 @@ function App() {
                         </Switch>
                     </div>
                     {sessionUser &&
-                        <footer className="playbar"><AudioPlayer onEnded={e=>setNowPlaying('')} layout='horizontal' src={nowPlaying} volume={0.1}/>
-                            <div className="song-info-div"></div>
-                            <div className="song-time-controls-div"></div>
-                            <div className="song-volume-div"></div>
+                        <footer className="playbar-container">
+                            <AudioPlayer nowPlaying={nowPlaying} setNowPlaying={setNowPlaying} isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
                         </footer>
                     }
                 </div>

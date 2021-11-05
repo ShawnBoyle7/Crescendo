@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import './TopNavigation.css';
-import { Link } from "react-router-dom";
 
 function ProfileButton() {
     const dispatch = useDispatch();
+    const history = useHistory();
+
     const [showMenu, setShowMenu] = useState(false);
     const sessionUser = useSelector(state => state.session.user)
     const user = useSelector(state => state.users[sessionUser?.id])
@@ -30,26 +32,36 @@ function ProfileButton() {
     const logout = (e) => {
         e.preventDefault();
         dispatch(sessionActions.logout());
+        history.push("/")
     };
-
 
     return (
         <>
-            <button onClick={openMenu}
-                className="profile-button">
-                👤
-            </button>
+            <div className="profile-button" onClick={openMenu}>
+                <div className="nav-profile-image-div">
+                    <img className="nav-profile-image" src="https://i.imgur.com/3x2W04X.jpg" alt="profile" />
+                </div>
+                <span className="nav-profile-name">
+                    {user?.username}
+                </span>
+                { showMenu ?
+                    <i className="fas fa-caret-up"></i>
+                    : 
+                    <i className="fas fa-caret-down"></i>
+                }
+            </div>
+
             {showMenu && (
-                <ul className="profile-dropdown">
-                    <li>
-                        <Link to="/profile">Profile</Link>
-                    </li>
-                    <li>
-                        <button onClick={logout}>Log Out</button>
-                    </li>
-                    <li>{user?.username}</li>
-                    <li>{sessionUser?.email}</li>
-                </ul>
+                <div className="profile-dropdown">
+                    <Link to="/profile">
+                        <div className="menu-div">
+                            <span>Profile</span>
+                        </div>
+                    </Link>
+                    <div className="menu-div">
+                        <span onClick={logout}>Log Out</span>
+                    </div>
+                </div>
             )}
         </>
     );

@@ -5,7 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
-import SideNavigation from "./components/SideNavigation";
+import SideBar from "./components/SideBar";
 import Artists from "./components/Artists";
 import Home from "./components/Home";
 import Search from "./components/Search";
@@ -59,7 +59,7 @@ function App() {
                 <div className="application">
                     {sessionUser && 
                         <>
-                            <SideNavigation/>
+                            <SideBar/>
                             <TopNavigation/>
                         </>
                     }

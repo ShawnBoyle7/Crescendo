@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { deleteLike, likeSong } from "../../store/users";
 import { Link } from "react-router-dom";
+import { getSongs } from "../../store/songs"
 import "./AudioPlayer.css"
 
 const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
@@ -211,21 +212,21 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
         }
     }
 
-    const likeCurrentSong = () => {
+    const likeCurrentSong = async () => {
         if (!liked) {
             const payload = {
                 songId: nowPlaying.id,
                 userId: sessionUser.id
             }
-            dispatch(likeSong(payload))
+            await dispatch(likeSong(payload))
         } else {
             const payload = {
                 songId: nowPlaying.id,
                 userId: sessionUser.id
             }
-            dispatch(deleteLike(payload))
+            await dispatch(deleteLike(payload))
         }
-        
+        await dispatch(getSongs())
     }
 
     // const [shuffle, setShuffle] = useState(false)

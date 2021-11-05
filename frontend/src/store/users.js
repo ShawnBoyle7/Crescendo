@@ -2,7 +2,6 @@ import { csrfFetch } from "./csrf";
 
 const LOAD_USERS = "users/LOAD_USERS";
 const EDIT_USERNAME = "users/EDIT_USERNAME"
-const ADD_LIKE = "users/ADD_LIKE";
 const REMOVE_LIKE = "users/REMOVE_LIKE"
 
 const editUsername = (user) => ({
@@ -13,11 +12,6 @@ const editUsername = (user) => ({
 const loadUsers = (users) => ({
     type: LOAD_USERS,
     users
-});
-
-const addLike = (payload) => ({
-    type: ADD_LIKE,
-    payload,
 });
 
 const removeLike = (payload) => ({
@@ -76,8 +70,8 @@ export const deleteLike = (payload) => async (dispatch) => {
     })
     
     if (response.ok) {
-        const res = await response.json();
-        dispatch(removeLike(res))
+        const users = await response.json();
+        dispatch(loadUsers(users))
     }
 }
 
@@ -95,12 +89,8 @@ const userReducer = (state = initialState, action) => {
         case EDIT_USERNAME:
             stateCopy[action.user.id] = action.user
             return stateCopy;
-        // case ADD_LIKE:
-            // return { ...stateCopy, [action.payload.userId]: action.payload }
-            // return {...stateCopy, [action.payload.userId]: action.payload}
-            // stateCopy[action.userId] = {userId: action.userId, songId: action.songId}
-            // stateCopy[action.userId] = action.payload
-            // return stateCopy
+        case REMOVE_LIKE:
+
         default:
             return state;
     }

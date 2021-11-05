@@ -104,7 +104,10 @@ router.delete('/:songId/:userId', asyncHandler(async (req, res) => {
     });
     await songLike.destroy();
 
-    return res.json({message: "Unliked"});
+    const users = await User.findAll({
+        include: [ Song ]
+    });
+    return res.json(users)
 }))
 
 module.exports = router;

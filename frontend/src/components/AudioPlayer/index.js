@@ -292,11 +292,11 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
 
             <div className={`${ nowPlaying ? "playbar-controls-div-playing" : "playbar-controls-div-not-playing"}`}>
                 <div className="playbar-controls-buttons-div">
-                    {/* <div className="playbar-controls-button-div">
+                    <div className="playbar-controls-button-div">
                         <button disabled={!nowPlaying ? true : false}>
                             <i className="fas fa-random"></i>
                         </button>
-                    </div> */}
+                    </div>
 
                     <div className="playbar-controls-button-div">
                         <button onClick={playPreviousSongInAlbum} disabled={!nowPlaying ? true : false}>

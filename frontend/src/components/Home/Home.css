@@ -9,17 +9,14 @@
 
 .welcome-message {
     grid-area: welcome;
-    margin-left: 2%
-}
-
-.popular-header {
-    margin-left: 2%
 }
 
 .gallery-link {
     display: flex;
     justify-content: center;
     margin-top: 0.5%;
+    width: fit-content;
+    margin-left: 45.7%
 }
 
 .gallery-link:hover {
@@ -31,7 +28,7 @@
 
 .artists-section {
     grid-area: artists;
-    margin: 0.5% 1.5%;
+    margin: 0.5% 1.3%;
 }
 
 .artists-div {
@@ -43,7 +40,7 @@
 
 .albums-section {
     grid-area: albums;
-    margin: 0 1.5%;
+    margin: 0 1.3%;
 }
 
 .albums-div {

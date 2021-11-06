@@ -23,7 +23,7 @@ const Home = () => {
     
     return (
         <div className="home-page">
-            <h1 className="welcome-message">Welcome, {sessionUsername}</h1>
+            <h2 className="welcome-message">Welcome, {sessionUsername}</h2>
 
             <div className="artists-section">
                 <h2 className="popular-header">Popular Artists</h2>

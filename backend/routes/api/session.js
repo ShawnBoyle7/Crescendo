@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const { setTokenCookie, restoreUser } = require('../../utils/auth');
-const { User, Song_User_Join } = require('../../db/models');
+const { User } = require('../../db/models');
 
 const router = express.Router();
 
@@ -17,6 +17,16 @@ const validateLogin = [
         .withMessage('Please provide a password.'),
     handleValidationErrors,
 ]; 
+
+router.get('/demo', asyncHandler(async (req, res) => {
+    // const userId = req.params
+    const credential = "DemoUser"
+    const password = "password"
+    const user = await User.login({ credential, password })
+    await setTokenCookie(res, user);
+
+    return res.json({user})
+}));
 
 // Log in
 router.post(

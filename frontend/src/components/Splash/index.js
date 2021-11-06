@@ -1,15 +1,34 @@
-import { Link } from "react-router-dom";
 import './Splash.css'
+import { useDispatch } from "react-redux"
+import { demo } from "../../store/session"
 
 const Splash = () => {
+    const dispatch = useDispatch();
+
+    const demoLogin = (e) => {
+        e.preventDefault()
+        dispatch(demo())
+    }
+    
     return (
         <>
-            <div className="splash-auth">
-                <Link to="/login" className="login">Log In</Link>
-                <Link to="/signup" className="login">Sign Up</Link>
-                {/* <Link to={{ pathname: "https://github.com/ShawnBoyle7" }} target> Here is my Github </Link> */}
+            <div className="nav-placeholder">
+                <h1>Placeholder</h1>
             </div>
-            <h1>Please log in to use the application!</h1>
+
+            <div className="splash-content">
+                <div className="splash-elements">
+                    <div className="splash-header">
+                        <h1>
+                            Music is <br/> everything
+                        </h1>
+                        <p className="splash-subheader">Millions of songs. No credit card needed.</p>
+                    </div>
+                    <button className="splash-demo-button" onClick={demoLogin} >
+                        Demo Login
+                    </button>
+                </div>
+            </div>
         </>
     )
 }

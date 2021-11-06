@@ -1,31 +1,68 @@
-/* body {
-    background-image: url(https://i.imgur.com/20xVRLv.jpeg);
+.splash-content {
+    background-image: url("https://i.imgur.com/Wqsk4RW.png");
+    background-position: center;
     background-repeat: no-repeat;
-    background-size: 100%;
-}    */
-
-/* .splash-home {
-    background-image: url(https://i.imgur.com/20xVRLv.jpeg);
-    background-repeat: no-repeat;
-    background-size: 100%;
-} */
-
-.message {
+    background-size: cover;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100vw;
+    height: calc(100vh - 80px);
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
 }
 
-.splash-auth {
+.splash-elements {
     display: flex;
-    justify-content: flex-end;
-    margin-right: 1em;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.splash-auth a:hover {
-    transition-duration: 150ms;
-    color: #1DB954;
+.splash-header {
+    text-align: center;
 }
 
-.login {
-    margin-right: 1em;
+.splash-header h1 {
+    color: #34D360;
+    font-size: 156px;
+    line-height: 166px;
+    padding-bottom: 40px;
+    margin: 0;
+    text-indent: -5em;
+    transform: translate(125px, 0px);
+}
+
+.splash-header p {
+    color: #34D360;
+    font-size: 18px;
+    line-height: 24px;
+    padding-bottom: 40px;
+}
+
+.splash-demo-button {
+    background: #34D360;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2D4EB9;
+    cursor: pointer;
+    padding: 14px 32px;
+    border-radius: 500px;
+    width: 180px;
+    height: 42px;
+    font-size: inherit;
+    line-height: 20px;
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: normal;
+}
+
+.nav-placeholder {
+    height: 80px;
+    position: absolute;
+    top: 0;
 }

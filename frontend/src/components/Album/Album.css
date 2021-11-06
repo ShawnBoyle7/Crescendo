@@ -89,3 +89,47 @@
     position: relative;
     top: 4px;
 }
+
+/* Page Controls */
+
+.fa-ellipsis-h {
+    font-size: 30px;
+}
+
+.album-like-button i {
+    font-size: 27px;
+}
+
+.album-like-button {
+    background: none;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+    color: white;
+}
+
+.album-page-buttons-div {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    top: 368px;
+    margin-right: 32px;
+    width: calc(100vw - 260px);
+}
+
+.album-page-buttons-div > div {
+    margin-right: 32px;
+}
+
+.album-song-control-div  {
+    height: 56px;
+    width: 56px;
+    cursor: pointer;
+}
+
+.album-song-control-image  {
+    height: 100%;
+    width: 100%;
+}

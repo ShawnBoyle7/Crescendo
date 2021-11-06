@@ -98,7 +98,7 @@
     color: #1DB954
 }
 
-.fa-play-circle, .fa-pause-circle {
+.playbar-controls-buttons-div .fa-play-circle, .fa-pause-circle {
     font-size: 32px;
 }
 

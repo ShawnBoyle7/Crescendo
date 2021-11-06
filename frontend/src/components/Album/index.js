@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { useParams } from "react-router"
 import { Link } from "react-router-dom";
 import './Album.css';
@@ -7,6 +7,7 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
     const { albumId } = useParams();
     const album = albums?.find(album => album?.Artist?.id === +albumId)
     const songs = album?.Songs
+    const [showDropdown, setShowDropdown] = useState(false)
 
     let audio;
 
@@ -26,6 +27,18 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
     const stopSong = () => {
         audio.pause()
         setIsPlaying(false)
+    }
+
+    const handleDropdown = () => {
+        if (!showDropdown) {
+            setShowDropdown(true)
+        } else {
+            setShowDropdown(false)
+        }
+    }
+
+    const likeAlbum = () => {
+        ""
     }
 
     return (
@@ -50,6 +63,32 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
                 </div>
                 </div>
             </div>
+
+            <div className="album-page-buttons-div">
+                <div className="album-song-control-div">
+                    <img className="album-song-control-image" src={!isPlaying ? "https://i.imgur.com/7QSCa6X.png" : "https://i.imgur.com/QtT4j0R.png"}/>
+                </div>
+                <div className="album-heart-div">
+                    <button className="album-like-button" onClick={likeAlbum}>
+                        <i className="far fa-heart"></i>
+                    </button>
+                    </div>
+                <div className="album-dropdown-div" onClick={handleDropdown}>
+                    <i className="fas fa-ellipsis-h"></i>
+                    {showDropdown &&
+                        // onClick={e => e.stopPropagation()
+                        <div className="album-dropdown-options">
+                            <div className="album-add-to-library-div">
+                                <span className="album-dropdown-span">Add to Your Library</span>
+                            </div>
+                            <div className="album-add-to-library-div">
+                                <span className="album-dropdown-span">Add to playlist</span>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
 {/* 
             <div className="song-section">
                 <div className="song-divs">
@@ -67,7 +106,8 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
                             }
                         </div>)}
                 </div>
-            </div> */}
+            </div> 
+*/}
         </>
     )
 }

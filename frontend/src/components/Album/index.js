@@ -30,13 +30,27 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
 
     return (
         <>
-            <div className="album-name">
-                <h1>{album && album.name}</h1>
+            <div className="album-page-header">
+                <div className="album-art-div">
+                    <img className="album-art" src={album?.imgUrl}/>
+                </div>
+                <div className="album-details-div">
+                    <span className="album-span">ALBUM</span>
+                    <h1 className="album-name-header">{album?.name}</h1>
+                <div className="album-artist-div">
+                    <div className="album-artist-art-div">
+                        <img className="album-artist-art" src={album?.Artist?.imgUrl} alt="artist" />
+                    </div>
+                    <Link to={`artists/${album?.Artist.id}`} className="album-artist-link">
+                        {album?.Artist?.name}
+                    </Link>
+                    <span className="album-details-year">1965</span>
+                    <span className="album-details-song-amount">14 songs,</span>
+                    <span className="album-details-length">35 min 32 sec</span>
+                </div>
+                </div>
             </div>
-            <div className="artist-name">
-                <h1>{album && album.Artist.name} </h1>
-            </div>
-
+{/* 
             <div className="song-section">
                 <div className="song-divs">
                     {songs?.map(song =>
@@ -53,7 +67,7 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
                             }
                         </div>)}
                 </div>
-            </div>
+            </div> */}
         </>
     )
 }

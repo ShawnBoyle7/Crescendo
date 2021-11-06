@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
-import { useParams } from "react-router"
+import { useParams } from "react-router-dom"
+import { useSelector } from "react-redux"
 import { Link } from "react-router-dom";
 import './Album.css';
 
@@ -7,7 +8,11 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
     const { albumId } = useParams();
     const album = albums?.find(album => album?.Artist?.id === +albumId)
     const songs = album?.Songs
+    const sessionUser = useSelector(state => state.session?.user)
+    const allPlaylists = Object.values(useSelector(state => state.playlists))
+    const userPlaylists = allPlaylists.filter(playlist => playlist?.userId === sessionUser?.id);
     const [showDropdown, setShowDropdown] = useState(false)
+    const [showPlaylistOptions, setShowPlaylistOptions] = useState(false)
 
     let audio;
 
@@ -78,14 +83,24 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
                     {showDropdown &&
                         // onClick={e => e.stopPropagation()
                         <div className="album-dropdown-options">
-                            <div className="album-add-to-library-div">
-                                <span className="album-dropdown-span">Add to Your Library</span>
-                            </div>
-                            <div className="album-add-to-library-div">
-                                <span className="album-dropdown-span">Add to playlist</span>
-                            </div>
-                        </div>
-                    }
+                                <div className="album-dropdown-option-library">Add to Your Library</div>
+                                <div className="album-dropdown-option-playlist" 
+                                onMouseEnter={() => setShowPlaylistOptions(true)}
+                                onMouseLeave={() => setShowPlaylistOptions(false)}>
+                                    Add to playlist
+                                    <i className="fas fa-caret-right"></i>
+
+                                    { showPlaylistOptions && 
+                                        <div className="album-dropdown-playlist-options-div">
+                                            <ul>
+                                                {userPlaylists.map(userPlaylist => 
+                                                    <li className="album-dropdown-playlist-option">{userPlaylist.name}</li>
+                                                )}
+                                            </ul>
+                                        </div>
+                                    }
+                                </div>
+                        </div>}
                 </div>
             </div>
 

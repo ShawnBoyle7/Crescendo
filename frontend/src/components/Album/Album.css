@@ -133,3 +133,78 @@
     height: 100%;
     width: 100%;
 }
+
+.album-dropdown-options {
+    position: absolute;
+    width: 161px;
+    background-color: #282828;
+    border-radius: 4px;
+    padding: 4px;
+    max-width: 350px;
+    min-width: 196px;
+    box-shadow: 0 16px 24px rgb(0 0 0 / 30%), 0 6px 8px rgb(0 0 0 / 20%);
+    max-height: 80vh;
+}
+
+.album-dropdown-option-library {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 2.3em;
+    padding-left: 0.75em;
+    border-radius: 2px;
+    font-size: 0.95em;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 16px;
+    text-transform: none;
+}
+
+.album-dropdown-option-library:hover {
+    background: rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+}
+
+.album-dropdown-option-playlist {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 2.3em;
+    padding-left: 0.75em;
+    border-radius: 2px;
+    font-size: 0.95em;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 16px;
+    text-transform: none;
+    gap: 27.5%;
+}
+
+.album-dropdown-option-playlist:hover {
+    background: rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+}
+
+.album-dropdown-playlist-options-div {
+    position: absolute;
+    left: 188px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #282828;
+    padding-left: 0.75em;
+    border-radius: 2px;
+    font-size: 0.95em;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 16px;
+    text-transform: none;
+
+    width: 161px;
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+.album-dropdown-playlist-option {
+
+}

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom";
 import { likeAlbum, deleteAlbumLike } from "../../store/users";
 import { getAlbums } from "../../store/albums"
+import { addPlaylistSong } from '../../store/playlists';
 import './Album.css';
 
 const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) => {
@@ -19,7 +20,6 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
     const sessionUser = useSelector(state => state.session?.user)
     const sessionUserLike = album?.Users?.find(user => user?.id === sessionUser?.id)
     const liked = sessionUserLike?.id === sessionUser?.id
-    console.log(liked)
 
     const allPlaylists = Object.values(useSelector(state => state.playlists))
     const userPlaylists = allPlaylists.filter(playlist => playlist?.userId === sessionUser?.id);
@@ -83,6 +83,18 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
         }
         await dispatch(getAlbums())
     }
+
+    // const addSongToPlaylist = (e) => {
+    //     e.preventDefault()
+
+    //     const payload = {
+    //         songId: song.id,
+    //         playlistId: e.target.id
+    //     }
+
+    //     dispatch(addPlaylistSong(payload))
+    //     // setPlaylistId("");
+    // }
     
     const playSong = (e) => {
         const song = albumSongs?.find(song => song?.id === +e?.target?.id)
@@ -113,9 +125,9 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
                     <Link to={`artists/${album?.Artist.id}`} className="album-artist-link">
                         {album?.Artist?.name}
                     </Link>
-                    <span className="album-details-year">1965</span>
-                    <span className="album-details-song-amount">14 songs,</span>
-                    <span className="album-details-length">35 min 32 sec</span>
+                    <span className="album-details-year">{album?.releaseDate}</span>
+                    <span className="album-details-song-amount">{album?.songCount},</span>
+                    <span className="album-details-length">{album?.albumDuration}</span>
                 </div>
                 </div>
             </div>
@@ -143,7 +155,7 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
                                         <div className="album-dropdown-playlist-options-div">
                                             <ul>
                                                 {userPlaylists.map(userPlaylist => 
-                                                    <li className="album-dropdown-playlist-option">{userPlaylist.name}</li>
+                                                    <li className="album-dropdown-playlist-option" onClick={(e) => console.log(userPlaylist)}>{userPlaylist.name}</li>
                                                 )}
                                             </ul>
                                         </div>
@@ -153,8 +165,7 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
                 </div>
             </div>
 
-
-            <div className="song-section">
+            {/* <div className="song-section">
                 <div className="song-divs">
                     {songs?.map(song =>
                         <div className="songs-item" key={song.id}>
@@ -170,7 +181,7 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
                             }
                         </div>)}
                 </div>
-            </div> 
+            </div>  */}
 
         </>
     )

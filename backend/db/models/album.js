@@ -2,8 +2,11 @@
 module.exports = (sequelize, DataTypes) => {
   const Album = sequelize.define('Album', {
     name: DataTypes.STRING,
+    imgUrl: DataTypes.STRING,
+    releaseDate: DataTypes.INTEGER,
+    songCount: DataTypes.INTEGER,
+    albumDuration: DataTypes.STRING,
     artistId: DataTypes.INTEGER,
-    imgUrl: DataTypes.STRING
   }, {});
   Album.associate = function(models) {
     const columnMapping = {

@@ -16,6 +16,15 @@ module.exports = {
             imgUrl: {
                 type: Sequelize.STRING
             },
+            releaseDate: {
+                type: Sequelize.INTEGER,
+            },
+            songCount: {
+                type: Sequelize.INTEGER,
+            },
+            albumDuration: {
+                type: Sequelize.STRING,
+            },
             artistId: {
                 allowNull: false,
                 type: Sequelize.INTEGER,

@@ -1,18 +1,20 @@
 import React, { useState, useRef, useEffect } from "react"  
 import { useSelector, useDispatch } from "react-redux"
-import { deleteLike, likeSong } from "../../store/users";
+import { deleteSongLike, likeSong } from "../../store/users";
 import { Link } from "react-router-dom";
 import { getSongs } from "../../store/songs"
 import "./AudioPlayer.css"
 
 const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
     const dispatch = useDispatch()
+    
     const songs = Object.values(useSelector(state => state.songs))
     const currentSong = songs.find(song => song.id === nowPlaying.id)
+    
     const sessionUser = useSelector(state => state.session?.user)
     const sessionUserLike = currentSong?.Users?.find(user => user?.id === sessionUser?.id)
     const liked = sessionUserLike?.id === sessionUser?.id
-
+    
     const album = nowPlaying?.Album
     const albumSongs = songs?.filter(song => song?.albumId === album?.id)
     const queue = [...albumSongs]
@@ -225,7 +227,7 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
                 songId: nowPlaying.id,
                 userId: sessionUser.id
             }
-            await dispatch(deleteLike(payload))
+            await dispatch(deleteSongLike(payload))
         }
         await dispatch(getSongs())
     }
@@ -293,11 +295,11 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
 
             <div className={`${ nowPlaying ? "playbar-controls-div-playing" : "playbar-controls-div-not-playing"}`}>
                 <div className="playbar-controls-buttons-div">
-                    <div className="playbar-controls-button-div">
+                    {/* <div className="playbar-controls-button-div">
                         <button disabled={!nowPlaying ? true : false}>
                             <i className="fas fa-random"></i>
                         </button>
-                    </div>
+                    </div> */}
 
                     <div className="playbar-controls-button-div">
                         <button onClick={playPreviousSongInAlbum} disabled={!nowPlaying ? true : false}>

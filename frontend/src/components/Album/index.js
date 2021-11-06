@@ -1,51 +1,51 @@
 import React, { useEffect, useState, useRef } from "react"
 import { useParams } from "react-router-dom"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom";
+import { likeAlbum, deleteAlbumLike } from "../../store/users";
+import { getAlbums } from "../../store/albums"
 import './Album.css';
 
 const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) => {
+    const dispatch = useDispatch()
+
+    const dropdownRef = useRef()
+
     const { albumId } = useParams();
     const album = albums?.find(album => album?.Artist?.id === +albumId)
-    const songs = album?.Songs
+    const albumSongs = album?.Songs
+    const songs = Object.values(useSelector(state => state.songs))
 
     const sessionUser = useSelector(state => state.session?.user)
+    const sessionUserLike = album?.Users?.find(user => user?.id === sessionUser?.id)
+    const liked = sessionUserLike?.id === sessionUser?.id
+    console.log(liked)
+
     const allPlaylists = Object.values(useSelector(state => state.playlists))
     const userPlaylists = allPlaylists.filter(playlist => playlist?.userId === sessionUser?.id);
+
     const [showDropdown, setShowDropdown] = useState(false)
     const [showPlaylistOptions, setShowPlaylistOptions] = useState(false)
 
-    const ref = useRef()
-
+    // useEffect to grab the audio to ensure it's loaded first to avoid grabbing a null audio element
     let audio;
-
-    // Use effect to grab the audio to ensure it's loaded first to avoid grabbing a null audio element
     useEffect(() => {
         audio = document.querySelector("audio")
     });
     
+    // Dropdown offclick logic
     useEffect(() => {
         const checkDropdownClickOff = e => {
-            if (showDropdown && !ref?.current?.contains(e?.target)) {
+            if (showDropdown && !dropdownRef?.current?.contains(e?.target)) {
                 setShowDropdown(false)
             }
         }
         document.addEventListener("mousedown", checkDropdownClickOff)
-        return document.removeEventListener("mousedown", checkDropdownClickOff)
+
+        return () => {
+            document.removeEventListener("mousedown", checkDropdownClickOff)
+        }
     }, [showDropdown])
-
-    const playSong = (e) => {
-        const song = songs?.find(song => song?.id === +e?.target?.id)
-        setNowPlaying(song)
-
-        audio.play()
-        setIsPlaying(true)
-    }
-
-    const stopSong = () => {
-        audio.pause()
-        setIsPlaying(false)
-    }
 
     const handleDropdown = () => {
         if (!showDropdown) {
@@ -55,8 +55,46 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
         }
     }
 
-    const likeAlbum = () => {
-        ""
+    const playPauseToggle = () => {
+        const previousValue = isPlaying
+        setIsPlaying(!previousValue)
+        // If not is playing, then play and begin animation of time change
+        if (!previousValue) {
+            audio.play()
+            // Else pause and stop animation of time change
+        } else {
+            audio.pause()
+        }
+    }
+    
+    const handleAlbumLike = async () => {
+        if (!liked) {
+            const payload = {
+                albumId: album.id,
+                userId: sessionUser?.id
+            }
+            await dispatch(likeAlbum(payload))
+        } else {
+            const payload = {
+                albumId: album.id,
+                userId: sessionUser?.id
+            }
+            await dispatch(deleteAlbumLike(payload))
+        }
+        await dispatch(getAlbums())
+    }
+    
+    const playSong = (e) => {
+        const song = albumSongs?.find(song => song?.id === +e?.target?.id)
+        setNowPlaying(song)
+
+        audio.play()
+        setIsPlaying(true)
+    }
+
+    const stopSong = () => {
+        audio.pause()
+        setIsPlaying(false)
     }
 
     return (
@@ -83,15 +121,15 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
             </div>
 
             <div className="album-page-buttons-div">
-                <div className="album-song-control-div">
+                <div className="album-song-control-div" onClick={playPauseToggle}>
                     <img className="album-song-control-image" src={!isPlaying ? "https://i.imgur.com/7QSCa6X.png" : "https://i.imgur.com/QtT4j0R.png"}/>
                 </div>
                 <div className="album-heart-div">
-                    <button className="album-like-button" onClick={likeAlbum}>
-                        <i className="far fa-heart"></i>
+                    <button className="album-like-button" onClick={handleAlbumLike} >
+                        <i id={!liked ? "heart-default" : "heart-liked"} className="far fa-heart"></i>
                     </button>
                     </div>
-                <div className="album-dropdown-div" onClick={handleDropdown} ref={ref}>
+                <div className="album-dropdown-div" onClick={handleDropdown} ref={dropdownRef}>
                     <i className="fas fa-ellipsis-h"></i>
                     {showDropdown &&
                         <div className="album-dropdown-options" onClick={e => e.stopPropagation()}>
@@ -115,7 +153,7 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
                 </div>
             </div>
 
-{/* 
+
             <div className="song-section">
                 <div className="song-divs">
                     {songs?.map(song =>
@@ -133,7 +171,7 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
                         </div>)}
                 </div>
             </div> 
-*/}
+
         </>
     )
 }

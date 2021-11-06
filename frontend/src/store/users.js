@@ -39,7 +39,6 @@ export const updateUsername = (formData) => async (dispatch) => {
 
     if (response.ok) {
         const updatedUser = await response.json();
-        console.log(updatedUser)
         dispatch(editUsername(updatedUser));
     }
 };

@@ -31,6 +31,8 @@
     line-height: 166px;
     padding-bottom: 40px;
     margin: 0;
+    text-indent: -5em;
+    transform: translate(125px, 0px);
 }
 
 .splash-header p {

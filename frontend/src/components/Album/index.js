@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState, useRef } from "react"
 import { useParams } from "react-router-dom"
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom";
@@ -8,11 +8,14 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
     const { albumId } = useParams();
     const album = albums?.find(album => album?.Artist?.id === +albumId)
     const songs = album?.Songs
+
     const sessionUser = useSelector(state => state.session?.user)
     const allPlaylists = Object.values(useSelector(state => state.playlists))
     const userPlaylists = allPlaylists.filter(playlist => playlist?.userId === sessionUser?.id);
     const [showDropdown, setShowDropdown] = useState(false)
     const [showPlaylistOptions, setShowPlaylistOptions] = useState(false)
+
+    const ref = useRef()
 
     let audio;
 
@@ -20,6 +23,16 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
     useEffect(() => {
         audio = document.querySelector("audio")
     });
+    
+    useEffect(() => {
+        const checkDropdownClickOff = e => {
+            if (showDropdown && !ref?.current?.contains(e?.target)) {
+                setShowDropdown(false)
+            }
+        }
+        document.addEventListener("mousedown", checkDropdownClickOff)
+        return document.removeEventListener("mousedown", checkDropdownClickOff)
+    }, [showDropdown])
 
     const playSong = (e) => {
         const song = songs?.find(song => song?.id === +e?.target?.id)
@@ -78,13 +91,11 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
                         <i className="far fa-heart"></i>
                     </button>
                     </div>
-                <div className="album-dropdown-div" onClick={handleDropdown}>
+                <div className="album-dropdown-div" onClick={handleDropdown} ref={ref}>
                     <i className="fas fa-ellipsis-h"></i>
                     {showDropdown &&
-                        // onClick={e => e.stopPropagation()
-                        <div className="album-dropdown-options">
-                                <div className="album-dropdown-option-library">Add to Your Library</div>
-                                <div className="album-dropdown-option-playlist" 
+                        <div className="album-dropdown-options" onClick={e => e.stopPropagation()}>
+                                <div className="album-dropdown-option-playlist"
                                 onMouseEnter={() => setShowPlaylistOptions(true)}
                                 onMouseLeave={() => setShowPlaylistOptions(false)}>
                                     Add to playlist

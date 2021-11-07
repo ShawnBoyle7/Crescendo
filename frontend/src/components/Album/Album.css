@@ -212,4 +212,5 @@
     border-collapse: collapse;
     border-spacing: 0 5px;
     letter-spacing: 0.3px;
+    overflow-y: auto;
 }

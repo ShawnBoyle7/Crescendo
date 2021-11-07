@@ -46,7 +46,7 @@ th.song-column-num, td.num-column {
 }
 
 th.song-column-date, td.date-added-column {
-    width: 15vw;
+    width: 20vw;
 }
 
 .fa-play {
@@ -55,7 +55,7 @@ th.song-column-date, td.date-added-column {
 
 td {
     max-width: 130px;
-    height: 25px;
+    height: 2px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -115,8 +115,202 @@ tr.song-column-header {
     color: var(--white);
 }
 
+.null-td {
+    height: 13px;
+}
+
+.item-album-art {
+    height: 40px;
+    width: 40px;
+}
+
+.item-art-container {
+    position: inherit;
+    align-items: center;
+    display: flex;
+    margin-right: 15px;
+    margin-left: 20px;
+}
+
+.song-controls-container {
+    position: inherit;
+    height: 15px;
+}
+
+.song-controls {
+    display: flex;
+    justify-content: space-around;
+    position: inherit;
+}
+
+th.album-song-column-title, td.album-song-title-column {
+    width: calc(100vw - 260px);
+    padding-right: 25px;
+}
+
+th.album-song-column-title {
+    padding-left: 35px;
+}
+
+.title-artist-container {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.45;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.song-dropdown-options {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 5px;
+    background: #282828;
+    height: 144px;
+    width: 217px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+}
+
+.song-dropdown-default { 
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 5%;
+    top: 4%;
+    background: #282828;
+    box-shadow: 0 16px 24px rgba(0,0,0,.3),0 6px 8px rgba(0,0,0,.2);
+    padding: 8px;
+    max-width: 350px;  
+    min-width: 160px;
+    width: 217px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    color: var(--white);
+}
+
+.song-dropdown-options>div, .song-dropdown-default>div, li.playlist-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    height: 40px;
+    padding: 12px;
+    padding-inline-end: 8px;
+    position: relative;
+    text-align: start;
+    width: 100%;
+}
+
+.song-div-song-length {
+    color: rgb(179, 179, 179);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 16px;
+    text-transform: none;
+}
+
+.playlist-item span {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 16px;
+    text-transform: none;
+}
+
+.title-artist-container p {
+    color: var(--white);
+    white-space: unset;
+    word-break: break-all;
+    font-size: 16px;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 24px;
+    text-transform: none;
+}
+
+.song-artist-link {
+    color: rgb(179, 179, 179);
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 16px;
+    text-transform: none;
+}
+
+.song-dropdown-options > div:hover, .song-dropdown-default > div:hover,
+li.playlist-item:hover {
+    background-color: #4f4f4f;
+    color: var(--white);
+}
+
+.playlist-selector {
+    background: #282828;
+    height: fit-content;
+    padding: 4px;
+    border-radius: 3px;
+    right: 232px;
+    top: -239px;
+    max-height: 409px;
+    overflow-y: auto;
+    box-shadow: 0px 3px 19px 4px var(--black);
+    font-size: 16px;
+    color: var(--white);
+}
+
+div.playlist-selector-container, div.playlist-selector-container-other {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    right: 230px;
+    height: 500px;
+    z-index: 3;
+}
+
+.song-artist-link-container {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+a.song-artist-link:hover {
+    color: var(--white);
+    text-decoration: underline;
+}
 
 
 
 
+div.album-playlist-selector-container {
+    position: absolute;
+    left: 198px;
+    top: -242px;
+    height: 373px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    z-index: 9999;
+}
 
+.album-playlist-selector {
+    background: #282828;
+    height: fit-content;
+    padding: 4px;
+    border-radius: 3px;
+    right: 232px;
+    top: -239px;
+    max-height: 409px;
+    overflow-y: auto;
+    -webkit-box-shadow: 0px 3px 19px 4px #0f0f0f;
+    box-shadow: 0px 3px 19px 4px var(--black);
+    font-size: 16px;
+    color: var(--white);
+}

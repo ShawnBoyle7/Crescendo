@@ -261,6 +261,47 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
                 <td className={pageType === "playlists" || pageType === "library" ? "date-added-column" : "hidden"}>
                     {song.Album.releaseDate}
                 </td>
+                
+                <td className="duration-column">
+                    <div className="song-controls-container">
+                        <div className="song-controls">
+                            <i id={!liked ? "heart-default" : "heart-liked"} className={isHovering ? "far fa-heart" : "far fa-heart invisible"} onClick={likeCurrentSong}></i>
+                            {/* Song duration below */}
+                            <span className="song-div-song-length">3:00</span>
+                            <div className={isHovering ? "dropghbdown" : "invisible"} onClick={handleDropdown} ref={dropdownRef}>
+                                <i className="fas fa-ellipsis-h"></i>
+                            </div>
+                        </div>
+                    </div>
+                    {showDropdown &&
+                        <div className={detectPageType()} onMouseDown={(e) => e.stopPropagation()}>
+                            <div className="song-dropdown-option" onMouseEnter={(e) => handleMouseEnter(e)} onClick={() => history.push(`/artists/${song.Artist.id}`)}>
+                                Go to artist
+                            </div>
+                            <div className="song-dropdown-option" onMouseEnter={(e) => handleMouseEnter(e)} onClick={() => history.push(`/albums/${song.Album.id}`)}>
+                                Go to album
+                            </div>
+                            <div className={playlistActionsValidator() ? "song-dropdown-option" : "hidden"}
+                                onMouseEnter={(e) => handleMouseEnter(e)}
+                                onClick={removeSongFromPlaylist}>
+                                Remove from this playlist
+                            </div>
+                            <div className={playlistActionsValidator() ? "current-before-playlist-add" : "other-before-playlist-add"} onMouseEnter={(e => handleMouseEnter(e))} ref={playlistsRef}>
+                                    <span>Add to playlist</span>
+                                    <i className="fas fa-caret-right"></i>
+                                <div className={setPlaylistSelectorPosition()}>
+                                    <ul className={revealPlaylists ? "playlist-selector" : "hidden"}>
+                                        {playlists.slice(0).reverse().map(playlist =>
+                                            <li className="playlist-item" key={playlist.id} id={playlist.id} onClick={(e) => (handlePlaylistClick(e))}>
+                                                <span>{playlist.name}</span>
+                                            </li>)}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </td>
+
             </tr>
         </>
     )

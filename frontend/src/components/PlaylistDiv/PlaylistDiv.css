@@ -1,0 +1,35 @@
+.playlist-card {
+    display: flex;
+    height: 16.5em;
+    width: 12em;
+    background: var(--lighter-bg-color);
+    border-radius: 4px;
+    padding: 16px;
+}
+
+.playlist-card:hover {
+    transition-duration: 250ms;
+    background-color: #262626;
+}
+
+.playlist-image {
+    height: 160px;
+    width: 160px; 
+    border-radius: 2px;
+    margin-bottom: 10%;
+}
+
+.playlist-name {
+    display: flex;
+    justify-content: flex-start;
+    font-weight: bold;
+    font-size: 0.95em;
+}
+
+.playlist-artist {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 5%;
+    font-size: 0.83em;
+    color: darkgray;
+}

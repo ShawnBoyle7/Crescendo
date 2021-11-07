@@ -1,18 +1,20 @@
 import React, { useState, useRef, useEffect } from "react"  
 import { useSelector, useDispatch } from "react-redux"
-import { deleteLike, likeSong } from "../../store/users";
+import { deleteSongLike, likeSong } from "../../store/users";
 import { Link } from "react-router-dom";
 import { getSongs } from "../../store/songs"
 import "./AudioPlayer.css"
 
 const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
     const dispatch = useDispatch()
+    
     const songs = Object.values(useSelector(state => state.songs))
     const currentSong = songs.find(song => song.id === nowPlaying.id)
+    
     const sessionUser = useSelector(state => state.session?.user)
     const sessionUserLike = currentSong?.Users?.find(user => user?.id === sessionUser?.id)
     const liked = sessionUserLike?.id === sessionUser?.id
-
+    
     const album = nowPlaying?.Album
     const albumSongs = songs?.filter(song => song?.albumId === album?.id)
     const queue = [...albumSongs]
@@ -44,7 +46,6 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
         
     }, [audioElement?.current?.loadedmetadata, audioElement?.current?.readyState])
 
-    
     // Convert current time or duration to a rounded format for rendering
     const playPauseCallback = () => {
         updateCurrentTime()
@@ -107,7 +108,7 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
         // Set volume state variable to target value
         setVolume(+e.target.value)
         // Update audio element's volume when moving the volume bar slider
-        audioElement.current.volume = volume
+        audioElement.current.volume = +e.target.value
         // Update rendered volume value on volume bar 
         volumeBar?.current?.style?.setProperty('--seek-before-width', `${volumeBar?.current?.value / duration * 1000}%`)
     }
@@ -199,14 +200,14 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
         switch (repeatStatus) {
             case "none":
                 setRepeatStatus("all")
-                loopIcon?.style?.setProperty("color", "#1DB954")
+                loopIcon?.style?.setProperty("color", "var(--green)")
                 break;
             case "all":
                 setRepeatStatus("one")
                 break;
             case "one":
                 setRepeatStatus("none")
-                loopIcon?.style?.setProperty("color", "white")
+                loopIcon?.style?.setProperty("color", "var(--white)")
                 break;
             default:
                 break;
@@ -225,7 +226,7 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
                 songId: nowPlaying.id,
                 userId: sessionUser.id
             }
-            await dispatch(deleteLike(payload))
+            await dispatch(deleteSongLike(payload))
         }
         await dispatch(getSongs())
     }
@@ -293,11 +294,11 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
 
             <div className={`${ nowPlaying ? "playbar-controls-div-playing" : "playbar-controls-div-not-playing"}`}>
                 <div className="playbar-controls-buttons-div">
-                    <div className="playbar-controls-button-div">
+                    {/* <div className="playbar-controls-button-div">
                         <button disabled={!nowPlaying ? true : false}>
                             <i className="fas fa-random"></i>
                         </button>
-                    </div>
+                    </div> */}
 
                     <div className="playbar-controls-button-div">
                         <button onClick={playPreviousSongInAlbum} disabled={!nowPlaying ? true : false}>

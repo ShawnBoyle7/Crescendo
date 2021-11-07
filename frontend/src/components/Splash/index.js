@@ -1,9 +1,16 @@
 import './Splash.css'
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
+import { Redirect } from 'react-router-dom'
 import { demo } from "../../store/session"
 
 const Splash = () => {
     const dispatch = useDispatch();
+
+    const sessionUser = useSelector(state => state.session.user);
+
+    if (sessionUser) return (
+        <Redirect to="/" />
+    );
 
     const demoLogin = (e) => {
         e.preventDefault()

@@ -2,7 +2,6 @@ import { csrfFetch } from "./csrf";
 
 const LOAD_USERS = "users/LOAD_USERS";
 const EDIT_USERNAME = "users/EDIT_USERNAME"
-const REMOVE_LIKE = "users/REMOVE_LIKE"
 
 const editUsername = (user) => ({
     type: EDIT_USERNAME,
@@ -13,11 +12,6 @@ const loadUsers = (users) => ({
     type: LOAD_USERS,
     users
 });
-
-const removeLike = (payload) => ({
-    type: REMOVE_LIKE,
-    payload
-})
 
 export const updateUsername = (formData) => async (dispatch) => {
     const { id, username } = formData
@@ -57,14 +51,38 @@ export const likeSong = (payload) => async (dispatch) => {
     
     if (response.ok) {
         const users = await response.json();
-        // const payload = await response.json();
         dispatch(loadUsers(users))
-        // dispatch(likeSong(payload))
     }
 }
 
-export const deleteLike = (payload) => async (dispatch) => {
-    const response = await csrfFetch(`/api/users/${payload.songId}/${payload.userId}`, {
+export const deleteSongLike = (payload) => async (dispatch) => {
+    const response = await csrfFetch(`/api/users/song/${payload.songId}/${payload.userId}`, {
+        method: "DELETE"
+    })
+    
+    if (response.ok) {
+        const users = await response.json();
+        dispatch(loadUsers(users))
+    }
+}
+
+export const likeAlbum = (payload) => async (dispatch) => {
+    const response = await csrfFetch('/api/users/like-album', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    })
+    
+    if (response.ok) {
+        const users = await response.json();
+        dispatch(loadUsers(users))
+    }
+}
+
+export const deleteAlbumLike = (payload) => async (dispatch) => {
+    const response = await csrfFetch(`/api/users/album/${payload.albumId}/${payload.userId}`, {
         method: "DELETE"
     })
     
@@ -88,8 +106,6 @@ const userReducer = (state = initialState, action) => {
         case EDIT_USERNAME:
             stateCopy[action.user.id] = action.user
             return stateCopy;
-        case REMOVE_LIKE:
-
         default:
             return state;
     }

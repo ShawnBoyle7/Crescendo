@@ -24,6 +24,23 @@ router.post('/new-song', asyncHandler(async (req, res) => {
     return res.json(playlists);
 }));
 
+router.delete('/:playlistId/:songId', asyncHandler(async (req, res) => {
+    const playlistId = +req.params.playlistId;
+    const songId = +req.params.songId;
+    const playlist = await Song_Playlist_Join.findOne({
+        where: {
+            playlistId,
+            songId
+        }
+    });
+    await playlist.destroy();
+
+    const playlists = await Playlist.findAll({
+        include: [ Song, User ]
+    });
+    return res.json(playlists)
+}))
+
 // 3.
 router.post('/', asyncHandler(async (req, res) => {
     const newPlaylist = await Playlist.create(req.body);

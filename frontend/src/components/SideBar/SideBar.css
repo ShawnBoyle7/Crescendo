@@ -5,7 +5,7 @@
     width: 228px;
     display: flex;
     flex-direction: column;
-    background-color: #000000;
+    background-color: var(--black);
     z-index: 1;
     padding-top: 24px;
 }
@@ -19,12 +19,12 @@
 }
 
 .side-bar i {
-    color: #B3B3B3;
+    color: var(--primary-text-color);
 }
 
 .side-bar-button:hover, .side-bar-personal-navigation-button:hover, .side-bar i:hover {
     background-color: #1a1a1a;
-    color: white;
+    color: var(--white);
 }
 
 .side-bar-personal-navigation-div i, .side-bar-personal-navigation-div img {
@@ -63,12 +63,12 @@
 }
 
 .side-bar-button {
-    color: #B3B3B3;
+    color: var(--primary-text-color);
     background-color: black;
 }
 
 .current-side-bar-button {
-    color: white;
+    color: var(--white);
     background-color: #282828;
 }
 
@@ -98,7 +98,7 @@
     gap: 16px;
     border: 0;
     border-radius: 4px;
-    color: #B3B3B3;
+    color: var(--primary-text-color);
     background-color: black;
 }
 
@@ -113,7 +113,7 @@ ul.playlist-links {
 }
 
 .playlist-link a {
-    color: #b3b3b3;
+    color: var(--primary-text-color);
 }
 
 .side-bar-playlist-name p {

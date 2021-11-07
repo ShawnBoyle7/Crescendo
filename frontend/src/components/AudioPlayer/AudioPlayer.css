@@ -10,7 +10,8 @@
 }
 
 .playbar-container i {
-    color: white;
+    color: var(--white);
+    cursor: pointer;
 }
 
 .playbar-currently-playing-song-div {
@@ -48,7 +49,7 @@
 
 .playbar-song-artist-title {
     font-size: 11px;
-    color: #b3b3b3;
+    color: var(--primary-text-color);
 }
 
 .playbar-heart-div {
@@ -94,11 +95,7 @@
     align-items: center;
 }
 
-#heart-liked {
-    color: #1DB954
-}
-
-.fa-play-circle, .fa-pause-circle {
+.playbar-controls-buttons-div .fa-play-circle, .fa-pause-circle {
     font-size: 32px;
 }
 
@@ -131,13 +128,13 @@
     content: "";
     height: 4px;
     width: var(--seek-before-width);
-    background-color: #b3b3b3;
+    background-color: color: var(--primary-text-color);
     border-radius: 2px;
     position: absolute;
 }
 
 .progress-bar:hover::before {
-    background-color: #1DB954;
+    background-color: var(--green)
 } */
 
 input[type=range] {
@@ -196,11 +193,11 @@ input[type=range]::-moz-range-thumb, .volume-bar::-moz-range-thumb {
     content: "";
     height: 4px;
     width: var(--seek-before-width);
-    background-color: #b3b3b3;
+    background-color: color: var(--primary-text-color);
     border-radius: 2px;
     position: absolute;
 }
 
 .volume-bar:hover::before {
-    background-color: #1DB954;
+    background-color: var(--green)
 } */

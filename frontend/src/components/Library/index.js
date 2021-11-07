@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Link, Route, Switch, NavLink } from "react-router-dom";
+import { Link, Route, Switch } from "react-router-dom";
 import './Library.css'
 
 const Library = () => {
@@ -16,13 +16,20 @@ const Library = () => {
     return (
         <>
             <div className="library-page">
-                <div className="library-nav-links">
-                    <NavLink to="/library/artists">Artists</NavLink>
-                    <NavLink to="/library/albums">Albums</NavLink>
-                    <NavLink to="/library/playlists">Playlists</NavLink>
-                </div>
-
                 <Switch>
+                    <Route path="/library/playlists">
+                        <div className="playlists-divs">
+                            {userPlaylists ? userPlaylists.map(playlist =>
+                                <div className="playlists-item" key={playlist.id}>
+                                    <Link to={`/playlists/${playlist.id}`}>
+                                        <img className="playlists-image" alt={"playlist"} src={ playlist.Songs.length ? playlist.Songs[0].Album.imgUrl : "https://i.imgur.com/KKVhCBg.png"}/>
+                                        <div className="playlists-name">{playlist.name}</div>
+                                    </Link>
+                                </div>)
+                                : <></>}
+                        </div>
+                    </Route>
+
                     <Route path="/library/artists">
                         <div className="artist-section">
                             <div className="artist-divs">
@@ -48,42 +55,11 @@ const Library = () => {
                                             <div className="albums-name">{album.name}</div>
                                         </Link>
                                     </div>)
-                                    : <></>}
-                            </div>
-                        </div>
-                    </Route>
-
-                    <Route path="/library/playlists">
-                        <div className="playlists-divs">
-                            {/* <div className="playlists-divs"> */}
-                            {userPlaylists ? userPlaylists.map(playlist =>
-                                <div className="playlists-item" key={playlist.id}>
-                                    <Link to={`/playlists/${playlist.id}`}>
-                                        <img className="playlists-image" alt={"playlist"} src={ playlist.Songs.length ? playlist.Songs[0].Album.imgUrl : "https://i.imgur.com/KKVhCBg.png"}/>
-                                        <div className="playlists-name">{playlist.name}</div>
-                                    </Link>
-                                </div>)
                                 : <></>}
-                            {/* </div> */}
-                        </div>
-                    </Route>
-                    
-                    <Route>
-                        <div className="artist-section">
-                            <div className="artist-divs">
-                                {followedArtists ? followedArtists.map(artist =>
-                                    <div className="artists-item" key={artist.id}>
-                                        <Link to={`/artists/${artist.id}`}>
-                                            <img className="artists-image" alt={"artist"} src={artist.artistImgUrl} />
-                                            <div className="artists-name">{artist.name}</div>
-                                        </Link>
-                                    </div>)
-                                    : <></>}
                             </div>
                         </div>
                     </Route>
                 </Switch>
-
             </div>
         </>
     )

@@ -25,6 +25,7 @@ import { getPlaylists } from "./store/playlists";
 import { getSongs } from "./store/songs";
 import { useIsPlaying } from './context/IsPlayingContext';
 import { useNowPlaying } from './context/NowPlayingContext';
+import { useNavComponent } from './context/NavComponent';
 import AudioPlayer from './components/AudioPlayer';
 import TopNavigation from './components/TopNavigation';
 
@@ -52,6 +53,7 @@ function App() {
     
     const { nowPlaying, setNowPlaying } = useNowPlaying();
     const { isPlaying, setIsPlaying } = useIsPlaying();
+    const { navComponent, setNavComponent} = useNavComponent();
 
     return (
         <>
@@ -60,7 +62,7 @@ function App() {
                     {sessionUser && 
                         <>
                             <SideBar/>
-                            <TopNavigation/>
+                            <TopNavigation navComponent={navComponent} setNavComponent={setNavComponent}/>
                         </>
                     }
                     <div className="content">
@@ -102,7 +104,7 @@ function App() {
                             </Route>
 
                             <Route path="/library">
-                                <Library />
+                                <Library navComponent={navComponent} />
                             </Route>
 
                             <Route path="/playlists">

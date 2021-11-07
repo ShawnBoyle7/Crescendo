@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import ProfileButton from './ProfileButton';
 import './TopNavigation.css';
@@ -6,11 +6,12 @@ import './TopNavigation.css';
 const TopNavigation = () => {
     const history = useHistory();
     const location = useLocation();
-    const path = location.pathname
+    const changingPath = location.pathname;
+    const [navComponent, setNavComponent] = useState(<></>)
     
     document.addEventListener("scroll", () => {
         const nav = document.querySelector("nav")
-    
+        
         if (window.scrollY === 0) {
             nav?.classList.add("top-navigation-bar-default")
             nav?.classList.remove("top-navigation-bar-scrolled")
@@ -19,29 +20,55 @@ const TopNavigation = () => {
             nav?.classList.add("top-navigation-bar-scrolled")
         }
     })
-
-    let navComponent = <></>
+    
     const [userInput, setUserInput] = useState("");
+    
+    useEffect(() => {
+        const path = location.pathname.split("/")
+        const initialPath = path[1]
+        switch (initialPath) {
+            case "search":
+                setNavComponent(
+                    <>
+                        <div className="search-div">
+                            <form className="search-form">
+                                <i className="fas fa-search"></i>
+                                <input
+                                    placeholder="Artists, Songs, or Albums"    
+                                    value={userInput}
+                                    onChange={e => setUserInput(e.target.value)}/>
+                            </form>
+                        </div>
+                    </>
+                )
+                break;
+                
+            case "library":
+                setNavComponent(
+                    <>
+                        <div className="library-nav-div">
+                            <button className="library-nav-button" onClick={history.push(`/library/playlists`)}>
+                                Playlists
+                            </button>
 
-    switch (path) {
-        case "/search":
-            navComponent = 
-            <>
-                <div className="search-div">
-                    <form className="search-form">
-                        <i className="fas fa-search"></i>
-                        <input
-                            placeholder="Artists, Songs, or Albums"    
-                            value={userInput}
-                            onChange={e => setUserInput(e.target.value)}/>
-                    </form>
-                </div>
-            </>
-            break;
-        default:
-            navComponent = <></>
-            break;
-    }
+                            <button className="library-nav-button" onClick={history.push(`/library/artists`)}>
+                                Artists
+                            </button>
+
+                            <button className="library-nav-button" onClick={history.push(`/library/albums`)}>
+                                Albums
+                            </button>
+                        </div>
+                    </>
+                )
+                break;
+
+            default:
+                break;
+        }
+
+        return navComponent;
+    }, [changingPath])
     
     return (
         <>

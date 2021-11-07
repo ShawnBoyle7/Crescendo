@@ -1,0 +1,122 @@
+.song-controls .fa-heart {
+    font-size: 16px;
+    position: relative;
+    right: 5%;
+}
+
+.song-column-header {
+    font-weight: 100;
+    font-size: 13px;
+    letter-spacing: 0.25px;
+    color: #ABABAC;
+}
+
+th {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    text-align: left;
+}
+
+th.song-column-duration, td.duration-column {
+    text-align: center;
+    width: 5vw;
+    min-width: 90px;
+}
+
+th.song-column-num, td.num-column {
+    min-width: 25px;
+    width: 40px;
+}
+
+th.song-column-title, td.title-column {
+    width: 30vw;
+    padding-right: 25px;
+}
+
+th.song-column-title {
+    padding-left: 20px;
+}
+
+th.song-column-album, td.album-column {
+    width: 20vw;
+}
+
+th.song-column-num, td.num-column {
+    text-align: right;
+}
+
+th.song-column-date, td.date-added-column {
+    width: 15vw;
+}
+
+.fa-play {
+    font-size: 14px;
+}
+
+td {
+    max-width: 130px;
+    height: 25px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.num-column {
+    width: 45px;
+}
+
+.title-column {
+    width: 45%;
+    line-height: 1.45;
+    height: 50px;
+}
+
+.title-artist-container {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.title-artist-container > p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.title-details {
+    display: flex;
+    align-items: center;
+}
+
+.song-title {
+    color: var(--white);
+    position: inherit;
+    font-weight: 100;
+}
+
+.album-column {
+    width: 30%;
+}
+
+tr.song-column-header {
+    border-bottom: 1px solid #404141;
+    height: 33px;
+}
+
+.song {
+    height: 60px;
+    font-size: 14px;
+}
+
+.song:hover {
+    background: #3a3a3a;
+    border-radius: 7px;
+    color: var(--white);
+}
+
+
+
+
+
+

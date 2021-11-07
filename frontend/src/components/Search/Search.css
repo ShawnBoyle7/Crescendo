@@ -70,7 +70,7 @@
     background: linear-gradient(20deg, #353535 0%, #282828 80%);
     border-radius: 8px;
     padding: 35px;
-    color: white;
+    color: var(--white);
     font-size: 32px;
     font-weight: 500;
     letter-spacing: 0.2px;
@@ -90,7 +90,7 @@
     background: linear-gradient(0deg, #935d14 0%, #f49a23 100%);
     border-radius: 8px;
     padding: 35px;
-    color: white;
+    color: var(--white);
     font-size: 30px;
     font-weight: 500;
     letter-spacing: 0.2px;
@@ -102,7 +102,7 @@
     background: linear-gradient(0deg, #935d14 0%, #f49a23 100%);
     border-radius: 8px;
     padding: 35px;
-    color: white;
+    color: var(--white);
     font-size: 30px;
     font-weight: 500;
     letter-spacing: 0.2px;
@@ -114,7 +114,7 @@
     background: linear-gradient(0deg, #935d14 0%, #f49a23 100%);
     border-radius: 8px;
     padding: 35px;
-    color: white;
+    color: var(--white);
     font-size: 30px;
     font-weight: 500;
     letter-spacing: 0.2px;
@@ -126,7 +126,7 @@
     background: linear-gradient(0deg, #935d14 0%, #f49a23 100%);
     border-radius: 8px;
     padding: 35px;
-    color: white;
+    color: var(--white);
     font-size: 30px;
     font-weight: 500;
     letter-spacing: 0.2px;

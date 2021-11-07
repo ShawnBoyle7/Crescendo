@@ -92,7 +92,7 @@
 
 /* Page Controls */
 
-.fa-ellipsis-h {
+.album-page-buttons-div .fa-ellipsis-h {
     font-size: 30px;
 }
 
@@ -107,7 +107,7 @@
 	font: inherit;
 	cursor: pointer;
 	outline: inherit;
-    color: white;
+    color: var(--white);
 }
 
 .album-page-buttons-div {
@@ -115,7 +115,6 @@
     display: flex;
     align-items: center;
     top: 368px;
-    margin-right: 32px;
     width: calc(100vw - 260px);
 }
 
@@ -144,25 +143,7 @@
     min-width: 196px;
     box-shadow: 0 16px 24px rgb(0 0 0 / 30%), 0 6px 8px rgb(0 0 0 / 20%);
     max-height: 80vh;
-}
-
-.album-dropdown-option-library {
-    position: relative;
-    display: flex;
-    align-items: center;
-    height: 2.3em;
-    padding-left: 0.75em;
-    border-radius: 2px;
-    font-size: 0.95em;
-    font-weight: 400;
-    letter-spacing: normal;
-    line-height: 16px;
-    text-transform: none;
-}
-
-.album-dropdown-option-library:hover {
-    background: rgba(255, 255, 255, 0.15);
-    cursor: pointer;
+    z-index: 1;
 }
 
 .album-dropdown-option-playlist {
@@ -218,4 +199,17 @@
 .album-dropdown-playlist-option:hover {
     background: rgba(255, 255, 255, 0.15);
     cursor: pointer;
+}
+
+/* Songs Section */
+
+.album-songs-section {
+    position: absolute;
+    top: 455px;
+    width: calc(100vw - 288px);
+    height: 100%;
+    color: var(--primary-text-color);
+    border-collapse: collapse;
+    border-spacing: 0 5px;
+    letter-spacing: 0.3px;
 }

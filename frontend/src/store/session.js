@@ -20,9 +20,10 @@ export const demo = () => async (dispatch) => {
     const response = await csrfFetch('/api/session/demo')
 
     if (response.ok) {
-        const user = await response.json();
-        await dispatch(setUser(user));
+        const data = await response.json();
+        await dispatch(setUser(data.user)); 
     }
+    return response;
 };
 
 export const login = (user) => async (dispatch) => {

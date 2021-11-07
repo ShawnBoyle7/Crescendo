@@ -1,3 +1,12 @@
+:root {
+    --green: #1DB954;
+    --black: #000;
+    --white: #fff;
+    --primary-bg-color: #121212;
+    --lighter-bg-color: #181818;
+    --primary-text-color: #b3b3b3;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -6,9 +15,9 @@ html, body {
     margin: 0;
     border: 0;
     padding: 0;
-    color: white;
+    color: var(--white);
     font-family: 'Gotham', sans-serif;
-    background-color: #121212;
+    background-color: var(--primary-bg-color)
     /* background: rgb(60,7,23);
     background: linear-gradient(0deg, rgba(60,7,23,1) 11%, rgba(240,112,113,1) 56%, rgba(255,140,140,1) 73%, rgba(255,97,97,1) 100%); */
 }
@@ -18,8 +27,21 @@ html, body {
     height: 100%;
 }
 
-i:hover {
-    cursor: pointer;
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+    border-radius: 10px;
+    background-color: var(--black)
+}
+
+::-webkit-scrollbar {
+    width: 11px;
+    background-color: var(--black)
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 12px;
+    box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #414141;
 }
 
 div, ul, p, h1 {
@@ -30,21 +52,25 @@ div, ul, p, h1 {
     list-style: none;
 }
 
-::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
-    border-radius: 10px;
-    background-color: #000000;
+a {
+    color: var(--white);
+    text-decoration: none;
 }
 
-::-webkit-scrollbar {
-    width: 9px;
-    background-color: #000000;
+.hidden {
+    display: none
 }
 
-::-webkit-scrollbar-thumb {
-    border-radius: 12px;
-    box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-    background-color: #414141;
+.invisible {
+    visibility: hidden;
+}
+
+#is-playing {
+    color: var(--green)
+}
+
+#heart-liked {
+    color: var(--green)
 }
 
 .application {
@@ -68,7 +94,7 @@ div, ul, p, h1 {
     height: 90px;
     width: 100%;
     border-top: 1px solid #282828;
-    background-color: #181818;
+    background-color: var(--lighter-bg-color);
     position: fixed;
     bottom: 0;
     padding: 0 16px;
@@ -78,10 +104,3 @@ div, ul, p, h1 {
     align-items: center;
     grid-area: footer;
 }
-
-a {
-    color: white;
-    text-decoration: none;
-}
-
-

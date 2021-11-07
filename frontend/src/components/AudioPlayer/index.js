@@ -46,7 +46,6 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
         
     }, [audioElement?.current?.loadedmetadata, audioElement?.current?.readyState])
 
-    
     // Convert current time or duration to a rounded format for rendering
     const playPauseCallback = () => {
         updateCurrentTime()
@@ -109,7 +108,7 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
         // Set volume state variable to target value
         setVolume(+e.target.value)
         // Update audio element's volume when moving the volume bar slider
-        audioElement.current.volume = volume
+        audioElement.current.volume = +e.target.value
         // Update rendered volume value on volume bar 
         volumeBar?.current?.style?.setProperty('--seek-before-width', `${volumeBar?.current?.value / duration * 1000}%`)
     }
@@ -201,14 +200,14 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
         switch (repeatStatus) {
             case "none":
                 setRepeatStatus("all")
-                loopIcon?.style?.setProperty("color", "#1DB954")
+                loopIcon?.style?.setProperty("color", "var(--green)")
                 break;
             case "all":
                 setRepeatStatus("one")
                 break;
             case "one":
                 setRepeatStatus("none")
-                loopIcon?.style?.setProperty("color", "white")
+                loopIcon?.style?.setProperty("color", "var(--white)")
                 break;
             default:
                 break;

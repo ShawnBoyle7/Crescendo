@@ -1,21 +1,26 @@
 import React, { useEffect, useState, useRef } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useLocation } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom";
 import { likeAlbum, deleteAlbumLike } from "../../store/users";
 import { getAlbums } from "../../store/albums"
 import { addPlaylistSong } from '../../store/playlists';
+import SongDiv from "../SongDiv";
 import './Album.css';
 
 const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) => {
     const dispatch = useDispatch()
+
+    const location = useLocation()
+    const pathName = location?.pathname?.split('/');
+    const path = pathName[1];
+    const pageId = pathName[2]
 
     const dropdownRef = useRef()
 
     const { albumId } = useParams();
     const album = albums?.find(album => album?.Artist?.id === +albumId)
     const albumSongs = album?.Songs
-    const songs = Object.values(useSelector(state => state.songs))
 
     const sessionUser = useSelector(state => state.session?.user)
     const sessionUserLike = album?.Users?.find(user => user?.id === sessionUser?.id)
@@ -35,7 +40,7 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
     
     // Dropdown offclick logic
     useEffect(() => {
-        const checkDropdownClickOff = e => {
+        const checkDropdownClickOff = (e) => {
             if (showDropdown && !dropdownRef?.current?.contains(e?.target)) {
                 setShowDropdown(false)
             }
@@ -84,29 +89,16 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
         await dispatch(getAlbums())
     }
 
-    // const addSongToPlaylist = (e) => {
-    //     e.preventDefault()
-
-    //     const payload = {
-    //         songId: song.id,
-    //         playlistId: e.target.id
-    //     }
-
-    //     dispatch(addPlaylistSong(payload))
-    //     // setPlaylistId("");
-    // }
-    
-    const playSong = (e) => {
-        const song = albumSongs?.find(song => song?.id === +e?.target?.id)
-        setNowPlaying(song)
-
-        audio.play()
-        setIsPlaying(true)
-    }
-
-    const stopSong = () => {
-        audio.pause()
-        setIsPlaying(false)
+    const addAlbumToPlaylist = (e) => {
+        e.preventDefault()
+        
+        albumSongs.forEach(song => {
+            const payload = {
+                songId: song.id,
+                playlistId: e.target.id
+            }
+            dispatch(addPlaylistSong(payload))
+        })
     }
 
     return (
@@ -126,7 +118,7 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
                         {album?.Artist?.name}
                     </Link>
                     <span className="album-details-year">{album?.releaseDate}</span>
-                    <span className="album-details-song-amount">{album?.songCount},</span>
+                    <span className="album-details-song-amount">{album?.songCount} songs,</span>
                     <span className="album-details-length">{album?.albumDuration}</span>
                 </div>
                 </div>
@@ -151,11 +143,11 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
                                     Add to playlist
                                     <i className="fas fa-caret-right"></i>
 
-                                    { showPlaylistOptions && 
+                                    { showPlaylistOptions &&
                                         <div className="album-dropdown-playlist-options-div">
                                             <ul>
                                                 {userPlaylists.map(userPlaylist => 
-                                                    <li className="album-dropdown-playlist-option" onClick={(e) => console.log(userPlaylist)}>{userPlaylist.name}</li>
+                                                    <li id={userPlaylist.id} className="album-dropdown-playlist-option" onClick={addAlbumToPlaylist}>{userPlaylist.name}</li>
                                                 )}
                                             </ul>
                                         </div>
@@ -165,24 +157,31 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
                 </div>
             </div>
 
-            {/* <div className="song-section">
-                <div className="song-divs">
-                    {songs?.map(song =>
-                        <div className="songs-item" key={song.id}>
-                            <Link to={`/songs/${song.id}`} key={song.id}>
-                                <img className="songs-image" alt={"song"} src={album.imgUrl} />
-                                <div className="songs-name">{song.name}</div>
-                            </Link>
-                            {(!isPlaying || nowPlaying !== song) &&
-                                <button id={song.id} onClick={playSong}>Play</button>
-                            }
-                            {(isPlaying && nowPlaying === song) &&
-                                <button onClick={stopSong}>Pause</button>
-                            }
-                        </div>)}
-                </div>
-            </div>  */}
+            <table className="album-songs-section">
+                <thead>
+                    <tr className="song-column-header">
+                    <th className="song-column-num">#</th>
+                    <th className="album-song-column-title">TITLE</th>
+                    <th className="song-column-duration"><i className="far fa-clock"></i></th>
+                    </tr>
+                </thead>
 
+                <tbody>
+                    <tr className="null-row"><td className="null-td"></td></tr>
+                    {albumSongs?.slice(0).map((song, idx) =>
+                        <SongDiv
+                        key={idx}
+                        song={song}
+                        num={(idx + 1)}
+                        path={path}
+                        pageId={pageId}
+                        playlists={userPlaylists}
+                        isPlaying={isPlaying}
+                        setIsPlaying={setIsPlaying}
+                        nowPlaying={nowPlaying}
+                        setNowPlaying={setNowPlaying}/>)}
+                </tbody>
+            </table>
         </>
     )
 }

@@ -48,7 +48,7 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
 
     useEffect(() => {
         const dropdownListener = (e) => {
-            if ((dropdownRef && !dropdownRef?.current?.contains(e?.target) || (playlistsRef && !playlistsRef?.current?.contains(e?.target)))) {
+            if (((dropdownRef && !dropdownRef?.current?.contains(e?.target)) || ((playlistsRef && !playlistsRef?.current?.contains(e?.target))))) {
                 setShowDropdown(false)
                 setRevealPlaylists(false)
             }

@@ -38,7 +38,7 @@ const Library = () => {
 
                     <Route path="/library/albums">
                         <div className="albums-section">
-                            {likedAlbums ? likedAlbums.map(album =>
+                            {likedAlbums ? likedAlbums?.map(album =>
                                 <AlbumDiv album={album}/>)
                             : <></>}
                         </div>

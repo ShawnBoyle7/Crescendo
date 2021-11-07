@@ -1,5 +1,6 @@
 .playlist-card {
     display: flex;
+    flex-direction: column;
     height: 16.5em;
     width: 12em;
     background: var(--lighter-bg-color);
@@ -24,12 +25,14 @@
     justify-content: flex-start;
     font-weight: bold;
     font-size: 0.95em;
+    text-overflow: ellipsis;
 }
 
-.playlist-artist {
+.playlist-creator {
     display: flex;
     justify-content: flex-start;
     margin-top: 5%;
     font-size: 0.83em;
     color: darkgray;
+    text-overflow: ellipsis;
 }

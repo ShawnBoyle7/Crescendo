@@ -12,7 +12,6 @@ const TopNavigation = () => {
     
     document.addEventListener("scroll", () => {
         const nav = document.querySelector("nav")
-        
         if (window.scrollY === 0) {
             nav?.classList.add("top-navigation-bar-default")
             nav?.classList.remove("top-navigation-bar-scrolled")
@@ -64,6 +63,7 @@ const TopNavigation = () => {
                     break;
     
                 default:
+                    setNavComponent(<></>)
                     break;
             }
         }
@@ -73,20 +73,20 @@ const TopNavigation = () => {
     
     return (
         <>
-            <div className="top-navigation-bar-default">
+            <nav className="top-navigation-bar-default">
                 <div className="top-nav-features">
                     <div className="history-buttons-div">
                         <button className="history-button" onClick={() => history.go(-1)}><i className="fas fa-chevron-left"></i></button>
                         <button className="history-button" onClick={() => history.go(1)}><i className="fas fa-chevron-right"></i></button>
                     </div>
-                    <nav className={initialPath === "library" || "search" ? "nav-component" : "hidden"}>
+                    <div className={initialPath === "library" || "search" ? "nav-component" : "hidden"}>
                         {navComponent}
-                    </nav>
+                    </div>
                 </div>
                 <div className="user-dropdown">
                     <ProfileButton/>
                 </div>
-            </div>
+            </nav>
         </>
     )
 }

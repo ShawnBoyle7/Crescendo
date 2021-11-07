@@ -6,7 +6,7 @@ const PlaylistDiv = ({ playlist, sessionUser }) => {
         <>
             <Link to={`/playlists/${playlist?.id}`}>
                 <div className="playlist-card" key={playlist?.id}>
-                    <img className="playlist-image" src={playlist?.Songs[0]?.Album.imgUrl} alt="playlist-art"/>
+                    <img className="playlist-image" src={playlist?.Songs[0]?.Album.imgUrl ? playlist?.Songs[0]?.Album.imgUrl : "https://i.imgur.com/wkc2qJn.png"} alt="playlist-art"/>
                     <span className="playlist-name">{playlist?.name}</span>
                         <span className="playlist-creator">
                             By {sessionUser.username}

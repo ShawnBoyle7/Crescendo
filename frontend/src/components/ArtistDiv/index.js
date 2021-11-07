@@ -2,17 +2,17 @@ import { Link } from "react-router-dom";
 import "./ArtistDiv.css"
 
 const ArtistDiv = ({ artist }) => {
-        return (
-            <>
+    return (
+        <>
+            <Link to={`/artists/${artist?.id}`}>
                 <div className="artist-card" key={artist?.id}>
-                    <Link to={`/artists/${artist?.id}`}>
-                        <img className="artist-image" alt={"artist"} src={artist?.imgUrl} />
-                        <span className="artist-name">{artist?.name}</span>
-                        <span className="artist-text">Artist</span>
-                    </Link>
+                    <img className="artist-image" src={artist?.imgUrl} alt="artist-art" />
+                    <span className="artist-name">{artist?.name}</span>
+                    <span className="artist-text">Artist</span>
                 </div>
-            </>
-        )
+            </Link>
+        </>
+    )
 }
 
 export default ArtistDiv;

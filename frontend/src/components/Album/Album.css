@@ -1,12 +1,20 @@
+.album-page {
+    position: absolute;
+    top: 0;
+    left: 228px;
+    width: calc(100% - 228px);
+    height: calc(100% - 90px);
+    padding: 0 32px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
 .album-page-header {
     display: flex;
     align-items: flex-end;
     background-color: rgb(192, 80, 16);
-    position: absolute;
-    top: 0;
-    left: 228px;
-    width: calc(100vw - 228px);
     padding: 0 32px;
+    margin: 0 -32px;
     padding-bottom: 24px;
     height: 340px;
 }
@@ -111,11 +119,11 @@
 }
 
 .album-page-buttons-div {
-    position: absolute;
+    position: relative;
     display: flex;
     align-items: center;
-    top: 368px;
     width: calc(100vw - 260px);
+    padding: 24px 0;
 }
 
 .album-page-buttons-div > div {
@@ -183,6 +191,7 @@
     font-size: 0.95em;
     font-weight: 400;
     letter-spacing: normal;
+    
     text-transform: none;
     line-height: 16px;
 }
@@ -204,13 +213,11 @@
 /* Songs Section */
 
 .album-songs-section {
-    position: absolute;
-    top: 455px;
+    position: relative;
     width: calc(100vw - 288px);
     height: 100%;
     color: var(--primary-text-color);
     border-collapse: collapse;
     border-spacing: 0 5px;
     letter-spacing: 0.3px;
-    overflow-y: auto;
 }

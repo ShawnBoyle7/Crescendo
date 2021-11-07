@@ -38,12 +38,12 @@ function SideBar() {
                     <p>Home</p>
                 </button>
 
-                <button className={currentPath === "search" ? "current-side-bar-button": "side-bar-button"} onClick={() => history.push('/search')}>
+                {/* <button className={currentPath === "search" ? "current-side-bar-button": "side-bar-button"} onClick={() => history.push('/search')}>
                     <i className="medium material-icons">search</i>
                     <p>Search</p>
-                </button>
+                </button> */}
 
-                <button className={currentPath === "library" ? "current-side-bar-button": "side-bar-button"} onClick={() => history.push('/library')}>
+                <button className={currentPath === "library" ? "current-side-bar-button": "side-bar-button"} onClick={() => history.push('/library/playlists')}>
                     <i className="medium material-icons">library_music</i>
                     <p>Your Library</p>
                 </button>
@@ -53,7 +53,7 @@ function SideBar() {
                 <button className="side-bar-personal-navigation-button" onClick={newPlaylist}>
                     <i className="fas fa-plus-square"></i>
                     <p>Create Playlist</p>
-                </button> 
+                </button>
 
                 <button className="side-bar-personal-navigation-button" onClick={() => history.push('/library/songs')}>
                     <img className="liked-songs-image" src={"https://i.imgur.com/YtozZx0.png"} />

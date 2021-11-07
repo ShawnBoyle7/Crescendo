@@ -39,9 +39,9 @@ router.get('/', asyncHandler(async (req, res) => {
     const users = await User.findAll({
         include: [
         Artist,
-        Album,
         Playlist,
-        Song
+        Song,
+        {model: Album, include: [Artist]}
         ]
     })
     

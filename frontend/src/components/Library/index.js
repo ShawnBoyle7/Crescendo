@@ -1,5 +1,9 @@
 import { useSelector } from "react-redux";
-import { Link, Route, Switch, NavLink } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
+import ArtistDiv from "../ArtistDiv"
+import AlbumDiv from "../AlbumDiv"
+import PlaylistDiv from "../PlaylistDiv";
+import SongDiv from "../SongDiv";
 import './Library.css'
 
 const Library = () => {
@@ -9,81 +13,55 @@ const Library = () => {
     const playlistsSlice = useSelector(state => state.playlists);
     const allPlaylists = Object.values(playlistsSlice);
 
-    const userPlaylists = allPlaylists.filter(playlist => playlist.userId === +user.id);
+    const userPlaylists = allPlaylists?.filter(playlist => playlist?.userId === +user?.id);
     const followedArtists = user?.Artists;
-    const likedAlbums = user?.Albums
+    const likedAlbums = user?.Albums;
+    const likedSongs = user?.Songs;
 
     return (
         <>
             <div className="library-page">
-                <div className="library-nav-links">
-                    <NavLink to="/library/artists">Artists</NavLink>
-                    <NavLink to="/library/albums">Albums</NavLink>
-                    <NavLink to="/library/playlists">Playlists</NavLink>
-                </div>
-
                 <Switch>
+                    <Route path="/library/playlists">
+                        <div className="library-header-div">
+                            <h1 className="library-header">Playlists</h1>
+                        </div>
+                        <div className="library-section">
+                            {userPlaylists && userPlaylists?.map(playlist =>
+                                <PlaylistDiv playlist={playlist} sessionUser={sessionUser}/>)}
+                        </div>
+                    </Route>
+
                     <Route path="/library/artists">
-                        <div className="artist-section">
-                            <div className="artist-divs">
-                                {followedArtists ? followedArtists.map(artist =>
-                                    <div className="artists-item" key={artist.id}>
-                                        <Link to={`/artists/${artist.id}`}>
-                                            <img className="artists-image" alt={"artist"} src={artist.artistImgUrl} />
-                                            <div className="artists-name">{artist.name}</div>
-                                        </Link>
-                                    </div>)
-                                    : <></>}
-                            </div>
+                        <div className="library-header-div">
+                            <h1 className="library-header">Playlists</h1>
+                        </div>
+                        <div className="library-section">
+                            {followedArtists && followedArtists?.map(artist =>
+                                <ArtistDiv artist={artist}/>)}
                         </div>
                     </Route>
 
                     <Route path="/library/albums">
-                        <div className="albums-section">
-                            <div className="album-divs">
-                                {likedAlbums ? likedAlbums.map(album =>
-                                    <div className="albums-item" key={album.id}>
-                                        <Link to={`/albums/${album.id}`}>
-                                            <img className="albums-image" alt={"album"} src={album.albumImgUrl} />
-                                            <div className="albums-name">{album.name}</div>
-                                        </Link>
-                                    </div>)
-                                    : <></>}
-                            </div>
+                        <div className="library-header-div">
+                            <h1 className="library-header">Albums</h1>
+                        </div>
+                        <div className="library-section">
+                            {likedAlbums && likedAlbums?.map(album =>
+                                <AlbumDiv album={album}/>)}
                         </div>
                     </Route>
 
-                    <Route path="/library/playlists">
-                        <div className="playlists-divs">
-                            {/* <div className="playlists-divs"> */}
-                            {userPlaylists ? userPlaylists.map(playlist =>
-                                <div className="playlists-item" key={playlist.id}>
-                                    <Link to={`/playlists/${playlist.id}`}>
-                                        <img className="playlists-image" alt={"playlist"} src={ playlist.Songs.length ? playlist.Songs[0].Album.imgUrl : "https://i.imgur.com/KKVhCBg.png"}/>
-                                        <div className="playlists-name">{playlist.name}</div>
-                                    </Link>
-                                </div>)
-                                : <></>}
-                            {/* </div> */}
+                    {/* <Route path="/library/songs">
+                        <div className="library-header-div">
+                            <h1 className="library-header">Albums</h1>
                         </div>
-                    </Route>
-                    
-                    <Route>
-                        <div className="artist-section">
-                            <div className="artist-divs">
-                                {followedArtists ? followedArtists.map(artist =>
-                                    <div className="artists-item" key={artist.id}>
-                                        <Link to={`/artists/${artist.id}`}>
-                                            <img className="artists-image" alt={"artist"} src={artist.artistImgUrl} />
-                                            <div className="artists-name">{artist.name}</div>
-                                        </Link>
-                                    </div>)
-                                    : <></>}
-                            </div>
+                        <div className="library-section">
+                            {likedSongs && likedSongs?.map(song =>
+                                <SongDiv song={song}/>)}
                         </div>
-                    </Route>
+                    </Route> */}
                 </Switch>
-
             </div>
         </>
     )

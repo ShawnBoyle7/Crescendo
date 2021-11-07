@@ -1,27 +1,18 @@
 import { Link } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
 import "./AlbumDiv.css"
 
 const AlbumDiv = ({ album }) => {
-    const location = useLocation()
-
+    
     return (
         <>
-            <div className="album-card" key={album.id}>
-                <Link to={`/albums/${album.id}`}>
-                    <img className="album-image" alt={"album"} src={album.imgUrl} />
-                    <div className="album-name">{album.name}</div>
-                    {location.pathname === "/" 
-                    ? 
-                        <div className="album-artist">
-                            {album.Artist.name}
-                        </div>
-                    :
-                        <>
-                        </>
-                    }
-                </Link>
-            </div>
+            <Link to={`/albums/${album?.id}`}>
+                <div className="album-card" key={album?.id}>
+                    <img className="album-image" src={album?.imgUrl} alt="album-art" />
+                    <span className="album-name">{album?.name}</span>
+                    <span className="album-artist">{album?.Artist?.name}</span>
+                    {console.log(album.Artist)}
+                </div>
+            </Link>
         </>
     )
 }

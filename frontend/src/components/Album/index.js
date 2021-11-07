@@ -9,6 +9,25 @@ import SongDiv from "../SongDiv";
 import './Album.css';
 
 const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) => {
+
+    useEffect(() => {
+        document.querySelector(".album-page").addEventListener("scroll", (e) => {
+            const nav = document.querySelector("nav")
+            
+            const albumPage = document.querySelector(".album-page")
+            if (e.target.scrollTop === 0) {
+                console.log("IF")
+                nav?.classList.add("top-navigation-bar-default")
+                nav?.classList.remove("top-navigation-bar-scrolled")
+            } else if (e.target.scrollTop > 0) {
+                console.log("teELSE IF")
+                nav?.classList.remove("top-navigation-bar-default")
+                nav?.classList.add("top-navigation-bar-scrolled")
+            }
+    
+        })
+    }, [])
+
     const dispatch = useDispatch()
 
     const location = useLocation()
@@ -103,85 +122,89 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
 
     return (
         <>
-            <div className="album-page-header">
-                <div className="album-art-div">
-                    <img className="album-art" src={album?.imgUrl}/>
-                </div>
-                <div className="album-details-div">
-                    <span className="album-span">ALBUM</span>
-                    <h1 className="album-name-header">{album?.name}</h1>
-                <div className="album-artist-div">
-                    <div className="album-artist-art-div">
-                        <img className="album-artist-art" src={album?.Artist?.imgUrl} alt="artist" />
+            <div className="album-page">
+                <div className="album-page-header">
+                    <div className="album-art-div">
+                        <img className="album-art" src={album?.imgUrl}/>
                     </div>
-                    <Link to={`artists/${album?.Artist.id}`} className="album-artist-link">
-                        {album?.Artist?.name}
-                    </Link>
-                    <span className="album-details-year">{album?.releaseDate}</span>
-                    <span className="album-details-song-amount">{album?.songCount} songs,</span>
-                    <span className="album-details-length">{album?.albumDuration}</span>
+                    <div className="album-details-div">
+                        <span className="album-span">ALBUM</span>
+                        <h1 className="album-name-header">{album?.name}</h1>
+                    <div className="album-artist-div">
+                        <div className="album-artist-art-div">
+                            <img className="album-artist-art" src={album?.Artist?.imgUrl} alt="artist" />
+                        </div>
+                        <Link to={`artists/${album?.Artist.id}`} className="album-artist-link">
+                            {album?.Artist?.name}
+                        </Link>
+                        <span className="album-details-year">{album?.releaseDate}</span>
+                        <span className="album-details-song-amount">{album?.songCount} songs,</span>
+                        <span className="album-details-length">{album?.albumDuration}</span>
+                    </div>
+                    </div>
                 </div>
+
+                <div className="album-page-buttons-div">
+                    <div className="album-song-control-div" onClick={playPauseToggle}>
+                        <img className="album-song-control-image" src={!isPlaying ? "https://i.imgur.com/7QSCa6X.png" : "https://i.imgur.com/QtT4j0R.png"}/>
+                    </div>
+                    <div className="album-heart-div">
+                        <button className="album-like-button" onClick={handleAlbumLike} >
+                            <i id={!liked ? "heart-default" : "heart-liked"} className="far fa-heart"></i>
+                        </button>
+                        </div>
+                    <div className="album-dropdown-div" onClick={handleDropdown} ref={dropdownRef}>
+                        <i className="fas fa-ellipsis-h"></i>
+                        {showDropdown &&
+                            <div className="album-dropdown-options" onClick={e => e.stopPropagation()}>
+                                    <div className="album-dropdown-option-playlist"
+                                    onMouseEnter={() => setShowPlaylistOptions(true)}
+                                    onMouseLeave={() => setShowPlaylistOptions(false)}>
+                                        Add to playlist
+                                        <i className="fas fa-caret-right"></i>
+
+                                        { showPlaylistOptions &&
+                                            <div className="album-dropdown-playlist-options-div">
+                                                <ul>
+                                                    {userPlaylists.map(userPlaylist => 
+                                                        <li id={userPlaylist.id} className="album-dropdown-playlist-option" onClick={addAlbumToPlaylist}>{userPlaylist.name}</li>
+                                                        )}
+                                                </ul>
+                                            </div>
+                                        }
+                                    </div>
+                            </div>}
+                    </div>
+                </div>
+
+                <div className="album-songs-section-container">
+                    <table className="album-songs-section">
+                        <thead>
+                            <tr className="song-column-header">
+                            <th className="song-column-num">#</th>
+                            <th className="album-song-column-title">TITLE</th>
+                            <th className="song-column-duration"><i className="far fa-clock"></i></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr className="null-row"><td className="null-td"></td></tr>
+                            {albumSongs?.slice(0).map((song, idx) =>
+                                <SongDiv
+                                key={idx}
+                                song={song}
+                                num={(idx + 1)}
+                                path={path}
+                                pageId={pageId}
+                                playlists={userPlaylists}
+                                isPlaying={isPlaying}
+                                setIsPlaying={setIsPlaying}
+                                nowPlaying={nowPlaying}
+                                setNowPlaying={setNowPlaying}/>)}
+                        </tbody>
+                    </table>
                 </div>
             </div>
-
-            <div className="album-page-buttons-div">
-                <div className="album-song-control-div" onClick={playPauseToggle}>
-                    <img className="album-song-control-image" src={!isPlaying ? "https://i.imgur.com/7QSCa6X.png" : "https://i.imgur.com/QtT4j0R.png"}/>
-                </div>
-                <div className="album-heart-div">
-                    <button className="album-like-button" onClick={handleAlbumLike} >
-                        <i id={!liked ? "heart-default" : "heart-liked"} className="far fa-heart"></i>
-                    </button>
-                    </div>
-                <div className="album-dropdown-div" onClick={handleDropdown} ref={dropdownRef}>
-                    <i className="fas fa-ellipsis-h"></i>
-                    {showDropdown &&
-                        <div className="album-dropdown-options" onClick={e => e.stopPropagation()}>
-                                <div className="album-dropdown-option-playlist"
-                                onMouseEnter={() => setShowPlaylistOptions(true)}
-                                onMouseLeave={() => setShowPlaylistOptions(false)}>
-                                    Add to playlist
-                                    <i className="fas fa-caret-right"></i>
-
-                                    { showPlaylistOptions &&
-                                        <div className="album-dropdown-playlist-options-div">
-                                            <ul>
-                                                {userPlaylists.map(userPlaylist => 
-                                                    <li id={userPlaylist.id} className="album-dropdown-playlist-option" onClick={addAlbumToPlaylist}>{userPlaylist.name}</li>
-                                                )}
-                                            </ul>
-                                        </div>
-                                    }
-                                </div>
-                        </div>}
-                </div>
-            </div>
-
-            <table className="album-songs-section">
-                <thead>
-                    <tr className="song-column-header">
-                    <th className="song-column-num">#</th>
-                    <th className="album-song-column-title">TITLE</th>
-                    <th className="song-column-duration"><i className="far fa-clock"></i></th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr className="null-row"><td className="null-td"></td></tr>
-                    {albumSongs?.slice(0).map((song, idx) =>
-                        <SongDiv
-                        key={idx}
-                        song={song}
-                        num={(idx + 1)}
-                        path={path}
-                        pageId={pageId}
-                        playlists={userPlaylists}
-                        isPlaying={isPlaying}
-                        setIsPlaying={setIsPlaying}
-                        nowPlaying={nowPlaying}
-                        setNowPlaying={setNowPlaying}/>)}
-                </tbody>
-            </table>
         </>
     )
 }

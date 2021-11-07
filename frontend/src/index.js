@@ -9,6 +9,7 @@ import configureStore from './store';
 import * as sessionActions from './store/session';
 import NowPlayingProvider from './context/NowPlayingContext';
 import IsPlayingProvider from './context/IsPlayingContext';
+import NavComponentProvider from './context/NavComponent';
 
 const store = configureStore();
 
@@ -23,13 +24,15 @@ if (process.env.NODE_ENV !== 'production') {
 function Root() {
     return (
         <Provider store={store}>
-            <NowPlayingProvider>
-                <IsPlayingProvider>
-                    <BrowserRouter>
-                        <App />
-                    </BrowserRouter>
-                </IsPlayingProvider>
-            </NowPlayingProvider>
+            <NavComponentProvider>
+                <NowPlayingProvider>
+                    <IsPlayingProvider>
+                        <BrowserRouter>
+                            <App />
+                        </BrowserRouter>
+                    </IsPlayingProvider>
+                </NowPlayingProvider>
+            </NavComponentProvider>
         </Provider>
     );
 }

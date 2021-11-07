@@ -1,4 +1,4 @@
-.artist-card {
+.playlist-card {
     display: flex;
     flex-direction: column;
     height: 16.5em;
@@ -8,19 +8,19 @@
     padding: 16px;
 }
 
-.artist-card:hover {
+.playlist-card:hover {
     transition-duration: 250ms;
     background-color: #262626;
 }
 
-.artist-image {
+.playlist-image {
     height: 160px;
     width: 160px; 
-    border-radius: 50%;
+    border-radius: 2px;
     margin-bottom: 10%;
 }
 
-.artist-name {
+.playlist-name {
     display: flex;
     justify-content: flex-start;
     font-weight: bold;
@@ -28,7 +28,7 @@
     text-overflow: ellipsis;
 }
 
-.artist-text {
+.playlist-creator {
     display: flex;
     justify-content: flex-start;
     margin-top: 5%;

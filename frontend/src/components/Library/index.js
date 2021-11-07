@@ -1,5 +1,7 @@
 import { useSelector } from "react-redux";
 import { Link, Route, Switch } from "react-router-dom";
+import { ArtistDiv } from "../ArtistDiv"
+import { AlbumDiv } from "../AlbumDiv"
 import './Library.css'
 
 const Library = () => {
@@ -18,7 +20,7 @@ const Library = () => {
             <div className="library-page">
                 <Switch>
                     <Route path="/library/playlists">
-                        <div className="playlists-divs">
+                        <div className="playlists-section">
                             {userPlaylists ? userPlaylists.map(playlist =>
                                 <div className="playlists-item" key={playlist.id}>
                                     <Link to={`/playlists/${playlist.id}`}>
@@ -32,7 +34,7 @@ const Library = () => {
 
                     <Route path="/library/artists">
                         <div className="artist-section">
-                            <div className="artist-divs">
+                            <div className="artist-section">
                                 {followedArtists ? followedArtists.map(artist =>
                                     <div className="artists-item" key={artist.id}>
                                         <Link to={`/artists/${artist.id}`}>
@@ -47,7 +49,7 @@ const Library = () => {
 
                     <Route path="/library/albums">
                         <div className="albums-section">
-                            <div className="album-divs">
+                            <div className="album-section">
                                 {likedAlbums ? likedAlbums.map(album =>
                                     <div className="albums-item" key={album.id}>
                                         <Link to={`/albums/${album.id}`}>

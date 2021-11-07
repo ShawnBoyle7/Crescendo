@@ -53,11 +53,11 @@ function ProfileButton() {
 
             {showMenu && (
                 <div className="profile-dropdown">
-                    <Link to="/profile">
+                    {/* <Link to="/profile">
                         <div className="menu-div">
                             <span>Profile</span>
                         </div>
-                    </Link>
+                    </Link> */}
                     <div className="menu-div">
                         <span onClick={logout}>Log Out</span>
                     </div>

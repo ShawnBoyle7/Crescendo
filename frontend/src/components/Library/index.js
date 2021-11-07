@@ -12,7 +12,7 @@ const Library = () => {
     const playlistsSlice = useSelector(state => state.playlists);
     const allPlaylists = Object.values(playlistsSlice);
 
-    const userPlaylists = allPlaylists.filter(playlist => playlist.userId === +user.id);
+    const userPlaylists = allPlaylists?.filter(playlist => playlist?.userId === +user?.id);
     const followedArtists = user?.Artists;
     const likedAlbums = user?.Albums
 
@@ -21,23 +21,32 @@ const Library = () => {
             <div className="library-page">
                 <Switch>
                     <Route path="/library/playlists">
-                        <div className="playlists-section">
-                            {userPlaylists ? userPlaylists.map(playlist =>
+                        <div className="library-header-div">
+                            <h1 className="library-header">Playlists</h1>
+                        </div>
+                        <div className="library-playlists-section">
+                            {userPlaylists ? userPlaylists?.map(playlist =>
                                 <PlaylistDiv playlist={playlist} sessionUser={sessionUser}/>)
                             : <></>}
                         </div>
                     </Route>
 
                     <Route path="/library/artists">
-                        <div className="artists-section">
-                            {followedArtists ? followedArtists.map(artist =>
+                        <div className="library-header-div">
+                            <h1 className="library-header">Playlists</h1>
+                        </div>
+                        <div className="library-artists-section">
+                            {followedArtists ? followedArtists?.map(artist =>
                                 <ArtistDiv artist={artist}/>)
                             : <></>}
                         </div>
                     </Route>
 
                     <Route path="/library/albums">
-                        <div className="albums-section">
+                        <div className="library-header-div">
+                            <h1 className="library-header">Albums</h1>
+                        </div>
+                        <div className="library-albums-section">
                             {likedAlbums ? likedAlbums?.map(album =>
                                 <AlbumDiv album={album}/>)
                             : <></>}

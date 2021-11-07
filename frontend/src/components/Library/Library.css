@@ -1,48 +1,26 @@
-
-.library-nav-links:hover {
-    transition-duration: 250ms;
-    background-color: #262626;
+.library-page {
+    width: 100%;
+    max-width: 100vw;
 }
 
-.library-nav-links {
+.library-header-div {
     display: flex;
-    justify-content: space-evenly;
-}
-
-.album-divs {
-    display: flex;
-}
-
-.artist-divs {
-    display: flex;
-}
-
-.playlists-divs {
-    display: flex;
-    justify-content: space-around;
-    /* overflow-x: auto; */
-    max-width: fit-content;
-    scroll-snap-align: start;
-    transform: translate(0.2%, 0%);
-}
-
-.playlists-item {
-    display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    border: 2px solid black;
-    height: 16em;
-    width: 13em;
-    background-color: #242424
+    align-content: space-between;
+    margin: 16px 0;
 }
 
-.playlists-name {
-    display: flex;
-    justify-content: center;
+.library-header {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -.04em;
+    line-height: 28px;
+    text-transform: none;
 }
 
-.playlists-image {
-    height: 10em;
-    width: 10em;
-    border-radius: 50%;
+.library-playlists-section, .library-artists-section, .library-albums-section {
+    display: grid;
+    grid-gap: 24px;
+    grid-template-columns: repeat(auto-fill, 210px);
 }

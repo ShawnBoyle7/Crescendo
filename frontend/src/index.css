@@ -88,8 +88,6 @@ a {
     height: calc(100vh - 150px);
     overflow-y: auto;
     padding: 0 32px;
-    /* width: calc(100% - 228px); */
-    /* max-width: calc(100vw - 228px); */
 }
 
 .playbar-container {

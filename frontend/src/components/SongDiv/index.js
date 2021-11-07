@@ -192,11 +192,11 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
     // Play column conditional render function
     const playHoverStatusRender = () => {
         const songNum = (
-            <div id={!isPlaying && nowPlaying.id === song.id ? "is-playing" : ""}>{num}</div>
+            <div id={!isPlaying && nowPlaying?.id === song.id ? "is-playing" : ""}>{num}</div>
             )
             
         const volumeIconPlaying = (
-            <i id={isPlaying && nowPlaying.id === song.id ? "is-playing" : ""} className="fas fa-volume-up"></i>
+            <i id={isPlaying && nowPlaying?.id === song.id ? "is-playing" : ""} className="fas fa-volume-up"></i>
             )
         
         const playButton = (
@@ -209,7 +209,7 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
 
         // Hovering
         if (isHovering) {
-            if (isPlaying && nowPlaying.id === song.id) {
+            if (isPlaying && nowPlaying?.id === song.id) {
                 return pauseButton
             } else {
                 return playButton
@@ -218,7 +218,7 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
 
         // Not hovering
         if (!isHovering) {
-            if (isPlaying && nowPlaying.id === song.id) {
+            if (isPlaying && nowPlaying?.id === song.id) {
                 return volumeIconPlaying
             } else {
                 return songNum
@@ -235,16 +235,16 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
                 <td className={setSongWidth(pageType)}>
                     <div className="title-details">
                         <div className="item-art-container">
-                            <img className={validArtLocations.includes(pageType) ? "item-album-art" : "hidden"} src={song.Album.imgUrl} alt="song art" />
+                            <img className={validArtLocations.includes(pageType) ? "item-album-art" : "hidden"} src={song?.Album?.imgUrl} alt="song art" />
                         </div>
                         <div className="title-details-text-container">
                             <div className="title-artist-container">
-                                <p id={nowPlaying.id === song.id ? "is-playing" : ""}>
-                                    {song.name}
+                                <p id={nowPlaying?.id === song?.id ? "is-playing" : ""}>
+                                    {song?.name}
                                 </p>
                                 <div className="song-artist-link-container">
-                                    <Link to={`/artists/${song.Artist.id}`} className={pageType === "artists" ? "hidden" : "song-artist-link"}>
-                                        {song.Artist.name}
+                                    <Link to={`/artists/${song?.Artist?.id}`} className={pageType === "artists" ? "hidden" : "song-artist-link"}>
+                                        {song?.Artist?.name}
                                     </Link>
                                 </div>
                             </div>
@@ -253,13 +253,13 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
                 </td>
 
                 <td className={pageType === "playlists" || pageType === "library" ? "album-column" : "hidden"}>
-                    <Link to={`/albums/${song.Album.id}`}>
-                        {song.Album.name}
+                    <Link to={`/albums/${song?.Album?.id}`}>
+                        {song?.Album?.name}
                     </Link>
                 </td>
 
                 <td className={pageType === "playlists" || pageType === "library" ? "date-added-column" : "hidden"}>
-                    {song.Album.releaseDate}
+                    {song?.Album?.releaseDate}
                 </td>
                 
                 <td className="duration-column">
@@ -292,8 +292,8 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
                                 <div className={setPlaylistSelectorPosition()}>
                                     <ul className={revealPlaylists ? "playlist-selector" : "hidden"}>
                                         {playlists.slice(0).reverse().map(playlist =>
-                                            <li className="playlist-item" key={playlist.id} id={playlist.id} onClick={(e) => (handlePlaylistClick(e))}>
-                                                <span>{playlist.name}</span>
+                                            <li className="playlist-item" key={playlist?.id} id={playlist?.id} onClick={(e) => (handlePlaylistClick(e))}>
+                                                <span>{playlist?.name}</span>
                                             </li>)}
                                     </ul>
                                 </div>

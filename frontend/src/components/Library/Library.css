@@ -1,8 +1,3 @@
-.library-page {
-    width: 100%;
-    max-width: 100vw;
-}
-
 .library-header-div {
     display: flex;
     justify-content: space-between;
@@ -19,7 +14,7 @@
     text-transform: none;
 }
 
-.library-playlists-section, .library-artists-section, .library-albums-section {
+.library-section {
     display: grid;
     grid-gap: 24px;
     grid-template-columns: repeat(auto-fill, 210px);

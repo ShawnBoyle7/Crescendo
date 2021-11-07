@@ -3,6 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import ArtistDiv from "../ArtistDiv"
 import AlbumDiv from "../AlbumDiv"
 import PlaylistDiv from "../PlaylistDiv";
+import SongDiv from "../SongDiv";
 import './Library.css'
 
 const Library = () => {
@@ -14,7 +15,8 @@ const Library = () => {
 
     const userPlaylists = allPlaylists?.filter(playlist => playlist?.userId === +user?.id);
     const followedArtists = user?.Artists;
-    const likedAlbums = user?.Albums
+    const likedAlbums = user?.Albums;
+    const likedSongs = user?.Songs;
 
     return (
         <>
@@ -24,10 +26,9 @@ const Library = () => {
                         <div className="library-header-div">
                             <h1 className="library-header">Playlists</h1>
                         </div>
-                        <div className="library-playlists-section">
-                            {userPlaylists ? userPlaylists?.map(playlist =>
-                                <PlaylistDiv playlist={playlist} sessionUser={sessionUser}/>)
-                            : <></>}
+                        <div className="library-section">
+                            {userPlaylists && userPlaylists?.map(playlist =>
+                                <PlaylistDiv playlist={playlist} sessionUser={sessionUser}/>)}
                         </div>
                     </Route>
 
@@ -35,10 +36,9 @@ const Library = () => {
                         <div className="library-header-div">
                             <h1 className="library-header">Playlists</h1>
                         </div>
-                        <div className="library-artists-section">
-                            {followedArtists ? followedArtists?.map(artist =>
-                                <ArtistDiv artist={artist}/>)
-                            : <></>}
+                        <div className="library-section">
+                            {followedArtists && followedArtists?.map(artist =>
+                                <ArtistDiv artist={artist}/>)}
                         </div>
                     </Route>
 
@@ -46,12 +46,21 @@ const Library = () => {
                         <div className="library-header-div">
                             <h1 className="library-header">Albums</h1>
                         </div>
-                        <div className="library-albums-section">
-                            {likedAlbums ? likedAlbums?.map(album =>
-                                <AlbumDiv album={album}/>)
-                            : <></>}
+                        <div className="library-section">
+                            {likedAlbums && likedAlbums?.map(album =>
+                                <AlbumDiv album={album}/>)}
                         </div>
                     </Route>
+
+                    {/* <Route path="/library/songs">
+                        <div className="library-header-div">
+                            <h1 className="library-header">Albums</h1>
+                        </div>
+                        <div className="library-section">
+                            {likedSongs && likedSongs?.map(song =>
+                                <SongDiv song={song}/>)}
+                        </div>
+                    </Route> */}
                 </Switch>
             </div>
         </>

@@ -32,7 +32,7 @@ const Artist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
 
     const sessionUser = useSelector(state => state.session?.user)
     const sessionUserFollow = artist?.Users?.find(user => user?.id === sessionUser?.id)
-    const artistFollowed = sessionUserFollow?.id === sessionUser?.id
+    // const artistFollowed = sessionUserFollow?.id === sessionUser?.id
 
     const pathName = location?.pathname?.split('/');
     const path = pathName[1];
@@ -44,7 +44,7 @@ const Artist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
     const userPlaylists = allPlaylists.filter(playlist => playlist?.userId === sessionUser?.id);
 
     const [showDropdown, setShowDropdown] = useState(false)
-    const [showPlaylistOptions, setShowPlaylistOptions] = useState(false)
+    // const [showPlaylistOptions, setShowPlaylistOptions] = useState(false)
 
     // useEffect to grab the audio to ensure it's loaded first to avoid grabbing a null audio element
     let audio;
@@ -65,14 +65,6 @@ const Artist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
             document.removeEventListener("mousedown", checkDropdownClickOff)
         }
     }, [showDropdown])
-
-    const handleDropdown = () => {
-        if (!showDropdown) {
-            setShowDropdown(true)
-        } else {
-            setShowDropdown(false)
-        }
-    }
 
     const artistPlayerButton = () => {
         setIsPlaying(!isPlaying)
@@ -96,42 +88,9 @@ const Artist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
     
     if (artistSongsByPopularity.length > 5) artistSongsByPopularity = artistSongsByPopularity.slice(0, 5)
 
-    const handleArtistFollow = () => {
+    // const handleArtistFollow = () => {
 
-    }
-    
-    // const handleAlbumLike = async () => {
-    //     if (!liked) {
-    //         const payload = {
-    //             albumId: album.id,
-    //             userId: sessionUser?.id
-    //         }
-    //         await dispatch(likeAlbum(payload))
-    //     } else {
-    //         const payload = {
-    //             albumId: album.id,
-    //             userId: sessionUser?.id
-    //         }
-    //         await dispatch(deleteAlbumLike(payload))
-    //     }
-    //     await dispatch(getAlbums())
     // }
-
-    // const addAlbumToPlaylist = (e) => {
-    //     e.preventDefault()
-        
-    //     albumSongs.forEach(song => {
-    //         const payload = {
-    //             songId: song.id,
-    //             playlistId: e.target.id
-    //         }
-    //         dispatch(addPlaylistSong(payload))
-    //     })
-    // }
-
-    // useEffect(() => {
-    //     headerRef?.current?.style.setProperty("background-image", artist?.headerUrl)
-    // }, [artist])
 
     const headerStyle = {
         backgroundImage: 'url(' + artist?.headerUrl + ')',

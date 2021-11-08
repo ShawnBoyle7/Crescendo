@@ -195,7 +195,7 @@ th.album-song-column-title {
     color: var(--white);
 }
 
-.song-dropdown-options>div, .song-dropdown-default>div, li.playlist-item {
+.song-dropdown-options > div, .song-dropdown-default > div, li.playlist-item {
     display: flex;
     align-items: center;
     justify-content: space-between;

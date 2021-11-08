@@ -78,16 +78,24 @@ const Artist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
         }
     }
 
-    const playPauseToggle = () => {
-        const previousValue = isPlaying
-        setIsPlaying(!previousValue)
+    const artistPlayerButton = () => {
+        setIsPlaying(!isPlaying)
         // If not is playing, then play and begin animation of time change
-        if (!previousValue) {
+
+        if (!isPlaying) {
+            const firstSong = artistSongs[0]
+            audio.src = firstSong.songUrl
+            setNowPlaying(firstSong)
+            setIsPlaying(true)
             audio.play()
             // Else pause and stop animation of time change
         } else {
             audio.pause()
         }
+    }
+
+    const handleArtistFollow = () => {
+
     }
     
     // const handleAlbumLike = async () => {
@@ -135,38 +143,16 @@ const Artist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
                 </div>
 
                 <div className="artist-page-buttons-div">
-                    <div className="artist-song-control-div" onClick={playPauseToggle}>
+                    <div className="artist-song-control-div" onClick={artistPlayerButton}>
                         <img className="artist-song-control-image" src={!isPlaying ? "https://i.imgur.com/7QSCa6X.png" : "https://i.imgur.com/QtT4j0R.png"}/>
                     </div>
 
-                    <div className="artist-heart-div">
-                        <button className="artist-like-button" >
-                            <i id={!artistFollowed ? "heart-default" : "heart-liked"} className="far fa-heart"></i>
-                        </button>
-                    </div>
-
-                    <div className="artist-dropdown-div" onClick={handleDropdown} ref={dropdownRef}>
-                        {showDropdown &&
-                            <div className="artist-dropdown-options" onClick={e => e.stopPropagation()}>
-                                <div className="artist-dropdown-option-playlist"
-                                    onMouseEnter={() => setShowPlaylistOptions(true)}
-                                    onMouseLeave={() => setShowPlaylistOptions(false)}>
-                                        Add to playlist
-                                        <i className="fas fa-caret-right"></i>
-                                        { showPlaylistOptions &&
-                                            <div className="artist-dropdown-playlist-options-div">
-                                                <ul>
-                                                    {userPlaylists.map(userPlaylist => 
-                                                        <li id={userPlaylist.id} className="artist-dropdown-playlist-option" >{userPlaylist.name}</li>
-                                                        )}
-                                                </ul>
-                                            </div>
-                                        }
-                                </div>
-                        </div>}
-                    </div>
+                    <button className={!artistFollowed ? "artist-not-followed" : "artist-followed"} onClick={handleArtistFollow}> 
+                        {artistFollowed ? "Follow" : "Following"}
+                    </button>
                 </div>
 
+                <h2 className="artist-songs-section-header">Popular</h2>
                 <div className="artist-songs-section-container">
                     <table className="artist-songs-section">
                         <tbody>

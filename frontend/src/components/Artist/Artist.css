@@ -1,0 +1,163 @@
+.artist-page {
+    position: absolute;
+    top: 0;
+    left: 228px;
+    width: calc(100% - 228px);
+    height: calc(100% - 90px);
+    padding: 0 32px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.artist-page-header {
+    display: flex;
+    align-items: flex-end;
+    background-image: url("");
+    padding: 0 32px;
+    margin: 0 -32px;
+    padding-bottom: 24px;
+    height: 340px;
+}
+
+.artist-name-header {
+    padding: 0.08em 0px;
+    visibility: visible;
+    width: 100%;
+    font-size: 96px;
+    line-height: 96px;
+    font-size: 96px;
+    font-weight: 900;
+    letter-spacing: -.04em;
+    line-height: 96px;
+    text-transform: none;
+}
+
+.artist-header-image {
+    /* width: calc(100% - 292px); */
+    width: 100%;
+    height: 400px;
+}
+
+/* Page Controls */
+
+.artist-page-buttons-div .fa-ellipsis-h {
+    font-size: 30px;
+}
+
+.artist-like-button i {
+    font-size: 27px;
+}
+
+.artist-like-button {
+    background: none;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+    color: var(--white);
+}
+
+.artist-page-buttons-div {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: calc(100vw - 260px);
+    padding: 24px 0;
+}
+
+.artist-page-buttons-div > div {
+    margin-right: 32px;
+}
+
+.artist-song-control-div  {
+    height: 56px;
+    width: 56px;
+    cursor: pointer;
+}
+
+.artist-song-control-image  {
+    height: 100%;
+    width: 100%;
+}
+
+.artist-dropdown-options {
+    position: absolute;
+    width: 161px;
+    background-color: #282828;
+    border-radius: 4px;
+    padding: 4px;
+    max-width: 350px;
+    min-width: 196px;
+    box-shadow: 0 16px 24px rgb(0 0 0 / 30%), 0 6px 8px rgb(0 0 0 / 20%);
+    max-height: 80vh;
+    z-index: 1;
+}
+
+.artist-dropdown-option-playlist {
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 2.3em;
+    padding-left: 0.75em;
+    border-radius: 2px;
+    font-size: 0.95em;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 16px;
+    text-transform: none;
+    gap: 27.5%;
+}
+
+.artist-dropdown-option-playlist:hover {
+    background: rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+}
+
+.artist-dropdown-playlist-options-div {
+    position: absolute;
+    left: 188px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: auto;
+    max-height: calc(80vh - 10px);
+    max-width: 350px;
+    min-width: 160px;
+    padding: 4px;
+    background-color: #282828;
+    box-shadow: 0 16px 24px rgba(0,0,0,.3),0 6px 8px rgba(0,0,0,.2);
+    border-radius: 4px;
+    font-size: 0.95em;
+    font-weight: 400;
+    letter-spacing: normal;
+    
+    text-transform: none;
+    line-height: 16px;
+}
+
+.artist-dropdown-playlist-option {
+    display: flex;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    height: 40px;
+    padding: 12px;
+    padding-inline-end: 8px;
+}
+
+.artist-dropdown-playlist-option:hover {
+    background: rgba(255, 255, 255, 0.15);
+    cursor: pointer;
+}
+
+/* Songs Section */
+
+.artist-songs-section {
+    position: relative;
+    width: calc(100vw - 288px);
+    height: 100%;
+    color: var(--primary-text-color);
+    border-collapse: collapse;
+    border-spacing: 0 5px;
+    letter-spacing: 0.3px;
+}

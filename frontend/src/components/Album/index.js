@@ -14,7 +14,6 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
         document.querySelector(".album-page").addEventListener("scroll", (e) => {
             const nav = document.querySelector("nav")
             
-            const albumPage = document.querySelector(".album-page")
             if (e.target.scrollTop === 0) {
                 console.log("IF")
                 nav?.classList.add("top-navigation-bar-default")

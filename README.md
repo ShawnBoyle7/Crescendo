@@ -13,7 +13,7 @@
 
 ## Introduction
 
-Crescendo is a a Spotify clone! I have set out to grasp as much of the functionality of Spotify as I can each day. Users can create playlist and visit artists or albums to add songs to them! Users can use the play buttons and the audio player to listen to music site-wide. 
+### Crescendo is a a Spotify clone! I have set out to grasp as much of the functionality of Spotify as I can each day. Users can create playlist and visit artists or albums to add songs to them! Users can use the play buttons and the audio player to listen to music site-wide. 
 
 ### Visit the website [here!](https://crescendo-application.herokuapp.com/)
 

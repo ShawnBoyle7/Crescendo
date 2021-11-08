@@ -1,10 +1,6 @@
 import React, { useEffect, useState, useRef } from "react"
 import { useParams, useLocation } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
-import { Link } from "react-router-dom";
-import { likeAlbum, deleteAlbumLike } from "../../store/users";
-import { getAlbums } from "../../store/albums"
-import { addPlaylistSong } from '../../store/playlists';
 import SongDiv from "../SongDiv";
 import './Artist.css';
 
@@ -94,6 +90,12 @@ const Artist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
         }
     }
 
+    let artistSongsByPopularity = artistSongs.sort((a, b) => {
+        return b.Users.length - a.Users.length
+    });
+    
+    if (artistSongsByPopularity.length > 5) artistSongsByPopularity = artistSongsByPopularity.slice(0, 5)
+
     const handleArtistFollow = () => {
 
     }
@@ -147,9 +149,9 @@ const Artist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
                         <img className="artist-song-control-image" src={!isPlaying ? "https://i.imgur.com/7QSCa6X.png" : "https://i.imgur.com/QtT4j0R.png"}/>
                     </div>
 
-                    <button className={!artistFollowed ? "artist-not-followed" : "artist-followed"} onClick={handleArtistFollow}> 
+                    {/* <button className={!artistFollowed ? "artist-not-followed" : "artist-followed"} onClick={handleArtistFollow}> 
                         {artistFollowed ? "Follow" : "Following"}
-                    </button>
+                    </button> */}
                 </div>
 
                 <h2 className="artist-songs-section-header">Popular</h2>

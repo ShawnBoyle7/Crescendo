@@ -64,11 +64,11 @@ function SideBar() {
             <div className="sidebar-divider"></div>
         
             <ul className="playlist-links">
-                {userPlaylists.map(playlist =>
-                    <li className="playlist-link" key={playlist.id}>
-                        <Link to={`/playlists/${playlist.id}`}>
+                {userPlaylists.reverse().map(playlist =>
+                    <li className="playlist-link" key={playlist?.id}>
+                        <Link to={`/playlists/${playlist?.id}`}>
                             <div className="side-bar-playlist-name">
-                                <p>{playlist.name}</p>
+                                <p>{playlist?.name}</p>
                             </div>
                         </Link>
                     </li>)}

@@ -9,7 +9,7 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
     const dispatch = useDispatch()
     
     const songs = Object.values(useSelector(state => state.songs))
-    const currentSong = songs.find(song => song.id === nowPlaying.id)
+    const currentSong = songs?.find(song => song?.id === nowPlaying?.id)
     
     const sessionUser = useSelector(state => state.session?.user)
     const sessionUserLike = currentSong?.Users?.find(user => user?.id === sessionUser?.id)
@@ -67,7 +67,9 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
     // I use this to update the current time state variable and the rendered current time of the progress bar when the progress bar value changes
     const updateCurrentTime = () => {
         // Update current time state variable
-        setCurrentTime(progressBar?.current?.value)
+        if (progressBar) {
+            setCurrentTime(progressBar?.current?.value)
+        }
         // Update rendered elapsed time on progress bar 
         progressBar?.current?.style?.setProperty('--seek-before-width', `${progressBar?.current?.value / duration * 100}%`)
     }
@@ -301,7 +303,7 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
                     </div> */}
 
                     <div className="playbar-controls-button-div">
-                        <button onClick={playPreviousSongInAlbum} disabled={!nowPlaying ? true : false}>
+                        <button onClick={skipSong} disabled={!nowPlaying ? true : false}>
                             <i className="fas fa-step-backward"></i>
                         </button>
                     </div>
@@ -313,7 +315,7 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
                     </div>
                 
                     <div className="playbar-controls-button-div">
-                        <button onClick={skipSong} disabled={!nowPlaying ? true : false}>
+                        <button onClick={playPreviousSongInAlbum} disabled={!nowPlaying ? true : false}>
                             <i className="fas fa-step-forward"></i>
                         </button>
                     </div>

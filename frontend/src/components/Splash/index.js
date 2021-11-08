@@ -20,7 +20,6 @@ const Splash = () => {
     return (
         <>
             <div className="nav-placeholder">
-                <h1>Placeholder</h1>
             </div>
 
             <div className="splash-content">

@@ -69,12 +69,13 @@ const Playlist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
     }
 
     const playlistPlayerButton = () => {
-        setIsPlaying(!isPlaying)
+        const previousValue = isPlaying
+        setIsPlaying(!previousValue)
         // If not is playing, then play and begin animation of time change
 
-        if (!isPlaying) {
+        if (!previousValue) {
             const firstSong = playlistSongs[0]
-            audio.src = firstSong.songUrl
+            audio.src = firstSong?.songUrl
             setNowPlaying(firstSong)
             setIsPlaying(true)
             audio.play()
@@ -101,10 +102,10 @@ const Playlist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
                 </div>
 
                 <div className="album-page-buttons-div">
-                    <div className="album-song-control-div" onClick={playlistPlayerButton}>
+                    {/* <div className="album-song-control-div" onClick={playlistPlayerButton}>
                         <img className="album-song-control-image" src={!isPlaying ? "https://i.imgur.com/7QSCa6X.png" : "https://i.imgur.com/QtT4j0R.png"}/>
-                    </div>
-                    <div className="album-dropdown-div" onClick={handleDropdown} ref={dropdownRef}>
+                    </div> */}
+                    {/* <div className="album-dropdown-div" onClick={handleDropdown} ref={dropdownRef}>
                         <i className="fas fa-ellipsis-h"></i>
                         {showDropdown &&
                             <div className="album-dropdown-options" onClick={e => e.stopPropagation()}>
@@ -125,7 +126,7 @@ const Playlist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
                                         }
                                     </div>
                             </div>}
-                    </div>
+                    </div> */}
                 </div>
                 
                 <div className="album-songs-section-container">

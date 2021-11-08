@@ -22,6 +22,9 @@ module.exports = {
             songUrl: {
                 type: Sequelize.STRING
             },
+            songLength: {
+                type: Sequelize.STRING
+            },
             createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE

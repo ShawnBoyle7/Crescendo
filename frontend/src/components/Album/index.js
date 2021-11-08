@@ -14,7 +14,6 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
         document.querySelector(".album-page").addEventListener("scroll", (e) => {
             const nav = document.querySelector("nav")
             
-            const albumPage = document.querySelector(".album-page")
             if (e.target.scrollTop === 0) {
                 console.log("IF")
                 nav?.classList.add("top-navigation-bar-default")
@@ -79,11 +78,15 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
         }
     }
 
-    const playPauseToggle = () => {
-        const previousValue = isPlaying
-        setIsPlaying(!previousValue)
+    const albumPlayerButton = () => {
+        setIsPlaying(!isPlaying)
         // If not is playing, then play and begin animation of time change
-        if (!previousValue) {
+
+        if (!isPlaying) {
+            const firstSong = albumSongs[0]
+            audio.src = firstSong.songUrl
+            setNowPlaying(firstSong)
+            setIsPlaying(true)
             audio.play()
             // Else pause and stop animation of time change
         } else {
@@ -145,7 +148,7 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
                 </div>
 
                 <div className="album-page-buttons-div">
-                    <div className="album-song-control-div" onClick={playPauseToggle}>
+                    <div className="album-song-control-div" onClick={albumPlayerButton}>
                         <img className="album-song-control-image" src={!isPlaying ? "https://i.imgur.com/7QSCa6X.png" : "https://i.imgur.com/QtT4j0R.png"}/>
                     </div>
                     <div className="album-heart-div">

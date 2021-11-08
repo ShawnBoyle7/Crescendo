@@ -270,7 +270,8 @@ div.playlist-selector-container, div.playlist-selector-container-other {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    right: 230px;
+    right: 11.5vw;
+    bottom: 4vh;
     height: 500px;
     z-index: 3;
 }
@@ -285,9 +286,6 @@ a.song-artist-link:hover {
     color: var(--white);
     text-decoration: underline;
 }
-
-
-
 
 div.album-playlist-selector-container {
     position: absolute;

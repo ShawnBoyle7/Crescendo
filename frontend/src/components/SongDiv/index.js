@@ -267,7 +267,7 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
                         <div className="song-controls">
                             <i id={!liked ? "heart-default" : "heart-liked"} className={isHovering ? "far fa-heart" : "far fa-heart invisible"} onClick={likeCurrentSong}></i>
                             {/* Song duration below */}
-                            <span className="song-div-song-length">3:00</span>
+                            <span className="song-div-song-length">{song?.songLength}</span>
                             <div className={isHovering ? "dropghbdown" : "invisible"} onClick={handleDropdown} ref={dropdownRef}>
                                 <i className="fas fa-ellipsis-h"></i>
                             </div>

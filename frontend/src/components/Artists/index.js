@@ -18,10 +18,6 @@ const Artists = () => {
                         </div>
                     </div>
             </Route>
-
-            <Route path="/artists/:artistId">
-                <Artist artists={artists} />
-            </Route>
         </>
     )
 }

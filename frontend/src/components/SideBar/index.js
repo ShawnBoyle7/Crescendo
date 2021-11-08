@@ -55,10 +55,10 @@ function SideBar() {
                     <p>Create Playlist</p>
                 </button>
 
-                <button className="side-bar-personal-navigation-button" onClick={() => history.push('/library/songs')}>
+                {/* <button className="side-bar-personal-navigation-button" onClick={() => history.push('/library/songs')}>
                     <img className="liked-songs-image" src={"https://i.imgur.com/YtozZx0.png"} />
                     <p id="liked-">Liked Songs</p>
-                </button> 
+                </button>  */}
             </div>
 
             <div className="sidebar-divider"></div>

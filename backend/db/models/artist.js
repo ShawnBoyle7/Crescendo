@@ -2,7 +2,8 @@
 module.exports = (sequelize, DataTypes) => {
   const Artist = sequelize.define('Artist', {
     name: DataTypes.STRING,
-    imgUrl: DataTypes.STRING
+    imgUrl: DataTypes.STRING,
+    headerUrl: DataTypes.STRING
   }, {});
   Artist.associate = function(models) {
     const columnMappingUsers = {

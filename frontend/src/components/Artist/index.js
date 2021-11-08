@@ -1,35 +1,180 @@
-import { useParams } from "react-router-dom";
-import { Link, Route } from "react-router-dom";
-import Albums from "../Albums";
-import ArtistDiv from "../ArtistDiv";
-import './Artist.css'
+import React, { useEffect, useState, useRef } from "react"
+import { useParams, useLocation } from "react-router-dom"
+import { useSelector, useDispatch } from "react-redux"
+import SongDiv from "../SongDiv";
+import './Artist.css';
 
-const Artist = ({ artists }) => {
-    const { artistId } = useParams()
-    const artist = artists.find(artist => artist.id === +artistId)
+const Artist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
+
+    useEffect(() => {
+        document.querySelector(".artist-page").addEventListener("scroll", (e) => {
+            const nav = document.querySelector("nav")
+            
+            if (e.target.scrollTop === 0) {
+                nav?.classList.add("top-navigation-bar-default")
+                nav?.classList.remove("top-navigation-bar-scrolled")
+            } else if (e.target.scrollTop > 0) {
+                nav?.classList.remove("top-navigation-bar-default")
+                nav?.classList.add("top-navigation-bar-scrolled")
+            }
     
+        })
+    }, [])
+    
+    const dispatch = useDispatch()
+    const location = useLocation()
+
+    const { artistId } = useParams();
+    const artists = Object.values(useSelector(state => state.artists))
+    const artist = artists?.find(artist => artist?.id === +artistId)
+    const songs = Object.values(useSelector(state => state.songs))
+    const artistSongs = songs?.filter(song => song?.artistId === +artistId)
+
+    const sessionUser = useSelector(state => state.session?.user)
+    const sessionUserFollow = artist?.Users?.find(user => user?.id === sessionUser?.id)
+    const artistFollowed = sessionUserFollow?.id === sessionUser?.id
+
+    const pathName = location?.pathname?.split('/');
+    const path = pathName[1];
+    const pageId = pathName[2]
+
+    const dropdownRef = useRef()
+
+    const allPlaylists = Object.values(useSelector(state => state.playlists))
+    const userPlaylists = allPlaylists.filter(playlist => playlist?.userId === sessionUser?.id);
+
+    const [showDropdown, setShowDropdown] = useState(false)
+    const [showPlaylistOptions, setShowPlaylistOptions] = useState(false)
+
+    // useEffect to grab the audio to ensure it's loaded first to avoid grabbing a null audio element
+    let audio;
+    useEffect(() => {
+        audio = document.querySelector("audio")
+    });
+    
+    // Dropdown offclick logic
+    useEffect(() => {
+        const checkDropdownClickOff = (e) => {
+            if (showDropdown && !dropdownRef?.current?.contains(e?.target)) {
+                setShowDropdown(false)
+            }
+        }
+        document.addEventListener("mousedown", checkDropdownClickOff)
+
+        return () => {
+            document.removeEventListener("mousedown", checkDropdownClickOff)
+        }
+    }, [showDropdown])
+
+    const handleDropdown = () => {
+        if (!showDropdown) {
+            setShowDropdown(true)
+        } else {
+            setShowDropdown(false)
+        }
+    }
+
+    const artistPlayerButton = () => {
+        setIsPlaying(!isPlaying)
+        // If not is playing, then play and begin animation of time change
+
+        if (!isPlaying) {
+            const firstSong = artistSongs[0]
+            audio.src = firstSong.songUrl
+            setNowPlaying(firstSong)
+            setIsPlaying(true)
+            audio.play()
+            // Else pause and stop animation of time change
+        } else {
+            audio.pause()
+        }
+    }
+
+    let artistSongsByPopularity = artistSongs.sort((a, b) => {
+        return b.Users.length - a.Users.length
+    });
+    
+    if (artistSongsByPopularity.length > 5) artistSongsByPopularity = artistSongsByPopularity.slice(0, 5)
+
+    const handleArtistFollow = () => {
+
+    }
+    
+    // const handleAlbumLike = async () => {
+    //     if (!liked) {
+    //         const payload = {
+    //             albumId: album.id,
+    //             userId: sessionUser?.id
+    //         }
+    //         await dispatch(likeAlbum(payload))
+    //     } else {
+    //         const payload = {
+    //             albumId: album.id,
+    //             userId: sessionUser?.id
+    //         }
+    //         await dispatch(deleteAlbumLike(payload))
+    //     }
+    //     await dispatch(getAlbums())
+    // }
+
+    // const addAlbumToPlaylist = (e) => {
+    //     e.preventDefault()
+        
+    //     albumSongs.forEach(song => {
+    //         const payload = {
+    //             songId: song.id,
+    //             playlistId: e.target.id
+    //         }
+    //         dispatch(addPlaylistSong(payload))
+    //     })
+    // }
+
+    // useEffect(() => {
+    //     headerRef?.current?.style.setProperty("background-image", artist?.headerUrl)
+    // }, [artist])
+
+    const headerStyle = {
+        backgroundImage: 'url(' + artist?.headerUrl + ')',
+    };
+
     return (
         <>
-            <Route exact path="/artists/:artistId">
-            <ArtistDiv artist={artist}/>
-                <div className="albums-section">
-                    <div className="album-divs">
-                        {artist && artist.Albums.map(album =>
-                            <div className="albums-item" key={album.id}>
-                                <Link to={`/albums/${album.id}`}>
-                                    <img className="albums-image" alt={"album"} src={album.imgUrl} />
-                                    <div className="albums-name">{album.name}</div>
-                                </Link>
-                            </div>)}
-                    </div>
+            <div className="artist-page">
+                <div className="artist-page-header" style={headerStyle}>
+                        <h1 className="artist-name-header">{artist?.name}</h1>
                 </div>
 
-                <Link to={`/artists/${artistId}/albums`}>See All Albums</Link>
-            </Route>
+                <div className="artist-page-buttons-div">
+                    <div className="artist-song-control-div" onClick={artistPlayerButton}>
+                        <img className="artist-song-control-image" src={!isPlaying ? "https://i.imgur.com/7QSCa6X.png" : "https://i.imgur.com/QtT4j0R.png"}/>
+                    </div>
 
-            <Route path="/artists/:artistId/albums">
-                <Albums albums={artist && artist.Albums} />
-            </Route>
+                    {/* <button className={!artistFollowed ? "artist-not-followed" : "artist-followed"} onClick={handleArtistFollow}> 
+                        {artistFollowed ? "Follow" : "Following"}
+                    </button> */}
+                </div>
+
+                <h2 className="artist-songs-section-header">Popular</h2>
+                <div className="artist-songs-section-container">
+                    <table className="artist-songs-section">
+                        <tbody>
+                            <tr className="null-row"><td className="null-td"></td></tr>
+                            {artistSongs?.slice(0, 5).map((song, idx) =>
+                                <SongDiv
+                                key={idx}
+                                song={song}
+                                num={(idx + 1)}
+                                path={path}
+                                pageId={pageId}
+                                playlists={userPlaylists}
+                                isPlaying={isPlaying}
+                                setIsPlaying={setIsPlaying}
+                                nowPlaying={nowPlaying}
+                                setNowPlaying={setNowPlaying}/>)}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </>
     )
 }

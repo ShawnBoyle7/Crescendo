@@ -17,6 +17,7 @@ import Error404 from "./components/Error404";
 import Playlists from './components/Playlists';
 import Profile from './components/Profile';
 import Splash from './components/Splash';
+import Artist from "./components/Artist"
 import { getArtists } from "./store/artists";
 import { getUsers } from "./store/users";
 import { getGenres } from "./store/genres";
@@ -85,6 +86,10 @@ function App() {
 
                             <Route path="/search">
                                 <Search />
+                            </Route>
+
+                            <Route path="/artists/:artistId">
+                                <Artist setNowPlaying={setNowPlaying} nowPlaying={nowPlaying} setIsPlaying={setIsPlaying} isPlaying={isPlaying} />
                             </Route>
 
                             <Route path="/artists">

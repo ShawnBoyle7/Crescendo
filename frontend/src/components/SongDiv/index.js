@@ -59,7 +59,7 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
             document.removeEventListener("mousedown", dropdownListener)
         }
     }, [showDropdown])
-    
+
     const detectPageType = () => {
         let className;
         
@@ -176,25 +176,18 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
             return false;
         }
     }
-    
-    const playSong = () => {
-        const previousValue = isPlaying
-        setIsPlaying(!previousValue)
-        // If not is playing, then play and begin animation of time change
-        if (!previousValue) {
+
+    const playToggle = () => {
+        if (isPlaying && song === nowPlaying) {
+            audio.pause()
+            setIsPlaying(false)
+        } else {
+            setNowPlaying(song)
             audio.play()
+            setIsPlaying(true)
         }
-        // setNowPlaying(song)
-        // audio.play()
-        // setIsPlaying(true)
+
     }
-    
-    const stopSong = () => {
-        audio.pause()
-        // audio.pause()
-        // setIsPlaying(false)
-    }
-    
 
     // Play column conditional render function
     const playHoverStatusRender = () => {
@@ -207,11 +200,11 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
             )
         
         const playButton = (
-            <i className="fas fa-play" onClick={playSong}></i>
+            <i className="fas fa-play" onClick={playToggle}></i>
             )
     
         const pauseButton = (
-            <i className="fas fa-pause" onClick={stopSong}></i>
+            <i className="fas fa-pause" onClick={playToggle}></i>
             )
 
         // Hovering
@@ -266,7 +259,7 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
                 </td>
 
                 <td className={pageType === "playlists" || pageType === "library" ? "date-added-column" : "hidden"}>
-                    {song?.Album?.releaseDate}
+                    {"2 days ago"}
                 </td>
                 
                 <td className="duration-column">

@@ -60,13 +60,13 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
                 setQueue(artistSongsByPopularity)
                 break;
             case "playlists":
-                const playlist = playlists?.find(playlist => playlist?.id === pageId)
+                const playlist = playlists?.find(playlist => playlist?.id === +pageId)
                 const playlistSongs = playlist?.Songs
-
+                
                 setQueue(playlistSongs)
                 break;
-        }
-    }, [path, nowPlaying, isPlaying])
+            }
+        }, [path, nowPlaying, isPlaying])
 
     // If the audio element loaded the mp3 file, set the duration state variable and progress bar max value to the length of it
     useEffect(() => {

@@ -65,7 +65,7 @@
     padding: 24px 0;
 }
 
-.artist-page-buttons-div > div {
+.artist-page-buttons-div * {
     margin-right: 32px;
 }
 
@@ -73,11 +73,6 @@
     height: 56px;
     width: 56px;
     cursor: pointer;
-}
-
-.artist-song-control-image  {
-    height: 100%;
-    width: 100%;
 }
 
 .artist-dropdown-options {

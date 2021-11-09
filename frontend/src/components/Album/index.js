@@ -82,15 +82,12 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
         }
     }
 
-    const albumPlayerButton = () => {
-        setIsPlaying(!isPlaying)
+    const albumPlayerButtonClick = () => {
+        const previousValue = isPlaying
+        setIsPlaying(!previousValue)
         // If not is playing, then play and begin animation of time change
 
-        if (!isPlaying) {
-            const firstSong = albumSongs[0]
-            audio.src = firstSong.songUrl
-            setNowPlaying(firstSong)
-            setIsPlaying(true)
+        if (!previousValue) {
             audio.play()
             // Else pause and stop animation of time change
         } else {
@@ -152,9 +149,7 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
                 </div>
 
                 <div className="album-page-buttons-div">
-                    <div className="album-song-control-div" onClick={albumPlayerButton}>
-                        <img className="album-song-control-image" src={!isPlaying ? "https://i.imgur.com/7QSCa6X.png" : "https://i.imgur.com/QtT4j0R.png"}/>
-                    </div>
+                        <img className="big-player-button" src={!isPlaying ? "https://i.imgur.com/7QSCa6X.png" : "https://i.imgur.com/QtT4j0R.png"} onClick={albumPlayerButtonClick}/>
                     <div className="album-heart-div">
                         <button className="album-like-button" onClick={handleAlbumLike} >
                             <i id={!liked ? "heart-default" : "heart-liked"} className="far fa-heart"></i>

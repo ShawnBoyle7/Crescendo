@@ -212,7 +212,7 @@
 
 /* Songs Section */
 
-.album-songs-section {
+.playlist-songs-section {
     position: relative;
     width: calc(100vw - 288px);
     height: 100%;

@@ -31,7 +31,7 @@ const Artist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
     const artistSongs = songs?.filter(song => song?.artistId === +artistId)
 
     const sessionUser = useSelector(state => state.session?.user)
-    const sessionUserFollow = artist?.Users?.find(user => user?.id === sessionUser?.id)
+    // const sessionUserFollow = artist?.Users?.find(user => user?.id === sessionUser?.id)
     // const artistFollowed = sessionUserFollow?.id === sessionUser?.id
 
     const pathName = location?.pathname?.split('/');

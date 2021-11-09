@@ -15,11 +15,9 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
             const nav = document.querySelector("nav")
             
             if (e.target.scrollTop === 0) {
-                console.log("IF")
                 nav?.classList.add("top-navigation-bar-default")
                 nav?.classList.remove("top-navigation-bar-scrolled")
             } else if (e.target.scrollTop > 0) {
-                console.log("teELSE IF")
                 nav?.classList.remove("top-navigation-bar-default")
                 nav?.classList.add("top-navigation-bar-scrolled")
             }
@@ -38,7 +36,13 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
 
     const { albumId } = useParams();
     const album = albums?.find(album => album?.Artist?.id === +albumId)
-    const albumSongs = album?.Songs
+    const songs = Object.values(useSelector(state => state.songs))
+    const albumSongs = songs.filter(song => song.albumId === +albumId)
+    // console.log("ALBUM", album) 
+    // const albumSongsReversed = album?.Songs
+    // console.log("SONGS FROM ALBUM", albumSongs)
+    // const albumSongs = albumSongsReversed.reverse()
+    // console.log("ALBUM SONGS", albumSongs)
 
     const sessionUser = useSelector(state => state.session?.user)
     const sessionUserLike = album?.Users?.find(user => user?.id === sessionUser?.id)
@@ -169,8 +173,8 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
                                         { showPlaylistOptions &&
                                             <div className="album-dropdown-playlist-options-div">
                                                 <ul>
-                                                    {userPlaylists.map(userPlaylist => 
-                                                        <li id={userPlaylist.id} className="album-dropdown-playlist-option" onClick={addAlbumToPlaylist}>{userPlaylist.name}</li>
+                                                    {userPlaylists?.map(userPlaylist => 
+                                                        <li id={userPlaylist?.id} className="album-dropdown-playlist-option" onClick={addAlbumToPlaylist}>{userPlaylist?.name}</li>
                                                         )}
                                                 </ul>
                                             </div>

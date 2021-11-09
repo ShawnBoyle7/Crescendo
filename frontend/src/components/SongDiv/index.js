@@ -178,25 +178,32 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
     }
     
     const playSong = () => {
-        setNowPlaying(song)
-        audio.play()
-        setIsPlaying(true)
+        const previousValue = isPlaying
+        setIsPlaying(!previousValue)
+        // If not is playing, then play and begin animation of time change
+        if (!previousValue) {
+            audio.play()
+        }
+        // setNowPlaying(song)
+        // audio.play()
+        // setIsPlaying(true)
     }
     
     const stopSong = () => {
         audio.pause()
-        setIsPlaying(false)
+        // audio.pause()
+        // setIsPlaying(false)
     }
     
 
     // Play column conditional render function
     const playHoverStatusRender = () => {
         const songNum = (
-            <div id={!isPlaying && nowPlaying?.id === song.id ? "is-playing" : ""}>{num}</div>
+            <div id={!isPlaying && nowPlaying?.id === song?.id ? "is-playing" : ""}>{num}</div>
             )
             
         const volumeIconPlaying = (
-            <i id={isPlaying && nowPlaying?.id === song.id ? "is-playing" : ""} className="fas fa-volume-up"></i>
+            <i id={isPlaying && nowPlaying?.id === song?.id ? "is-playing" : ""} className="fas fa-volume-up"></i>
             )
         
         const playButton = (
@@ -209,7 +216,7 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
 
         // Hovering
         if (isHovering) {
-            if (isPlaying && nowPlaying?.id === song.id) {
+            if (isPlaying && nowPlaying?.id === song?.id) {
                 return pauseButton
             } else {
                 return playButton
@@ -218,7 +225,7 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
 
         // Not hovering
         if (!isHovering) {
-            if (isPlaying && nowPlaying?.id === song.id) {
+            if (isPlaying && nowPlaying?.id === song?.id) {
                 return volumeIconPlaying
             } else {
                 return songNum

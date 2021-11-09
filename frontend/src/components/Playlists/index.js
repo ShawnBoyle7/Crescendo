@@ -16,9 +16,6 @@ const Playlists = () => {
                 </div>
             </Route>
 
-            <Route path="/playlists/:playlistId">
-                <Playlist playlists={userPlaylists} />
-            </Route>
         </>
 
     )

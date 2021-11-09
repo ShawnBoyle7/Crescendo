@@ -15,7 +15,6 @@ const Playlist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
                 nav?.classList.add("top-navigation-bar-default")
                 nav?.classList.remove("top-navigation-bar-scrolled")
             } else if (e.target.scrollTop > 0) {
-                console.log("teELSE IF")
                 nav?.classList.remove("top-navigation-bar-default")
                 nav?.classList.add("top-navigation-bar-scrolled")
             }
@@ -89,37 +88,37 @@ const Playlist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
         <>
             <div className="playlist-page">
                 <div className="playlist-page-header">
-                    <div className="album-art-div">
-                        <img className="album-art" src={playlist?.Album?.imgUrl ? playlist?.Album?.imgUrl : "https://i.imgur.com/pZ6CUjL.png"}/>
+                    <div className="playlist-art-div">
+                        <img className="playlist-art" src={playlist?.Album?.imgUrl ? playlist?.Album?.imgUrl : "https://i.imgur.com/pZ6CUjL.png"}/>
                     </div>
-                    <div className="album-details-div">
-                        <span className="album-span">PLAYLIST</span>
-                        <h1 className="album-name-header">{playlist?.name}</h1>
-                        <span className="album-details-username">{sessionUser?.username}</span>
-                        <span className="album-details-song-amount">{"15"} songs, </span>
-                        <span className="album-details-length">{"40 min 50 sec"}</span>
+                    <div className="playlist-details-div">
+                        <span className="playlist-span">PLAYLIST</span>
+                        <h1 className="playlist-name-header">{playlist?.name}</h1>
+                        <span className="playlist-details-username">{sessionUser?.username}</span>
+                        <span className="playlist-details-song-amount">{"15"} songs, </span>
+                        <span className="playlist-details-length">{"40 min 50 sec"}</span>
                     </div>
                 </div>
 
-                <div className="album-page-buttons-div">
-                    {/* <div className="album-song-control-div" onClick={playlistPlayerButton}>
-                        <img className="album-song-control-image" src={!isPlaying ? "https://i.imgur.com/7QSCa6X.png" : "https://i.imgur.com/QtT4j0R.png"}/>
+                <div className="playlist-page-buttons-div">
+                    {/* <div className="playlist-song-control-div" onClick={playlistPlayerButton}>
+                        <img className="playlist-song-control-image" src={!isPlaying ? "https://i.imgur.com/7QSCa6X.png" : "https://i.imgur.com/QtT4j0R.png"}/>
                     </div> */}
-                    {/* <div className="album-dropdown-div" onClick={handleDropdown} ref={dropdownRef}>
+                    {/* <div className="playlist-dropdown-div" onClick={handleDropdown} ref={dropdownRef}>
                         <i className="fas fa-ellipsis-h"></i>
                         {showDropdown &&
-                            <div className="album-dropdown-options" onClick={e => e.stopPropagation()}>
-                                    <div className="album-dropdown-option-playlist"
+                            <div className="playlist-dropdown-options" onClick={e => e.stopPropagation()}>
+                                    <div className="playlist-dropdown-option-playlist"
                                     onMouseEnter={() => setShowPlaylistOptions(true)}
                                     onMouseLeave={() => setShowPlaylistOptions(false)}>
                                         Add to playlist
                                         <i className="fas fa-caret-right"></i>
 
                                         { showPlaylistOptions &&
-                                            <div className="album-dropdown-playlist-options-div">
+                                            <div className="playlist-dropdown-playlist-options-div">
                                                 <ul>
                                                     {userPlaylists?.map(userPlaylist => 
-                                                        <li id={userPlaylist.id} className="album-dropdown-playlist-option">{userPlaylist.name}</li>
+                                                        <li id={userPlaylist.id} className="playlist-dropdown-playlist-option">{userPlaylist.name}</li>
                                                         )}
                                                 </ul>
                                             </div>
@@ -129,12 +128,12 @@ const Playlist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
                     </div> */}
                 </div>
                 
-                <div className="album-songs-section-container">
-                    <table className="album-songs-section">
+                <div className="playlist-songs-section-container">
+                    <table className="playlist-songs-section">
                         <thead>
                             <tr className="song-column-header">
                             <th className="song-column-num">#</th>
-                            <th className="album-song-column-title">TITLE</th>
+                            <th className="playlist-song-column-title">TITLE</th>
                             <th className="song-column-duration"><i className="far fa-clock"></i></th>
                             </tr>
                         </thead>

@@ -15,11 +15,9 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
             const nav = document.querySelector("nav")
             
             if (e.target.scrollTop === 0) {
-                console.log("IF")
                 nav?.classList.add("top-navigation-bar-default")
                 nav?.classList.remove("top-navigation-bar-scrolled")
             } else if (e.target.scrollTop > 0) {
-                console.log("teELSE IF")
                 nav?.classList.remove("top-navigation-bar-default")
                 nav?.classList.add("top-navigation-bar-scrolled")
             }
@@ -38,7 +36,13 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
 
     const { albumId } = useParams();
     const album = albums?.find(album => album?.Artist?.id === +albumId)
-    const albumSongs = album?.Songs
+    const songs = Object.values(useSelector(state => state.songs))
+    const albumSongs = songs.filter(song => song.albumId === +albumId)
+    // console.log("ALBUM", album) 
+    // const albumSongsReversed = album?.Songs
+    // console.log("SONGS FROM ALBUM", albumSongs)
+    // const albumSongs = albumSongsReversed.reverse()
+    // console.log("ALBUM SONGS", albumSongs)
 
     const sessionUser = useSelector(state => state.session?.user)
     const sessionUserLike = album?.Users?.find(user => user?.id === sessionUser?.id)
@@ -78,15 +82,12 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
         }
     }
 
-    const albumPlayerButton = () => {
-        setIsPlaying(!isPlaying)
+    const albumPlayerButtonClick = () => {
+        const previousValue = isPlaying
+        setIsPlaying(!previousValue)
         // If not is playing, then play and begin animation of time change
 
-        if (!isPlaying) {
-            const firstSong = albumSongs[0]
-            audio.src = firstSong.songUrl
-            setNowPlaying(firstSong)
-            setIsPlaying(true)
+        if (!previousValue) {
             audio.play()
             // Else pause and stop animation of time change
         } else {
@@ -148,9 +149,7 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
                 </div>
 
                 <div className="album-page-buttons-div">
-                    <div className="album-song-control-div" onClick={albumPlayerButton}>
-                        <img className="album-song-control-image" src={!isPlaying ? "https://i.imgur.com/7QSCa6X.png" : "https://i.imgur.com/QtT4j0R.png"}/>
-                    </div>
+                        <img className="big-player-button" src={!isPlaying ? "https://i.imgur.com/7QSCa6X.png" : "https://i.imgur.com/QtT4j0R.png"} onClick={albumPlayerButtonClick}/>
                     <div className="album-heart-div">
                         <button className="album-like-button" onClick={handleAlbumLike} >
                             <i id={!liked ? "heart-default" : "heart-liked"} className="far fa-heart"></i>
@@ -169,8 +168,8 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
                                         { showPlaylistOptions &&
                                             <div className="album-dropdown-playlist-options-div">
                                                 <ul>
-                                                    {userPlaylists.map(userPlaylist => 
-                                                        <li id={userPlaylist.id} className="album-dropdown-playlist-option" onClick={addAlbumToPlaylist}>{userPlaylist.name}</li>
+                                                    {userPlaylists?.map(userPlaylist => 
+                                                        <li id={userPlaylist?.id} className="album-dropdown-playlist-option" onClick={addAlbumToPlaylist}>{userPlaylist?.name}</li>
                                                         )}
                                                 </ul>
                                             </div>

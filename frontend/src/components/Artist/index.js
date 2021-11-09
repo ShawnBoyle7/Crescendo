@@ -31,7 +31,7 @@ const Artist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
     const artistSongs = songs?.filter(song => song?.artistId === +artistId)
 
     const sessionUser = useSelector(state => state.session?.user)
-    const sessionUserFollow = artist?.Users?.find(user => user?.id === sessionUser?.id)
+    // const sessionUserFollow = artist?.Users?.find(user => user?.id === sessionUser?.id)
     // const artistFollowed = sessionUserFollow?.id === sessionUser?.id
 
     const pathName = location?.pathname?.split('/');
@@ -66,19 +66,21 @@ const Artist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
         }
     }, [showDropdown])
 
-    const artistPlayerButton = () => {
-        setIsPlaying(!isPlaying)
+    const artistPlayerButtonClick = () => {
+        const previousValue = isPlaying
+        setIsPlaying(!previousValue)
         // If not is playing, then play and begin animation of time change
 
-        if (!isPlaying) {
-            const firstSong = artistSongs[0]
-            audio.src = firstSong.songUrl
-            setNowPlaying(firstSong)
+        if (!previousValue) {
+            if (!nowPlaying) {
+                setNowPlaying(artistSongs[0])
+            }
             setIsPlaying(true)
             audio.play()
             // Else pause and stop animation of time change
         } else {
             audio.pause()
+            setIsPlaying(false)
         }
     }
 
@@ -104,9 +106,7 @@ const Artist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
                 </div>
 
                 <div className="artist-page-buttons-div">
-                    <div className="artist-song-control-div" onClick={artistPlayerButton}>
-                        <img className="artist-song-control-image" src={!isPlaying ? "https://i.imgur.com/7QSCa6X.png" : "https://i.imgur.com/QtT4j0R.png"}/>
-                    </div>
+                        <img className="big-player-button" src={!isPlaying ? "https://i.imgur.com/7QSCa6X.png" : "https://i.imgur.com/QtT4j0R.png"} onClick={artistPlayerButtonClick}/>
 
                     {/* <button className={!artistFollowed ? "artist-not-followed" : "artist-followed"} onClick={handleArtistFollow}> 
                         {artistFollowed ? "Follow" : "Following"}

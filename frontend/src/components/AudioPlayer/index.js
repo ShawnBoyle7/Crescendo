@@ -1,12 +1,16 @@
 import React, { useState, useRef, useEffect } from "react"  
 import { useSelector, useDispatch } from "react-redux"
 import { deleteSongLike, likeSong } from "../../store/users";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { getSongs } from "../../store/songs"
 import "./AudioPlayer.css"
 
 const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
     const dispatch = useDispatch()
+    const location = useLocation()
+    const pathName = location?.pathname?.split('/');
+    const path = pathName[1];
+    const pageId = pathName[2]
     
     const songs = Object.values(useSelector(state => state.songs))
     const currentSong = songs?.find(song => song?.id === nowPlaying?.id)
@@ -17,21 +21,52 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
     
     const album = nowPlaying?.Album
     const albumSongs = songs?.filter(song => song?.albumId === album?.id)
-    const queue = [...albumSongs]
-    const nextSong = queue.find(song => (nowPlaying.id + 1) === song.id)
-    const previousSong = queue.find(song => (nowPlaying.id - 1) === song.id)
+    
+    const artists = Object.values(useSelector(state => state.artists))
+    const playlists = Object.values(useSelector(state => state.playlists))
 
     const [duration, setDuration] = useState(0)
     const [currentTime, setCurrentTime] = useState(0)
     const [volume, setVolume] = useState(0.3)
     const [previousVolume, setPreviousVolume] = useState(0)
     const [repeatStatus, setRepeatStatus] = useState("none")
+    const [queue, setQueue] = useState([])
+    const currentIndex = queue?.indexOf(nowPlaying)
+    let nextSong = queue ? queue[currentIndex + 1] : null
+    let previousSong = queue ? queue[currentIndex - 1] : null
 
     // Essentially establishing state variables for objects, keeping reference to them on re-render.
     const audioElement = useRef();
     const progressBar = useRef();
     const volumeBar = useRef();
     const animationRef = useRef();
+
+    useEffect(() => {
+        
+        switch (path) {
+            case "albums":
+                albumSongs.sort((a, b) => a.id - b.id)
+                setQueue(albumSongs)
+                break;
+            case "artists":
+                const artist = artists?.find(artist => (artist?.id) === +pageId)
+                const artistSongs = songs?.filter(song => song?.artistId === artist?.id)
+
+                let artistSongsByPopularity = artistSongs.sort((a, b) => {
+                    return b.Users?.length - a.Users?.length
+                });
+                
+                if (artistSongsByPopularity.length > 5) artistSongsByPopularity = artistSongsByPopularity.slice(0, 5)
+                setQueue(artistSongsByPopularity)
+                break;
+            case "playlists":
+                const playlist = playlists?.find(playlist => playlist?.id === +pageId)
+                const playlistSongs = playlist?.Songs
+                
+                setQueue(playlistSongs)
+                break;
+            }
+        }, [path, nowPlaying, isPlaying])
 
     // If the audio element loaded the mp3 file, set the duration state variable and progress bar max value to the length of it
     useEffect(() => {
@@ -67,9 +102,9 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
     // I use this to update the current time state variable and the rendered current time of the progress bar when the progress bar value changes
     const updateCurrentTime = () => {
         // Update current time state variable
-        if (progressBar) {
+        // if (progressBar) {
             setCurrentTime(progressBar?.current?.value)
-        }
+        // }
         // Update rendered elapsed time on progress bar 
         progressBar?.current?.style?.setProperty('--seek-before-width', `${progressBar?.current?.value / duration * 100}%`)
     }
@@ -83,7 +118,9 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
     // Update the current time when time elapses
     const whilePlaying = () => {
         // Update progress bar value to match the audio element, since the audio element tracks the MP3 duration
-        progressBar.current.value = audioElement?.current?.currentTime
+        if (progressBar.current.value) {
+            progressBar.current.value = audioElement?.current?.currentTime
+        }
         // Update the current time to match it
         updateCurrentTime()
         // Update the animation reference value with whilePlaying as the callback
@@ -182,7 +219,7 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
     }
 
     // Play the previous song in the album after a song ends or when the button is clicked
-    const playPreviousSongInAlbum = () => {
+    const playPreviousSong = () => {
         if (!previousSong) {
             setNowPlaying(nowPlaying)
             audioElement.current.src = nowPlaying?.songUrl
@@ -303,7 +340,7 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
                     </div> */}
 
                     <div className="playbar-controls-button-div">
-                        <button onClick={skipSong} disabled={!nowPlaying ? true : false}>
+                        <button onClick={playPreviousSong} disabled={!nowPlaying ? true : false}>
                             <i className="fas fa-step-backward"></i>
                         </button>
                     </div>
@@ -315,7 +352,7 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
                     </div>
                 
                     <div className="playbar-controls-button-div">
-                        <button onClick={playPreviousSongInAlbum} disabled={!nowPlaying ? true : false}>
+                        <button onClick={skipSong} disabled={!nowPlaying ? true : false}>
                             <i className="fas fa-step-forward"></i>
                         </button>
                     </div>

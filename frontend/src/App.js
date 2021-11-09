@@ -18,6 +18,7 @@ import Playlists from './components/Playlists';
 import Profile from './components/Profile';
 import Splash from './components/Splash';
 import Artist from "./components/Artist"
+import Playlist from './components/Playlist';
 import { getArtists } from "./store/artists";
 import { getUsers } from "./store/users";
 import { getGenres } from "./store/genres";
@@ -110,6 +111,10 @@ function App() {
 
                             <Route path="/library">
                                 <Library navComponent={navComponent} />
+                            </Route>
+
+                            <Route path="/playlists/:playlistId">
+                                <Playlist setNowPlaying={setNowPlaying} nowPlaying={nowPlaying} albums={albums && albums} isPlaying={isPlaying} setIsPlaying={setIsPlaying}/>
                             </Route>
 
                             <Route path="/playlists">

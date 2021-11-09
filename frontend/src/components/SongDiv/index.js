@@ -59,7 +59,7 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
             document.removeEventListener("mousedown", dropdownListener)
         }
     }, [showDropdown])
-    
+
     const detectPageType = () => {
         let className;
         
@@ -176,40 +176,40 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
             return false;
         }
     }
-    
-    const playSong = () => {
-        setNowPlaying(song)
-        audio.play()
-        setIsPlaying(true)
+
+    const playToggle = () => {
+        if (isPlaying && song === nowPlaying) {
+            audio.pause()
+            setIsPlaying(false)
+        } else {
+            setNowPlaying(song)
+            audio.play()
+            setIsPlaying(true)
+        }
+
     }
-    
-    const stopSong = () => {
-        audio.pause()
-        setIsPlaying(false)
-    }
-    
 
     // Play column conditional render function
     const playHoverStatusRender = () => {
         const songNum = (
-            <div id={!isPlaying && nowPlaying?.id === song.id ? "is-playing" : ""}>{num}</div>
+            <div id={!isPlaying && nowPlaying?.id === song?.id ? "is-playing" : ""}>{num}</div>
             )
             
         const volumeIconPlaying = (
-            <i id={isPlaying && nowPlaying?.id === song.id ? "is-playing" : ""} className="fas fa-volume-up"></i>
+            <i id={isPlaying && nowPlaying?.id === song?.id ? "is-playing" : ""} className="fas fa-volume-up"></i>
             )
         
         const playButton = (
-            <i className="fas fa-play" onClick={playSong}></i>
+            <i className="fas fa-play" onClick={playToggle}></i>
             )
     
         const pauseButton = (
-            <i className="fas fa-pause" onClick={stopSong}></i>
+            <i className="fas fa-pause" onClick={playToggle}></i>
             )
 
         // Hovering
         if (isHovering) {
-            if (isPlaying && nowPlaying?.id === song.id) {
+            if (isPlaying && nowPlaying?.id === song?.id) {
                 return pauseButton
             } else {
                 return playButton
@@ -218,7 +218,7 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
 
         // Not hovering
         if (!isHovering) {
-            if (isPlaying && nowPlaying?.id === song.id) {
+            if (isPlaying && nowPlaying?.id === song?.id) {
                 return volumeIconPlaying
             } else {
                 return songNum
@@ -259,7 +259,7 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
                 </td>
 
                 <td className={pageType === "playlists" || pageType === "library" ? "date-added-column" : "hidden"}>
-                    {song?.Album?.releaseDate}
+                    {"2 days ago"}
                 </td>
                 
                 <td className="duration-column">

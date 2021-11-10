@@ -60,7 +60,6 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
         }
     }, [showDropdown])
 
-    // this works?
     const detectPageType = () => {
         let className;
         
@@ -117,20 +116,6 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
         } 
     }
 
-    // const handleMouseEnter = (e) => {
-    //     if (e.target.className === "current-before-playlist-add" || "other-before-playlist-add") {
-    //         console.log("SETTING TRUE")
-    //         setRevealPlaylists(true)
-    //     } else if (e.target.className === "song-dropdown-option") {
-    //         console.log("SETTING FALSE")
-    //         setRevealPlaylists(false)
-    //     } else {
-    //         console.log("DEFAULT")
-    //         setIsHovering(true)
-    //     }
-    // }
-
-    // this works
     const setPlaylistSelectorPosition = () => {
         if (revealPlaylists) {
             if (detectPageType() === "song-dropdown-options") {

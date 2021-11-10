@@ -100,3 +100,45 @@ table.song-columns {
     border-spacing: 0 5px;
     letter-spacing: 0.3px;
 }
+
+.playlist-dropdown-options {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background: #282828;
+    height: 76px;
+    width: 166px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    z-index: 1000;
+}
+
+.playlist-dropdown-options > div {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: start;
+    height: 40px;
+    width: 100%;
+    gap: 8px;
+    padding: 8px 12px 8px 12px;
+    padding-inline-end: 8px;
+}
+
+.playlist-dropdown-options > div > span {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 16px;
+    text-transform: none;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: white;
+}
+
+.playlist-dropdown-options > div:hover {
+    background: #4f4f4f;
+}

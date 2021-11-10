@@ -211,10 +211,10 @@ const Playlist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
                         {showDropdown && 
                             <div className="playlist-dropdown-options" onClick={(e) => e.stopPropagation()}>
                                 <div className="edit-playlist" onClick={handleEdit}>
-                                    Edit details
+                                    <span>Edit Details</span>
                                 </div>
                                 <div className="delete-playlist" onClick={handleDelete}>
-                                    Delete
+                                    <span>Delete</span>
                                 </div>
                             </div>}
                     </div>

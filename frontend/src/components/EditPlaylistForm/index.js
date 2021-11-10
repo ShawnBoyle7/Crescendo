@@ -26,6 +26,10 @@ const EditPlaylistForm = ({ setShowEditModal, playlistId }) => {
     const submitHandler = async (e) => {
         e.preventDefault()
 
+        if (validationErrors.length) {
+            setShowErrors(true)
+        }
+
         const updatedPlaylist = await dispatch(editPlaylist(name, playlistId))
         if (updatedPlaylist) {
             await dispatch(getPlaylists())
@@ -65,9 +69,8 @@ const EditPlaylistForm = ({ setShowEditModal, playlistId }) => {
                     type="text"
                     name="name"
                     value={name}
-                    placeholder={playlist?.name}
+                    placeholder="Name"
                     onChange={e => setName(e.target.value)}
-                    // onBlur={() => setShowErrors(true)}
                 />
                 </div>
                 <div className="edit-playlist-description-div">

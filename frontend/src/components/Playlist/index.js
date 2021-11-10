@@ -205,9 +205,9 @@ const Playlist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
                             <i className="fas fa-ellipsis-h"></i>
                         {showDropdown && 
                             <div className="playlist-dropdown-options" onClick={(e) => e.stopPropagation()}>
-                                <div className="edit-playlist" onClick={handleEdit}>
+                                {/* <div className="edit-playlist" onClick={handleEdit}>
                                     <span>Edit Details</span>
-                                </div>
+                                </div> */}
                                 <div className="delete-playlist" onClick={handleDelete}>
                                     <span>Delete</span>
                                 </div>

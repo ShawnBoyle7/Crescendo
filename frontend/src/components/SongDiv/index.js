@@ -26,8 +26,7 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
     const [isHovering, setIsHovering] = useState(false)
     const [revealPlaylists, setRevealPlaylists] = useState(false)
     const [showDropdown, setShowDropdown] = useState(false)
-    const [pageType, setPageType] = useState(path)
-    
+
     // Functions 
     let audio;
     useEffect(() => {
@@ -63,7 +62,7 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
     const detectPageType = () => {
         let className;
         
-        switch(pageType) {
+        switch(path) {
             case "playlists":
                 if (playlists.find(playlist => playlist?.id === sessionUser?.id)) {
                     className = "song-dropdown-options"
@@ -91,8 +90,8 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
             return className;
         }
 
-    const setSongWidth = (pageType) => {
-        switch (pageType) {
+    const setSongWidth = (path) => {
+        switch (path) {
             case "playlists":
                 return "title-column";
             case "artists":
@@ -224,10 +223,10 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
                 <td className="num-column">
                     {playHoverStatusRender()}
                 </td>
-                <td className={setSongWidth(pageType)}>
+                <td className={setSongWidth(path)}>
                     <div className="title-details">
                         <div className="item-art-container">
-                            <img className={validArtLocations.includes(pageType) ? "item-album-art" : "hidden"} src={song?.Album?.imgUrl} alt="song art" />
+                            <img className={validArtLocations.includes(path) ? "item-album-art" : "hidden"} src={song?.Album?.imgUrl} alt="song art" />
                         </div>
                         <div className="title-details-text-container">
                             <div className="title-artist-container">
@@ -235,7 +234,7 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
                                     {song?.name}
                                 </p>
                                 <div className="song-artist-link-container">
-                                    <Link to={`/artists/${song?.Artist?.id}`} className={pageType === "artists" ? "hidden" : "song-artist-link"}>
+                                    <Link to={`/artists/${song?.Artist?.id}`} className={path === "artists" ? "hidden" : "song-artist-link"}>
                                         {song?.Artist?.name}
                                     </Link>
                                 </div>
@@ -244,13 +243,13 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
                     </div>
                 </td>
 
-                <td className={pageType === "playlists" || pageType === "library" ? "album-column" : "hidden"}>
+                <td className={path === "playlists" || path === "library" ? "album-column" : "hidden"}>
                     <Link to={`/albums/${song?.Album?.id}`}>
                         {song?.Album?.name}
                     </Link>
                 </td>
 
-                <td className={pageType === "playlists" || pageType === "library" ? "date-added-column" : "hidden"}>
+                <td className={path === "playlists" || path === "library" ? "date-added-column" : "hidden"}>
                     {"2 days ago"}
                 </td>
                 

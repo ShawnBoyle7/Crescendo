@@ -92,10 +92,10 @@ export const editPlaylist = (name, playlistId) => async dispatch => {
 export const createPlaylist = (formData) => async (dispatch) => {
     const response = await csrfFetch('/api/playlists', {
         method: "POST",
-        body: JSON.stringify(formData),
         headers: {
             "Content-Type": "application/json"
-        }
+        },
+        body: JSON.stringify(formData),
     });
 
     // 4.

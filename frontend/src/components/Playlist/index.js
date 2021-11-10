@@ -1,15 +1,12 @@
 import React, { useEffect, useState, useRef } from "react"
 import { useParams, useLocation, useHistory } from "react-router-dom"
-import { useDispatch, useSelector} from "react-redux"
-import { deletePlaylist, editPlaylist, getPlaylists } from '../../store/playlists';
-import { getSongs } from "../../store/songs";
+import { useSelector} from "react-redux"
 import EditPlaylistFormModal from "../EditPlaylistFormModal";
 import DeletePlaylistModal from "../DeletePlaylistModal"
 import SongDiv from "../SongDiv";
 import './Playlist.css';
 
 const Playlist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
-    const dispatch = useDispatch()
     const history = useHistory()
 
     useEffect(() => {
@@ -94,12 +91,12 @@ const Playlist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
         }
     }
 
-    const handleEdit = (e) => {
+    const handleEdit = () => {
         setShowEditModal(true)
         setShowDropdown(false)
     }
 
-    const handleDelete = (e) => {
+    const handleDelete = () => {
         setShowDeleteModal(true)
         setShowDropdown(false)
     }
@@ -211,18 +208,21 @@ const Playlist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
                                 <div className="edit-playlist" onClick={handleEdit}>
                                     <span>Edit Details</span>
                                 </div>
-                                <div className="delete-playlist" onClick={(e) => handleDelete(e)}>
+                                <div className="delete-playlist" onClick={handleDelete}>
                                     <span>Delete</span>
                                 </div>
                             </div>}
                     </div>
                 </div>
-                                {showEditModal && 
-                                    <EditPlaylistFormModal playlistId={playlistId} showEditModal={showEditModal} setShowEditModal={setShowEditModal}/>
-                                }
-                                {showDeleteModal && 
-                                    <DeletePlaylistModal playlistId={playlistId} showDeleteModal={showDeleteModal} setShowDeleteModal={setShowDeleteModal}/>
-                                }
+
+                {showEditModal && 
+                    <EditPlaylistFormModal playlistId={playlistId} showEditModal={showEditModal} setShowEditModal={setShowEditModal}/>
+                }
+                
+                {showDeleteModal && 
+                    <DeletePlaylistModal playlistId={playlistId} showDeleteModal={showDeleteModal} setShowDeleteModal={setShowDeleteModal}/>
+                }
+
                 {playlistEmptyOrNotEmpty()}
             </div>
         </>

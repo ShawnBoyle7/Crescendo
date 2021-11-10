@@ -61,6 +61,7 @@
     align-items: center;
     background-color: rgba(0,0,0,.7);
     border: 0;
+    color: white;
 }
 
 .profile-button:hover {

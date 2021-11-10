@@ -89,6 +89,7 @@ h1.playlist-name {
     padding: 9px 0px 9px 0px;
     text-overflow: ellipsis;
     cursor: pointer;
+    color: white;
 }
 
 table.song-columns {

@@ -121,6 +121,7 @@ const Playlist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
                     isPlaying={isPlaying}
                     setIsPlaying={setIsPlaying}
                     nowPlaying={nowPlaying}
+                    playlist={playlist}
                     setNowPlaying={setNowPlaying}/>)
             )
         } else if (likedSongs && likedSongs?.length > 0) {

@@ -8,7 +8,7 @@ import { addPlaylistSong } from '../../store/playlists';
 import { Link } from "react-router-dom"
 import "./SongDiv.css"
 
-const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, nowPlaying, setNowPlaying }) => {
+const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, nowPlaying, setNowPlaying, playlist }) => {
     const dispatch = useDispatch()
     const history = useHistory()
     
@@ -60,6 +60,7 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
         }
     }, [showDropdown])
 
+    // this works?
     const detectPageType = () => {
         let className;
         
@@ -107,15 +108,29 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
     }
                 
     const handleMouseEnter = (e) => {
-        if (e.target.className === "current-before-playlist-add" || "other-before-playlist-add") {
+        if (e.target.className === "add-to-playlist") {
+            console.log("SETTING TRUE")
             setRevealPlaylists(true)
         } else if (e.target.className === "song-dropdown-option") {
+            console.log("SETTING FALSE")
             setRevealPlaylists(false)
-        } else {
-            setIsHovering(true)
-        }
+        } 
     }
 
+    // const handleMouseEnter = (e) => {
+    //     if (e.target.className === "current-before-playlist-add" || "other-before-playlist-add") {
+    //         console.log("SETTING TRUE")
+    //         setRevealPlaylists(true)
+    //     } else if (e.target.className === "song-dropdown-option") {
+    //         console.log("SETTING FALSE")
+    //         setRevealPlaylists(false)
+    //     } else {
+    //         console.log("DEFAULT")
+    //         setIsHovering(true)
+    //     }
+    // }
+
+    // this works
     const setPlaylistSelectorPosition = () => {
         if (revealPlaylists) {
             if (detectPageType() === "song-dropdown-options") {
@@ -169,14 +184,6 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
         setIsHovering(false)
     }
     
-    const playlistActionsValidator = () => {
-        if (path === "playlists" && playlists.find(playlist => playlist?.id === sessionUser?.id) !== undefined) {
-            return true
-        } else {
-            return false;
-        }
-    }
-
     const playToggle = () => {
         if (isPlaying && song === nowPlaying) {
             audio.pause()
@@ -268,7 +275,7 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
                             <i id={!liked ? "heart-default" : "heart-liked"} className={isHovering ? "far fa-heart" : "far fa-heart invisible"} onClick={likeCurrentSong}></i>
                             {/* Song duration below */}
                             <span className="song-div-song-length">{song?.songLength}</span>
-                            <div className={isHovering ? "dropghbdown" : "invisible"} onClick={handleDropdown} ref={dropdownRef}>
+                            <div className={isHovering ? "dropdown" : "invisible"} onClick={handleDropdown} ref={dropdownRef}>
                                 <i className="fas fa-ellipsis-h"></i>
                             </div>
                         </div>
@@ -278,15 +285,18 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
                             <div className="song-dropdown-option" onMouseEnter={(e) => handleMouseEnter(e)} onClick={() => history.push(`/artists/${song.Artist.id}`)}>
                                 Go to artist
                             </div>
+
                             <div className="song-dropdown-option" onMouseEnter={(e) => handleMouseEnter(e)} onClick={() => history.push(`/albums/${song.Album.id}`)}>
                                 Go to album
                             </div>
-                            <div className={playlistActionsValidator() ? "song-dropdown-option" : "hidden"}
+
+                            <div className={path === "playlists" ? "song-dropdown-option" : "hidden"}
                                 onMouseEnter={(e) => handleMouseEnter(e)}
                                 onClick={removeSongFromPlaylist}>
                                 Remove from this playlist
                             </div>
-                            <div className={playlistActionsValidator() ? "current-before-playlist-add" : "other-before-playlist-add"} onMouseEnter={(e => handleMouseEnter(e))} ref={playlistsRef}>
+
+                            <div className="add-to-playlist" onMouseEnter={(e => handleMouseEnter(e))} ref={playlistsRef}>
                                     <span>Add to playlist</span>
                                     <i className="fas fa-caret-right"></i>
                                 <div className={setPlaylistSelectorPosition()}>

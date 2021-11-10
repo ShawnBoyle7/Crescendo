@@ -7,7 +7,7 @@ function EditPlaylistFormModal({ playlistId, showEditModal, setShowEditModal }) 
     return (
     <>
         {showEditModal && (
-        <Modal onClose={() => setShowEditModal(false)}>
+        <Modal className="edit-playlist-modal" onClose={() => setShowEditModal(false)}>
             <EditPlaylistForm playlistId={playlistId} setShowEditModal={setShowEditModal}/>
         </Modal>
         )}

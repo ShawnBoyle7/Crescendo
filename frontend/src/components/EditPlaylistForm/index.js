@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { editPlaylist, getPlaylists } from "../../store/playlists";
+import { useSelector} from "react-redux";
 import "./EditPlaylistForm.css"
 
 const EditPlaylistForm = ({ setShowEditModal, playlistId }) => {
@@ -10,7 +11,8 @@ const EditPlaylistForm = ({ setShowEditModal, playlistId }) => {
     const [validationErrors, setValidationErrors] = useState([]);
     const [showErrors, setShowErrors] = useState(false)
 
-    let number = 0;
+    const playlists = Object.values(useSelector(state => state.playlists))
+    const playlist = playlists.find(playlist => playlist?.id === +playlistId)
 
     useEffect(() => {
         const errors = []
@@ -32,24 +34,51 @@ const EditPlaylistForm = ({ setShowEditModal, playlistId }) => {
     }
 
     return (
-        <form className="playlist-form" onSubmit={submitHandler}>
-            <h2>Update your Playlist name!</h2>
-            {showErrors && <ul className="errors">
-                {validationErrors.length > 0 ? validationErrors.map(error => <li key={number++}>{error}</li>) : <></>}
-            </ul>}
+        <form className="edit-playlist-form" onSubmit={submitHandler}>
+            {showErrors && 
+                <div className="errors-div">
+                    <ul className="errors">
+                        {validationErrors?.length > 0 ? 
+                            validationErrors?.map((error, idx) => 
+                                <li key={idx}>{error}</li>) 
+                        : <></>}
+                    </ul>
+                </div>
+            }
 
-            <div>
+            <div className="edit-playlist-header-div">
+                <h1 className="edit-playlist-header">Edit details</h1>
+                <button className="edit-playlist-header-cancel-button" onClick={e => setShowEditModal(false)}>
+                    &#10005;
+                </button>
+            </div>
+
+            <div className="edit-playlist-content-div">
+                <div className="edit-playlist-content-image-parent-div">
+                    <div className="edit-playlist-content-image-child-div">
+                        <img className="edit-playlist-image" src={playlist?.Songs.length && playlist?.Songs[0].Album?.imgUrl ? playlist?.Songs.length && playlist?.Songs[0].Album?.imgUrl : "https://i.imgur.com/pZ6CUjL.png"}/>
+                    </div>
+                </div>
+                <div className="edit-playlist-input-parent-div">
                 <input
+                    className="edit-playlist-input"
                     type="text"
                     name="name"
-                    onBlur={() => setShowErrors(true)}
+                    value={name}
+                    placeholder={playlist?.name}
                     onChange={e => setName(e.target.value)}
-                    value={name} />
+                    // onBlur={() => setShowErrors(true)}
+                />
+                </div>
+                <div className="edit-playlist-description-div">
+                    <textarea className="edit-playlist-description-textarea" placeholder="Playlist description coming soon!"/>
+                </div>
+                <button className="edit-playlist-button">
+                    Save
+                </button>
+                <p className="disclaimer">By proceeding, you agree to give Crescendo access to the image you choose to upload. Please make sure you have the right to upload the image.</p>
             </div>
-            <button type="submit">
-                Update Playlist
-            </button>
-            <button onClick={e => setShowEditModal(false)}>Cancel Edit</button>
+
         </form>
     )
 }

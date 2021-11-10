@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { editPlaylist } from "../../store/playlists";
-import { useParams } from "react-router-dom";
+import { editPlaylist, getPlaylists } from "../../store/playlists";
 
-const EditPlaylistForm = ({ setShowEditForm }) => {
+const EditPlaylistForm = ({ setShowEditModal, playlistId }) => {
     const dispatch = useDispatch();
 
-    const { playlistId } = useParams();
     const [name, setName] = useState('');
     const [validationErrors, setValidationErrors] = useState([]);
     const [showErrors, setShowErrors] = useState(false)
@@ -25,17 +23,11 @@ const EditPlaylistForm = ({ setShowEditForm }) => {
     const submitHandler = async (e) => {
         e.preventDefault()
 
-        const formValues = {
-            name
+        const updatedPlaylist = await dispatch(editPlaylist(name, playlistId))
+        if (updatedPlaylist) {
+            await dispatch(getPlaylists())
         }
-
-        // 1.
-        const createdPlaylist = await dispatch(editPlaylist(formValues, playlistId))
-        if (createdPlaylist) {
-            console.log(formValues)
-            setShowEditForm(false)
-
-        }
+        setShowEditModal(false)
     }
 
     return (
@@ -46,7 +38,6 @@ const EditPlaylistForm = ({ setShowEditForm }) => {
             </ul>}
 
             <div>
-                <label htmlFor="name"> Name </label>
                 <input
                     type="text"
                     name="name"
@@ -54,11 +45,10 @@ const EditPlaylistForm = ({ setShowEditForm }) => {
                     onChange={e => setName(e.target.value)}
                     value={name} />
             </div>
-            <button
-                disabled={validationErrors.length > 0}>
+            <button type="submit">
                 Update Playlist
             </button>
-            <button onClick={e => setShowEditForm(false)}>Cancel Edit</button>
+            <button onClick={e => setShowEditModal(false)}>Cancel Edit</button>
         </form>
     )
 }

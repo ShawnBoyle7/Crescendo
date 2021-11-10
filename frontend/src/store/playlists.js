@@ -5,6 +5,11 @@ const ADD_PLAYLIST = "playlists/ADD_PLAYLIST";
 const RENAME_PLAYLIST = "playlists/RENAME_PLAYLIST"
 const DESTROY_PLAYLIST = "/playlists/DESTROY_PLAYLIST"
 
+const loadPlaylists = (playlists) => ({
+    type: LOAD_PLAYLISTS,
+    playlists
+});
+
 const destroyPlaylist = (playlistId) => ({
     type: DESTROY_PLAYLIST,
     playlistId
@@ -19,6 +24,15 @@ const addPlaylist = (playlist) => ({
     type: ADD_PLAYLIST,
     playlist,
 });
+
+export const getPlaylists = () => async (dispatch) => {
+    const response = await fetch('/api/playlists')
+
+    if (response.ok) {
+        const playlists = await response.json()
+        dispatch((loadPlaylists(playlists)));
+    };
+};
 
 export const addPlaylistSong = (payload) => async (dispatch) => {
     const response = await csrfFetch('/api/playlists/new-song', {
@@ -61,11 +75,11 @@ export const deletePlaylist = (playlistId) => async dispatch => {
     }
 }
 
-export const editPlaylist = (formData, playlistId) => async dispatch => {
+export const editPlaylist = (name, playlistId) => async dispatch => {
     const response = await csrfFetch(`/api/playlists/${playlistId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({name})
     });
 
     if (response.ok) {
@@ -75,7 +89,6 @@ export const editPlaylist = (formData, playlistId) => async dispatch => {
     }
 }
 
-// 2.
 export const createPlaylist = (formData) => async (dispatch) => {
     const response = await csrfFetch('/api/playlists', {
         method: "POST",
@@ -93,24 +106,11 @@ export const createPlaylist = (formData) => async (dispatch) => {
     }
 };
 
-const loadPlaylists = (playlists) => ({
-    type: LOAD_PLAYLISTS,
-    playlists
-});
-
-export const getPlaylists = () => async (dispatch) => {
-    const response = await fetch('/api/playlists')
-
-    if (response.ok) {
-        const playlists = await response.json()
-        dispatch((loadPlaylists(playlists)));
-    };
-};
-
 const initialState = {}
 
 // 5.
 const playlistReducer = (state = initialState, action) => {
+    let stateCopy = {...state}
     switch (action.type) {
         case LOAD_PLAYLISTS: {
             const allPlaylists = {}
@@ -120,17 +120,17 @@ const playlistReducer = (state = initialState, action) => {
             return allPlaylists;
         }
         case ADD_PLAYLIST:
-            const newState = { ...state }
-            newState[action.playlist.id] = action.playlist
-            return newState;
+            stateCopy = { ...state }
+            [action.playlist.id] = action.playlist
+            return stateCopy;
         case RENAME_PLAYLIST:
-            const newNewState = { ...state }
-            newNewState[action.playlist.id] = action.playlist
-            return newNewState;
+            stateCopy = { ...state }
+            [action.playlist.id] = action.playlist
+            return stateCopy;
         case DESTROY_PLAYLIST:
-            const newNewNewState = { ...state }
-            delete newNewNewState[action.playlistId]
-            return newNewNewState;
+            stateCopy = { ...state }
+            delete [action.playlistId]
+            return stateCopy;
         default:
             return state;
     }

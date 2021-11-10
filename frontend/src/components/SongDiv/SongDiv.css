@@ -168,13 +168,18 @@ th.album-song-column-title {
     display: flex;
     flex-direction: column;
     position: absolute;
-    right: 5px;
+    right: 5%;
+    top: 4%;
     background: #282828;
-    height: 144px;
+    box-shadow: 0 16px 24px rgba(0,0,0,.3),0 6px 8px rgba(0,0,0,.2);
+    padding: 8px;
+    max-width: 350px;  
+    min-width: 160px;
     width: 217px;
     justify-content: center;
     align-items: center;
-    border-radius: 3px;
+    border-radius: 4px;
+    color: var(--white);
 }
 
 .song-dropdown-default { 
@@ -195,7 +200,7 @@ th.album-song-column-title {
     color: var(--white);
 }
 
-.song-dropdown-options > div, .song-dropdown-default > div, li.playlist-item {
+.song-dropdown-option, .playlist-item, .add-to-playlist {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -206,6 +211,7 @@ th.album-song-column-title {
     position: relative;
     text-align: start;
     width: 100%;
+    z-index: 1;
 }
 
 .song-div-song-length {
@@ -263,6 +269,7 @@ li.playlist-item:hover {
     box-shadow: 0px 3px 19px 4px var(--black);
     font-size: 16px;
     color: var(--white);
+    width: 100%;
 }
 
 div.playlist-selector-container, div.playlist-selector-container-other {
@@ -270,10 +277,15 @@ div.playlist-selector-container, div.playlist-selector-container-other {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    right: 11.5vw;
-    bottom: 4vh;
+    right: 10.3vw;
+    bottom: -1vh;
     height: 500px;
-    z-index: 3;
+    z-index: 5;
+
+    min-width: 185px;
+    max-width: 350px;
+    max-height: calc(100vh - 24px);
+    padding: 4px;
 }
 
 .song-artist-link-container {

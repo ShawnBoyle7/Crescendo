@@ -1,0 +1,140 @@
+.edit-playlist-modal {
+    background-color: #282828;
+    border-radius: 8px;
+    box-shadow: 0 4px 4px rgba(0,0,0,.3);
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 384px;
+    width: 524px;
+}
+
+.edit-playlist-header-div {
+    display: flex;
+    justify-content: space-between;
+    padding: 24px;
+    color: white;
+}
+
+.edit-playlist-header-div h1 {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -.04em;
+    line-height: 28px;
+    text-transform: none;
+}
+
+.edit-playlist-header-cancel-button {
+    background: none;
+    border: none;
+    color: #BFBFBF;
+    font-size: 20px;
+    font-weight: 300;
+    height: 35px;
+    width: 35px;
+    display: flex;
+    align-items: center;
+    align-self: end;
+    justify-content: center;
+    margin-inline-end: -8px;
+    margin-top: -8px;
+}
+
+.edit-playlist-content-div {
+    display: grid;
+    grid-gap: 16px;
+    grid-template: 32px 132px 32px auto/180px 1fr;
+    grid-template-areas: "album-image title" "album-image description" ". save-button" "disclaimer disclaimer";
+    padding: 0 24px 24px;
+}
+
+.edit-playlist-content-image-parent-div {
+    grid-area: album-image;
+    height: 180px;
+    margin: 0;
+    position: relative;
+    width: 180px;
+}
+
+.edit-playlist-content-image-child-div {
+    height: 100%;
+    width: 100%;
+}
+
+.edit-playlist-image {
+    height: 100%;
+    width: 100%;
+    box-shadow: 0 4px 60px rgba(0,0,0,.5);
+    object-fit: cover;
+    object-position: center center;
+}
+
+.edit-playlist-input-parent-div {
+    grid-area: title;
+    position: relative;
+}
+
+.edit-playlist-input {
+    background: rgba(255,255,255,.1);
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 14px;
+    height: 40px;
+    padding: 0 12px;
+    width: 100%;
+}
+
+.edit-playlist-description-textarea {
+    grid-area: description;
+    margin-top: 8px;
+    position: relative;
+    background: rgba(255,255,255,.1);
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #fff;
+    font-family: inherit;
+    font-size: 14px;
+    height: 124px;
+    padding: 8px 8px 28px;
+    resize: none;
+    width: 100%;
+    /* height: 100% */
+}
+
+.edit-playlist-button {
+    grid-area: save-button;
+    display: flex;
+    align-items: center;
+    justify-self: flex-end;
+    padding: 0 24px;
+    border: 2px solid transparent;
+    border-radius: 500px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bolder;
+    letter-spacing: 1.76px;
+    line-height: 18px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: all 33ms cubic-bezier(.3,0,0,1);
+    white-space: nowrap;
+    will-change: transform;
+    background-color: #fff;
+    color: #181818;
+}
+
+.disclaimer {
+    grid-area: disclaimer;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: normal;
+    line-height: 16px;
+    text-transform: none;
+}
+
+.errors-div {
+    position: absolute;
+}

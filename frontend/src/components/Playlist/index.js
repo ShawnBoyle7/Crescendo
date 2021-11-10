@@ -1,13 +1,12 @@
 import React, { useEffect, useState, useRef } from "react"
 import { useParams, useLocation, useHistory } from "react-router-dom"
-import { useDispatch, useSelector} from "react-redux"
-import { deletePlaylist, editPlaylist, getPlaylists } from '../../store/playlists';
-import { getSongs } from "../../store/songs";
+import { useSelector} from "react-redux"
+import EditPlaylistFormModal from "../EditPlaylistFormModal";
+import DeletePlaylistModal from "../DeletePlaylistModal"
 import SongDiv from "../SongDiv";
 import './Playlist.css';
 
 const Playlist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
-    const dispatch = useDispatch()
     const history = useHistory()
 
     useEffect(() => {
@@ -45,6 +44,8 @@ const Playlist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
     const likedSongs = sessionUserWithSongs?.Songs
 
     const [showDropdown, setShowDropdown] = useState(false)
+    const [showEditModal, setShowEditModal] = useState(false)
+    const [showDeleteModal, setShowDeleteModal] = useState(false)
 
     // useEffect to grab the audio to ensure it's loaded first to avoid grabbing a null audio element
     let audio;
@@ -66,7 +67,7 @@ const Playlist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
         }
     }, [showDropdown])
 
-    const handleDropdown = () => {
+    const handleDropdown = (e) => {
         if (!showDropdown) {
             setShowDropdown(true)
         } else {
@@ -90,20 +91,14 @@ const Playlist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
         }
     }
 
-    const handleEdit = (playlistId) => {
-        if (sessionUser?.id === playlistCreatorId && path === "playlists") {
-            setShowDropdown(false)
-            dispatch(editPlaylist(playlistId))
-        } else {
-            return
-        }
+    const handleEdit = () => {
+        setShowEditModal(true)
+        setShowDropdown(false)
     }
 
-    const handleDelete = (playlistId) => {
+    const handleDelete = () => {
+        setShowDeleteModal(true)
         setShowDropdown(false)
-        dispatch(deletePlaylist(playlistId))
-        dispatch(getSongs())
-        dispatch(getPlaylists())
     }
 
     const playlistEmptyOrNotEmpty = () => {
@@ -121,6 +116,7 @@ const Playlist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
                     isPlaying={isPlaying}
                     setIsPlaying={setIsPlaying}
                     nowPlaying={nowPlaying}
+                    playlist={playlist}
                     setNowPlaying={setNowPlaying}/>)
             )
         } else if (likedSongs && likedSongs?.length > 0) {
@@ -182,13 +178,13 @@ const Playlist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
             <div className="playlist-page">
                 <div className={path === "playlists" ? "playlist-page-header" : "liked-songs-page-header"}>
                     <div className={path === "playlists" ? "art-div" : "hidden"}>
-                        <img className={path === "playlists" ? "playlist-art" : "hidden"} src={playlist?.Album?.imgUrl ? playlist?.Album?.imgUrl : "https://i.imgur.com/pZ6CUjL.png"}/>
+                        <img className={path === "playlists" ? "playlist-art" : "hidden"} src={playlist?.Songs.length && playlist?.Songs[0].Album?.imgUrl ? playlist?.Songs.length && playlist?.Songs[0].Album?.imgUrl : "https://i.imgur.com/pZ6CUjL.png"}/>
                         <img className={path === "library" ? "liked-songs-art" : "hidden"} src="https://static.scientificamerican.com/sciam/cache/file/1522565C-B65E-4BC4-BFA608296192A0D3_source.jpg"/>
                     </div>
 
                     <div className={path === "playlists" ? "playlist-details" : "liked-song-details"}>
                         <span className="playlist-big-span">Playlist</span>
-                        <h1 className={path === "playlists" && playlistCreatorId === sessionUser?.id ? "playlist-name" : "liked-songs-title"} onClick={() => handleEdit(playlist.id)}>
+                        <h1 className={path === "playlists" && playlistCreatorId === sessionUser?.id ? "playlist-name" : "liked-songs-title"}>
                             {playlist ? playlist.name : "Liked songs"}
                         </h1>
 
@@ -209,15 +205,24 @@ const Playlist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
                             <i className="fas fa-ellipsis-h"></i>
                         {showDropdown && 
                             <div className="playlist-dropdown-options" onClick={(e) => e.stopPropagation()}>
-                                <div className="edit-playlist" onClick={handleEdit}>
-                                    Edit details
-                                </div>
+                                {/* <div className="edit-playlist" onClick={handleEdit}>
+                                    <span>Edit Details</span>
+                                </div> */}
                                 <div className="delete-playlist" onClick={handleDelete}>
-                                    Delete
+                                    <span>Delete</span>
                                 </div>
                             </div>}
                     </div>
                 </div>
+
+                {showEditModal && 
+                    <EditPlaylistFormModal playlistId={playlistId} showEditModal={showEditModal} setShowEditModal={setShowEditModal}/>
+                }
+                
+                {showDeleteModal && 
+                    <DeletePlaylistModal playlistId={playlistId} showDeleteModal={showDeleteModal} setShowDeleteModal={setShowDeleteModal}/>
+                }
+
                 {playlistEmptyOrNotEmpty()}
             </div>
         </>

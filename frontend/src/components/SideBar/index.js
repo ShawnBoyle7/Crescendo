@@ -1,7 +1,8 @@
 import React from 'react';
 import { useHistory, useLocation, Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { createPlaylist } from '../../store/playlists';
+import { createPlaylist, getPlaylists } from '../../store/playlists';
+import { getUsers } from '../../store/users';
 import './SideBar.css';
 
 function SideBar() {
@@ -25,6 +26,8 @@ function SideBar() {
         }
 
         await dispatch(createPlaylist(formValues))
+        await dispatch(getPlaylists())
+        await dispatch(getUsers())
     }
     return (
         <div className="side-bar">

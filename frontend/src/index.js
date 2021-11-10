@@ -10,6 +10,7 @@ import * as sessionActions from './store/session';
 import NowPlayingProvider from './context/NowPlayingContext';
 import IsPlayingProvider from './context/IsPlayingContext';
 import NavComponentProvider from './context/NavComponent';
+import { ModalProvider } from './context/Modal';
 
 const store = configureStore();
 
@@ -27,9 +28,11 @@ function Root() {
             <NavComponentProvider>
                 <NowPlayingProvider>
                     <IsPlayingProvider>
-                        <BrowserRouter>
-                            <App />
-                        </BrowserRouter>
+                        <ModalProvider>
+                            <BrowserRouter>
+                                <App />
+                            </BrowserRouter>
+                        </ModalProvider>
                     </IsPlayingProvider>
                 </NowPlayingProvider>
             </NavComponentProvider>

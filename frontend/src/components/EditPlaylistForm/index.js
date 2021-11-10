@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { editPlaylist, getPlaylists } from "../../store/playlists";
+import "./EditPlaylistForm.css"
 
 const EditPlaylistForm = ({ setShowEditModal, playlistId }) => {
     const dispatch = useDispatch();

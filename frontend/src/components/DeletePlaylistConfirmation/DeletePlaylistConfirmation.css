@@ -1,0 +1,81 @@
+.delete-playlist-modal {
+    background-color: #fff;
+    border-radius: 8px;
+    color: #121212;
+    display: flex;
+    flex-direction: column;
+    max-width: 400px;
+    min-width: 320px;
+    padding: 16px;
+    text-align: start;
+}
+
+.delete-playlist-div {
+
+}
+
+.delete-playlist-modal h2 {
+    margin-bottom: 8px;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: normal;
+    line-height: 24px;
+    text-transform: none;
+}
+
+.delete-playlist-modal p {
+    margin-bottom: 24px;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 16px;
+    text-transform: none;
+}
+
+.delete-playlist-buttons-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.delete-playlist-buttons-div button:hover {
+    transform: scale(1.06)
+}
+
+.delete-playlist-cancel-button {
+    color: rgba(0,0,0,.5);
+    background-color: transparent;
+    border: 2px solid transparent;
+    border-radius: 500px;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.76px;
+    line-height: 18px;
+    padding: 8px 34px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: all 33ms cubic-bezier(.3,0,0,1);
+    white-space: nowrap;
+    will-change: transform;
+}
+
+.delete-playlist-delete-button {
+    background-color: #1db954;
+    border: 2px solid transparent;
+    border-radius: 500px;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.76px;
+    line-height: 18px;
+    padding: 8px 34px;
+    text-align: center;
+    text-transform: uppercase;
+    -webkit-transition: all 33ms cubic-bezier(.3,0,0,1);
+    transition: all 33ms cubic-bezier(.3,0,0,1);
+    white-space: nowrap;
+    will-change: transform;
+}

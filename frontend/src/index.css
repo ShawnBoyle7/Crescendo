@@ -15,7 +15,7 @@ html, body {
     margin: 0;
     border: 0;
     padding: 0;
-    color: var(--primary-text-color);
+    color: var(--white);
     font-family: 'Gotham', sans-serif;
     background-color: var(--primary-bg-color);
     /* background: rgb(60,7,23);
@@ -44,7 +44,7 @@ html, body {
     background-color: #414141;
 }
 
-div, ul, p, h1 {
+div, ul, p, h1, h2 {
     border: 0;
     margin: 0;
     padding: 0;

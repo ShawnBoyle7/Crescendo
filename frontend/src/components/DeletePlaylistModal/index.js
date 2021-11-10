@@ -7,7 +7,7 @@ function DeletePlaylistModal({ playlistId, showDeleteModal, setShowDeleteModal }
     return (
         <>
             {showDeleteModal && (
-            <Modal onClose={() => setShowDeleteModal(false)}>
+            <Modal className="delete-playlist-modal" onClose={() => setShowDeleteModal(false)}>
                 <DeletePlaylistConfirmation playlistId={playlistId} setShowDeleteModal={setShowDeleteModal}/>
             </Modal>
             )}

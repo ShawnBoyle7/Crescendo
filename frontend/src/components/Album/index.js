@@ -4,9 +4,11 @@ import { useSelector, useDispatch } from "react-redux"
 import { Link } from "react-router-dom";
 import { likeAlbum, deleteAlbumLike } from "../../store/users";
 import { getAlbums } from "../../store/albums"
-import { addPlaylistSong } from '../../store/playlists';
+import { addPlaylistSong, getPlaylists } from '../../store/playlists';
+import { getUsers } from "../../store/users";
 import SongDiv from "../SongDiv";
 import './Album.css';
+import { getSongs } from "../../store/songs";
 
 const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) => {
 
@@ -115,12 +117,15 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
     const addAlbumToPlaylist = (e) => {
         e.preventDefault()
         
-        albumSongs.forEach(song => {
+        albumSongs?.forEach(song => {
             const payload = {
                 songId: song.id,
-                playlistId: e.target.id
+                playlistId: +e.target.id
             }
             dispatch(addPlaylistSong(payload))
+            dispatch(getAlbums())
+            dispatch(getSongs())
+            dispatch(getUsers())
         })
     }
 

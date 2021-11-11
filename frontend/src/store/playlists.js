@@ -35,6 +35,7 @@ export const getPlaylists = () => async (dispatch) => {
 };
 
 export const addPlaylistSong = (payload) => async (dispatch) => {
+    console.log("PAYLOAD", payload)
     const response = await csrfFetch('/api/playlists/new-song', {
         method: "POST",
         headers: {

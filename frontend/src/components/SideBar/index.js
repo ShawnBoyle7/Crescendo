@@ -27,7 +27,8 @@ function SideBar() {
 
         await dispatch(createPlaylist(formValues))
         await dispatch(getPlaylists())
-        await dispatch(getUsers())
+
+        history.push(`/playlists/${userPlaylists[userPlaylists.length -1].id}`)
     }
     return (
         <div className="side-bar">

@@ -15,6 +15,9 @@ module.exports = {
             imgUrl: {
                 type: Sequelize.STRING
             },
+            description: {
+                type: Sequelize.STRING
+            },
             userId: {
                 type: Sequelize.INTEGER,
                 references: { model: "Users" }

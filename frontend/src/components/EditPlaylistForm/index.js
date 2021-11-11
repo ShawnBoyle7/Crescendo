@@ -6,22 +6,23 @@ import "./EditPlaylistForm.css"
 
 const EditPlaylistForm = ({ setShowEditModal, playlistId }) => {
     const dispatch = useDispatch();
-
-    const [name, setName] = useState('');
-    const [validationErrors, setValidationErrors] = useState([]);
-    const [showErrors, setShowErrors] = useState(false)
-
+    
     const playlists = Object.values(useSelector(state => state.playlists))
     const playlist = playlists.find(playlist => playlist?.id === +playlistId)
+    
+    const [playlistName, setPlaylistName] = useState(playlist?.name);
+    const [playlistDescription, setPlaylistDescription] = useState(playlist?.description);
+    const [validationErrors, setValidationErrors] = useState([]);
+    const [showErrors, setShowErrors] = useState(false)
 
     useEffect(() => {
         const errors = []
 
-        if (!name.length) errors.push("Your playlist must have a name!")
-        if (name.length > 40) errors.push("Your playlist name must be 40 character or less.")
+        if (!playlistName.length) errors.push("Your playlist must have a playlistName!")
+        if (playlistName.length > 40) errors.push("Your playlist playlistName must be 40 character or less.")
 
         setValidationErrors(errors)
-    }, [name])
+    }, [playlistName])
 
     const submitHandler = async (e) => {
         e.preventDefault()
@@ -30,7 +31,7 @@ const EditPlaylistForm = ({ setShowEditModal, playlistId }) => {
             setShowErrors(true)
         }
 
-        const updatedPlaylist = await dispatch(editPlaylist(name, playlistId))
+        const updatedPlaylist = await dispatch(editPlaylist(playlistName, playlistDescription, playlistId))
         if (updatedPlaylist) {
             await dispatch(getPlaylists())
         }
@@ -67,14 +68,19 @@ const EditPlaylistForm = ({ setShowEditModal, playlistId }) => {
                 <input
                     className="edit-playlist-input"
                     type="text"
-                    name="name"
-                    value={name}
+                    name="playlistName"
+                    value={playlistName}
+                    onChange={(e) => setPlaylistName(e.currentTarget.value)}
                     placeholder="Name"
-                    onChange={e => setName(e.target.value)}
                 />
                 </div>
                 <div className="edit-playlist-description-div">
-                    <textarea className="edit-playlist-description-textarea" placeholder="Playlist description coming soon!"/>
+                    <textarea 
+                        className="edit-playlist-description-textarea" 
+                        placeholder="Add an optional description"
+                        value={playlistDescription}
+                        onChange={(e) => setPlaylistDescription(e.currentTarget.value)}
+                    />
                 </div>
                 <button className="edit-playlist-button">
                     Save

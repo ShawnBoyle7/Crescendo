@@ -22,7 +22,8 @@ function SideBar() {
 
         const formValues = {
             name: `New Playlist #${userPlaylists.length + 1}`,
-            userId: sessionUser.id
+            userId: sessionUser.id,
+            description: ""
         }
 
         await dispatch(createPlaylist(formValues))

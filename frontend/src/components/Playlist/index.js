@@ -190,6 +190,7 @@ const Playlist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
 
                         <div className="description-name-container">
                             <div className="playlist-info">
+                                <div className="playlist-description">{playlist?.description}</div>
                                 <span className="playlist-creator-username">{sessionUser?.username}</span>
                                 <span className="playlist-detail-span">3 min, 10 min 50 sec</span>
                             </div>

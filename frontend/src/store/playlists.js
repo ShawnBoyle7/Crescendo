@@ -76,11 +76,11 @@ export const deletePlaylist = (playlistId) => async dispatch => {
     }
 }
 
-export const editPlaylist = (name, playlistId) => async dispatch => {
+export const editPlaylist = (name, description, playlistId) => async dispatch => {
     const response = await csrfFetch(`/api/playlists/${playlistId}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({name})
+        body: JSON.stringify({name, description})
     });
 
     if (response.ok) {

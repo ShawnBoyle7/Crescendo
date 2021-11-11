@@ -143,3 +143,17 @@ table.song-columns {
 .playlist-dropdown-options > div:hover {
     background: #4f4f4f;
 }
+
+.playlist-description {
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    max-height: 74px;
+    overflow: hidden;
+    word-break: break-word;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: normal;
+    line-height: 20px;
+    text-transform: none;
+}

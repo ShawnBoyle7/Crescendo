@@ -119,7 +119,7 @@ const Playlist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
                     playlist={playlist}
                     setNowPlaying={setNowPlaying}/>)
             )
-        } else if (likedSongs && likedSongs?.length > 0) {
+        } else if (pageId === "songs" && likedSongs && likedSongs?.length > 0) {
             content = (
                 likedSongs?.map((song, idx) => 
                     <SongDiv
@@ -151,13 +151,13 @@ const Playlist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
             </table>
         )
 
-        if (playlistSongs && playlistSongs.length === 0) {
+        if (path === "playlists" && playlistSongs && playlistSongs.length === 0) {
             renderPlaylist = (
                 <div className="empty-playlist">
                     <p id="empty-playlist-title">It looks like you don't have anything in this playlist yet.</p>
                 </div>
                 )
-            } else if (likedSongs && likedSongs.length === 0) {
+            } else if (pageId === "songs" && likedSongs && likedSongs.length === 0) {
                 renderPlaylist = (
                     <div className="empty-liked-songs">
                         <span id="empty-liked-icon" className="material-icons">music_note</span>
@@ -185,11 +185,12 @@ const Playlist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
                     <div className={path === "playlists" ? "playlist-details" : "liked-song-details"}>
                         <span className="playlist-big-span">Playlist</span>
                         <h1 className={path === "playlists" && playlistCreatorId === sessionUser?.id ? "playlist-name" : "liked-songs-title"}>
-                            {playlist ? playlist.name : "Liked songs"}
+                            {pageId !== "songs" ? playlist?.name : "Liked songs"}
                         </h1>
 
                         <div className="description-name-container">
                             <div className="playlist-info">
+                                <div className="playlist-description">{playlist?.description}</div>
                                 <span className="playlist-creator-username">{sessionUser?.username}</span>
                                 <span className="playlist-detail-span">3 min, 10 min 50 sec</span>
                             </div>
@@ -205,9 +206,9 @@ const Playlist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
                             <i className="fas fa-ellipsis-h"></i>
                         {showDropdown && 
                             <div className="playlist-dropdown-options" onClick={(e) => e.stopPropagation()}>
-                                {/* <div className="edit-playlist" onClick={handleEdit}>
+                                <div className="edit-playlist" onClick={handleEdit}>
                                     <span>Edit Details</span>
-                                </div> */}
+                                </div>
                                 <div className="delete-playlist" onClick={handleDelete}>
                                     <span>Delete</span>
                                 </div>

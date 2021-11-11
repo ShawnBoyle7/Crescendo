@@ -1,14 +1,14 @@
 import React, { useState, useRef, useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
-import { likeSong, deleteSongLike } from "../../store/users"
+import { likeSong, deleteSongLike, getUsers } from "../../store/users"
 import { getSongs } from "../../store/songs"
-import { deletePlaylistSong } from "../../store/playlists"
+import { deletePlaylistSong, getPlaylists } from "../../store/playlists"
 import { addPlaylistSong } from '../../store/playlists';
 import { Link } from "react-router-dom"
 import "./SongDiv.css"
 
-const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, nowPlaying, setNowPlaying, playlist }) => {
+const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, nowPlaying, setNowPlaying }) => {
     const dispatch = useDispatch()
     const history = useHistory()
     
@@ -128,12 +128,13 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
         }
     }
     
-    const handlePlaylistClick = (e) => {
+    const addSongToPlaylist = (e) => {
         setShowDropdown(false)
         setIsHovering(false)
-        
+        console.log("E TARGET", e.target)
+        console.log("E TARGET ID PLAYLIST", e.currentTarget.id)
         const payload = {
-            playlistId: e.target.id,
+            playlistId: +e.currentTarget.id,
             songId: song.id
         }
         
@@ -226,16 +227,16 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
                 <td className={setSongWidth(path)}>
                     <div className="title-details">
                         <div className="item-art-container">
-                            <img className={validArtLocations.includes(path) ? "item-album-art" : "hidden"} src={song?.Album?.imgUrl} alt="song art" />
+                            <img className={validArtLocations.includes(path) ? "item-album-art" : "hidden"} src={currentSong?.Album?.imgUrl} alt="song art" />
                         </div>
                         <div className="title-details-text-container">
                             <div className="title-artist-container">
-                                <p id={nowPlaying?.id === song?.id ? "is-playing" : ""}>
-                                    {song?.name}
+                                <p id={nowPlaying?.id === currentSong?.id ? "is-playing" : ""}>
+                                    {currentSong?.name}
                                 </p>
                                 <div className="song-artist-link-container">
-                                    <Link to={`/artists/${song?.Artist?.id}`} className={path === "artists" ? "hidden" : "song-artist-link"}>
-                                        {song?.Artist?.name}
+                                    <Link to={`/artists/${currentSong?.Artist?.id}`} className={path === "artists" ? "hidden" : "song-artist-link"}>
+                                        {currentSong?.Artist?.name}
                                     </Link>
                                 </div>
                             </div>
@@ -244,8 +245,8 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
                 </td>
 
                 <td className={path === "playlists" || path === "library" ? "album-column" : "hidden"}>
-                    <Link to={`/albums/${song?.Album?.id}`}>
-                        {song?.Album?.name}
+                    <Link to={`/albums/${currentSong?.Album?.id}`}>
+                        {currentSong?.Album?.name}
                     </Link>
                 </td>
 
@@ -266,11 +267,11 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
                     </div>
                     {showDropdown &&
                         <div className={detectPageType()} onMouseDown={(e) => e.stopPropagation()}>
-                            <div className="song-dropdown-option" onMouseEnter={(e) => handleMouseEnter(e)} onClick={() => history.push(`/artists/${song.Artist.id}`)}>
+                            <div className="song-dropdown-option" onMouseEnter={(e) => handleMouseEnter(e)} onClick={() => history.push(`/artists/${currentSong.Artist.id}`)}>
                                 Go to artist
                             </div>
 
-                            <div className="song-dropdown-option" onMouseEnter={(e) => handleMouseEnter(e)} onClick={() => history.push(`/albums/${song.Album.id}`)}>
+                            <div className="song-dropdown-option" onMouseEnter={(e) => handleMouseEnter(e)} onClick={() => history.push(`/albums/${currentSong.Album.id}`)}>
                                 Go to album
                             </div>
 
@@ -286,7 +287,7 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
                                 <div className={setPlaylistSelectorPosition()}>
                                     <ul className={revealPlaylists ? "playlist-selector" : "hidden"}>
                                         {playlists.slice(0).reverse().map(playlist =>
-                                            <li className="playlist-item" key={playlist?.id} id={playlist?.id} onClick={(e) => (handlePlaylistClick(e))}>
+                                            <li className="playlist-item" key={playlist?.id} id={playlist?.id} onClick={(e) => (addSongToPlaylist(e))}>
                                                 <span>{playlist?.name}</span>
                                             </li>)}
                                     </ul>

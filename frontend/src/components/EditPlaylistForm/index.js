@@ -72,6 +72,7 @@ const EditPlaylistForm = ({ setShowEditModal, playlistId }) => {
                     value={playlistName}
                     onChange={(e) => setPlaylistName(e.currentTarget.value)}
                     placeholder="Name"
+                    maxLength = {20}
                 />
                 </div>
                 <div className="edit-playlist-description-div">
@@ -80,6 +81,7 @@ const EditPlaylistForm = ({ setShowEditModal, playlistId }) => {
                         placeholder="Add an optional description"
                         value={playlistDescription}
                         onChange={(e) => setPlaylistDescription(e.currentTarget.value)}
+                        maxLength = {80}
                     />
                 </div>
                 <button className="edit-playlist-button">

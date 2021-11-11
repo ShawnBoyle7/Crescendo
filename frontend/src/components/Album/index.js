@@ -90,10 +90,15 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
         // If not is playing, then play and begin animation of time change
 
         if (!previousValue) {
+            if (!nowPlaying) {
+                setNowPlaying(albumSongs[0])
+            }
+            setIsPlaying(true)
             audio.play()
             // Else pause and stop animation of time change
         } else {
             audio.pause()
+            setIsPlaying(false)
         }
     }
     

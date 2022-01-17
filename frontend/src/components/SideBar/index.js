@@ -19,9 +19,10 @@ function SideBar() {
 
     const newPlaylist = async (e) => {
         e.preventDefault()
+        await dispatch(getPlaylists())
 
         const formValues = {
-            name: `New Playlist #${userPlaylists.length + 1}`,
+            name: `New Playlist #${userPlaylists?.length + 1}`,
             userId: sessionUser.id,
             description: ""
         }
@@ -29,7 +30,7 @@ function SideBar() {
         await dispatch(createPlaylist(formValues))
         await dispatch(getPlaylists())
 
-        history.push(`/playlists/${userPlaylists[userPlaylists.length -1].id}`)
+        history.push(`/playlists/${userPlaylists[userPlaylists?.length - 1].id}`)
     }
     return (
         <div className="side-bar">

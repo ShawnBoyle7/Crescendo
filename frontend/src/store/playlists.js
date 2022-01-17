@@ -72,7 +72,6 @@ export const deletePlaylist = (playlistId) => async dispatch => {
 
     if (response.ok) {
         dispatch(destroyPlaylist(playlistId))
-        return;
     }
 }
 
@@ -130,7 +129,7 @@ const playlistReducer = (state = initialState, action) => {
             return stateCopy;
         case DESTROY_PLAYLIST:
             stateCopy = { ...state }
-            delete [action.playlistId]
+            delete stateCopy[action.playlistId]
             return stateCopy;
         default:
             return state;

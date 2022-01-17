@@ -12,10 +12,9 @@ const DeletePlaylistConfirmation = ({ playlistId, setShowDeleteModal }) => {
     const playlists = Object.values(useSelector(state => state.playlists))
     const playlist = playlists.find(playlist => playlist?.id === +playlistId)
 
-    const handleDelete = () => {
-        dispatch(deletePlaylist(+playlistId))
+    const handleDelete = async () => {
+        await dispatch(deletePlaylist(+playlistId))
         dispatch(getUsers())
-        dispatch(getPlaylists())
         setShowDeleteModal(false)
         history.push("/library/playlists")
     }

@@ -40,7 +40,7 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
     const progressBar = useRef();
     const volumeBar = useRef();
     const animationRef = useRef();
-
+    
     useEffect(() => {
         
         switch (path) {
@@ -118,9 +118,11 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
     // Update the current time when time elapses
     const whilePlaying = () => {
         // Update progress bar value to match the audio element, since the audio element tracks the MP3 duration
-        if (progressBar.current.value) {
+
+        if (progressBar?.current?.value) {
             progressBar.current.value = audioElement?.current?.currentTime
         }
+
         // Update the current time to match it
         updateCurrentTime()
         // Update the animation reference value with whilePlaying as the callback

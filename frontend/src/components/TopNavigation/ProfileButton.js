@@ -58,8 +58,8 @@ function ProfileButton() {
                             <span>Profile</span>
                         </div>
                     </Link> */}
-                    <div className="menu-div">
-                        <span onClick={logout}>Log Out</span>
+                    <div className="menu-div" onClick={logout}>
+                        <span >Log Out</span>
                     </div>
                 </div>
             )}

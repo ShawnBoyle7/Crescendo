@@ -34,7 +34,7 @@ function SideBar() {
     return (
         <div className="side-bar">
             <Link to="/" className="logo-link">
-                <img className="logo" src="https://i.imgur.com/wWHVdsL.png" />
+                <img className="logo" src="https://i.imgur.com/RIztzKt.png" />
             </Link> 
 
             <div className="side-bar-navigation-div">

@@ -57,6 +57,10 @@ a {
     text-decoration: none;
 }
 
+button {
+    font-family: 'Gotham', sans-serif;
+}
+
 .hidden {
     display: none;
 }
@@ -80,7 +84,7 @@ a {
 
 .application {
     display: grid;
-    grid-template-columns: 228px calc(100vw - 228px);
+    grid-template-columns: 241px calc(100vw - 241px);
     grid-template-rows: 60px calc(100% - 90px) 90px;
     grid-template-areas: 
     "side-navigation-bar top-navigation-bar"

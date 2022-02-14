@@ -1,6 +1,6 @@
 import './Splash.css'
 import { useDispatch, useSelector } from "react-redux"
-import { Redirect } from 'react-router-dom'
+import { Redirect, NavLink } from 'react-router-dom'
 import { demo } from "../../store/session"
 
 const Splash = () => {
@@ -19,8 +19,14 @@ const Splash = () => {
     
     return (
         <>
-            <div className="nav-placeholder">
-            </div>
+            <nav className="nav-placeholder">
+                <button className="signup-button">
+                    SIGN UP
+                </button>
+                <button className="login-button">
+                    LOG IN
+                </button>
+            </nav>
 
             <div className="splash-content">
                 <div className="splash-elements">

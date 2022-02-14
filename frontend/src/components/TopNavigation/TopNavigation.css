@@ -3,8 +3,8 @@
     height: 60px;
     position: fixed;
     top: 0;
-    left: 228px;
-    width: calc(100% - 228px);
+    left: 241px;
+    width: calc(100% - 241px);
     z-index: 1;
     display: flex;
     justify-content: space-between;
@@ -17,8 +17,8 @@
     height: 60px;
     position: fixed;
     top: 0;
-    left: 228px;
-    width: calc(100% - 228px);
+    left: 241px;
+    width: calc(100% - 241px);
     z-index: 1;
     display: flex;
     justify-content: space-between;

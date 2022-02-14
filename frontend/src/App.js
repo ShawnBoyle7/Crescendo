@@ -61,6 +61,10 @@ function App() {
     return (
         <>
             {isLoaded && (
+                !sessionUser 
+                ? 
+                <Splash/>
+                :
                 <div className="application">
                     {sessionUser && 
                         <>
@@ -71,10 +75,8 @@ function App() {
                     <div className="content">
                         <Switch>
                             <Route exact path="/">
-                                {sessionUser ? 
+                                {sessionUser &&
                                     <Home />
-                                    : 
-                                    <Splash/>
                                 }
                             </Route>
 
@@ -94,6 +96,10 @@ function App() {
                                 <Artist setNowPlaying={setNowPlaying} nowPlaying={nowPlaying} setIsPlaying={setIsPlaying} isPlaying={isPlaying} />
                             </Route>
 
+                            <Route path="/albums/:albumId">
+                                <Album setNowPlaying={setNowPlaying} nowPlaying={nowPlaying} albums={albums && albums} isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
+                            </Route>
+
                             <Route path="/artists">
                                 <Artists />
                             </Route>
@@ -104,10 +110,6 @@ function App() {
 
                             <Route path="/songs">
                                 <Songs />
-                            </Route>
-
-                            <Route path="/albums/:albumId">
-                                <Album setNowPlaying={setNowPlaying} nowPlaying={nowPlaying} albums={albums && albums} isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
                             </Route>
 
                             <Route path="/genres/:genreId">

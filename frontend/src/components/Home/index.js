@@ -31,7 +31,9 @@ const Home = () => {
                     {artistsByPopularity.map(artist =>
                         <ArtistDiv key={artist.id} artist={artist}/>)}
                 </div>
-                <Link className="gallery-link" to="/artists">Browse All Artists</Link>
+                <Link className="gallery-link" to="/artists">
+                    Browse All Artists
+                </Link>
             </div>
 
             <div className="albums-section">
@@ -40,7 +42,9 @@ const Home = () => {
                     {albumsByPopularity.map(album =>
                         <AlbumDiv key={album.id} album={album}/>)}
                 </div>
-                <Link className="gallery-link" to="/albums">Browse All Albums</Link>
+                <Link className="gallery-link" to="/albums">
+                    Browse All Albums
+                </Link>
             </div>
         </div>
     )

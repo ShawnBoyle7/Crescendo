@@ -25,12 +25,13 @@
     display: flex;
     justify-content: center;
     margin-top: 0.5%;
+    min-width: fit-content;
     width: fit-content;
-    margin-left: 45.7%
+    margin-left: 45.5%;
 }
 
 .gallery-link:hover {
-    transition-duration: 250ms;
+    transition-duration: 100ms;
     background-color: #262626;
 }
 

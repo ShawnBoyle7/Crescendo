@@ -34,7 +34,7 @@ const Library = () => {
 
                     <Route path="/library/artists">
                         <div className="library-header-div">
-                            <h1 className="library-header">Playlists</h1>
+                            <h1 className="library-header">Artists</h1>
                         </div>
                         <div className="library-section">
                             {followedArtists && followedArtists?.map(artist =>

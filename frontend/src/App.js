@@ -7,6 +7,7 @@ import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import SideBar from "./components/SideBar";
 import Artists from "./components/Artists";
+import Albums from './components/Albums';
 import Home from "./components/Home";
 import Search from "./components/Search";
 import Genre from "./components/Genre";
@@ -95,6 +96,10 @@ function App() {
 
                             <Route path="/artists">
                                 <Artists />
+                            </Route>
+
+                            <Route path="/albums">
+                                <Albums />
                             </Route>
 
                             <Route path="/songs">

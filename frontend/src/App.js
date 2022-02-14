@@ -63,7 +63,25 @@ function App() {
             {isLoaded && (
                 !sessionUser 
                 ? 
-                <Splash/>
+                <>
+                    <Switch>
+                        <Route exact path="/">
+                            <Splash/>
+                        </Route>
+                        
+                        <Route path="/login">
+                            <LoginFormPage />
+                        </Route>
+
+                        <Route path="/signup">
+                            <SignupFormPage />
+                        </Route>
+
+                        <Route>
+                            <Error404 />
+                        </Route>
+                    </Switch>
+                </>
                 :
                 <div className="application">
                     {sessionUser && 
@@ -75,19 +93,8 @@ function App() {
                     <div className="content">
                         <Switch>
                             <Route exact path="/">
-                                {sessionUser &&
-                                    <Home />
-                                }
+                                <Home />
                             </Route>
-
-                            <Route path="/login">
-                                <LoginFormPage />
-                            </Route>
-
-                            <Route path="/signup">
-                                <SignupFormPage />
-                            </Route>
-
                             <Route path="/search">
                                 <Search />
                             </Route>

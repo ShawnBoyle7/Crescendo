@@ -20,12 +20,16 @@ const Splash = () => {
     return (
         <>
             <nav className="nav-placeholder">
-                <button className="signup-button">
-                    SIGN UP
-                </button>
-                <button className="login-button">
-                    LOG IN
-                </button>
+                <NavLink to="/signup">
+                    <button className="signup-button">
+                        SIGN UP
+                    </button>
+                </NavLink>
+                <NavLink to="/login">
+                    <button className="login-button">
+                        LOG IN
+                    </button>
+                </NavLink>
             </nav>
 
             <div className="splash-content">

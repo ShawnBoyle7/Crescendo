@@ -62,7 +62,7 @@ function App() {
         <>
             {isLoaded && (
                 !sessionUser ? 
-                <div className="unauthorized-application">
+                <>
                     <Switch>
                         <Route exact path="/">
                             <Splash/>
@@ -80,7 +80,7 @@ function App() {
                          <Error404 />
                         </Route>
                     </Switch>
-                </div>
+                </>
                 :
                 <div className="application">
                         <>

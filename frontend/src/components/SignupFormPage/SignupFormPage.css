@@ -100,7 +100,7 @@
     align-self: center;
 }
 
-.existing-user-link, a {
+.existing-user-link, .existing-user-link > a {
     text-align: center;
     color: black;
     margin-top: 10px;
@@ -110,7 +110,7 @@
     line-height: 24px;
 }
 
-.existing-user-link a {
+.existing-user-link > a {
     text-decoration: underline;
     color: var(--green)
 }

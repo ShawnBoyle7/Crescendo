@@ -1,7 +1,7 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
-const { handleValidationErrors } = require('../../utils/validation');
+const { handleValidationErrors, passwordValidator } = require('../../utils/validation');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
 const { User, Artist, Album, Playlist, Song, Song_User_Join, User_Album_Join } = require('../../db/models');
 
@@ -22,16 +22,31 @@ const validateSignup = [
         .withMessage('Please provide a valid email.'),
     check('username')
         .exists({ checkFalsy: true })
-        .isLength({ min: 4 })
-        .withMessage('Please provide a username with at least 4 characters.'),
+        .isLength({ min: 2 })
+        .withMessage('Please provide a username with at least 2 characters.'),
+    check('username')
+        .isLength({ max: 20 })
+        .withMessage('Please provide a username with at most 20 characters.'),
     check('username')
         .not()
         .isEmail()
         .withMessage('Username cannot be an email.'),
     check('password')
         .exists({ checkFalsy: true })
-        .isLength({ min: 6 })
-        .withMessage('Password must be 6 characters or more.'),
+        .isLength({ min: 8 })
+        .withMessage("Must be at least 8 characters"),
+    check('password')
+        .matches("^.*[a-z]+.*$")
+        .withMessage("Must contain at least one lower case character"),
+    check('password')
+        .matches("^.*[A-Z]+.*$")
+        .withMessage("Must contain at least one upper case character"),
+    check('password')
+        .matches("^.*\d+.*$")
+        .withMessage("Must contain at least one digit"),
+    check('password')
+        .matches("^.*[@#$!%*?&]+.*$")
+        .withMessage("Must contain at least one special character (@, #, $, !, %, *, ?, &)"),
     handleValidationErrors,
 ];
 

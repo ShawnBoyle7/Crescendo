@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import './SignupFormPage.css';
 
@@ -30,19 +30,24 @@ function SignupFormPage() {
 
     return (
         <div className="signup-form-page">
+            <div className="logo-header-container">
+                <img className="signup-logo" src="https://i.imgur.com/SbCD3mF.png" />
+                <h2 className="signup-header">Sign up for free to start listening.</h2>
+            </div>
             <div className="signup-form-container">
-                <h2>Sign up for free to start listening.</h2>
                 <div className="signup-divider"></div>
                 <form onSubmit={handleSubmit} className="signup-form" >
                     <ul>
                         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                     </ul>
-                    <div className="label-container">
-                        <label for="email" className="label">
-                            What's your email?
-                        </label>
-                    </div>
+                    <div className="label-input-container">
+                        <div className="label-container">
+                            <label for="email" className="label">
+                                What's your email?
+                            </label>
+                        </div>
                         <input
+                            className="auth-input"
                             name="email"
                             type="email"
                             value={email}
@@ -50,12 +55,15 @@ function SignupFormPage() {
                             placeholder="Enter your email."
                             required
                         />
-                    <div className="label-container">
+                    </div>
+                    <div className="label-input-container">
+                        <div className="label-container">
                         <label for="username" className="label">
                             What should we call you?
                         </label>
-                    </div>
+                        </div>
                         <input
+                            className="auth-input"
                             name="username"
                             type="text"
                             value={username}
@@ -63,12 +71,15 @@ function SignupFormPage() {
                             placeholder="Enter a profile name."
                             required
                         />
-                    <div className="label-container">
-                        <label for="password" className="label">
-                            Create a password.
-                        </label>
                     </div>
+                    <div className="label-input-container">
+                        <div className="label-container">
+                            <label for="password" className="label">
+                                Create a password.
+                            </label>
+                        </div>
                         <input
+                            className="auth-input"
                             name="password"
                             type="password"
                             value={password}
@@ -76,12 +87,15 @@ function SignupFormPage() {
                             placeholder="Create a password."
                             required
                         />
-                    <div className="label-container">
-                        <label for="password-confirmation" className="label">
-                            Confirm your password
-                        </label>
                     </div>
+                    <div className="label-input-container">
+                        <div className="label-container">
+                            <label for="password-confirmation" className="label">
+                                Confirm your password
+                            </label>
+                        </div>
                         <input
+                            className="auth-input"
                             name="password-confirmation"
                             type="password"
                             value={confirmPassword}
@@ -89,9 +103,9 @@ function SignupFormPage() {
                             placeholder="Confirm your password."
                             required
                         />
-                    <div className="signup-button-container">
-                        <button type="submit" className="signup-button">Sign Up</button>
                     </div>
+                        <button type="submit" className="signup-button">Sign Up</button>
+                        <p className="existing-user-link">Have an account? <Link to="/login">Log in.</Link></p>
                 </form>
             </div>
         </div>

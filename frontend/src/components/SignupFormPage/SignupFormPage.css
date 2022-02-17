@@ -1,21 +1,53 @@
 .signup-form-page {
     background-color: white;
-    height: 100%;
+    min-height: 100%;
     color: black;
+}
+
+.logo-header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0px 32px;
+}
+
+.signup-logo {
+    width: 200px;
+    height: 40px;
+}
+
+.signup-header {
+    text-align: center;
+    line-height: 36px;
+    letter-spacing: -0.04em;
+    font-size: 32px;
+    margin-top: 40px;
 }
 
 .signup-form-container {
     max-width: 450px;
-    margin: 0px auto
+    margin: 0px auto;
+    height: 100%;
 }
 
 .signup-divider {
     border-bottom: 1px solid #323232;
+    color: rgb(127, 127, 127);
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 2px;
+    margin: 0px auto 1em;
+    position: relative;
+    text-align: center;
 }
 
 .signup-form {
     display: flex;
     flex-direction: column;
+}
+
+.label-input-container {
+    margin-bottom: 24px;
 }
 
 .label-container {
@@ -28,28 +60,57 @@
   padding-bottom: 8px;
 }
 
+.auth-input {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    font-weight: 400;
+    width: 100%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border-radius: 4px;
+    padding: 14px;
+    border: 0;
+    box-shadow: inset 0 0 0 1px #878787;
+}
+
 .signup-button-container {
-    display: flex;
-    justify-content: space-around;
-    margin-bottom: 24px;
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 24px;
+  text-align: center;
 }
 
 .signup-button {
-    background-color: var(--green);
-    font-size: 16px;
-    line-height: 24px;
+    background: #34D360;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    cursor: pointer;
+    padding: 14px 32px;
+    border-radius: 500px;
+    width: 151px;
+    height: 56px;
+    font-size: inherit;
+    line-height: 20px;
+    font-weight: 700;
     text-transform: none;
     letter-spacing: normal;
-    border: 0px;
-    border-radius: 500px;
-    display: inline-block;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    text-transform: none;
-    user-select: none;
-    vertical-align: middle;
-    padding: 0px;
     align-self: center;
-    /* background-color: transparent; */
+}
+
+.existing-user-link, a {
+    text-align: center;
+    color: black;
+    margin-top: 10px;
+    padding: 0px 0px 1em;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.existing-user-link a {
+    text-decoration: underline;
+    color: var(--green)
 }

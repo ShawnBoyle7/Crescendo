@@ -70,8 +70,13 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     });
+    
     if (user && user.validatePassword(password)) {
       return await User.scope('currentUser').findByPk(user.id);
+    } else if (!user) {
+      return "Invalid Email or Username"
+    } else if (!user.validatePassword(password)) {
+      return "Incorrect password"
     }
   };
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import './TopNavigation.css';
@@ -10,7 +10,6 @@ function ProfileButton() {
 
     const [showMenu, setShowMenu] = useState(false);
     const sessionUser = useSelector(state => state.session.user)
-    const user = useSelector(state => state.users[sessionUser?.id])
 
     const openMenu = () => {
         if (showMenu) return;
@@ -42,7 +41,7 @@ function ProfileButton() {
                     <img className="nav-profile-image" src="https://i.imgur.com/3x2W04X.jpg" alt="profile" />
                 </div>
                 <span className="nav-profile-name">
-                    {user?.username}
+                    {sessionUser.username}
                 </span>
                 { showMenu ?
                     <i className="fas fa-caret-up"></i>

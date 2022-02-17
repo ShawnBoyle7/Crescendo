@@ -37,11 +37,18 @@ router.post(
 
     const user = await User.login({ credential, password });
 
-    if (!user) {
+    if (user === "Invalid Email or Username") {
         const err = new Error('Login failed');
         err.status = 401;
         err.title = 'Login failed';
-        err.errors = ['The provided credentials were invalid.'];
+        err.errors = ["Invalid Email or Username"];
+        return next(err);
+    } else if (user === "Incorrect password") {
+        console.log("hello")
+        const err = new Error('Login failed');
+        err.status = 401;
+        err.title = 'Login failed';
+        err.errors = ["Incorrect password"];
         return next(err);
     }
 

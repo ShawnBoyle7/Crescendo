@@ -1,7 +1,7 @@
 import './index.css';
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import LoginFormPage from "./components/LoginFormPage";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
@@ -61,9 +61,8 @@ function App() {
     return (
         <>
             {isLoaded && (
-                !sessionUser 
-                ? 
-                <>
+                !sessionUser ? 
+                <div className="unauthorized-application">
                     <Switch>
                         <Route exact path="/">
                             <Splash/>
@@ -78,23 +77,23 @@ function App() {
                         </Route>
 
                         <Route>
-                            <Error404 />
+                         <Error404 />
                         </Route>
                     </Switch>
-                </>
+                </div>
                 :
                 <div className="application">
-                    {sessionUser && 
                         <>
                             <SideBar/>
                             <TopNavigation navComponent={navComponent} setNavComponent={setNavComponent}/>
                         </>
-                    }
-                    <div className="content">
+                        <div className="content">
                         <Switch>
-                            <Route exact path="/">
-                                <Home />
-                            </Route>
+                            {sessionUser &&
+                                <Route exact path="/">
+                                    <Home />
+                                </Route>
+                            }
                             <Route path="/search">
                                 <Search />
                             </Route>
@@ -144,11 +143,9 @@ function App() {
                             </Route>
                         </Switch>
                     </div>
-                    {sessionUser &&
                         <footer className="playbar-container">
                             <AudioPlayer nowPlaying={nowPlaying} setNowPlaying={setNowPlaying} isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
                         </footer>
-                    }
                 </div>
             )}
         </>

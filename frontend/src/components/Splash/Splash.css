@@ -1,3 +1,7 @@
+.splash {
+    z-index: 5;
+}
+
 .nav-placeholder {
     height: 64px;
     position: absolute;

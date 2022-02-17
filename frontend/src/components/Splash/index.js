@@ -18,7 +18,7 @@ const Splash = () => {
     }
     
     return (
-        <>
+        <div className="splash">
             <nav className="nav-placeholder">
                 <NavLink to="/signup">
                     <button className="signup-link-button">
@@ -45,7 +45,7 @@ const Splash = () => {
                     </button>
                 </div>
             </div>
-        </>
+        </div>
     )
 }
 

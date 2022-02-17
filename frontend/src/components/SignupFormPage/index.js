@@ -12,17 +12,25 @@ function SignupFormPage() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState([]);
 
+    const emailErrors = errors.filter(error => error.startsWith('Email')).map(error => error.slice())
+    const usernameErrors = errors.filter(error => error.startsWith('Username')).map(error => error.slice())
+    const passwordErrors = errors.filter(error => error.startsWith('Password')).map(error => error.slice())
+    const otherErrors = errors.filter(error => error.startsWith('Your')).map(error => error.slice())
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         if (password === confirmPassword) {
             setErrors([]);
+
             return dispatch(sessionActions.signup({ email, username, password }))
             .catch(async (res) => {
                 const data = await res.json();
                 if (data && data.errors) setErrors(data.errors);
             });
         }
-        return setErrors(['Confirm Password field must be the same as the Password field']);
+
+        return setErrors(['Your passwords must match']);
     };
 
     return (
@@ -31,12 +39,16 @@ function SignupFormPage() {
                 <img className="signup-logo" src="https://i.imgur.com/SbCD3mF.png" />
                 <h2 className="signup-header">Sign up for free to start listening.</h2>
             </div>
+
             <div className="signup-form-container">
                 <div className="signup-divider"></div>
+
                 <form onSubmit={handleSubmit} className="signup-form" >
-                    <ul>
-                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                    </ul>
+                    <div className={`${otherErrors.length ? 'confirm-password-error-container' : "hidden"}`}>
+                        {otherErrors.map((error, idx) => (
+                            <div key={idx}>{error}</div>
+                        ))}
+                    </div>
                     <div className="label-input-container">
                         <div className="label-container">
                             <label for="email" className="label">
@@ -46,12 +58,17 @@ function SignupFormPage() {
                         <input
                             className="auth-input"
                             name="email"
-                            type="email"
+                            type="text"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             placeholder="Enter your email."
                             required
                         />
+                        <div className='auth-errors-container'>
+                            {emailErrors.map((error, idx) => (
+                                <span key={idx}>{error}</span>
+                            ))}
+                        </div>
                     </div>
                     <div className="label-input-container">
                         <div className="label-container">
@@ -68,6 +85,11 @@ function SignupFormPage() {
                             placeholder="Enter a profile name."
                             required
                         />
+                        <div className='auth-errors-container'>
+                            {usernameErrors.map((error, idx) => (
+                                <span key={idx}>{error}</span>
+                            ))}
+                        </div>
                     </div>
                     <div className="label-input-container">
                         <div className="label-container">
@@ -84,6 +106,11 @@ function SignupFormPage() {
                             placeholder="Create a password."
                             required
                         />
+                        <div className='auth-errors-container'>
+                            {passwordErrors.map((error, idx) => (
+                                <span key={idx}>{error}</span>
+                            ))}
+                        </div>
                     </div>
                     <div className="label-input-container">
                         <div className="label-container">

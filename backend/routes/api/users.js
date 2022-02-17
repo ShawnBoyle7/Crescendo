@@ -10,8 +10,8 @@ const router = express.Router();
 const validateUserEdit = [
     check('username')
     .exists({ checkFalsy: true })
-    .isLength({ min: 4 })
-    .withMessage('Please provide a username with at least 4 characters.'),
+    .isLength({ min: 3 })
+    .withMessage('Username must have at least 3 characters.'),
     handleValidationErrors,
 ];
 
@@ -19,34 +19,34 @@ const validateSignup = [
     check('email')
         .exists({ checkFalsy: true })
         .isEmail()
-        .withMessage('Please provide a valid email.'),
+        .withMessage('Email is invalid. Make sure it\'s written like example@email.com'),
     check('username')
         .exists({ checkFalsy: true })
-        .isLength({ min: 2 })
-        .withMessage('Please provide a username with at least 2 characters.'),
+        .isLength({ min: 3 })
+        .withMessage('Username must have at least 3 characters'),
     check('username')
-        .isLength({ max: 20 })
-        .withMessage('Please provide a username with at most 20 characters.'),
+        .isLength({ max: 30 })
+        .withMessage('Username must have at most 30 characters'),
     check('username')
         .not()
         .isEmail()
-        .withMessage('Username cannot be an email.'),
+        .withMessage('Username cannot be an email'),
     check('password')
         .exists({ checkFalsy: true })
         .isLength({ min: 8 })
-        .withMessage("Must be at least 8 characters"),
+        .withMessage("Password must be at least 8 characters"),
     check('password')
         .matches("^.*[a-z]+.*$")
-        .withMessage("Must contain at least one lower case character"),
+        .withMessage("Password must contain at least one lower case character"),
     check('password')
         .matches("^.*[A-Z]+.*$")
-        .withMessage("Must contain at least one upper case character"),
+        .withMessage("Password must contain at least one upper case character"),
     check('password')
         .matches("^.*\d+.*$")
-        .withMessage("Must contain at least one digit"),
+        .withMessage("Password must contain at least one digit"),
     check('password')
         .matches("^.*[@#$!%*?&]+.*$")
-        .withMessage("Must contain at least one special character (@, #, $, !, %, *, ?, &)"),
+        .withMessage("Password must contain at least one special character (@, #, $, !, %, *, ?, &)"),
     handleValidationErrors,
 ];
 

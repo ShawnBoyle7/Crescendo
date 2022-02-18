@@ -26,7 +26,7 @@ const Splash = () => {
                     </button>
                 </NavLink>
                 <NavLink to="/login">
-                    <button className="login-button">
+                    <button className="login-link-button">
                         LOG IN
                     </button>
                 </NavLink>

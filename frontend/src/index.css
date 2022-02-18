@@ -124,8 +124,8 @@ button {
     margin-top: 0.5em; 
 }
 
-.confirm-password-error-container {
+.confirm-password-error-container, .login-error-container {
     color: #c00000;
     margin-bottom: 0.6em;
-    margin-left: 25%;
+    text-align: center;
 }

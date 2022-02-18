@@ -1,0 +1,27 @@
+.login-logo-header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-bottom: 1px solid rgb(217, 218, 220);
+    padding: 25px 0px 15px;
+    margin-bottom: 30px;
+}
+
+.login-logo {
+    width: 250px;
+    height: 50px
+}
+
+.login-header {
+    font-size: 0.875rem;
+    font-weight: 900;
+    line-height: 1.25rem;
+    text-transform: none;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-button {
+    margin-bottom: 20px;
+}

@@ -11,10 +11,10 @@ const validateLogin = [
     check('credential')
         .exists({ checkFalsy: true })
         .notEmpty()
-        .withMessage('Please provide a valid email or username.'),
+        .withMessage('Incorrect username or password'),
     check('password')
         .exists({ checkFalsy: true })
-        .withMessage('Please provide a password.'),
+        .withMessage('Incorrect username or password'),
     handleValidationErrors,
 ]; 
 
@@ -37,18 +37,11 @@ router.post(
 
     const user = await User.login({ credential, password });
 
-    if (user === "Invalid Email or Username") {
+    if (!user) {
         const err = new Error('Login failed');
         err.status = 401;
         err.title = 'Login failed';
-        err.errors = ["Invalid Email or Username"];
-        return next(err);
-    } else if (user === "Incorrect password") {
-        console.log("hello")
-        const err = new Error('Login failed');
-        err.status = 401;
-        err.title = 'Login failed';
-        err.errors = ["Incorrect password"];
+        err.errors = ['Incorrect username or password'];
         return next(err);
     }
 

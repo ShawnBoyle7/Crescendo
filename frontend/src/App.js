@@ -2,11 +2,12 @@ import './index.css';
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Route, Switch } from "react-router-dom";
-import LoginFormPage from "./components/LoginFormPage";
-import SignupFormPage from "./components/SignupFormPage";
+import LoginFormPage from './components/Auth/LoginFormPage';
+import SignupFormPage from './components/Auth/SignupFormPage';
 import * as sessionActions from "./store/session";
 import SideBar from "./components/SideBar";
 import Artists from "./components/Artists";
+import Albums from './components/Albums';
 import Home from "./components/Home";
 import Search from "./components/Search";
 import Genre from "./components/Genre";
@@ -60,31 +61,39 @@ function App() {
     return (
         <>
             {isLoaded && (
+                !sessionUser ? 
+                <>
+                    <Switch>
+                        <Route exact path="/">
+                            <Splash/>
+                        </Route>
+                        
+                        <Route path="/login">
+                            <LoginFormPage />
+                        </Route>
+
+                        <Route path="/signup">
+                            <SignupFormPage />
+                        </Route>
+
+                        <Route>
+                         <Error404 />
+                        </Route>
+                    </Switch>
+                </>
+                :
                 <div className="application">
-                    {sessionUser && 
                         <>
                             <SideBar/>
                             <TopNavigation navComponent={navComponent} setNavComponent={setNavComponent}/>
                         </>
-                    }
-                    <div className="content">
+                        <div className="content">
                         <Switch>
-                            <Route exact path="/">
-                                {sessionUser ? 
+                            {sessionUser &&
+                                <Route exact path="/">
                                     <Home />
-                                    : 
-                                    <Splash/>
-                                }
-                            </Route>
-
-                            <Route path="/login">
-                                <LoginFormPage />
-                            </Route>
-
-                            <Route path="/signup">
-                                <SignupFormPage />
-                            </Route>
-
+                                </Route>
+                            }
                             <Route path="/search">
                                 <Search />
                             </Route>
@@ -93,16 +102,20 @@ function App() {
                                 <Artist setNowPlaying={setNowPlaying} nowPlaying={nowPlaying} setIsPlaying={setIsPlaying} isPlaying={isPlaying} />
                             </Route>
 
+                            <Route path="/albums/:albumId">
+                                <Album setNowPlaying={setNowPlaying} nowPlaying={nowPlaying} albums={albums && albums} isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
+                            </Route>
+
                             <Route path="/artists">
                                 <Artists />
                             </Route>
 
-                            <Route path="/songs">
-                                <Songs />
+                            <Route path="/albums">
+                                <Albums />
                             </Route>
 
-                            <Route path="/albums/:albumId">
-                                <Album setNowPlaying={setNowPlaying} nowPlaying={nowPlaying} albums={albums && albums} isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
+                            <Route path="/songs">
+                                <Songs />
                             </Route>
 
                             <Route path="/genres/:genreId">
@@ -130,11 +143,9 @@ function App() {
                             </Route>
                         </Switch>
                     </div>
-                    {sessionUser &&
                         <footer className="playbar-container">
                             <AudioPlayer nowPlaying={nowPlaying} setNowPlaying={setNowPlaying} isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
                         </footer>
-                    }
                 </div>
             )}
         </>

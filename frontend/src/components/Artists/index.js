@@ -1,6 +1,5 @@
 import { Route } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import Artist from '../Artist';
 import ArtistDiv from '../ArtistDiv';
 import './Artists.css'
 
@@ -11,12 +10,13 @@ const Artists = () => {
     return (
         <>
             <Route exact path="/artists">
-                    <div className="artist-section">
-                        <div className="artist-divs">
-                                {artists.map(artist =>
-                                <ArtistDiv artist={artist}/>)}
-                        </div>
-                    </div>
+                <div className="library-header-div">
+                    <h1 className="library-header">Artists</h1>
+                </div>
+                <div className="library-section">
+                    {artists && artists?.map(artist =>
+                        <ArtistDiv artist={artist} />)}
+                </div>
             </Route>
         </>
     )

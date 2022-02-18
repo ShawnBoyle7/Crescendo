@@ -10,7 +10,6 @@ const AlbumDiv = ({ album }) => {
                     <img className="album-image" src={album?.imgUrl} alt="album-art" />
                     <span className="album-name">{album?.name}</span>
                     <span className="album-artist">{album?.Artist?.name}</span>
-                    {console.log(album.Artist)}
                 </div>
             </Link>
         </>

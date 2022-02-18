@@ -17,7 +17,7 @@ html, body {
     padding: 0;
     color: var(--white);
     font-family: 'Gotham', sans-serif;
-    background-color: var(--primary-bg-color);
+    height: 100%;
     /* background: rgb(60,7,23);
     background: linear-gradient(0deg, rgba(60,7,23,1) 11%, rgba(240,112,113,1) 56%, rgba(255,140,140,1) 73%, rgba(255,97,97,1) 100%); */
 }
@@ -25,6 +25,7 @@ html, body {
 #root {
     position: relative;
     height: 100%;
+    background-color: var(--primary-bg-color);
 }
 
 ::-webkit-scrollbar-track {
@@ -57,6 +58,10 @@ a {
     text-decoration: none;
 }
 
+button {
+    font-family: 'Gotham', sans-serif;
+}
+
 .hidden {
     display: none;
 }
@@ -80,7 +85,7 @@ a {
 
 .application {
     display: grid;
-    grid-template-columns: 228px calc(100vw - 228px);
+    grid-template-columns: 241px calc(100vw - 241px);
     grid-template-rows: 60px calc(100% - 90px) 90px;
     grid-template-areas: 
     "side-navigation-bar top-navigation-bar"
@@ -108,4 +113,19 @@ a {
     justify-content: space-between;
     align-items: center;
     grid-area: footer;
+}
+
+.auth-errors-container {
+    display: flex;
+    flex-direction: column;
+    color: #c00000;
+    font-size: .9em;
+    margin-left: 1em;
+    margin-top: 0.5em; 
+}
+
+.confirm-password-error-container, .login-error-container {
+    color: #c00000;
+    margin-bottom: 0.6em;
+    text-align: center;
 }

@@ -1,8 +1,8 @@
 .playlist-page {
     position: absolute;
     top: 0;
-    left: 228px;
-    width: calc(100% - 228px);
+    left: 241px;
+    width: calc(100% - 241px);
     height: calc(100% - 90px);
     padding: 0 32px;
     overflow-y: auto;
@@ -65,7 +65,7 @@
     top: 4px;
 }
 
-.show-page-controls {
+.show-page-controls, .empty-playlist-controls {
     position: relative;
     display: flex;
     align-items: center;
@@ -73,11 +73,11 @@
     padding: 24px 0;
 }
 
-.show-page-controls > * {
+.show-page-controls > *, .empty-playlist-controls > * {
     margin-right: 32px;
 }
 
-.show-page-controls i {
+.show-page-controls i, .empty-playlist-controls i {
     font-size: 30px;
 }
 

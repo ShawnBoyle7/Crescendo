@@ -1,24 +1,23 @@
-import { Link, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import AlbumDiv from '../AlbumDiv';
 import './Albums.css';
-// import Album from '../Album';
 
-const Albums = ({ albums }) => {
+const Albums = () => {
+    const albumsSlice = useSelector(state => state.albums);
+    const albums = Object.values(albumsSlice);
+
     return (
         <>
-            <Route exact path="/artists/:artistId/albums">
-                <div className="albums-section">
-                    <div className="albums-divs">
-                        {albums.map(album =>
-                            <div className="albums-item" key={album.id}>
-                                <Link to={`/albums/${album.id}`}>
-                                    <img className="albums-image" alt={"album"} src={album.albumImgUrl} />
-                                    <div className="albums-name">{album.name}</div>
-                                </Link>
-                            </div>)}
-                    </div>
+            <Route exact path="/albums">
+                <div className="library-header-div">
+                    <h1 className="library-header">Albums</h1>
+                </div>
+                <div className="library-section">
+                    {albums && albums?.map(album =>
+                        <AlbumDiv album={album} />)}
                 </div>
             </Route>
-
         </>
     )
 }

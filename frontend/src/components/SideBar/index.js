@@ -1,8 +1,7 @@
 import React from 'react';
-import { useHistory, useLocation, Link } from "react-router-dom";
+import { useHistory, useLocation, Link, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { createPlaylist, getPlaylists } from '../../store/playlists';
-import { getUsers } from '../../store/users';
 import './SideBar.css';
 
 function SideBar() {
@@ -30,7 +29,15 @@ function SideBar() {
         await dispatch(createPlaylist(formValues))
         await dispatch(getPlaylists())
 
-        history.push(`/playlists/${userPlaylists[userPlaylists?.length - 1].id}`)
+        // let newPlaylistId;
+        // if (userPlaylists.length > 0) {
+        //     newPlaylistId = userPlaylists.length - 1
+        // } else {
+        //     newPlaylistId = 1
+        // }
+
+        // history.push(`/playlists/${userPlaylists[newPlaylistId]}`)
+        // return <Redirect to={`/playlists/${userPlaylists[newPlaylistId]}`}/>
     }
     return (
         <div className="side-bar">

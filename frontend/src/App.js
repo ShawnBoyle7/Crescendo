@@ -1,9 +1,9 @@
 import './index.css';
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Switch, Redirect } from "react-router-dom";
-import LoginFormPage from "./components/LoginFormPage";
-import SignupFormPage from "./components/SignupFormPage";
+import { Route, Switch } from "react-router-dom";
+import LoginFormPage from './components/Auth/LoginFormPage';
+import SignupFormPage from './components/Auth/SignupFormPage';
 import * as sessionActions from "./store/session";
 import SideBar from "./components/SideBar";
 import Artists from "./components/Artists";

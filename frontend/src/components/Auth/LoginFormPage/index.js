@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import * as sessionActions from '../../store/session';
+import * as sessionActions from '../../../store/session';
 import { useDispatch } from 'react-redux';
 import './LoginFormPage.css';
+import '../Auth.css';
 
 function LoginFormPage() {
     const dispatch = useDispatch();
@@ -23,22 +24,21 @@ function LoginFormPage() {
     }
 
     return (
-        <div className="signup-form-page">
+        <div className="auth-form-page">
             <div className="login-logo-header-container">
                 <img className="login-logo" src="https://i.imgur.com/SbCD3mF.png" />
             </div>
 
-            <div className="signup-form-container">
+            <div className="auth-form-container">
                 <h2 className="login-header">To continue, log in to Crescendo.</h2>
-                <div className="signup-divider"></div>
-
+                <div className="auth-divider"></div>
                 <div className={`${loginErrors.length ? 'login-error-container' : "hidden"}`}>
                     {loginErrors.map((error, idx) => (
                         <span key={idx}>{error}</span>
                     ))}
                 </div>
 
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} className="auth-form">
                     <div className="label-input-container">
                         <div className="label-container">
                             <label for="credential" className="label">
@@ -64,18 +64,23 @@ function LoginFormPage() {
                         <input
                             className="auth-input"
                             type="password"
+                            name="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             placeholder="Password"
                             required
                             />
                     </div>
-                    <button type="submit" className="login-button">Log In</button>
-                    <div className="signup-divider"></div>
+                    <div className="login-button-container">
+                        <button type="submit" className="login-button">Log In</button>
+                    </div>
+                    <div className="auth-divider"></div>
+                    <div className="login-redirect-container">
+                        <p className="no-user-message">Don't have an account?</p>
+                        <button className="redirect-signup-button">Sign up for Crescendo</button>
+                    </div>
                 </form>
             </div>
-            <h2>Don't have an account?</h2>
-            <button>Sign up for Crescendo</button>
         </div>
     );
 }

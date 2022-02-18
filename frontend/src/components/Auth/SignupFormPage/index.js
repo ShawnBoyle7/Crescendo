@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch} from "react-redux";
 import {  Link } from "react-router-dom";
-import * as sessionActions from "../../store/session";
+import * as sessionActions from "../../../store/session";
 import './SignupFormPage.css';
+import '../Auth.css';
 
 function SignupFormPage() {
     const dispatch = useDispatch();
@@ -34,16 +35,15 @@ function SignupFormPage() {
     };
 
     return (
-        <div className="signup-form-page">
-            <div className="logo-header-container">
+        <div className="auth-form-page">
+            <div className="signup-logo-header-container">
                 <img className="signup-logo" src="https://i.imgur.com/SbCD3mF.png" />
                 <h2 className="signup-header">Sign up for free to start listening.</h2>
             </div>
 
-            <div className="signup-form-container">
-                <div className="signup-divider"></div>
-
-                <form onSubmit={handleSubmit} className="signup-form" >
+            <div className="auth-form-container">
+                <div className="auth-divider"></div>
+                <form onSubmit={handleSubmit} className="auth-form" >
                     <div className={`${otherErrors.length ? 'confirm-password-error-container' : "hidden"}`}>
                         {otherErrors.map((error, idx) => (
                             <div key={idx}>{error}</div>
@@ -133,7 +133,6 @@ function SignupFormPage() {
                 </form>
             </div>
         </div>
-
     );
 }
 

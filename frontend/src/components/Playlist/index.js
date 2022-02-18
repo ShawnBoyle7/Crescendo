@@ -199,7 +199,7 @@ const Playlist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
                 </div>
 
                 <div className={ (playlist && playlistSongs?.length || likedSongs && likedSongs?.length) ? "show-page-controls" : "empty-playlist-controls" }>
-                    <img className="big-player-button" onClick={playlistPlayerButtonClick} 
+                    <img className="big-player-button" onClick={`${playlist?.Songs?.length ? playlistPlayerButtonClick : ""}`} 
                     src={!isPlaying ? "https://i.imgur.com/7QSCa6X.png" : "https://i.imgur.com/QtT4j0R.png"}/>
 
                     <div className={path === "playlists" && sessionUser?.id === playlistCreatorId ? "playlist-dropdown" : "invisible"} onClick={handleDropdown} ref={dropdownRef}>

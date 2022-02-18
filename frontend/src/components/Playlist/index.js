@@ -76,18 +76,20 @@ const Playlist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
     }
 
     const playlistPlayerButtonClick = () => {
-        const previousValue = isPlaying
-        setIsPlaying(!previousValue)
-        // If not is playing, then play and begin animation of time change
-
-        if (!previousValue) {
-            if (!nowPlaying) {
-                setNowPlaying(playlistSongs[0])
+        if (playlist.Songs.length) {
+            const previousValue = isPlaying
+            setIsPlaying(!previousValue)
+            // If not is playing, then play and begin animation of time change
+    
+            if (!previousValue) {
+                if (!nowPlaying) {
+                    setNowPlaying(playlistSongs[0])
+                }
+                audio.play()
+                // Else pause and stop animation of time change
+            } else {
+                audio.pause()
             }
-            audio.play()
-            // Else pause and stop animation of time change
-        } else {
-            audio.pause()
         }
     }
 
@@ -199,7 +201,7 @@ const Playlist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
                 </div>
 
                 <div className={ (playlist && playlistSongs?.length || likedSongs && likedSongs?.length) ? "show-page-controls" : "empty-playlist-controls" }>
-                    <img className="big-player-button" onClick={`${playlist?.Songs?.length ? playlistPlayerButtonClick : ""}`} 
+                    <img className="big-player-button" onClick={playlistPlayerButtonClick} 
                     src={!isPlaying ? "https://i.imgur.com/7QSCa6X.png" : "https://i.imgur.com/QtT4j0R.png"}/>
 
                     <div className={path === "playlists" && sessionUser?.id === playlistCreatorId ? "playlist-dropdown" : "invisible"} onClick={handleDropdown} ref={dropdownRef}>

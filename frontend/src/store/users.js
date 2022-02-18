@@ -66,6 +66,32 @@ export const deleteSongLike = (payload) => async (dispatch) => {
     }
 }
 
+export const likeArtist = (payload) => async (dispatch) => {
+    const response = await csrfFetch('/api/users/like-artist', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+    })
+
+    if (response.ok) {
+        const users = await response.json();
+        dispatch(loadUsers(users))
+    }
+}
+
+export const deleteArtistLike = (payload) => async (dispatch) => {
+    const response = await csrfFetch(`/api/users/artist/${payload.artistId}/${payload.userId}`, {
+        method: "DELETE"
+    })
+
+    if (response.ok) {
+        const users = await response.json();
+        dispatch(loadUsers(users))
+    }
+}
+
 export const likeAlbum = (payload) => async (dispatch) => {
     const response = await csrfFetch('/api/users/like-album', {
         method: "POST",

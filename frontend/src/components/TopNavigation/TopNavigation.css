@@ -59,13 +59,13 @@
     border-radius: 23px;
     position: relative;
     align-items: center;
-    background-color: rgba(0,0,0,.7);
+    background-color: #181818;
     border: 0;
     color: white;
 }
 
 .profile-button:hover {
-    background: rgba(255, 255, 255, 0.075);
+    background: #282828;
     cursor: pointer;
 }
 

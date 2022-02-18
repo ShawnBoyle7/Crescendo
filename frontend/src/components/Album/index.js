@@ -40,11 +40,6 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
     const album = albums?.find(album => album?.Artist?.id === +albumId)
     const songs = Object.values(useSelector(state => state.songs))
     const albumSongs = songs.filter(song => song.albumId === +albumId)
-    // console.log("ALBUM", album) 
-    // const albumSongsReversed = album?.Songs
-    // console.log("SONGS FROM ALBUM", albumSongs)
-    // const albumSongs = albumSongsReversed.reverse()
-    // console.log("ALBUM SONGS", albumSongs)
 
     const sessionUser = useSelector(state => state.session?.user)
     const sessionUserLike = album?.Users?.find(user => user?.id === sessionUser?.id)
@@ -109,14 +104,18 @@ const Album = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying, albums }) =
                 userId: sessionUser?.id
             }
             await dispatch(likeAlbum(payload))
+            await dispatch(getAlbums())
+            await dispatch(getUsers())
         } else {
             const payload = {
                 albumId: album.id,
                 userId: sessionUser?.id
             }
             await dispatch(deleteAlbumLike(payload))
+            await dispatch(getAlbums())
+            await dispatch(getUsers())
         }
-        await dispatch(getAlbums())
+
     }
 
     const addAlbumToPlaylist = (e) => {

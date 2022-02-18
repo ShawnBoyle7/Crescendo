@@ -165,20 +165,7 @@
     margin: 0 0 20px;
 }
 
-.artist-not-followed {
-    border-color: rgba(255,255,255,0.3);
-    background: none;
-    color: white;
-    border: 1px solid;
-    border-radius: 4px;
-    padding: 7px 15px;
-    letter-spacing: 1.5px;
-    font-size: 12px;
-    outline: inherit;
-    margin-left:35px;
-}
-
-.artist-followed {
+.artist-follow-button {
     background-color: transparent;
     border: 1px solid rgba(255,255,255,.3);
     border-radius: 4px;

@@ -95,7 +95,7 @@ Here you can listen to, remove, and like songs in your playlists. You can also a
 
 This is the page for an artist, where you can listen to their most popular songs, add them to a playlist, or follow the artist.
 
-![Artist](https://i.imgur.com/bbwIioo.png)
+![Artist](https://i.imgur.com/sJIjKqy.png)
 
 ### Album
 

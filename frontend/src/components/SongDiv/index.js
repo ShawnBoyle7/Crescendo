@@ -257,7 +257,7 @@ const SongDiv = ({ song, num, path, pageId, playlists, isPlaying, setIsPlaying, 
                 <td className="duration-column">
                     <div className="song-controls-container">
                         <div className="song-controls">
-                            <i id={!liked ? "heart-default" : "heart-liked"} className={isHovering ? "far fa-heart" : "far fa-heart invisible"} onClick={likeCurrentSong}></i>
+                            <i id={!liked ? "heart-default" : "heart-liked"} className={isHovering || liked ? "far fa-heart" : "far fa-heart invisible"} onClick={likeCurrentSong}></i>
                             {/* Song duration below */}
                             <span className="song-div-song-length">{song?.songLength}</span>
                             <div className={isHovering ? "dropdown" : "invisible"} onClick={handleDropdown} ref={dropdownRef}>

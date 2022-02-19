@@ -9,17 +9,17 @@
     overflow-x: hidden;
 }
 
-.artist-page-header {
-    display: flex;
-    align-items: flex-end;
-    background-image: url("");
-    padding: 0 32px;
+.artist-header-container {
     margin: 0 -32px;
-    padding-bottom: 24px;
-    height: 340px;
 }
 
-.artist-name-header {
+.artist-header-image {
+    object-fit: cover;
+}
+
+.artist-header-name {
+    position: absolute;
+    top: 250px;
     padding: 0.08em 0px;
     visibility: visible;
     width: 100%;

@@ -112,16 +112,13 @@ const Artist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
         }
     }
 
-    const headerStyle = {
-        backgroundImage: 'url(' + artist?.headerUrl + ')',
-    };
-
     return (
         <>
             <div className="artist-page">
-                <div className="artist-page-header" style={headerStyle}>
-                        <h1 className="artist-name-header">{artist?.name}</h1>
+                <div className="artist-header-container">
+                    <img className="artist-header-image" src="https://i.imgur.com/2DygT0m.png"></img>
                 </div>
+                <h1 className="artist-header-name">{artist?.name}</h1>
 
                 <div className="artist-page-buttons-div">
                         <img className="big-player-button" src={!isPlaying ? "https://i.imgur.com/7QSCa6X.png" : "https://i.imgur.com/QtT4j0R.png"} onClick={artistPlayerButtonClick}/>

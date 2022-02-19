@@ -22,14 +22,21 @@
     color: var(--primary-text-color);
 }
 
+.fa-plus-square, .fa-plus-square::before {
+    font-size: 28px;
+    width: 28px;
+    height: 28px;
+}
+
 .side-bar-button:hover, .side-bar-personal-navigation-button:hover, .side-bar i:hover {
     background-color: #1a1a1a;
     color: var(--white);
 }
 
 .side-bar-personal-navigation-div i, .side-bar-personal-navigation-div img {
-    font-size: 24px;
-    width: 24px;
+    font-size: 28px;
+    width: 28px;
+    height: 28px;
 }
 
 .side-bar-navigation-div i {
@@ -86,7 +93,7 @@
 .side-bar-personal-navigation-div {    
     display: flex;
     flex-direction: column;
-    padding: 24px 8px;
+    padding: 24px 8px 6px 8px;
 }
 
 .side-bar-personal-navigation-button {

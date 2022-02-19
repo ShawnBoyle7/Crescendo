@@ -24,6 +24,6 @@
     },
     "homepage": "https://github.com/ShawnBoyle7/Crescendo#readme",
     "dependencies": {
-        "react-h5-audio-player": "^3.7.1"
+        
     }
 }

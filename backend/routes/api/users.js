@@ -3,7 +3,7 @@ const asyncHandler = require('express-async-handler');
 const { check } = require('express-validator');
 const { handleValidationErrors, passwordValidator } = require('../../utils/validation');
 const { setTokenCookie, requireAuth } = require('../../utils/auth');
-const { User, Artist, Album, Playlist, Song, Song_User_Join, User_Album_Join } = require('../../db/models');
+const { User, Artist, Album, Playlist, Song, Song_User_Join, User_Album_Join, User_Artist_Join } = require('../../db/models');
 
 const router = express.Router();
 
@@ -144,6 +144,31 @@ router.delete('/album/:albumId/:userId', asyncHandler(async (req, res) => {
 
     const users = await User.findAll({
         include: [ Album ]
+    });
+    return res.json(users)
+}))
+
+router.post('/like-artist', asyncHandler(async (req, res) => {
+    await User_Artist_Join.create(req.body)
+    const users = await User.findAll({
+        include: [ Artist ]
+    });
+    return res.json(users)
+}));
+
+router.delete('/artist/:artistId/:userId', asyncHandler(async (req, res) => {
+    const artistId = +req.params.artistId;
+    const userId = +req.params.userId;
+    const artistLike = await User_Artist_Join.findOne({
+        where: {
+            artistId,
+            userId
+        }
+    });
+    await artistLike.destroy();
+
+    const users = await User.findAll({
+        include: [ Artist ]
     });
     return res.json(users)
 }))

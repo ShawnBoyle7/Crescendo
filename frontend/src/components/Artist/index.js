@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from "react"
 import { useParams, useLocation } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
+import { likeArtist, deleteArtistLike, getUsers } from "../../store/users";
+import { getArtists } from "../../store/artists";
 import SongDiv from "../SongDiv";
 import './Artist.css';
 
@@ -31,8 +33,8 @@ const Artist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
     const artistSongs = songs?.filter(song => song?.artistId === +artistId)
 
     const sessionUser = useSelector(state => state.session?.user)
-    // const sessionUserFollow = artist?.Users?.find(user => user?.id === sessionUser?.id)
-    // const artistFollowed = sessionUserFollow?.id === sessionUser?.id
+    const sessionUserFollow = artist?.Users?.find(user => user?.id === sessionUser?.id)
+    const artistFollowed = sessionUserFollow?.id === sessionUser?.id
 
     const pathName = location?.pathname?.split('/');
     const path = pathName[1];
@@ -90,9 +92,25 @@ const Artist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
     
     if (artistSongsByPopularity.length > 5) artistSongsByPopularity = artistSongsByPopularity.slice(0, 5)
 
-    // const handleArtistFollow = () => {
-
-    // }
+    const handleArtistFollow = async () => {
+        if (!artistFollowed) {
+            const payload = {
+                artistId: artist.id,
+                userId: sessionUser?.id
+            }
+            await dispatch(likeArtist(payload))
+            await dispatch(getArtists())
+            await dispatch(getUsers())
+        } else {
+            const payload = {
+                artistId: artist.id,
+                userId: sessionUser?.id
+            }
+            await dispatch(deleteArtistLike(payload))
+            await dispatch(getArtists())
+            await dispatch(getUsers())
+        }
+    }
 
     const headerStyle = {
         backgroundImage: 'url(' + artist?.headerUrl + ')',
@@ -108,9 +126,9 @@ const Artist = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => {
                 <div className="artist-page-buttons-div">
                         <img className="big-player-button" src={!isPlaying ? "https://i.imgur.com/7QSCa6X.png" : "https://i.imgur.com/QtT4j0R.png"} onClick={artistPlayerButtonClick}/>
 
-                    {/* <button className={!artistFollowed ? "artist-not-followed" : "artist-followed"} onClick={handleArtistFollow}> 
-                        {artistFollowed ? "Follow" : "Following"}
-                    </button> */}
+                    <button className={"artist-follow-button"} onClick={handleArtistFollow}> 
+                        {!artistFollowed ? "Follow" : "Following"}
+                    </button>
                 </div>
 
                 <h2 className="artist-songs-section-header">Popular</h2>

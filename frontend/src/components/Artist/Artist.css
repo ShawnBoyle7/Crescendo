@@ -10,31 +10,54 @@
 }
 
 .artist-header-container {
+    position: relative;
     margin: 0 -32px;
-}
-
-.artist-header-image {
     object-fit: cover;
 }
 
-.artist-header-name {
+.artist-header-image {
+    height: 387px;
+    width: 100%;
+}
+
+.artist-header-info-container {
     position: absolute;
-    top: 250px;
+    top: 200px;
+    margin-left: 35px;
+    display: flex;
+    flex-flow: column;
+    justify-content: flex-end;
+    align-content: space-between;
+    flex: 1;
+    z-index: 0;
+}
+
+.verified-container {
+    display: flex;
+}
+
+.verified-text {
+    font-size: 0.875rem;
+    line-height: 1rem;
+    letter-spacing: normal;
+    transform: translateY(20%);
+    padding-left: 3px;
+}
+
+.artist-header-name {
     padding: 0.08em 0px;
     visibility: visible;
     width: 100%;
     font-size: 96px;
     line-height: 96px;
-    font-size: 96px;
     font-weight: 900;
-    letter-spacing: -.04em;
-    line-height: 96px;
-    text-transform: none;
+    letter-spacing: -0.04em;
 }
 
-.artist-header-image {
-    width: 100%;
-    height: 400px;
+.monthly-listeners {
+    font-size: 16px;
+    line-height: 2;
+    margin-top: 4px;
 }
 
 /* Page Controls */

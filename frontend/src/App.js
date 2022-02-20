@@ -77,7 +77,7 @@ function App() {
             </Route>
 
             <Route>
-             <Error404 />
+              <Error404 />
             </Route>
           </Switch>
         </>

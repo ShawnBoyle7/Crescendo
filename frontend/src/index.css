@@ -1,129 +1,129 @@
 :root {
-    --green: #1DB954;
-    --black: #000;
-    --white: #fff;
-    --primary-bg-color: #121212;
-    --lighter-bg-color: #181818;
-    --primary-text-color: #b3b3b3;
+  --green: #1DB954;
+  --black: #000;
+  --white: #fff;
+  --primary-bg-color: #121212;
+  --lighter-bg-color: #181818;
+  --primary-text-color: #b3b3b3;
 }
 
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html, body {
-    margin: 0;
-    border: 0;
-    padding: 0;
-    color: var(--white);
-    font-family: 'Gotham', sans-serif;
-    height: 100%;
+  margin: 0;
+  border: 0;
+  padding: 0;
+  color: var(--white);
+  font-family: 'Gotham', sans-serif;
+  height: 100%;
 }
 
 #root {
-    position: relative;
-    height: 100%;
-    background-color: var(--primary-bg-color);
+  position: relative;
+  height: 100%;
+  background-color: var(--primary-bg-color);
 }
 
 ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
-    border-radius: 10px;
-    background-color: var(--black)
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
+  border-radius: 10px;
+  background-color: var(--black)
 }
 
 ::-webkit-scrollbar {
-    width: 11px;
-    background-color: var(--black)
+  width: 11px;
+  background-color: var(--black)
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 12px;
-    box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-    background-color: #414141;
+  border-radius: 12px;
+  box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: #414141;
 }
 
 div, ul, p, h1, h2 {
-    border: 0;
-    margin: 0;
-    padding: 0;
-    vertical-align: baseline;
-    list-style: none;
+  border: 0;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+  list-style: none;
 }
 
 a {
-    color: var(--white);
-    text-decoration: none;
+  color: var(--white);
+  text-decoration: none;
 }
 
 button {
-    font-family: 'Gotham', sans-serif;
+  font-family: 'Gotham', sans-serif;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
 
 .invisible {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 #is-playing {
-    color: var(--green)
+  color: var(--green)
 }
 
 #heart-liked {
-    color: var(--green)
+  color: var(--green)
 }
 
 .big-player-button {
-    width: 67px;
-    height: 67px;
+  width: 67px;
+  height: 67px;
 }
 
 .application {
-    display: grid;
-    grid-template-columns: 241px calc(100vw - 241px);
-    grid-template-rows: 60px calc(100% - 90px) 90px;
-    grid-template-areas: 
-    "side-navigation-bar top-navigation-bar"
-    "side-navigation-bar main-content"
-    "footer footer";
+  display: grid;
+  grid-template-columns: 241px calc(100vw - 241px);
+  grid-template-rows: 60px calc(100% - 90px) 90px;
+  grid-template-areas: 
+  "side-navigation-bar top-navigation-bar"
+  "side-navigation-bar main-content"
+  "footer footer";
 }
 
 .content {
-    grid-area: main-content;
-    height: calc(100vh - 150px);
-    overflow-y: auto;
-    padding: 0 32px;
+  grid-area: main-content;
+  height: calc(100vh - 150px);
+  overflow-y: auto;
+  padding: 0 32px;
 }
 
 .playbar-container {
-    height: 90px;
-    width: 100%;
-    border-top: 1px solid #282828;
-    background-color: var(--lighter-bg-color);
-    position: fixed;
-    bottom: 0;
-    padding: 0 16px;
-    z-index: 1;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    grid-area: footer;
+  height: 90px;
+  width: 100%;
+  border-top: 1px solid #282828;
+  background-color: var(--lighter-bg-color);
+  position: fixed;
+  bottom: 0;
+  padding: 0 16px;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  grid-area: footer;
 }
 
 .auth-errors-container {
-    display: flex;
-    flex-direction: column;
-    color: #c00000;
-    font-size: .9em;
-    margin-left: 1em;
-    margin-top: 0.5em; 
+  display: flex;
+  flex-direction: column;
+  color: #c00000;
+  font-size: .9em;
+  margin-left: 1em;
+  margin-top: 0.5em; 
 }
 
 .confirm-password-error-container, .login-error-container {
-    color: #c00000;
-    margin-bottom: 0.6em;
-    text-align: center;
+  color: #c00000;
+  margin-bottom: 0.6em;
+  text-align: center;
 }

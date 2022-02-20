@@ -1,38 +1,38 @@
 .artist-card {
-    display: flex;
-    flex-direction: column;
-    height: 16.5em;
-    width: 12em;
-    background: var(--lighter-bg-color);
-    border-radius: 4px;
-    padding: 16px;
+  display: flex;
+  flex-direction: column;
+  height: 16.5em;
+  width: 12em;
+  background: var(--lighter-bg-color);
+  border-radius: 4px;
+  padding: 16px;
 }
 
 .artist-card:hover {
-    transition-duration: 250ms;
-    background-color: #262626;
+  transition-duration: 250ms;
+  background-color: #262626;
 }
 
 .artist-image {
-    height: 160px;
-    width: 160px; 
-    border-radius: 50%;
-    margin-bottom: 10%;
+  height: 160px;
+  width: 160px; 
+  border-radius: 50%;
+  margin-bottom: 10%;
 }
 
 .artist-name {
-    display: flex;
-    justify-content: flex-start;
-    font-weight: bold;
-    font-size: 0.95em;
-    text-overflow: ellipsis;
+  display: flex;
+  justify-content: flex-start;
+  font-weight: bold;
+  font-size: 0.95em;
+  text-overflow: ellipsis;
 }
 
 .artist-text {
-    display: flex;
-    justify-content: flex-start;
-    margin-top: 5%;
-    font-size: 0.83em;
-    color: darkgray;
-    text-overflow: ellipsis;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 5%;
+  font-size: 0.83em;
+  color: darkgray;
+  text-overflow: ellipsis;
 }

@@ -3,15 +3,15 @@ import { useSelector } from "react-redux";
 
 const Profile = ({ user }) => {
 
-    const sessionUser = useSelector(state => state.users[user.id])
+  const sessionUser = useSelector(state => state.users[user.id])
 
 
-    return (
-        <>
-            {sessionUser?.username}
-            <EditUserForm user={sessionUser} />
-        </>
-    )
+  return (
+    <>
+      {sessionUser?.username}
+      <EditUserForm user={sessionUser} />
+    </>
+  )
 };
 
 export default Profile;

@@ -5,16 +5,16 @@ export const IsPlayingContext = createContext();
 export const useIsPlaying = () => useContext(IsPlayingContext);
 
 export default function IsPlayingProvider({ children }) {
-    const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
-    return (
-        <IsPlayingContext.Provider
-        value={{
-            isPlaying,
-            setIsPlaying
-        }}
-        >
-        {children}
-        </IsPlayingContext.Provider>
-    );
+  return (
+    <IsPlayingContext.Provider
+    value={{
+      isPlaying,
+      setIsPlaying
+    }}
+    >
+    {children}
+    </IsPlayingContext.Provider>
+  );
 }

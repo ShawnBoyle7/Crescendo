@@ -5,65 +5,65 @@ import * as sessionActions from '../../store/session';
 import './TopNavigation.css';
 
 function ProfileButton() {
-    const dispatch = useDispatch();
-    const history = useHistory();
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-    const [showMenu, setShowMenu] = useState(false);
-    const sessionUser = useSelector(state => state.session.user)
+  const [showMenu, setShowMenu] = useState(false);
+  const sessionUser = useSelector(state => state.session.user)
 
-    const openMenu = () => {
-        if (showMenu) return;
-        setShowMenu(true);
+  const openMenu = () => {
+    if (showMenu) return;
+    setShowMenu(true);
+  };
+
+  useEffect(() => {
+    if (!showMenu) return;
+
+    const closeMenu = () => {
+      setShowMenu(false);
     };
 
-    useEffect(() => {
-        if (!showMenu) return;
+    document.addEventListener('click', closeMenu);
 
-        const closeMenu = () => {
-            setShowMenu(false);
-        };
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
 
-        document.addEventListener('click', closeMenu);
+  const logout = (e) => {
+    e.preventDefault();
+    dispatch(sessionActions.logout());
+    history.push("/")
+  };
 
-        return () => document.removeEventListener("click", closeMenu);
-    }, [showMenu]);
+  return (
+    <>
+      <div className="profile-button" onClick={openMenu}>
+        <div className="nav-profile-image-div">
+          <img className="nav-profile-image" src="https://i.imgur.com/3x2W04X.jpg" alt="profile" />
+        </div>
+        <span className="nav-profile-name">
+          {sessionUser.username}
+        </span>
+        { showMenu ?
+          <i className="fas fa-caret-up"></i>
+          : 
+          <i className="fas fa-caret-down"></i>
+        }
+      </div>
 
-    const logout = (e) => {
-        e.preventDefault();
-        dispatch(sessionActions.logout());
-        history.push("/")
-    };
-
-    return (
-        <>
-            <div className="profile-button" onClick={openMenu}>
-                <div className="nav-profile-image-div">
-                    <img className="nav-profile-image" src="https://i.imgur.com/3x2W04X.jpg" alt="profile" />
-                </div>
-                <span className="nav-profile-name">
-                    {sessionUser.username}
-                </span>
-                { showMenu ?
-                    <i className="fas fa-caret-up"></i>
-                    : 
-                    <i className="fas fa-caret-down"></i>
-                }
+      {showMenu && (
+        <div className="profile-dropdown">
+          {/* <Link to="/profile">
+            <div className="menu-div">
+              <span>Profile</span>
             </div>
-
-            {showMenu && (
-                <div className="profile-dropdown">
-                    {/* <Link to="/profile">
-                        <div className="menu-div">
-                            <span>Profile</span>
-                        </div>
-                    </Link> */}
-                    <div className="menu-div" onClick={logout}>
-                        <span >Log Out</span>
-                    </div>
-                </div>
-            )}
-        </>
-    );
+          </Link> */}
+          <div className="menu-div" onClick={logout}>
+            <span >Log Out</span>
+          </div>
+        </div>
+      )}
+    </>
+  );
 }
 
 export default ProfileButton;

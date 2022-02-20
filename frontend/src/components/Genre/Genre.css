@@ -1,38 +1,38 @@
 .artists-songs-section {
-    display: grid;
-    grid-template-columns: 6% 47% 47%;
-    grid-template-rows: 15% 25% 60%;
-    grid-gap: 2em;
-    grid-template-areas:
-        ". genre ."
-        ". artists songs"
-        ". genre-artists genre-songs";
-    margin-top: 2em;
+  display: grid;
+  grid-template-columns: 6% 47% 47%;
+  grid-template-rows: 15% 25% 60%;
+  grid-gap: 2em;
+  grid-template-areas:
+    ". genre ."
+    ". artists songs"
+    ". genre-artists genre-songs";
+  margin-top: 2em;
 } 
 
 .genre-name{
-    grid-area: genre;
-    margin-left: 1.37em;
+  grid-area: genre;
+  margin-left: 1.37em;
 }
 
 .artists-filter {
-    grid-area: artists;
+  grid-area: artists;
 }
 
 .songs-filter {
-    grid-area: songs;
+  grid-area: songs;
 }
 
 .genre-artists-component {
-    box-sizing: border-box;
-    grid-area: genre-artists;
-    width: 10%;
-    margin: 0;
+  box-sizing: border-box;
+  grid-area: genre-artists;
+  width: 10%;
+  margin: 0;
 }
 
 .genre-songs-component {
-    box-sizing: border-box;
-    grid-area: genre-songs;
-    width: 10%;
-    margin: 0;
+  box-sizing: border-box;
+  grid-area: genre-songs;
+  width: 10%;
+  margin: 0;
 }

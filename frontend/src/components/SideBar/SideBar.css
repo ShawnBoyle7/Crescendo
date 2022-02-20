@@ -1,137 +1,137 @@
 .side-bar {
-    grid-area: side-navigation-bar;
-    position: fixed;
-    height: calc(100% - 91px);
-    width: 241px;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--black);
-    z-index: 1;
-    padding-top: 24px;
+  grid-area: side-navigation-bar;
+  position: fixed;
+  height: calc(100% - 91px);
+  width: 241px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--black);
+  z-index: 1;
+  padding-top: 24px;
 }
 
 .side-bar > ul p {
-    font-size: 14px;
-    font-weight: 400;
-    letter-spacing: normal;
-    line-height: 20px;
-    text-transform: none;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: normal;
+  line-height: 20px;
+  text-transform: none;
 }
 
 .side-bar i {
-    color: var(--primary-text-color);
+  color: var(--primary-text-color);
 }
 
 .fa-plus-square, .fa-plus-square::before {
-    font-size: 28px;
-    width: 28px;
-    height: 28px;
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
 }
 
 .side-bar-button:hover, .side-bar-personal-navigation-button:hover, .side-bar i:hover {
-    background-color: #1a1a1a;
-    color: var(--white);
+  background-color: #1a1a1a;
+  color: var(--white);
 }
 
 .side-bar-personal-navigation-div i, .side-bar-personal-navigation-div img {
-    font-size: 28px;
-    width: 28px;
-    height: 28px;
+  font-size: 28px;
+  width: 28px;
+  height: 28px;
 }
 
 .side-bar-navigation-div i {
-    font-size: 28px;
+  font-size: 28px;
 }
 
 .side-bar-button, .side-bar-personal-navigation-button {
-    transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
 }
 
 .liked-songs-image:focus {
-    color: #FFFFFF;
+  color: #FFFFFF;
 }
 
 .logo-link {
-    height: 47px;
-    width: 100%;
-    margin-bottom: 18px;
-    padding: 0 24px;
+  height: 47px;
+  width: 100%;
+  margin-bottom: 18px;
+  padding: 0 24px;
 }
 
 .logo {
-    height: 40px;
-    width: 205px;
+  height: 40px;
+  width: 205px;
 }
 
 .side-bar-navigation-div {
-    display: flex;
-    flex-direction: column;
-    padding: 0 8px;
+  display: flex;
+  flex-direction: column;
+  padding: 0 8px;
 }
 
 .side-bar-button {
-    color: var(--primary-text-color);
-    background-color: black;
+  color: var(--primary-text-color);
+  background-color: black;
 }
 
 .current-side-bar-button {
-    color: var(--white);
-    background-color: #282828;
+  color: var(--white);
+  background-color: #282828;
 }
 
 .side-bar-button, .current-side-bar-button {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    height: 40px;
-    padding: 0 16px;
-    gap: 16px;
-    border: 0;
-    border-radius: 4px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  height: 40px;
+  padding: 0 16px;
+  gap: 16px;
+  border: 0;
+  border-radius: 4px;
 }
 
-.side-bar-personal-navigation-div {    
-    display: flex;
-    flex-direction: column;
-    padding: 24px 8px 6px 8px;
+.side-bar-personal-navigation-div {  
+  display: flex;
+  flex-direction: column;
+  padding: 24px 8px 6px 8px;
 }
 
 .side-bar-personal-navigation-button {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    height: 40px;
-    padding: 0 16px;
-    gap: 16px;
-    border: 0;
-    border-radius: 4px;
-    color: var(--primary-text-color);
-    background-color: black;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  height: 40px;
+  padding: 0 16px;
+  gap: 16px;
+  border: 0;
+  border-radius: 4px;
+  color: var(--primary-text-color);
+  background-color: black;
 }
 
 .sidebar-divider {
-    border-bottom: 1px solid #323232;
-    margin: 0 24px 0 24px;
+  border-bottom: 1px solid #323232;
+  margin: 0 24px 0 24px;
 }
 
 ul.playlist-links {
-    overflow-y: scroll;
-    padding: 0 0 8px 24px;
+  overflow-y: scroll;
+  padding: 0 0 8px 24px;
 }
 
 .playlist-link a {
-    color: var(--primary-text-color);
+  color: var(--primary-text-color);
 }
 
 .side-bar-playlist-name p {
-    padding-top: 15px;
-    max-width: 160px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis
+  padding-top: 15px;
+  max-width: 160px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis
 }
 
 .side-bar-playlist-name:hover {
-    color: #FFFFFF;
+  color: #FFFFFF;
 }
 

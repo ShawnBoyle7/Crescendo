@@ -33,123 +33,123 @@ import AudioPlayer from './components/AudioPlayer';
 import TopNavigation from './components/TopNavigation';
 
 function App() {
-    const dispatch = useDispatch();
-    const [isLoaded, setIsLoaded] = useState(false);
-    
-    useEffect(() => {
-        dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
-        dispatch(getArtists());
-        dispatch(getUsers());
-        dispatch(getGenres());
-        dispatch(getAlbums());
-        dispatch(getPlaylists());
-        dispatch(getSongs());
-    }, [dispatch])
-    
-    const sessionUser = useSelector(state => state.session.user)
-    
-    const genresSlice = useSelector(state => state.genres);
-    const genres = Object.values(genresSlice);
-    
-    const albumsSlice = useSelector(state => state.albums);
-    const albums = Object.values(albumsSlice);
-    
-    const { nowPlaying, setNowPlaying } = useNowPlaying();
-    const { isPlaying, setIsPlaying } = useIsPlaying();
-    const { navComponent, setNavComponent} = useNavComponent();
+  const dispatch = useDispatch();
+  const [isLoaded, setIsLoaded] = useState(false);
+  
+  useEffect(() => {
+    dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
+    dispatch(getArtists());
+    dispatch(getUsers());
+    dispatch(getGenres());
+    dispatch(getAlbums());
+    dispatch(getPlaylists());
+    dispatch(getSongs());
+  }, [dispatch])
+  
+  const sessionUser = useSelector(state => state.session.user)
+  
+  const genresSlice = useSelector(state => state.genres);
+  const genres = Object.values(genresSlice);
+  
+  const albumsSlice = useSelector(state => state.albums);
+  const albums = Object.values(albumsSlice);
+  
+  const { nowPlaying, setNowPlaying } = useNowPlaying();
+  const { isPlaying, setIsPlaying } = useIsPlaying();
+  const { navComponent, setNavComponent} = useNavComponent();
 
-    return (
+  return (
+    <>
+      {isLoaded && (
+        !sessionUser ? 
         <>
-            {isLoaded && (
-                !sessionUser ? 
-                <>
-                    <Switch>
-                        <Route exact path="/">
-                            <Splash/>
-                        </Route>
-                        
-                        <Route path="/login">
-                            <LoginFormPage />
-                        </Route>
+          <Switch>
+            <Route exact path="/">
+              <Splash/>
+            </Route>
+            
+            <Route path="/login">
+              <LoginFormPage />
+            </Route>
 
-                        <Route path="/signup">
-                            <SignupFormPage />
-                        </Route>
+            <Route path="/signup">
+              <SignupFormPage />
+            </Route>
 
-                        <Route>
-                         <Error404 />
-                        </Route>
-                    </Switch>
-                </>
-                :
-                <div className="application">
-                        <>
-                            <SideBar/>
-                            <TopNavigation navComponent={navComponent} setNavComponent={setNavComponent}/>
-                        </>
-                        <div className="content">
-                        <Switch>
-                            {sessionUser &&
-                                <Route exact path="/">
-                                    <Home />
-                                </Route>
-                            }
-                            <Route path="/search">
-                                <Search />
-                            </Route>
-
-                            <Route path="/artists/:artistId">
-                                <Artist setNowPlaying={setNowPlaying} nowPlaying={nowPlaying} setIsPlaying={setIsPlaying} isPlaying={isPlaying} />
-                            </Route>
-
-                            <Route path="/albums/:albumId">
-                                <Album setNowPlaying={setNowPlaying} nowPlaying={nowPlaying} albums={albums && albums} isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
-                            </Route>
-
-                            <Route path="/artists">
-                                <Artists />
-                            </Route>
-
-                            <Route path="/albums">
-                                <Albums />
-                            </Route>
-
-                            <Route path="/songs">
-                                <Songs />
-                            </Route>
-
-                            <Route path="/genres/:genreId">
-                                <Genre genres={genres} />
-                            </Route>
-
-                            <Route path="/library">
-                                <Library navComponent={navComponent} />
-                            </Route>
-
-                            <Route path="/playlists/:playlistId">
-                                <Playlist setNowPlaying={setNowPlaying} nowPlaying={nowPlaying} albums={albums && albums} isPlaying={isPlaying} setIsPlaying={setIsPlaying}/>
-                            </Route>
-
-                            <Route path="/playlists">
-                                <Playlists />
-                            </Route>
-
-                            <Route path="/profile">
-                                <Profile user={sessionUser} />
-                            </Route>
-
-                            <Route>
-                                <Error404 />
-                            </Route>
-                        </Switch>
-                    </div>
-                        <footer className="playbar-container">
-                            <AudioPlayer nowPlaying={nowPlaying} setNowPlaying={setNowPlaying} isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
-                        </footer>
-                </div>
-            )}
+            <Route>
+             <Error404 />
+            </Route>
+          </Switch>
         </>
-    );
+        :
+        <div className="application">
+            <>
+              <SideBar/>
+              <TopNavigation navComponent={navComponent} setNavComponent={setNavComponent}/>
+            </>
+            <div className="content">
+            <Switch>
+              {sessionUser &&
+                <Route exact path="/">
+                  <Home />
+                </Route>
+              }
+              <Route path="/search">
+                <Search />
+              </Route>
+
+              <Route path="/artists/:artistId">
+                <Artist setNowPlaying={setNowPlaying} nowPlaying={nowPlaying} setIsPlaying={setIsPlaying} isPlaying={isPlaying} />
+              </Route>
+
+              <Route path="/albums/:albumId">
+                <Album setNowPlaying={setNowPlaying} nowPlaying={nowPlaying} albums={albums && albums} isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
+              </Route>
+
+              <Route path="/artists">
+                <Artists />
+              </Route>
+
+              <Route path="/albums">
+                <Albums />
+              </Route>
+
+              <Route path="/songs">
+                <Songs />
+              </Route>
+
+              <Route path="/genres/:genreId">
+                <Genre genres={genres} />
+              </Route>
+
+              <Route path="/library">
+                <Library navComponent={navComponent} />
+              </Route>
+
+              <Route path="/playlists/:playlistId">
+                <Playlist setNowPlaying={setNowPlaying} nowPlaying={nowPlaying} albums={albums && albums} isPlaying={isPlaying} setIsPlaying={setIsPlaying}/>
+              </Route>
+
+              <Route path="/playlists">
+                <Playlists />
+              </Route>
+
+              <Route path="/profile">
+                <Profile user={sessionUser} />
+              </Route>
+
+              <Route>
+                <Error404 />
+              </Route>
+            </Switch>
+          </div>
+            <footer className="playbar-container">
+              <AudioPlayer nowPlaying={nowPlaying} setNowPlaying={setNowPlaying} isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
+            </footer>
+        </div>
+      )}
+    </>
+  );
 }
 
 export default App;

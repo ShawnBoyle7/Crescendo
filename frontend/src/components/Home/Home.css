@@ -1,60 +1,60 @@
 .home-page {
-    display: grid;
-    grid-template-rows: 6% 47% 47%;
-    grid-template-areas:
-    "welcome"
-    "artists" 
-    "albums";
+  display: grid;
+  grid-template-rows: 6% 47% 47%;
+  grid-template-areas:
+  "welcome"
+  "artists" 
+  "albums";
 }
 
 .welcome-message {
-    grid-area: welcome;
+  grid-area: welcome;
 }
 
 .popular-header {
-    display: block;
-    font-size: 1.5em;
-    margin-top: 0.83em;
-    margin-bottom: 0.83em;
-    margin-left: 0;
-    margin-right: 0;
-    font-weight: bold;
+  display: block;
+  font-size: 1.5em;
+  margin-top: 0.83em;
+  margin-bottom: 0.83em;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: bold;
 }
 
 .gallery-link {
-    display: flex;
-    justify-content: center;
-    margin-top: 0.5%;
-    min-width: fit-content;
-    width: fit-content;
-    margin-left: 45.5%;
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5%;
+  min-width: fit-content;
+  width: fit-content;
+  margin-left: 45.5%;
 }
 
 .gallery-link:hover {
-    transition-duration: 100ms;
-    background-color: #262626;
+  transition-duration: 100ms;
+  background-color: #262626;
 }
 
 /* Artists */
 
 .artists-section {
-    grid-area: artists;
-    margin: 0.5% 1.3%;
+  grid-area: artists;
+  margin: 0.5% 1.3%;
 }
 
 .artists-div {
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 }
 
  /* Albums */
 
 .albums-section {
-    grid-area: albums;
-    margin: 0.5% 1.3%;
+  grid-area: albums;
+  margin: 0.5% 1.3%;
 }
 
 .albums-div {
-    display: flex;
-    justify-content: space-around;
+  display: flex;
+  justify-content: space-around;
 }

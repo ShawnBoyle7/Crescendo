@@ -1,21 +1,21 @@
 .signup-logo-header-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 40px 0px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 0px 32px;
 }
 
 .signup-logo {
-    width: 200px;
-    height: 40px;
+  width: 200px;
+  height: 40px;
 }
 
 .signup-header {
-    text-align: center;
-    line-height: 36px;
-    letter-spacing: -0.04em;
-    font-size: 32px;
-    margin-top: 40px;
+  text-align: center;
+  line-height: 36px;
+  letter-spacing: -0.04em;
+  font-size: 32px;
+  margin-top: 40px;
 }
 
 .signup-button-container {
@@ -26,36 +26,36 @@
 }
 
 .signup-button {
-    background: #34D360;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: black;
-    cursor: pointer;
-    padding: 14px 32px;
-    border-radius: 500px;
-    width: 151px;
-    height: 56px;
-    font-size: inherit;
-    line-height: 20px;
-    font-weight: 700;
-    text-transform: none;
-    letter-spacing: normal;
-    align-self: center;
+  background: #34D360;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  cursor: pointer;
+  padding: 14px 32px;
+  border-radius: 500px;
+  width: 151px;
+  height: 56px;
+  font-size: inherit;
+  line-height: 20px;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: normal;
+  align-self: center;
 }
 
 .existing-user-link, .existing-user-link > a {
-    text-align: center;
-    color: black;
-    margin-top: 10px;
-    padding: 0px 0px 1em;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
+  text-align: center;
+  color: black;
+  margin-top: 10px;
+  padding: 0px 0px 1em;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 .existing-user-link > a {
-    text-decoration: underline;
-    color: var(--green)
+  text-decoration: underline;
+  color: var(--green)
 }

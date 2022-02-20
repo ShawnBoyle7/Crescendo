@@ -1,21 +1,21 @@
 .library-header-div {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    align-content: space-between;
-    margin: 16px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: space-between;
+  margin: 16px 0;
 }
 
 .library-header {
-    font-size: 24px;
-    font-weight: 700;
-    letter-spacing: -.04em;
-    line-height: 28px;
-    text-transform: none;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -.04em;
+  line-height: 28px;
+  text-transform: none;
 }
 
 .library-section {
-    display: grid;
-    grid-gap: 24px;
-    grid-template-columns: repeat(auto-fill, 210px);
+  display: grid;
+  grid-gap: 24px;
+  grid-template-columns: repeat(auto-fill, 210px);
 }

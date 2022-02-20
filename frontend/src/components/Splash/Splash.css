@@ -1,120 +1,120 @@
 .splash {
-    z-index: 5;
+  z-index: 5;
 }
 
 .nav-placeholder {
-    height: 64px;
-    position: absolute;
-    top: 0;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    width: 100%;
+  height: 64px;
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
 }
 
 .login-link-button {
-    border: 2px solid transparent;
-    border-radius: 500px;
-    color:#181818;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1.76px;
-    line-height: 18px;
-    padding: 8px 34px;
-    text-align: center;
-    white-space: nowrap;
-    height: 38px;
-    margin-right: 16px;
+  border: 2px solid transparent;
+  border-radius: 500px;
+  color:#181818;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.76px;
+  line-height: 18px;
+  padding: 8px 34px;
+  text-align: center;
+  white-space: nowrap;
+  height: 38px;
+  margin-right: 16px;
 }
 
 .login-link-button:hover {
-    transform: scale(1.06);
+  transform: scale(1.06);
 }
 
 .signup-link-button {
-    color: white;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1.76px;
-    line-height: 18px;
-    margin-right: 16px;
-    background-color: transparent;
-    border: 0px;
-    border-radius: 500px;
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    text-decoration: none;
-    text-align: center;
-    vertical-align: middle;
-    height: 52px;
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.76px;
+  line-height: 18px;
+  margin-right: 16px;
+  background-color: transparent;
+  border: 0px;
+  border-radius: 500px;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  text-align: center;
+  vertical-align: middle;
+  height: 52px;
 }
 
 .signup-link-button:hover {
-    transform: scale(1.04);
+  transform: scale(1.04);
 }
 
 .splash-content {
-    background-image: url("https://i.imgur.com/Wqsk4RW.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: absolute;
-    top: 64px;
-    left: 0;
-    width: 100vw;
-    height: calc(100vh - 64px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+  background-image: url("https://i.imgur.com/Wqsk4RW.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  top: 64px;
+  left: 0;
+  width: 100vw;
+  height: calc(100vh - 64px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .splash-elements {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .splash-header {
-    text-align: center;
+  text-align: center;
 }
 
 .splash-header h1 {
-    color: #34D360;
-    font-size: 156px;
-    line-height: 166px;
-    padding-bottom: 40px;
-    margin: 0;
-    text-indent: -5em;
-    transform: translate(125px, 0px);
+  color: #34D360;
+  font-size: 156px;
+  line-height: 166px;
+  padding-bottom: 40px;
+  margin: 0;
+  text-indent: -5em;
+  transform: translate(125px, 0px);
 }
 
 .splash-header p {
-    color: #34D360;
-    font-size: 18px;
-    line-height: 24px;
-    padding-bottom: 40px;
+  color: #34D360;
+  font-size: 18px;
+  line-height: 24px;
+  padding-bottom: 40px;
 }
 
 .splash-demo-button {
-    background: #34D360;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #2D4EB9;
-    cursor: pointer;
-    padding: 14px 32px;
-    border-radius: 500px;
-    width: 180px;
-    height: 42px;
-    font-size: inherit;
-    line-height: 20px;
-    font-weight: 700;
-    text-transform: none;
-    letter-spacing: normal;
+  background: #34D360;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #2D4EB9;
+  cursor: pointer;
+  padding: 14px 32px;
+  border-radius: 500px;
+  width: 180px;
+  height: 42px;
+  font-size: inherit;
+  line-height: 20px;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: normal;
 }

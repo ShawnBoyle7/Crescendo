@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+/* eslint-disable consistent-return */
+
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import './TopNavigation.css';
@@ -9,7 +11,7 @@ function ProfileButton() {
   const history = useHistory();
 
   const [showMenu, setShowMenu] = useState(false);
-  const sessionUser = useSelector(state => state.session.user)
+  const sessionUser = useSelector((state) => state.session.user);
 
   const openMenu = () => {
     if (showMenu) return;
@@ -25,13 +27,13 @@ function ProfileButton() {
 
     document.addEventListener('click', closeMenu);
 
-    return () => document.removeEventListener("click", closeMenu);
+    return () => document.removeEventListener('click', closeMenu);
   }, [showMenu]);
 
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
-    history.push("/")
+    history.push('/');
   };
 
   return (
@@ -43,22 +45,15 @@ function ProfileButton() {
         <span className="nav-profile-name">
           {sessionUser.username}
         </span>
-        { showMenu ?
-          <i className="fas fa-caret-up"></i>
-          : 
-          <i className="fas fa-caret-down"></i>
-        }
+        { showMenu
+          ? <i className="fas fa-caret-up" />
+          : <i className="fas fa-caret-down" />}
       </div>
 
       {showMenu && (
         <div className="profile-dropdown">
-          {/* <Link to="/profile">
-            <div className="menu-div">
-              <span>Profile</span>
-            </div>
-          </Link> */}
           <div className="menu-div" onClick={logout}>
-            <span >Log Out</span>
+            <span>Log Out</span>
           </div>
         </div>
       )}

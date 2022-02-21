@@ -24,7 +24,7 @@ const TopNavigation = () => {
   const [userInput, setUserInput] = useState("");
   
   useEffect(() => {
-    if (initialPath === "library" || "search") {
+    if (initialPath === "libray" || "search") {
       switch (initialPath) {
         case "search":
           setNavComponent(

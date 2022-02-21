@@ -14,7 +14,7 @@ const Library = () => {
   const allPlaylists = Object.values(playlistsSlice);
 
   const userPlaylists = allPlaylists?.filter(
-    (playlist) => playlist.userId === +user.id
+    (playlist) => playlist?.userId === +user?.id
   );
   const followedArtists = user?.Artists;
   const likedAlbums = user?.Albums;

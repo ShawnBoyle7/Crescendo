@@ -27,7 +27,7 @@ const AudioPlayer = ({ nowPlaying, setNowPlaying, isPlaying, setIsPlaying }) => 
 
   const [duration, setDuration] = useState(0)
   const [currentTime, setCurrentTime] = useState(0)
-  const [volume, setVolume] = useState(0.3)
+  const [volume, setVolume] = useState(0.1)
   const [previousVolume, setPreviousVolume] = useState(0)
   const [repeatStatus, setRepeatStatus] = useState("none")
   const [queue, setQueue] = useState([])

@@ -74,4 +74,5 @@
   border: 1px solid var(--essential-subdued,#878787);
   color: var(--text-subdued,#6a6a6a);
   text-transform: uppercase;
+  cursor: pointer;
 }

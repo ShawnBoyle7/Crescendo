@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import * as sessionActions from '../../../store/session';
 import { useDispatch } from 'react-redux';
+import { useHistory } from "react-router-dom"
 import './LoginFormPage.css';
 import '../Auth.css';
 
 function LoginFormPage() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const [credential, setCredential] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState([]);
@@ -77,7 +79,7 @@ function LoginFormPage() {
           <div className="auth-divider"></div>
           <div className="login-redirect-container">
             <p className="no-user-message">Don't have an account?</p>
-            <button className="redirect-signup-button">Sign up for Crescendo</button>
+            <button className="redirect-signup-button" onClick={() => history.push("/signup")}>Sign up for Crescendo</button>
           </div>
         </form>
       </div>

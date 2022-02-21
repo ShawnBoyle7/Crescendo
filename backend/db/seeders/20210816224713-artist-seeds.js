@@ -21,7 +21,7 @@ module.exports = {
         name: 'Green Day', imgUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/artist+art/green+day+art.jpg', headerUrl: 'https://i.imgur.com/kqAlOFN.png', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'Creedence Clearwater Revival', imgUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/artist+art/creedence+art.jpg', headerUrl: 'https://i.imgur.com/LlWrJM0.png', createdAt: new Date(), updatedAt: new Date(),
+        name: 'Electric Light Orchestra', imgUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/artist+art/elo.png', headerUrl: 'https://i.imgur.com/G3IXu6W.png', createdAt: new Date(), updatedAt: new Date(),
       },
       {
         name: 'Pink Floyd', imgUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/artist+art/pink+floyd+art.jpg', headerUrl: 'https://i.imgur.com/IMwBzMd.png', createdAt: new Date(), updatedAt: new Date(),

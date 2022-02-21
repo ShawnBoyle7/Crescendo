@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch} from "react-redux";
-import {  Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as sessionActions from "../../../store/session";
 import './SignupFormPage.css';
 import '../Auth.css';

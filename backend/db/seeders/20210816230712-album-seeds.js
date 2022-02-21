@@ -6,10 +6,10 @@ module.exports = {
         name: 'Rubber Soul', artistId: 1, imgUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/album-art/album+art/rubber+soul+art.jpg', releaseDate: 1965, songCount: 14, albumDuration: '35 min 32 sec', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'Speak Now', artistId: 2, imgUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/album-art/album+art/speak+now+art.jpg', releaseDate: 1965, songCount: 14, albumDuration: '35 min 32 sec', createdAt: new Date(), updatedAt: new Date(),
+        name: 'Speak Now', artistId: 2, imgUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/album-art/album+art/speak+now+art.jpg', releaseDate: 2010, songCount: 14, albumDuration: '1 hr 7min', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'To Pimp A Butterfly', imgUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/album-art/album+art/to+pimp+a+butterfly+art.jpg', artistId: 3, releaseDate: 1965, songCount: 14, albumDuration: '35 min 32 sec', createdAt: new Date(), updatedAt: new Date(),
+        name: 'To Pimp A Butterfly', imgUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/album-art/album+art/to+pimp+a+butterfly+art.jpg', artistId: 3, releaseDate: 2015, songCount: 16, albumDuration: '1 hr 18min', createdAt: new Date(), updatedAt: new Date(),
       },
       {
         name: 'Microcosm', artistId: 4, imgUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/album-art/album+art/microcosm+art.png', releaseDate: 1965, songCount: 14, albumDuration: '35 min 32 sec', createdAt: new Date(), updatedAt: new Date(),

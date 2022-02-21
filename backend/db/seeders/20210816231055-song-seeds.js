@@ -89,46 +89,52 @@ module.exports = {
       },
 
       {
-        name: 'Drive My Car', artistId: 3, albumId: 3, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/Drive+My+Car+(Remastered+2009).mp3', songLength: '2:28', createdAt: new Date(), updatedAt: new Date(),
+        name: 'Wesley\'s Theory', artistId: 3, albumId: 3, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/to-pimp-a-butterfly/Wesley\'s+Theory.mp3', songLength: '4:47', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'Norwegian Wood (This Bird Has Flown)', artistId: 3, albumId: 3, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/Norwegian+Wood+(This+Bird+Has+Flown).mp3', songLength: '2:04', createdAt: new Date(), updatedAt: new Date(),
+        name: 'For Free? - Interlude', artistId: 3, albumId: 3, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/to-pimp-a-butterfly/For+Free+Interlude+-+Kendrick+Lamar+(To+Pimp+a+Butterfly).mp3', songLength: '2:10', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: "You Won't See Me", artistId: 3, albumId: 3, songUrl: "https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/You+Won't+See+Me+(Remastered+2009).mp3", songLength: '3:19', createdAt: new Date(), updatedAt: new Date(),
+        name: "King Kunta", artistId: 3, albumId: 3, songUrl: "https://crescendo-bucket.s3.us-west-1.amazonaws.com/to-pimp-a-butterfly/King+Kunta.mp3", songLength: '3:54', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'Nowhere Man', artistId: 3, albumId: 3, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/Nowhere+Man+(Remastered+2009).mp3', songLength: '2:43', createdAt: new Date(), updatedAt: new Date(),
+        name: "Institutionalized", artistId: 3, albumId: 3, songUrl: "https://crescendo-bucket.s3.us-west-1.amazonaws.com/to-pimp-a-butterfly/Institutionalized.mp3", songLength: '4:31', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'Think For Yourself', artistId: 3, albumId: 3, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/Think+For+Yourself+(Remastered+2009).mp3', songLength: '2:18', createdAt: new Date(), updatedAt: new Date(),
+        name: 'These Walls', artistId: 3, albumId: 3, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/to-pimp-a-butterfly/These+Walls.mp3', songLength: '5:00', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'The Word', artistId: 3, albumId: 3, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/The+Word+(Remastered+2009).mp3', songLength: '2:43', createdAt: new Date(), updatedAt: new Date(),
+        name: 'u', artistId: 3, albumId: 3, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/to-pimp-a-butterfly/u.mp3', songLength: '4:28', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'Michelle', artistId: 3, albumId: 3, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/Michelle+(Remastered+2009).mp3', songLength: '2:42', createdAt: new Date(), updatedAt: new Date(),
+        name: 'Alright', artistId: 3, albumId: 3, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/to-pimp-a-butterfly/Alright.mp3', songLength: '3:39', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'What Goes On', artistId: 3, albumId: 3, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/What+Goes+On+(Remastered+2009).mp3', songLength: '2:48', createdAt: new Date(), updatedAt: new Date(),
+        name: 'For Sale? - Interlude', artistId: 3, albumId: 3, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/to-pimp-a-butterfly/For+Sale+(Interlude).mp3', songLength: '4:51', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'Girl', artistId: 3, albumId: 3, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/Girl+(Remastered+2009).mp3', songLength: '2:31', createdAt: new Date(), updatedAt: new Date(),
+        name: 'Momma', artistId: 3, albumId: 3, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/to-pimp-a-butterfly/Momma.mp3', songLength: '4:43', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: "I'm Looking Through You", artistId: 3, albumId: 3, songUrl: "https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/I'm+Looking+Through+You+(Remastered+2009).mp3", songLength: '2:26', createdAt: new Date(), updatedAt: new Date(),
+        name: 'Hood Politics', artistId: 3, albumId: 3, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/to-pimp-a-butterfly/Hood+Politics.mp3', songLength: '4:52', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'In My Life', artistId: 3, albumId: 3, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/In+My+Life+(Remastered+2009).mp3', songLength: '2:26', createdAt: new Date(), updatedAt: new Date(),
+        name: 'How Much A Dollar Cost', artistId: 3, albumId: 3, songUrl: "https://crescendo-bucket.s3.us-west-1.amazonaws.com/to-pimp-a-butterfly/How+Much+A+Dollar+Cost.mp3", songLength: '4:21', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'Wait', artistId: 3, albumId: 3, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/Wait+(Remastered+2009).mp3', songLength: '2:14', createdAt: new Date(), updatedAt: new Date(),
+        name: 'Complexion (A Zulu Love)', artistId: 3, albumId: 3, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/to-pimp-a-butterfly/Complexion+(A+Zulu+Love).mp3', songLength: '4:23', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'If I Needed Someone', artistId: 3, albumId: 3, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/If+I+Needed+Someone+(Remastered+2009).mp3', songLength: '2:22', createdAt: new Date(), updatedAt: new Date(),
+        name: 'The Blacker The Berry', artistId: 3, albumId: 3, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/to-pimp-a-butterfly/The+Blacker+The+Berry+-+Kendrick+Lamar+(To+Pimp+a+Butterfly).mp3', songLength: '5:28', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'Run For Your Life', artistId: 3, albumId: 3, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/Run+For+Your+Life+(Remastered+2009).mp3', songLength: '2:21', createdAt: new Date(), updatedAt: new Date(),
+        name: 'You Ain\'t Gotta Lie (Momma Said)', artistId: 3, albumId: 3, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/to-pimp-a-butterfly/You+Ain\'t+Gotta+Lie+(Momma+Said).mp3', songLength: '4:01', createdAt: new Date(), updatedAt: new Date(),
+      },
+      {
+        name: 'i', artistId: 3, albumId: 3, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/to-pimp-a-butterfly/i.mp3', songLength: '5:36', createdAt: new Date(), updatedAt: new Date(),
+      },
+      {
+        name: 'Mortal Man', artistId: 3, albumId: 3, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/to-pimp-a-butterfly/Mortal+Man.mp3', songLength: '12:07', createdAt: new Date(), updatedAt: new Date(),
       },
 
       {

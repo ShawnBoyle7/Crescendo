@@ -1,20 +1,19 @@
-'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Playlist = sequelize.define('Playlist', {
     name: DataTypes.STRING,
     userId: DataTypes.INTEGER,
     imgUrl: DataTypes.STRING,
-    description: DataTypes.STRING
+    description: DataTypes.STRING,
   }, {});
-  Playlist.associate = function(models) {
+  Playlist.associate = (models) => {
     const columnMappingSongs = {
-      through: "Song_Playlist_Join",
-      foreignKey: "playlistId",
-      otherKey: "songId"
+      through: 'song_playlist_join',
+      foreignKey: 'playlistId',
+      otherKey: 'songId',
     };
 
     Playlist.belongsToMany(models.Song, columnMappingSongs);
-    Playlist.belongsTo(models.User, { foreignKey: "userId" });
+    Playlist.belongsTo(models.User, { foreignKey: 'userId' });
   };
   return Playlist;
 };

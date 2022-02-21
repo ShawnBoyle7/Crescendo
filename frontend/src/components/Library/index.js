@@ -13,12 +13,12 @@ const Library = () => {
   const playlistsSlice = useSelector((state) => state.playlists);
   const allPlaylists = Object.values(playlistsSlice);
 
-  const userPlaylists = allPlaylists.filter(
+  const userPlaylists = allPlaylists?.filter(
     (playlist) => playlist.userId === +user.id
   );
-  const followedArtists = user.Artists;
-  const likedAlbums = user.Albums;
-  const likedSongs = user.Songs;
+  const followedArtists = user?.Artists;
+  const likedAlbums = user?.Albums;
+  const likedSongs = user?.Songs;
 
   return (
     <>
@@ -30,7 +30,7 @@ const Library = () => {
             </div>
             <div className="library-section">
               {userPlaylists &&
-                userPlaylists.map((playlist) => (
+                userPlaylists?.map((playlist) => (
                   <PlaylistDiv playlist={playlist} sessionUser={sessionUser} />
                 ))}
             </div>
@@ -42,7 +42,7 @@ const Library = () => {
             </div>
             <div className="library-section">
               {followedArtists &&
-                followedArtists.map((artist) => <ArtistDiv artist={artist} />)}
+                followedArtists?.map((artist) => <ArtistDiv artist={artist} />)}
             </div>
           </Route>
 
@@ -52,7 +52,7 @@ const Library = () => {
             </div>
             <div className="library-section">
               {likedAlbums &&
-                likedAlbums.map((album) => <AlbumDiv album={album} />)}
+                likedAlbums?.map((album) => <AlbumDiv album={album} />)}
             </div>
           </Route>
 

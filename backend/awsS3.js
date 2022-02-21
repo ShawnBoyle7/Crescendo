@@ -1,28 +1,31 @@
-const AWS = require("aws-sdk");
-// name of your bucket here
-const NAME_OF_BUCKET = "crescendo-bucket";
+/* eslint-disable no-return-await */
+/* eslint-disable global-require */
 
-const multer = require("multer");
+const AWS = require('aws-sdk');
+const multer = require('multer');
+
+// name of your bucket here
+const NAME_OF_BUCKET = 'crescendo-bucket';
 
 //  make sure to set environment variables in production for:
 //  AWS_ACCESS_KEY_ID
 //  AWS_SECRET_ACCESS_KEY
 //  and aws will automatically use those environment variables
 
-const s3 = new AWS.S3({ apiVersion: "2006-03-01" });
+const s3 = new AWS.S3({ apiVersion: '2006-03-01' });
 
 // --------------------------- Public UPLOAD ------------------------
 
 const singlePublicFileUpload = async (file) => {
-  const { originalname, mimetype, buffer } = await file;
-  const path = require("path");
+  const { originalname, buffer } = await file;
+  const path = require('path');
   // name of the file in your S3 bucket will be the date in ms plus the extension name
   const Key = new Date().getTime().toString() + path.extname(originalname);
   const uploadParams = {
     Bucket: NAME_OF_BUCKET,
     Key,
     Body: buffer,
-    ACL: "public-read",
+    ACL: 'public-read',
   };
   const result = await s3.upload(uploadParams).promise();
 
@@ -30,19 +33,15 @@ const singlePublicFileUpload = async (file) => {
   return result.Location;
 };
 
-const multiplePublicFileUpload = async (files) => {
-  return await Promise.all(
-    files.map((file) => {
-      return singlePublicFileUpload(file);
-    })
-  );
-};
+const multiplePublicFileUpload = async (files) => await Promise.all(
+  files.map((file) => singlePublicFileUpload(file)),
+);
 
 // --------------------------- Prviate UPLOAD ------------------------
 
 const singlePrivateFileUpload = async (file) => {
-  const { originalname, mimetype, buffer } = await file;
-  const path = require("path");
+  const { originalname, buffer } = await file;
+  const path = require('path');
   // name of the file in your S3 bucket will be the date in ms plus the extension name
   const Key = new Date().getTime().toString() + path.extname(originalname);
   const uploadParams = {
@@ -56,18 +55,14 @@ const singlePrivateFileUpload = async (file) => {
   return result.Key;
 };
 
-const multiplePrivateFileUpload = async (files) => {
-  return await Promise.all(
-    files.map((file) => {
-      return singlePrivateFileUpload(file);
-    })
-  );
-};
+const multiplePrivateFileUpload = async (files) => await Promise.all(
+  files.map((file) => singlePrivateFileUpload(file)),
+);
 
 const retrievePrivateFile = (key) => {
   let fileUrl;
   if (key) {
-    fileUrl = s3.getSignedUrl("getObject", {
+    fileUrl = s3.getSignedUrl('getObject', {
       Bucket: NAME_OF_BUCKET,
       Key: key,
     });
@@ -78,15 +73,13 @@ const retrievePrivateFile = (key) => {
 // --------------------------- Storage ------------------------
 
 const storage = multer.memoryStorage({
-  destination: function (req, file, callback) {
-    callback(null, "");
+  destination(req, file, callback) {
+    callback(null, '');
   },
 });
 
-const singleMulterUpload = (nameOfKey) =>
-  multer({ storage: storage }).single(nameOfKey);
-const multipleMulterUpload = (nameOfKey) =>
-  multer({ storage: storage }).array(nameOfKey);
+const singleMulterUpload = (nameOfKey) => multer({ storage }).single(nameOfKey);
+const multipleMulterUpload = (nameOfKey) => multer({ storage }).array(nameOfKey);
 
 module.exports = {
   s3,

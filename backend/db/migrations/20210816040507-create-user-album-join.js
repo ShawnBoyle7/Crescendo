@@ -1,32 +1,27 @@
-'use strict';
 module.exports = {
-    up: (queryInterface, Sequelize) => {
-        return queryInterface.createTable('User_Album_Joins', {
-            id: {
-                allowNull: false,
-                autoIncrement: true,
-                primaryKey: true,
-                type: Sequelize.INTEGER
-            },
-            userId: {
-                type: Sequelize.INTEGER,
-                references: { model: "Users" }
-            },
-            albumId: {
-                type: Sequelize.INTEGER,
-                references: { model: "Albums" }
-            },
-            createdAt: {
-                allowNull: false,
-                type: Sequelize.DATE
-            },
-            updatedAt: {
-                allowNull: false,
-                type: Sequelize.DATE
-            }
-        });
+  up: (queryInterface, Sequelize) => queryInterface.createTable('user_album_joins', {
+    id: {
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+      type: Sequelize.INTEGER,
     },
-    down: (queryInterface, Sequelize) => {
-        return queryInterface.dropTable('User_Album_Joins');
-    }
+    userId: {
+      type: Sequelize.INTEGER,
+      references: { model: 'Users' },
+    },
+    albumId: {
+      type: Sequelize.INTEGER,
+      references: { model: 'Albums' },
+    },
+    createdAt: {
+      allowNull: false,
+      type: Sequelize.DATE,
+    },
+    updatedAt: {
+      allowNull: false,
+      type: Sequelize.DATE,
+    },
+  }),
+  down: (queryInterface) => queryInterface.dropTable('user_album_joins'),
 };

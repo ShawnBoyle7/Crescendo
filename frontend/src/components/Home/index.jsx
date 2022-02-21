@@ -20,8 +20,7 @@ function Home() {
   return (
     <div className="home-page">
       <h2 className="welcome-message">
-        Welcome,
-        {sessionUsername}
+        Welcome, {sessionUsername}
       </h2>
 
       <div className="artists-section">

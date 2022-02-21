@@ -1,61 +1,66 @@
-'use strict';
+/* eslint-disable func-names */
+
 const { Validator } = require('sequelize');
 const bcrypt = require('bcryptjs');
+const { Op } = require('sequelize');
 
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [3, 256]
-      },
-      unique: {
-        args: "email",
-        msg: "Email is already in use"
-      }
-    },
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [3, 30],
-        isNotEmail(value) {
-          if (Validator.isEmail(value)) {
-            throw new Error('Cannot be an email.');
-          }
+  const User = sequelize.define(
+    'User',
+    {
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          len: [3, 256],
+        },
+        unique: {
+          args: 'email',
+          msg: 'Email is already in use',
         },
       },
-      unique: {
-        args: "username",
-        msg: "Username is already in use"
-      }
-    },
-    hashedPassword: {
-      type: DataTypes.STRING.BINARY,
-      allowNull: false,
-      validate: {
-        len: [60, 60]
+      username: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          len: [3, 30],
+          isNotEmail(value) {
+            if (Validator.isEmail(value)) {
+              throw new Error('Cannot be an email.');
+            }
+          },
+        },
+        unique: {
+          args: 'username',
+          msg: 'Username is already in use',
+        },
+      },
+      hashedPassword: {
+        type: DataTypes.STRING.BINARY,
+        allowNull: false,
+        validate: {
+          len: [60, 60],
+        },
       },
     },
-  },
-  {
-    defaultScope: {
-      attributes: {
-        exclude: ['hashedPassword', 'email', 'createdAt', 'updatedAt'],
+    {
+      defaultScope: {
+        attributes: {
+          exclude: ['hashedPassword', 'email', 'createdAt', 'updatedAt'],
+        },
+      },
+      scopes: {
+        currentUser: {
+          attributes: { exclude: ['hashedPassword'] },
+        },
+        loginUser: {
+          attributes: {},
+        },
       },
     },
-    scopes: {
-      currentUser: {
-        attributes: { exclude: ['hashedPassword'] },
-      },
-      loginUser: {
-        attributes: {},
-      },
-    },
-  });
+  );
 
-  User.prototype.toSafeObject = function() { // remember, this cannot be an arrow function
+  User.prototype.toSafeObject = function () { // remember, this cannot be an arrow function
     const { id, username, email } = this; // context will be the User instance
     return { id, username, email };
   };
@@ -65,11 +70,10 @@ module.exports = (sequelize, DataTypes) => {
   };
 
   User.getCurrentUserById = async function (id) {
-    return await User.scope('currentUser').findByPk(id);
+    return User.scope('currentUser').findByPk(id);
   };
 
   User.login = async function ({ credential, password }) {
-    const { Op } = require('sequelize');
     const user = await User.scope('loginUser').findOne({
       where: {
         [Op.or]: {
@@ -78,10 +82,11 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
     });
-    
+
     if (user && user.validatePassword(password)) {
-      return await User.scope('currentUser').findByPk(user.id);
+      return User.scope('currentUser').findByPk(user.id);
     }
+    return 'Login failed';
   };
 
   User.signup = async function ({ username, email, password }) {
@@ -91,32 +96,32 @@ module.exports = (sequelize, DataTypes) => {
       email,
       hashedPassword,
     });
-    return await User.scope('currentUser').findByPk(user.id);
+    return User.scope('currentUser').findByPk(user.id);
   };
 
-  User.associate = function(models) {
+  User.associate = function (models) {
     const columnMappingArtists = {
-      through: "User_Artist_Join",
-      foreignKey: "userId",
-      otherKey: "artistId"
+      through: 'user_artist_join',
+      foreignKey: 'userId',
+      otherKey: 'artistId',
     };
 
     const columnMappingAlbums = {
-      through: "User_Album_Join",
-      foreignKey: "userId",
-      otherKey: "albumId"
+      through: 'user_album_join',
+      foreignKey: 'userId',
+      otherKey: 'albumId',
     };
 
     const columnMappingSongs = {
-      through: "Song_User_Join",
-      foreignKey: "userId",
-      otherKey: "songId"
-    }
+      through: 'song_user_join',
+      foreignKey: 'userId',
+      otherKey: 'songId',
+    };
 
     User.belongsToMany(models.Song, columnMappingSongs);
     User.belongsToMany(models.Artist, columnMappingArtists);
     User.belongsToMany(models.Album, columnMappingAlbums);
-    User.hasMany(models.Playlist, { foreignKey: "userId" });
+    User.hasMany(models.Playlist, { foreignKey: 'userId' });
   };
 
   return User;

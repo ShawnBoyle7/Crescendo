@@ -1,11 +1,12 @@
-'use strict';
+/* eslint-disable camelcase */
+
 module.exports = (sequelize, DataTypes) => {
-  const User_Artist_Join = sequelize.define('User_Artist_Join', {
+  const user_artist_join = sequelize.define('user_artist_join', {
     userId: DataTypes.INTEGER,
-    artistId: DataTypes.INTEGER
+    artistId: DataTypes.INTEGER,
   }, {});
-  User_Artist_Join.associate = function(models) {
-    // associations can be defined here
+  user_artist_join.associate = () => {
+  // associations can be defined here
   };
-  return User_Artist_Join;
+  return user_artist_join;
 };

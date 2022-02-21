@@ -1,11 +1,12 @@
-'use strict';
+/* eslint-disable camelcase */
+
 module.exports = (sequelize, DataTypes) => {
-  const Song_Playlist_Join = sequelize.define('Song_Playlist_Join', {
+  const song_playlist_join = sequelize.define('song_playlist_join', {
     songId: DataTypes.INTEGER,
-    playlistId: DataTypes.INTEGER
+    playlistId: DataTypes.INTEGER,
   }, {});
-  Song_Playlist_Join.associate = function(models) {
-    // associations can be defined here
+  song_playlist_join.associate = () => {
+  // associations can be defined here
   };
-  return Song_Playlist_Join;
+  return song_playlist_join;
 };

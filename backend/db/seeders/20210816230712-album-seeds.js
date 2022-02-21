@@ -18,16 +18,16 @@ module.exports = {
         name: 'Mesmerize', artistId: 5, imgUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/album-art/album+art/mesmerize+art.jpg', releaseDate: 2005, songCount: 11, albumDuration: '36 min 11 sec', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'American Idiot', artistId: 6, imgUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/album-art/album+art/american+idiot+art.jpg', releaseDate: 1965, songCount: 14, albumDuration: '35 min 32 sec', createdAt: new Date(), updatedAt: new Date(),
+        name: 'American Idiot', artistId: 6, imgUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/album-art/album+art/american+idiot+art.jpg', releaseDate: 2004, songCount: 9, albumDuration: '57 min 23 sec', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'Willy And The Poor Boys', artistId: 7, imgUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/album-art/album+art/willy+and+the+poor+boys+art.jpg', releaseDate: 1965, songCount: 14, albumDuration: '35 min 32 sec', createdAt: new Date(), updatedAt: new Date(),
+        name: 'A New World Record', artistId: 7, imgUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/album-art/album+art/a+new+world+record.jpg', releaseDate: 1976, songCount: 9, albumDuration: '36 min 30 sec', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'Animals', artistId: 8, imgUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/album-art/album+art/animals+art.jpg', releaseDate: 1965, songCount: 14, albumDuration: '35 min 32 sec', createdAt: new Date(), updatedAt: new Date(),
+        name: 'Animals', artistId: 8, imgUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/album-art/album+art/animals+art.jpg', releaseDate: 1977, songCount: 5, albumDuration: '41 min 41 sec', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'Hybrid Theory', artistId: 9, imgUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/album-art/album+art/hybrid+theory+art.jpg', releaseDate: 1965, songCount: 14, albumDuration: '35 min 32 sec', createdAt: new Date(), updatedAt: new Date(),
+        name: 'Hybrid Theory', artistId: 9, imgUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/album-art/album+art/hybrid+theory+art.jpg', releaseDate: 2000, songCount: 12, albumDuration: '37 min 52 sec', createdAt: new Date(), updatedAt: new Date(),
       },
     ],
   ),

@@ -138,89 +138,83 @@ module.exports = {
       },
 
       {
-        name: 'Drive My Car', artistId: 4, albumId: 4, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/Drive+My+Car+(Remastered+2009).mp3', songLength: '2:28', createdAt: new Date(), updatedAt: new Date(),
+        name: 'ECHOES', artistId: 4, albumId: 4, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/microcosm/Echoes.mp3', songLength: '1:40', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'Norwegian Wood (This Bird Has Flown)', artistId: 4, albumId: 4, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/Norwegian+Wood+(This+Bird+Has+Flown).mp3', songLength: '2:04', createdAt: new Date(), updatedAt: new Date(),
+        name: 'CALLING', artistId: 4, albumId: 4, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/microcosm/Calling.mp3', songLength: '3:34', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: "You Won't See Me", artistId: 4, albumId: 4, songUrl: "https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/You+Won't+See+Me+(Remastered+2009).mp3", songLength: '3:19', createdAt: new Date(), updatedAt: new Date(),
+        name: "Sign", artistId: 4, albumId: 4, songUrl: "https://crescendo-bucket.s3.us-west-1.amazonaws.com/microcosm/Sign.mp3", songLength: '3:56', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'Nowhere Man', artistId: 4, albumId: 4, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/Nowhere+Man+(Remastered+2009).mp3', songLength: '2:43', createdAt: new Date(), updatedAt: new Date(),
+        name: 'UNION', artistId: 4, albumId: 4, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/microcosm/Union.mp3', songLength: '4:31', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'Think For Yourself', artistId: 4, albumId: 4, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/Think+For+Yourself+(Remastered+2009).mp3', songLength: '2:18', createdAt: new Date(), updatedAt: new Date(),
+        name: 'ATMOSPHERE', artistId: 4, albumId: 4, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/microcosm/Atmosphere.mp3', songLength: '4:39', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'The Word', artistId: 4, albumId: 4, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/The+Word+(Remastered+2009).mp3', songLength: '2:43', createdAt: new Date(), updatedAt: new Date(),
+        name: 'PLANETARIUM', artistId: 4, albumId: 4, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/microcosm/Planetarium.mp3', songLength: '3:45', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'Michelle', artistId: 4, albumId: 4, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/Michelle+(Remastered+2009).mp3', songLength: '2:42', createdAt: new Date(), updatedAt: new Date(),
+        name: 'CORE', artistId: 4, albumId: 4, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/microcosm/Core.mp3', songLength: '1:59', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'What Goes On', artistId: 4, albumId: 4, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/What+Goes+On+(Remastered+2009).mp3', songLength: '2:48', createdAt: new Date(), updatedAt: new Date(),
+        name: 'FREEDOM', artistId: 4, albumId: 4, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/microcosm/Freedom.mp3', songLength: '3:20', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'Girl', artistId: 4, albumId: 4, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/Girl+(Remastered+2009).mp3', songLength: '2:31', createdAt: new Date(), updatedAt: new Date(),
+        name: 'ENEMY', artistId: 4, albumId: 4, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/microcosm/Enemy.mp3', songLength: '4:13', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: "I'm Looking Through You", artistId: 4, albumId: 4, songUrl: "https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/I'm+Looking+Through+You+(Remastered+2009).mp3", songLength: '2:26', createdAt: new Date(), updatedAt: new Date(),
+        name: "SOUL RED", artistId: 4, albumId: 4, songUrl: "https://crescendo-bucket.s3.us-west-1.amazonaws.com/microcosm/Soul+Red.mp3", songLength: '3:40', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'In My Life', artistId: 4, albumId: 4, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/In+My+Life+(Remastered+2009).mp3', songLength: '2:26', createdAt: new Date(), updatedAt: new Date(),
+        name: 'LUNA', artistId: 4, albumId: 4, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/microcosm/Luna.mp3', songLength: '4:46', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'Wait', artistId: 4, albumId: 4, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/Wait+(Remastered+2009).mp3', songLength: '2:14', createdAt: new Date(), updatedAt: new Date(),
+        name: 'TONIGHT', artistId: 4, albumId: 4, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/microcosm/Tonight.mp3', songLength: '3:51', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'If I Needed Someone', artistId: 4, albumId: 4, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/If+I+Needed+Someone+(Remastered+2009).mp3', songLength: '2:22', createdAt: new Date(), updatedAt: new Date(),
+        name: 'AMBIENCE', artistId: 4, albumId: 4, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/microcosm/Ambience.mp3', songLength: '4:10', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'Run For Your Life', artistId: 4, albumId: 4, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/Run+For+Your+Life+(Remastered+2009).mp3', songLength: '2:21', createdAt: new Date(), updatedAt: new Date(),
+        name: 'TO-O-KU-E', artistId: 4, albumId: 4, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/microcosm/TO-O-KU-E.mp3', songLength: '4:41', createdAt: new Date(), updatedAt: new Date(),
+      },
+      {
+        name: 'F.O.E', artistId: 4, albumId: 4, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/microcosm/F.O.E.mp3', songLength: '1:11', createdAt: new Date(), updatedAt: new Date(),
       },
 
       {
-        name: 'Drive My Car', artistId: 5, albumId: 5, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/Drive+My+Car+(Remastered+2009).mp3', songLength: '2:28', createdAt: new Date(), updatedAt: new Date(),
+        name: 'Soldier Side - Intro', artistId: 5, albumId: 5, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/mesmerize/Soldier+Side+-+Intro.mp3', songLength: '1:03', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'Norwegian Wood (This Bird Has Flown)', artistId: 5, albumId: 5, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/Norwegian+Wood+(This+Bird+Has+Flown).mp3', songLength: '2:04', createdAt: new Date(), updatedAt: new Date(),
+        name: 'B.Y.O.B', artistId: 5, albumId: 5, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/mesmerize/B.Y.O.B..mp3', songLength: '4:15', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: "You Won't See Me", artistId: 5, albumId: 5, songUrl: "https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/You+Won't+See+Me+(Remastered+2009).mp3", songLength: '3:19', createdAt: new Date(), updatedAt: new Date(),
+        name: "Revenga", artistId: 5, albumId: 5, songUrl: "https://crescendo-bucket.s3.us-west-1.amazonaws.com/mesmerize/Revenga.mp3", songLength: '3:48', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'Nowhere Man', artistId: 5, albumId: 5, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/Nowhere+Man+(Remastered+2009).mp3', songLength: '2:43', createdAt: new Date(), updatedAt: new Date(),
+        name: 'Cigaro', artistId: 5, albumId: 5, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/mesmerize/Cigaro.mp3', songLength: '2:11', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'Think For Yourself', artistId: 5, albumId: 5, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/Think+For+Yourself+(Remastered+2009).mp3', songLength: '2:18', createdAt: new Date(), updatedAt: new Date(),
+        name: 'Radio/Video', artistId: 5, albumId: 5, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/mesmerize/Radio+Video.mp3', songLength: '4:09', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'The Word', artistId: 5, albumId: 5, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/The+Word+(Remastered+2009).mp3', songLength: '2:43', createdAt: new Date(), updatedAt: new Date(),
+        name: 'This Cocaine Makes Me Feel Like I\'m On This Song', artistId: 5, albumId: 5, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/mesmerize/This+Cocaine+Makes+Me+Feel+Like+I\'m+On+This+Song.mp3', songLength: '2:08', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'Michelle', artistId: 5, albumId: 5, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/Michelle+(Remastered+2009).mp3', songLength: '2:42', createdAt: new Date(), updatedAt: new Date(),
+        name: 'Violent Pornography', artistId: 5, albumId: 5, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/mesmerize/Violent+Pornography+.mp3', songLength: '3:31', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'What Goes On', artistId: 5, albumId: 5, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/What+Goes+On+(Remastered+2009).mp3', songLength: '2:48', createdAt: new Date(), updatedAt: new Date(),
+        name: 'Question!', artistId: 5, albumId: 5, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/mesmerize/Question!.mp3', songLength: '3:20', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'Girl', artistId: 5, albumId: 5, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/Girl+(Remastered+2009).mp3', songLength: '2:31', createdAt: new Date(), updatedAt: new Date(),
+        name: 'Sad Statue', artistId: 5, albumId: 5, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/mesmerize/Sad+Statue.mp3', songLength: '3:25', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: "I'm Looking Through You", artistId: 5, albumId: 5, songUrl: "https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/I'm+Looking+Through+You+(Remastered+2009).mp3", songLength: '2:26', createdAt: new Date(), updatedAt: new Date(),
+        name: "Old School Hollywood", artistId: 5, albumId: 5, songUrl: "https://crescendo-bucket.s3.us-west-1.amazonaws.com/mesmerize/Old+School+Hollywood.mp3", songLength: '2:56', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'In My Life', artistId: 5, albumId: 5, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/In+My+Life+(Remastered+2009).mp3', songLength: '2:26', createdAt: new Date(), updatedAt: new Date(),
-      },
-      {
-        name: 'Wait', artistId: 5, albumId: 5, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/Wait+(Remastered+2009).mp3', songLength: '2:14', createdAt: new Date(), updatedAt: new Date(),
-      },
-      {
-        name: 'If I Needed Someone', artistId: 5, albumId: 5, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/If+I+Needed+Someone+(Remastered+2009).mp3', songLength: '2:22', createdAt: new Date(), updatedAt: new Date(),
-      },
-      {
-        name: 'Run For Your Life', artistId: 5, albumId: 5, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/rubber-soul/rubber+soul/Run+For+Your+Life+(Remastered+2009).mp3', songLength: '2:21', createdAt: new Date(), updatedAt: new Date(),
+        name: 'Lost In Hollywood', artistId: 5, albumId: 5, songUrl: 'https://crescendo-bucket.s3.us-west-1.amazonaws.com/mesmerize/Lost+In+Hollywood.mp3', songLength: '5:20', createdAt: new Date(), updatedAt: new Date(),
       },
 
       {

@@ -1,140 +1,143 @@
-import { csrfFetch } from "./csrf";
+/* eslint-disable default-param-last */
 
-const LOAD_USERS = "users/LOAD_USERS";
-const EDIT_USERNAME = "users/EDIT_USERNAME"
+import { csrfFetch } from './csrf';
+
+const LOAD_USERS = 'users/LOAD_USERS';
+const EDIT_USERNAME = 'users/EDIT_USERNAME';
 
 const editUsername = (user) => ({
   type: EDIT_USERNAME,
-  user
+  user,
 });
 
 const loadUsers = (users) => ({
   type: LOAD_USERS,
-  users
+  users,
 });
 
 export const updateUsername = (formData) => async (dispatch) => {
-  const { id, username } = formData
+  const { id, username } = formData;
   const response = await csrfFetch(`/api/users/${id}`, {
-    method: "PUT",
+    method: 'PUT',
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      username
-    })
+      username,
+    }),
   });
 
   if (response.ok) {
     const updatedUser = await response.json();
-    dispatch(editUsername(updatedUser));
+    await dispatch(editUsername(updatedUser));
   }
 };
 
 export const getUsers = () => async (dispatch) => {
-  const response = await fetch('/api/users')
+  const response = await fetch('/api/users');
 
   if (response.ok) {
-    const users = await response.json()
-    dispatch((loadUsers(users)));
-  };
+    const users = await response.json();
+    await dispatch((loadUsers(users)));
+  }
 };
 
 export const likeSong = (payload) => async (dispatch) => {
   const response = await csrfFetch('/api/users/like-song', {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify(payload)
-  })
-  
+    body: JSON.stringify(payload),
+  });
+
   if (response.ok) {
     const users = await response.json();
-    dispatch(loadUsers(users))
+    await dispatch(loadUsers(users));
   }
-}
+};
 
 export const deleteSongLike = (payload) => async (dispatch) => {
   const response = await csrfFetch(`/api/users/song/${payload.songId}/${payload.userId}`, {
-    method: "DELETE"
-  })
-  
+    method: 'DELETE',
+  });
+
   if (response.ok) {
     const users = await response.json();
-    dispatch(loadUsers(users))
+    await dispatch(loadUsers(users));
   }
-}
+};
 
 export const likeArtist = (payload) => async (dispatch) => {
   const response = await csrfFetch('/api/users/like-artist', {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify(payload)
-  })
+    body: JSON.stringify(payload),
+  });
 
   if (response.ok) {
     const users = await response.json();
-    dispatch(loadUsers(users))
+    await dispatch(loadUsers(users));
   }
-}
+};
 
 export const deleteArtistLike = (payload) => async (dispatch) => {
   const response = await csrfFetch(`/api/users/artist/${payload.artistId}/${payload.userId}`, {
-    method: "DELETE"
-  })
+    method: 'DELETE',
+  });
 
   if (response.ok) {
     const users = await response.json();
-    dispatch(loadUsers(users))
+    await dispatch(loadUsers(users));
   }
-}
+};
 
 export const likeAlbum = (payload) => async (dispatch) => {
   const response = await csrfFetch('/api/users/like-album', {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json',
     },
-    body: JSON.stringify(payload)
-  })
-  
+    body: JSON.stringify(payload),
+  });
+
   if (response.ok) {
     const users = await response.json();
-    dispatch(loadUsers(users))
+    await dispatch(loadUsers(users));
   }
-}
+};
 
 export const deleteAlbumLike = (payload) => async (dispatch) => {
   const response = await csrfFetch(`/api/users/album/${payload.albumId}/${payload.userId}`, {
-    method: "DELETE"
-  })
-  
+    method: 'DELETE',
+  });
+
   if (response.ok) {
     const users = await response.json();
-    dispatch(loadUsers(users))
+    await dispatch(loadUsers(users));
   }
-}
+};
 
-const initialState = {}
+const initialState = {};
 
 const userReducer = (state = initialState, action) => {
-  let stateCopy = {...state}
+  const stateCopy = { ...state };
   switch (action.type) {
-    case LOAD_USERS:
-      const allUsers = {}
-      action.users.forEach(user => {
-        allUsers[user.id] = user
-      })
+    case LOAD_USERS: {
+      const allUsers = {};
+      action.users.forEach((user) => {
+        allUsers[user.id] = user;
+      });
       return allUsers;
+    }
     case EDIT_USERNAME:
-      stateCopy[action.user.id] = action.user
+      stateCopy[action.user.id] = action.user;
       return stateCopy;
     default:
       return state;
   }
-}
+};
 
 export default userReducer;

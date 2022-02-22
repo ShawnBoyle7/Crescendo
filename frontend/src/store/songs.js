@@ -1,33 +1,35 @@
-const LOAD_SONGS = "songs/LOAD_SONGS";
+/* eslint-disable default-param-last */
+
+const LOAD_SONGS = 'songs/LOAD_SONGS';
 
 const loadSongs = (songs) => ({
   type: LOAD_SONGS,
-  songs
+  songs,
 });
 
 export const getSongs = () => async (dispatch) => {
-  const response = await fetch('/api/songs')
+  const response = await fetch('/api/songs');
 
   if (response.ok) {
-    const songs = await response.json()
-    dispatch((loadSongs(songs)));
-  };
+    const songs = await response.json();
+    await dispatch((loadSongs(songs)));
+  }
 };
 
-const initialState = {}
+const initialState = {};
 
 const songReducer = (state = initialState, action) => {
-  const stateCopy = {...state}
-  switch(action.type) {
+  const stateCopy = { ...state };
+  switch (action.type) {
     case LOAD_SONGS: {
-      action.songs.forEach(song => {
-        stateCopy[song.id] = song
-      })
+      action.songs.forEach((song) => {
+        stateCopy[song.id] = song;
+      });
       return stateCopy;
     }
-    default: 
+    default:
       return state;
   }
-}
+};
 
 export default songReducer;

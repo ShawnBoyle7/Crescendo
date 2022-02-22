@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-useless-fragment */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { editPlaylist, getPlaylists } from '../../store/playlists';
@@ -36,7 +37,7 @@ function EditPlaylistForm({ setShowEditModal, playlistId }) {
       playlistId,
     ));
     if (updatedPlaylist) {
-      dispatch(getPlaylists());
+      await dispatch(getPlaylists());
     }
     setShowEditModal(false);
   };
@@ -47,8 +48,9 @@ function EditPlaylistForm({ setShowEditModal, playlistId }) {
         && (
         <div className="errors-div">
           <ul className="errors">
-            {validationErrors?.length
-              && validationErrors?.map((error) => <li key={error.id}>{error}</li>)}
+            {validationErrors?.length > 0
+              ? validationErrors?.map((error) => <li key={error.id}>{error}</li>)
+              : <></>}
           </ul>
         </div>
         )}
@@ -63,7 +65,7 @@ function EditPlaylistForm({ setShowEditModal, playlistId }) {
       <div className="edit-playlist-content-div">
         <div className="edit-playlist-content-image-parent-div">
           <div className="edit-playlist-content-image-child-div">
-            <img className="edit-playlist-image" src={(playlist?.Songs.length && playlist?.Songs[0].Album?.imgUrl) ? playlist?.Songs.length && playlist?.Songs[0].Album?.imgUrl : 'https://i.imgur.com/pZ6CUjL.png'} alt="" />
+            <img className="edit-playlist-image" src={playlist?.Songs.length && playlist?.Songs[0].Album?.imgUrl ? playlist?.Songs.length && playlist?.Songs[0].Album?.imgUrl : 'https://i.imgur.com/pZ6CUjL.png'} alt="" />
           </div>
         </div>
         <div className="edit-playlist-input-parent-div">
@@ -86,7 +88,7 @@ function EditPlaylistForm({ setShowEditModal, playlistId }) {
             maxLength={80}
           />
         </div>
-        <button className="edit-playlist-button" type="button">
+        <button className="edit-playlist-button" type="submit">
           Save
         </button>
         <p className="disclaimer">By proceeding, you agree to give Crescendo access to the image you choose to upload. Please make sure you have the right to upload the image.</p>

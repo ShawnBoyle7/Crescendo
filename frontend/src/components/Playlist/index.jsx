@@ -50,9 +50,10 @@ function Playlist({
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   // useEffect to grab the audio to ensure it's loaded first to avoid grabbing a null audio element
-  const audio = useRef();
+  let audio;
   useEffect(() => {
-    audio.current = document.querySelector('audio');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    audio = document.querySelector('audio');
   });
 
   // Dropdown offclick logic

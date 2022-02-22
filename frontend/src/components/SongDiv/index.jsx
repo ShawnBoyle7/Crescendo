@@ -27,9 +27,10 @@ function SongDiv({
   const [revealPlaylists, setRevealPlaylists] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
 
-  // Functions
+  // // Functions
   let audio;
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     audio = document.querySelector('audio');
   });
 

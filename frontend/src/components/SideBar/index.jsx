@@ -27,19 +27,24 @@ function SideBar() {
     .reverse();
   const playlistName = userPlaylists.length ? `New Playlist #${userPlaylists.length + 1}` : `New Playlist #${1}`;
 
-  const newPlaylist = () => {
+  const newPlaylist = async () => {
     const formValues = {
       name: playlistName,
       userId: sessionUserId,
       description: '',
     };
 
-    dispatch(createPlaylist(formValues))
-      .then(() => {
-        dispatch(getUsers());
-        dispatch(getPlaylists());
-        history.push(`/playlists/${userPlaylists.length + 1}`);
-      });
+    // dispatch(createPlaylist(formValues))
+    //   .then(() => {
+    //     dispatch(getUsers());
+    //     dispatch(getPlaylists());
+    //     history.push(`/playlists/${userPlaylists.length + 1}`);
+    //   });
+
+    await dispatch(createPlaylist(formValues));
+    await dispatch(getUsers());
+    await dispatch(getPlaylists());
+    history.push(`/playlists/${userPlaylists.length + 1}`);
   };
 
   const debouncedNewPlaylist = useCallback(debounce(() => newPlaylist(), 250), [allPlaylists]);

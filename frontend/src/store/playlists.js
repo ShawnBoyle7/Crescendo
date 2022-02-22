@@ -1,3 +1,4 @@
+/* eslint-disable default-param-last */
 import { csrfFetch } from './csrf';
 
 const LOAD_PLAYLISTS = 'playlists/LOAD_PLAYLISTS';
@@ -35,7 +36,6 @@ export const getPlaylists = () => async (dispatch) => {
 };
 
 export const addPlaylistSong = (payload) => async (dispatch) => {
-  console.log('PAYLOAD', payload);
   const response = await csrfFetch('/api/playlists/new-song', {
     method: 'POST',
     headers: {
@@ -87,6 +87,8 @@ export const editPlaylist = (name, description, playlistId) => async (dispatch) 
     dispatch(renamePlaylist(updatedPlaylist));
     return updatedPlaylist;
   }
+
+  return 'Error editing playlist';
 };
 
 export const createPlaylist = (formData) => async (dispatch) => {
@@ -98,12 +100,13 @@ export const createPlaylist = (formData) => async (dispatch) => {
     body: JSON.stringify(formData),
   });
 
-  // 4.
   if (response.ok) {
     const playlist = await response.json();
     dispatch((addPlaylist(playlist)));
     return playlist;
   }
+
+  return 'Error creating playlist';
 };
 
 const initialState = {};

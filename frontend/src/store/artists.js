@@ -10,7 +10,7 @@ export const getArtists = () => async (dispatch) => {
 
   if (response.ok) {
     const artists = await response.json();
-    dispatch((loadArtists(artists)));
+    await dispatch((loadArtists(artists)));
   }
 };
 

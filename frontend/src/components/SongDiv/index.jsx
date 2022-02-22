@@ -124,7 +124,7 @@ function SongDiv({
     return 'hidden';
   };
 
-  const addSongToPlaylist = (e) => {
+  const addSongToPlaylist = async (e) => {
     setShowDropdown(false);
     setIsHovering(false);
     const payload = {
@@ -132,7 +132,7 @@ function SongDiv({
       songId: song.id,
     };
 
-    dispatch(addPlaylistSong(payload));
+    await dispatch(addPlaylistSong(payload));
   };
 
   const likeCurrentSong = async () => {
@@ -152,13 +152,13 @@ function SongDiv({
     await dispatch(getSongs());
   };
 
-  const removeSongFromPlaylist = () => {
+  const removeSongFromPlaylist = async () => {
     const payload = {
       playlistId: pageId,
       songId: song.id,
     };
 
-    dispatch(deletePlaylistSong(payload));
+    await dispatch(deletePlaylistSong(payload));
     setShowDropdown(false);
     setIsHovering(false);
   };

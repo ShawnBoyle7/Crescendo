@@ -10,7 +10,7 @@ export const getAlbums = () => async (dispatch) => {
 
   if (response.ok) {
     const albums = await response.json();
-    dispatch((loadAlbums(albums)));
+    await dispatch((loadAlbums(albums)));
   }
 };
 

@@ -35,7 +35,7 @@ function Song({ songs }) {
     return canAdd;
   });
 
-  const addSongToPlaylist = (e) => {
+  const addSongToPlaylist = async (e) => {
     e.preventDefault();
 
     const payload = {
@@ -43,7 +43,7 @@ function Song({ songs }) {
       playlistId,
     };
 
-    dispatch(addPlaylistSong(payload));
+    await dispatch(addPlaylistSong(payload));
     setShowForm(false);
     setPlaylistId('');
   };

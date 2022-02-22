@@ -29,7 +29,7 @@ export const updateUsername = (formData) => async (dispatch) => {
 
   if (response.ok) {
     const updatedUser = await response.json();
-    dispatch(editUsername(updatedUser));
+    await dispatch(editUsername(updatedUser));
   }
 };
 
@@ -38,7 +38,7 @@ export const getUsers = () => async (dispatch) => {
 
   if (response.ok) {
     const users = await response.json();
-    dispatch((loadUsers(users)));
+    await dispatch((loadUsers(users)));
   }
 };
 
@@ -53,7 +53,7 @@ export const likeSong = (payload) => async (dispatch) => {
 
   if (response.ok) {
     const users = await response.json();
-    dispatch(loadUsers(users));
+    await dispatch(loadUsers(users));
   }
 };
 
@@ -64,7 +64,7 @@ export const deleteSongLike = (payload) => async (dispatch) => {
 
   if (response.ok) {
     const users = await response.json();
-    dispatch(loadUsers(users));
+    await dispatch(loadUsers(users));
   }
 };
 
@@ -79,7 +79,7 @@ export const likeArtist = (payload) => async (dispatch) => {
 
   if (response.ok) {
     const users = await response.json();
-    dispatch(loadUsers(users));
+    await dispatch(loadUsers(users));
   }
 };
 
@@ -90,7 +90,7 @@ export const deleteArtistLike = (payload) => async (dispatch) => {
 
   if (response.ok) {
     const users = await response.json();
-    dispatch(loadUsers(users));
+    await dispatch(loadUsers(users));
   }
 };
 
@@ -105,7 +105,7 @@ export const likeAlbum = (payload) => async (dispatch) => {
 
   if (response.ok) {
     const users = await response.json();
-    dispatch(loadUsers(users));
+    await dispatch(loadUsers(users));
   }
 };
 
@@ -116,7 +116,7 @@ export const deleteAlbumLike = (payload) => async (dispatch) => {
 
   if (response.ok) {
     const users = await response.json();
-    dispatch(loadUsers(users));
+    await dispatch(loadUsers(users));
   }
 };
 

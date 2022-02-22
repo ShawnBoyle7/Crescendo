@@ -10,20 +10,6 @@ import './Artist.css';
 function Artist({
   nowPlaying, setNowPlaying, isPlaying, setIsPlaying,
 }) {
-  useEffect(() => {
-    document.querySelector('.artist-page').addEventListener('scroll', (e) => {
-      const nav = document.querySelector('nav');
-
-      if (e.target.scrollTop === 0) {
-        nav?.classList.add('top-navigation-bar-default');
-        nav?.classList.remove('top-navigation-bar-scrolled');
-      } else if (e.target.scrollTop > 0) {
-        nav?.classList.remove('top-navigation-bar-default');
-        nav?.classList.add('top-navigation-bar-scrolled');
-      }
-    });
-  }, []);
-
   const dispatch = useDispatch();
   const location = useLocation();
 

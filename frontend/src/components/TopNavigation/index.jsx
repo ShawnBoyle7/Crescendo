@@ -11,17 +11,6 @@ function TopNavigation() {
   const path = location?.pathname?.split('/')[1];
   const [navComponent, setNavComponent] = useState(<></>);
 
-  document.addEventListener('scroll', () => {
-    const nav = document.querySelector('nav');
-    if (window.scrollY === 0) {
-      nav?.classList.add('top-navigation-bar-default');
-      nav?.classList.remove('top-navigation-bar-scrolled');
-    } else if (window.scrollY > 0) {
-      nav?.classList.remove('top-navigation-bar-default');
-      nav?.classList.add('top-navigation-bar-scrolled');
-    }
-  });
-
   const [userInput, setUserInput] = useState('');
 
   useEffect(() => {
@@ -65,6 +54,7 @@ function TopNavigation() {
     }
 
     return navComponent;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [path]);
 
   return (

@@ -13,8 +13,8 @@ function DeletePlaylistConfirmation({ playlistId, setShowDeleteModal }) {
   const playlist = playlists.find((playlistItem) => playlistItem?.id === +playlistId);
 
   const handleDelete = async () => {
-    dispatch(deletePlaylist(+playlistId));
-    dispatch(getUsers());
+    await dispatch(deletePlaylist(+playlistId));
+    await dispatch(getUsers());
     setShowDeleteModal(false);
     history.push('/library/playlists');
   };

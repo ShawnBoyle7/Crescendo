@@ -12,7 +12,7 @@ export const getSongs = () => async (dispatch) => {
 
   if (response.ok) {
     const songs = await response.json();
-    dispatch((loadSongs(songs)));
+    await dispatch((loadSongs(songs)));
   }
 };
 

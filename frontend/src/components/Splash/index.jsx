@@ -15,9 +15,9 @@ function Splash() {
     );
   }
 
-  const demoLogin = (e) => {
+  const demoLogin = async (e) => {
     e.preventDefault();
-    dispatch(demo());
+    await dispatch(demo());
   };
 
   return (

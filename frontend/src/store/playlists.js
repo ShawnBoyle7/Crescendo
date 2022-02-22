@@ -31,7 +31,7 @@ export const getPlaylists = () => async (dispatch) => {
 
   if (response.ok) {
     const playlists = await response.json();
-    dispatch((loadPlaylists(playlists)));
+    await dispatch((loadPlaylists(playlists)));
   }
 };
 
@@ -46,7 +46,7 @@ export const addPlaylistSong = (payload) => async (dispatch) => {
 
   if (response.ok) {
     const playlists = await response.json();
-    dispatch(loadPlaylists(playlists));
+    await dispatch(loadPlaylists(playlists));
   }
 };
 
@@ -61,7 +61,7 @@ export const deletePlaylistSong = (payload) => async (dispatch) => {
 
   if (response.ok) {
     const playlists = await response.json();
-    dispatch(loadPlaylists(playlists));
+    await dispatch(loadPlaylists(playlists));
   }
 };
 
@@ -71,7 +71,7 @@ export const deletePlaylist = (playlistId) => async (dispatch) => {
   });
 
   if (response.ok) {
-    dispatch(destroyPlaylist(playlistId));
+    await dispatch(destroyPlaylist(playlistId));
   }
 };
 
@@ -84,7 +84,7 @@ export const editPlaylist = (name, description, playlistId) => async (dispatch) 
 
   if (response.ok) {
     const updatedPlaylist = await response.json();
-    dispatch(renamePlaylist(updatedPlaylist));
+    await dispatch(renamePlaylist(updatedPlaylist));
     return updatedPlaylist;
   }
 
@@ -102,7 +102,7 @@ export const createPlaylist = (formData) => async (dispatch) => {
 
   if (response.ok) {
     const playlist = await response.json();
-    dispatch((addPlaylist(playlist)));
+    await dispatch((addPlaylist(playlist)));
     return playlist;
   }
 

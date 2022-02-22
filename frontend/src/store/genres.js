@@ -10,7 +10,7 @@ export const getGenres = () => async (dispatch) => {
 
   if (response.ok) {
     const genres = await response.json();
-    dispatch((loadGenres(genres)));
+    await dispatch((loadGenres(genres)));
   }
 };
 

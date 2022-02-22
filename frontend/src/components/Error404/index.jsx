@@ -1,7 +1,8 @@
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { useLocation, Redirect, Link } from 'react-router-dom';
 
-const Error404 = () => {
+function Error404() {
   const sessionUser = useSelector((state) => state.session.user);
   const location = useLocation();
   const pathName = location?.pathname?.split('/');
@@ -11,6 +12,8 @@ const Error404 = () => {
     if ((sessionUser && path === 'login') || path === 'signup') {
       return <Redirect to="/" />;
     }
+
+    return 'Redirect error';
   };
 
   return (
@@ -22,6 +25,6 @@ const Error404 = () => {
       </Link>
     </>
   );
-};
+}
 
 export default Error404;

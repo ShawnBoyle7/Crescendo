@@ -1,9 +1,12 @@
+/* eslint-disable react/jsx-no-useless-fragment */
+/* eslint-disable arrow-body-style */
+
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Search.css';
 
-const Search = () => {
+function Search() {
   const genresSlice = useSelector((state) => state.genres);
   const genres = Object.values(genresSlice);
 
@@ -16,21 +19,25 @@ const Search = () => {
   const songsSlice = useSelector((state) => state.songs);
   const songs = Object.values(songsSlice);
 
+  // eslint-disable-next-line no-unused-vars
   const [userInput, setUserInput] = useState('');
   const [albumArray, setAlbumArray] = useState([]);
   const [artistArray, setArtistArray] = useState([]);
   const [songArray, setSongArray] = useState([]);
 
   useEffect(() => {
-    const filteredArtists = artists.filter((artist) =>
-      artist.name.toLowerCase().includes(userInput.toLowerCase())
-    );
-    const filteredAlbums = albums.filter((album) =>
-      album.name.toLowerCase().includes(userInput.toLowerCase())
-    );
-    const filteredSongs = songs.filter((song) =>
-      song.name.toLowerCase().includes(userInput.toLowerCase())
-    );
+    const filteredArtists = artists.filter((artist) => {
+      return artist.name.toLowerCase().includes(userInput.toLowerCase());
+    });
+
+    const filteredAlbums = albums.filter((album) => {
+      return album.name.toLowerCase().includes(userInput.toLowerCase());
+    });
+
+    const filteredSongs = songs.filter((song) => {
+      return song.name.toLowerCase().includes(userInput.toLowerCase());
+    });
+
     setArtistArray(filteredArtists);
     setAlbumArray(filteredAlbums);
     setSongArray(filteredSongs);
@@ -49,7 +56,7 @@ const Search = () => {
         <form className="search-form">
           <i className="fas fa-search"></i>
           <input
-            placeholder="Artists, Songs, or Albums"  
+            placeholder="Artists, Songs, or Albums"
             value={userInput}
             onChange={e => setUserInput(e.target.value)}/>
         </form>
@@ -64,7 +71,7 @@ const Search = () => {
                   <Link to={`/artists/${artist.id}`}>
                     <img
                       className="artists-image"
-                      alt={'artist'}
+                      alt="artist"
                       src={artist.artistImgUrl}
                     />
                     <div className="artists-name">{artist.name}</div>
@@ -85,7 +92,7 @@ const Search = () => {
                   <Link to={`/albums/${album.id}`}>
                     <img
                       className="albums-image"
-                      alt={'album'}
+                      alt="album"
                       src={album.albumImgUrl}
                     />
                     <div className="albums-name">{album.name}</div>
@@ -106,7 +113,7 @@ const Search = () => {
                   <Link to={`/songs/${song.id}`}>
                     <img
                       className="songs-image"
-                      alt={'song'}
+                      alt="song"
                       src={song.songImgUrl}
                     />
                     <div className="songs-name">{song.name}</div>
@@ -123,9 +130,9 @@ const Search = () => {
       {!albumArray.length && !artistArray.length && !songArray.length ? (
         <div className="search-genres-section">
           <div className="genres-divs">
-            {!userInput &&
-              genres.map((genre) => (
-                <Link to={`/genres/${genre.id}`}>
+            {!userInput
+              && genres.map((genre) => (
+                <Link to={`/genres/${genre.id}`} key={genre.id}>
                   <div className="genres-item" key={genre.id}>
                     <div className="genres-name">{genre.name}</div>
                   </div>
@@ -137,16 +144,19 @@ const Search = () => {
         <></>
       )}
 
-      {userInput &&
-      !albumArray.length &&
-      !artistArray.length &&
-      !songArray.length ? (
-        <h1>No results found for {userInput}</h1>
-      ) : (
-        <></>
-      )}
+      {userInput
+      && !albumArray.length
+      && !artistArray.length
+      && !songArray.length ? (
+        <h1>
+          No results found for
+          {userInput}
+        </h1>
+        ) : (
+          <></>
+        )}
     </>
   );
-};
+}
 
 export default Search;

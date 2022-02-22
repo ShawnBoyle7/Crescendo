@@ -4,8 +4,10 @@
         "es2021": true
     },
     "extends": [
+        "airbnb",
         "plugin:react/recommended",
-        "airbnb"
+        "plugin:react-hooks/recommended",
+        "plugin:jsx-a11y/recommended"
     ],
     "parserOptions": {
         "ecmaFeatures": {

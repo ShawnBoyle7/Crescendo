@@ -1,8 +1,16 @@
-import React from 'react';
-import { useHistory, useLocation, Link, Redirect } from 'react-router-dom';
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable arrow-body-style */
+
+import React, { useCallback } from 'react';
+import {
+  useHistory, useLocation, Link,
+} from 'react-router-dom';
+import debounce from 'lodash.debounce';
 import { useSelector, useDispatch } from 'react-redux';
-import { createPlaylist, getPlaylists } from '../../store/playlists'
-import './SideBar.css'
+import { createPlaylist, getPlaylists } from '../../store/playlists';
+import { getUsers } from '../../store/users';
+import './SideBar.css';
 
 function SideBar() {
   const dispatch = useDispatch();
@@ -12,39 +20,34 @@ function SideBar() {
   const path = location.pathname.split('/');
   const currentPath = path[1];
 
-  const sessionUser = useSelector((state) => state.session.user);
+  const sessionUserId = useSelector((state) => +state.session.user.id);
   const allPlaylists = Object.values(useSelector((state) => state.playlists));
   const userPlaylists = allPlaylists
-    .filter((playlist) => playlist?.userId === +sessionUser?.id)
+    .filter((playlist) => playlist?.userId === sessionUserId)
     .reverse();
+  const playlistName = userPlaylists.length ? `New Playlist #${userPlaylists.length + 1}` : `New Playlist #${1}`;
 
-  const newPlaylist = async (e) => {
-    e.preventDefault();
-    await dispatch(getPlaylists());
-
+  const newPlaylist = () => {
     const formValues = {
-      name: `New Playlist #${userPlaylists?.length + 1}`,
-      userId: sessionUser.id,
+      name: playlistName,
+      userId: sessionUserId,
       description: '',
     };
 
-    await dispatch(createPlaylist(formValues));
-    await dispatch(getPlaylists());
-
-    // let newPlaylistId;
-    // if (userPlaylists.length > 0) {
-    //   newPlaylistId = userPlaylists.length - 1
-    // } else {
-    //   newPlaylistId = 1
-    // }
-
-    // history.push(`/playlists/${userPlaylists[newPlaylistId]}`)
-    // return <Redirect to={`/playlists/${userPlaylists[newPlaylistId]}`}/>
+    dispatch(createPlaylist(formValues))
+      .then(() => {
+        dispatch(getUsers());
+        dispatch(getPlaylists());
+        history.push(`/playlists/${userPlaylists.length + 1}`);
+      });
   };
+
+  const debouncedNewPlaylist = useCallback(debounce(() => newPlaylist(), 250), [allPlaylists]);
+
   return (
     <div className="side-bar">
       <Link to="/" className="logo-link">
-        <img className="logo" src="https://i.imgur.com/RIztzKt.png" />
+        <img className="logo" src="https://i.imgur.com/RIztzKt.png" alt="logo" />
       </Link>
 
       <div className="side-bar-navigation-div">
@@ -53,12 +56,14 @@ function SideBar() {
             currentPath === '' ? 'current-side-bar-button' : 'side-bar-button'
           }
           onClick={() => history.push('/')}
+          type="button"
         >
           <i className="medium material-icons">home</i>
           <p>Home</p>
         </button>
 
-        {/* <button className={currentPath === "search" ? "current-side-bar-button": "side-bar-button"} onClick={() => history.push('/search')}>
+        {/* <button className={currentPath === "search" ?
+        "current-side-bar-button": "side-bar-button"} onClick={() => history.push('/search')}>
           <i className="medium material-icons">search</i>
           <p>Search</p>
         </button> */}
@@ -70,6 +75,7 @@ function SideBar() {
               : 'side-bar-button'
           }
           onClick={() => history.push('/library/playlists')}
+          type="button"
         >
           <i className="medium material-icons">library_music</i>
           <p>Your Library</p>
@@ -79,19 +85,21 @@ function SideBar() {
       <div className="side-bar-personal-navigation-div">
         <button
           className="side-bar-personal-navigation-button"
-          onClick={newPlaylist}
+          onClick={debouncedNewPlaylist}
+          type="button"
         >
-          <i className="fas fa-plus-square"></i>
+          <i className="fas fa-plus-square" />
           <p>Create Playlist</p>
         </button>
 
-        {/* <button className="side-bar-personal-navigation-button" onClick={() => history.push('/library/songs')}>
+        {/* <button className="side-bar-personal-navigation-button"
+            onClick={() => history.push('/library/songs')}>
           <img className="liked-songs-image" src={"https://i.imgur.com/YtozZx0.png"} />
           <p id="liked-">Liked Songs</p>
         </button>  */}
       </div>
 
-      <div className="sidebar-divider"></div>
+      <div className="sidebar-divider" />
 
       <ul className="playlist-links">
         {userPlaylists.reverse().map((playlist) => (

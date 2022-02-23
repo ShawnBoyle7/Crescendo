@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
 import { likeSong, deleteSongLike } from '../../store/users';
 import { getSongs } from '../../store/songs';
-import { deletePlaylistSong, addPlaylistSong } from '../../store/playlists';
+import { deletePlaylistSong, addPlaylistSong, getPlaylists } from '../../store/playlists';
 import './SongDiv.css';
 
 function SongDiv({
@@ -142,6 +142,7 @@ function SongDiv({
     };
 
     await dispatch(addPlaylistSong(payload));
+    await dispatch(getPlaylists());
   };
 
   const likeCurrentSong = async () => {
@@ -168,6 +169,7 @@ function SongDiv({
     };
 
     await dispatch(deletePlaylistSong(payload));
+    await dispatch(getPlaylists());
     setShowDropdown(false);
     setIsHovering(false);
   };

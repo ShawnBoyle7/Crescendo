@@ -13,7 +13,7 @@ function PlaylistDiv({ playlist, sessionUser }) {
   return (
     <Link to={`/playlists/${playlist?.id}`}>
       <div className="playlist-card" key={playlist?.id}>
-        <img className="playlist-image" src={song?.Album?.imgUrl ? song?.Album?.imgUrl : 'https://i.imgur.com/wkc2qJn.png'} alt="playlist-art" />
+        <img className="playlist-image" src={song?.Album?.imgUrl ? song?.Album?.imgUrl : 'https://i.imgur.com/wkc2qJn.png'} alt="" />
         <span className="playlist-name">{playlist?.name}</span>
         <span className="playlist-creator">
           By

@@ -280,7 +280,7 @@ div.playlist-selector-container, div.playlist-selector-container-other {
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  right: 10.3vw;
+  right: 205px;
   bottom: -1vh;
   height: 500px;
   z-index: 5;

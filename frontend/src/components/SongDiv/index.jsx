@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory, Link } from 'react-router-dom';
 import { likeSong, deleteSongLike } from '../../store/users';
 import { getSongs } from '../../store/songs';
-import { deletePlaylistSong, addPlaylistSong } from '../../store/playlists';
+import { deletePlaylistSong, addPlaylistSong, getPlaylists } from '../../store/playlists';
 import './SongDiv.css';
 
 function SongDiv({
@@ -11,6 +11,12 @@ function SongDiv({
 }) {
   const dispatch = useDispatch();
   const history = useHistory();
+
+  const dateObj = new Date();
+  const month = dateObj.getUTCMonth() + 1;
+  const day = dateObj.getUTCDate();
+  const year = dateObj.getUTCFullYear();
+  const newDate = `${month}/${day}/${year}`;
 
   const validArtLocations = ['playlists', 'library', 'artists', 'search'];
 
@@ -20,6 +26,9 @@ function SongDiv({
   const currentSong = songs.find((thisSong) => thisSong.id === song.id);
   const sessionUserLike = currentSong?.Users?.find((user) => user?.id === sessionUser?.id);
   const liked = sessionUserLike?.id === sessionUser?.id;
+
+  // Variable to exclude current playlist from viable playlists to add song to
+  const currentPlaylistExcluded = playlists.filter((playlistItem) => playlistItem.id !== +pageId);
 
   // State Variables
 
@@ -133,6 +142,7 @@ function SongDiv({
     };
 
     await dispatch(addPlaylistSong(payload));
+    await dispatch(getPlaylists());
   };
 
   const likeCurrentSong = async () => {
@@ -159,6 +169,7 @@ function SongDiv({
     };
 
     await dispatch(deletePlaylistSong(payload));
+    await dispatch(getPlaylists());
     setShowDropdown(false);
     setIsHovering(false);
   };
@@ -243,7 +254,7 @@ function SongDiv({
       </td>
 
       <td className={path === 'playlists' || path === 'library' ? 'date-added-column' : 'hidden'}>
-        2 days ago
+        <span className="date-column">{newDate}</span>
       </td>
 
       <td className="duration-column">
@@ -259,37 +270,45 @@ function SongDiv({
         </div>
         {showDropdown
             && (
-            <div className={detectPageType()} onMouseDown={(e) => e.stopPropagation()}>
-              <div className="song-dropdown-option" onMouseEnter={(e) => handleMouseEnter(e)} onClick={() => history.push(`/artists/${currentSong.Artist.id}`)}>
-                Go to artist
-              </div>
+              <div className={detectPageType()} onMouseDown={(e) => e.stopPropagation()}>
+                <div
+                  className={path === 'albums' || path === 'playlists' ? 'song-dropdown-option' : 'hidden'}
+                  onMouseEnter={(e) => handleMouseEnter(e)}
+                  onClick={() => history.push(`/artists/${currentSong.Artist.id}`)}
+                >
+                  Go to artist
+                </div>
 
-              <div className="song-dropdown-option" onMouseEnter={(e) => handleMouseEnter(e)} onClick={() => history.push(`/albums/${currentSong.Album.id}`)}>
-                Go to album
-              </div>
+                <div
+                  className={path === 'artists' || path === 'playlists' ? 'song-dropdown-option' : 'hidden'}
+                  onMouseEnter={(e) => handleMouseEnter(e)}
+                  onClick={() => history.push(`/albums/${currentSong.Album.id}`)}
+                >
+                  Go to album
+                </div>
 
-              <div
-                className={path === 'playlists' ? 'song-dropdown-option' : 'hidden'}
-                onMouseEnter={(e) => handleMouseEnter(e)}
-                onClick={removeSongFromPlaylist}
-              >
-                Remove from this playlist
-              </div>
+                <div
+                  className={path === 'playlists' ? 'song-dropdown-option' : 'hidden'}
+                  onMouseEnter={(e) => handleMouseEnter(e)}
+                  onClick={removeSongFromPlaylist}
+                >
+                  Remove from this playlist
+                </div>
 
-              <div className="add-to-playlist" onMouseEnter={((e) => handleMouseEnter(e))} ref={playlistsRef}>
-                <span>Add to playlist</span>
-                <i className="fas fa-caret-right" />
-                <div className={setPlaylistSelectorPosition()}>
-                  <ul className={revealPlaylists ? 'playlist-selector' : 'hidden'}>
-                    {playlists.slice(0).reverse().map((playlist) => (
-                      <li role="presentation" className="playlist-item" key={playlist?.id} id={playlist?.id} onClick={(e) => (addSongToPlaylist(e))}>
-                        <span>{playlist?.name}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <div className="add-to-playlist" onMouseEnter={((e) => handleMouseEnter(e))} ref={playlistsRef}>
+                  <span>Add to playlist</span>
+                  <i className="fas fa-caret-right" />
+                  <div className={setPlaylistSelectorPosition()}>
+                    <ul className={revealPlaylists ? 'playlist-selector' : 'hidden'}>
+                      {currentPlaylistExcluded.slice(0).map((playlist) => (
+                        <li className="playlist-item" key={playlist?.id} id={playlist?.id} onClick={(e) => (addSongToPlaylist(e))} role="presentation">
+                          <span>{playlist?.name}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
-            </div>
             )}
       </td>
 

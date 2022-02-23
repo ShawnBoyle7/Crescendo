@@ -6,7 +6,6 @@ function PlaylistDiv({ playlist, sessionUser }) {
   const songs = playlist?.Songs;
   let song;
   if (songs?.length) {
-    // eslint-disable-next-line prefer-destructuring
     song = songs[0];
   }
 

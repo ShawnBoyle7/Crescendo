@@ -4,7 +4,6 @@ import EditPlaylistForm from '../EditPlaylistForm';
 
 function EditPlaylistFormModal({ playlistId, showEditModal, setShowEditModal }) {
   return (
-    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {showEditModal && (
       <Modal className="edit-playlist-modal" onClose={() => setShowEditModal(false)}>

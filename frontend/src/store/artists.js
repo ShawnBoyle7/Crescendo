@@ -16,7 +16,6 @@ export const getArtists = () => async (dispatch) => {
 
 const initialState = {};
 
-// eslint-disable-next-line default-param-last
 const artistReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD_ARTISTS: {

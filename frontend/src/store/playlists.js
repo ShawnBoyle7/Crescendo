@@ -1,4 +1,3 @@
-/* eslint-disable default-param-last */
 import { csrfFetch } from './csrf';
 
 const LOAD_PLAYLISTS = 'playlists/LOAD_PLAYLISTS';

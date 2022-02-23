@@ -1,6 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable arrow-body-style */
 
 import React, { useCallback } from 'react';
 import {

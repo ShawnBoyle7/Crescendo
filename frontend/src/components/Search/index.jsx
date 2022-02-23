@@ -1,5 +1,3 @@
-/* eslint-disable react/jsx-no-useless-fragment */
-/* eslint-disable arrow-body-style */
 
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
@@ -19,7 +17,6 @@ function Search() {
   const songsSlice = useSelector((state) => state.songs);
   const songs = Object.values(songsSlice);
 
-  // eslint-disable-next-line no-unused-vars
   const [userInput, setUserInput] = useState('');
   const [albumArray, setAlbumArray] = useState([]);
   const [artistArray, setArtistArray] = useState([]);
@@ -47,7 +44,6 @@ function Search() {
       setAlbumArray([]);
       setSongArray([]);
     }
-    // eslint-disable-next-line
   }, [userInput]);
 
   return (

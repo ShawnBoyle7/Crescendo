@@ -180,13 +180,14 @@ th.album-song-column-title {
   align-items: center;
   border-radius: 4px;
   color: var(--white);
+  z-index: 1;
 }
 
 .song-dropdown-default { 
   display: flex;
   flex-direction: column;
   position: absolute;
-  right: 5%;
+  right: 7%;
   top: 4%;
   background: #282828;
   box-shadow: 0 16px 24px rgba(0,0,0,.3),0 6px 8px rgba(0,0,0,.2);
@@ -198,6 +199,7 @@ th.album-song-column-title {
   align-items: center;
   border-radius: 4px;
   color: var(--white);
+  z-index: 1;
 }
 
 .song-dropdown-option, .playlist-item, .add-to-playlist {
@@ -262,8 +264,9 @@ li.playlist-item:hover {
   height: fit-content;
   padding: 4px;
   border-radius: 3px;
-  right: 232px;
-  top: -239px;
+  right: 220px;
+  top: 5%;
+  /* top: -239px; */
   max-height: 409px;
   overflow-y: auto;
   box-shadow: 0px 3px 19px 4px var(--black);
@@ -323,4 +326,8 @@ div.album-playlist-selector-container {
   box-shadow: 0px 3px 19px 4px var(--black);
   font-size: 16px;
   color: var(--white);
+}
+
+.date-column {
+  padding-left: 2%;
 }

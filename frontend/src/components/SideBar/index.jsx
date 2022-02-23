@@ -34,20 +34,13 @@ function SideBar() {
       description: '',
     };
 
-    // dispatch(createPlaylist(formValues))
-    //   .then(() => {
-    //     dispatch(getUsers());
-    //     dispatch(getPlaylists());
-    //     history.push(`/playlists/${userPlaylists.length + 1}`);
-    //   });
-
     await dispatch(createPlaylist(formValues));
     await dispatch(getUsers());
     await dispatch(getPlaylists());
     history.push(`/playlists/${userPlaylists.length + 1}`);
   };
 
-  const debouncedNewPlaylist = useCallback(debounce(() => newPlaylist(), 250), [allPlaylists]);
+  const debouncedNewPlaylist = useCallback(debounce(() => newPlaylist(), 500), [allPlaylists]);
 
   return (
     <div className="side-bar">

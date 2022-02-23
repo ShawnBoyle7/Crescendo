@@ -4,7 +4,6 @@ import DeletePlaylistConfirmation from '../DeletePlaylistConfirmation';
 
 function DeletePlaylistModal({ playlistId, showDeleteModal, setShowDeleteModal }) {
   return (
-    // eslint-disable-next-line react/jsx-no-useless-fragment
     <>
       {showDeleteModal && (
       <Modal className="delete-playlist-modal" onClose={() => setShowDeleteModal(false)}>

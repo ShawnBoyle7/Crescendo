@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+
 
 import React, { useEffect, useState, useRef } from 'react';
 import { useParams, useLocation, Link } from 'react-router-dom';
@@ -54,7 +54,6 @@ function Album({
   // useEffect to grab the audio to ensure it's loaded first to avoid grabbing a null audio element
   let audio;
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     audio = document.querySelector('audio');
   });
 

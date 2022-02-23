@@ -1,4 +1,3 @@
-/* eslint-disable default-param-last */
 
 const LOAD_SONGS = 'songs/LOAD_SONGS';
 

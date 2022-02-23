@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/media-has-caption */
 import React, { useState, useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
@@ -69,7 +68,6 @@ function AudioPlayer({
       default:
         break;
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [path, nowPlaying, isPlaying]);
 
   // Convert seconds to clean readable format
@@ -156,7 +154,6 @@ function AudioPlayer({
     audioElement.current.addEventListener('play', playPauseCallback);
     audioElement.current.addEventListener('pause', playPauseCallback);
     audioElement.current.addEventListener('ended', songEnded);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [audioElement?.current?.loadedmetadata, audioElement?.current?.readyState]);
 
   // Conditional for pause or play and update current time rendering frames

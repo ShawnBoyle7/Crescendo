@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-no-useless-fragment */
 
 import React, { useEffect, useState } from 'react';
 import { useHistory, useLocation, NavLink } from 'react-router-dom';
@@ -54,7 +53,6 @@ function TopNavigation() {
     }
 
     return navComponent;
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [path]);
 
   return (

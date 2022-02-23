@@ -113,6 +113,7 @@ table.song-columns {
   align-items: center;
   border-radius: 3px;
   z-index: 1000;
+  padding: 12px 2px;
 }
 
 .playlist-dropdown-options > div {
@@ -123,9 +124,8 @@ table.song-columns {
   text-align: start;
   height: 40px;
   width: 100%;
-  gap: 8px;
-  padding: 8px 12px 8px 12px;
-  padding-inline-end: 8px;
+  padding: 10px 12px;
+  border-radius: 3px;
 }
 
 .playlist-dropdown-options > div > span {

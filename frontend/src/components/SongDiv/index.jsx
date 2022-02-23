@@ -28,7 +28,9 @@ function SongDiv({
   const liked = sessionUserLike?.id === sessionUser?.id;
 
   // Variable to exclude current playlist from viable playlists to add song to
-  const currentPlaylistExcluded = playlists.filter((playlistItem) => playlistItem.id !== +pageId);
+  const userPlaylists = playlists.filter(playlistItem => playlistItem?.userId === sessionUser?.id);
+  // const playlist = playlists.find(playlistItem => playlistItem.id === +pageId);
+  // const currentPlaylistExcluded = playlists.filter((playlistItem) => playlistItem !== playlist);
 
   // State Variables
 
@@ -299,7 +301,7 @@ function SongDiv({
                   <i className="fas fa-caret-right" />
                   <div className={setPlaylistSelectorPosition()}>
                     <ul className={revealPlaylists ? 'playlist-selector' : 'hidden'}>
-                      {currentPlaylistExcluded.slice(0).map((playlist) => (
+                      {userPlaylists?.slice(0).map((playlist) => (
                         <li className="playlist-item" key={playlist?.id} id={playlist?.id} onClick={(e) => (addSongToPlaylist(e))} role="presentation">
                           <span>{playlist?.name}</span>
                         </li>

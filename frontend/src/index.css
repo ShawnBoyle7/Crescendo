@@ -26,23 +26,6 @@ html, body {
   background-color: var(--primary-bg-color);
 }
 
-/* ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 10px rgba(0,0,0,0.8);
-  border-radius: 10px;
-  background-color: var(--black)
-}
-
-::-webkit-scrollbar {
-  width: 11px;
-  background-color: var(--black)
-}
-
-::-webkit-scrollbar-thumb {
-  border-radius: 12px;
-  box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-  background-color: #414141;
-} */
-
 ::-webkit-scrollbar-track {
   /* box-shadow: inset 0 0 10px rgba(0,0,0,0.8)s; */
   border-radius: 10px;
@@ -56,7 +39,7 @@ html, body {
 ::-webkit-scrollbar-thumb {
   border-radius: 12px;
   box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-  background-color: #414141;
+  background-color: #454545;
 }
 
 ::-webkit-scrollbar-corner{

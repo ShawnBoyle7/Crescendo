@@ -1,3 +1,7 @@
+tr.song {
+  position: relative;
+}
+
 .song-controls .fa-heart {
   font-size: 16px;
   position: relative;
@@ -169,7 +173,7 @@ th.album-song-column-title {
   flex-direction: column;
   position: absolute;
   right: 115px;
-  top: 5px;
+  bottom: 5px;
   background: #282828;
   box-shadow: 0 16px 24px rgba(0,0,0,.3),0 6px 8px rgba(0,0,0,.2);
   padding: 8px;

@@ -15,7 +15,6 @@ function Playlist({
     const playlistPage = document.querySelector('.playlist-page')
     
     playlistPage.addEventListener('scroll', (e) => {
-      console.log(e.currentTarget.scrollTop)
       const nav = document.querySelector('nav');
 
       if (e.target.scrollTop === 0) {

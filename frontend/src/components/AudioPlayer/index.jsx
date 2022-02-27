@@ -16,26 +16,26 @@ function AudioPlayer({
 
   const songs = Object.values(useSelector((state) => state.songs));
   const currentSong = songs?.find((song) => song?.id === nowPlaying?.id);
+  const playlists = Object.values(useSelector((state) => state.playlists));
+  const artists = Object.values(useSelector((state) => state.artists));
 
   const sessionUser = useSelector((state) => state.session?.user);
   const sessionUserLike = currentSong?.Users?.find((user) => user?.id === sessionUser?.id);
   const liked = sessionUserLike?.id === sessionUser?.id;
-
-  const album = nowPlaying?.Album;
-  const albumSongs = songs?.filter((song) => song?.albumId === album?.id);
-
-  const artists = Object.values(useSelector((state) => state.artists));
-  const playlists = Object.values(useSelector((state) => state.playlists));
 
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(0);
   const [volume, setVolume] = useState(0.1);
   const [previousVolume, setPreviousVolume] = useState(0);
   const [repeatStatus, setRepeatStatus] = useState('none');
+
+  // Track Order
+  const [staticQueue, setStaticQueue] = useState([]);
   const [queue, setQueue] = useState([]);
   const currentIndex = queue?.indexOf(nowPlaying);
-  const nextSong = queue ? queue[currentIndex + 1] : null;
-  const previousSong = queue ? queue[currentIndex - 1] : null;
+  // const [previousShuffledSong, setPreviousShuffledSong] = useState('');
+  let nextSong = queue ? queue[currentIndex + 1] : null;
+  let previousSong = queue ? queue[currentIndex - 1] : null;
 
   // Essentially establishing state variables for objects, keeping reference to them on re-render.
   const audioElement = useRef();
@@ -46,8 +46,11 @@ function AudioPlayer({
   useEffect(() => {
     switch (path) {
       case 'albums':
-        albumSongs.sort((a, b) => a.id - b.id);
-        setQueue(albumSongs);
+        const album = nowPlaying?.Album;
+        const albumSongs = songs?.filter((song) => song?.albumId === album?.id);
+        const albumSongsSorted = albumSongs.sort((a, b) => a.id - b.id);
+        setQueue(albumSongsSorted);
+        setStaticQueue(albumSongsSorted);
         break;
       case 'artists': {
         const artist = artists?.find((artistItem) => (artistItem?.id) === +pageId);
@@ -57,12 +60,14 @@ function AudioPlayer({
           artistSongsByPopularity = artistSongsByPopularity.slice(0, 5);
         }
         setQueue(artistSongsByPopularity);
+        setStaticQueue(artistSongsByPopularity);
         break;
       }
       case 'playlists': {
         const playlist = playlists?.find((playlistItem) => playlistItem?.id === +pageId);
         const playlistSongs = playlist?.Songs;
         setQueue(playlistSongs);
+        setStaticQueue(playlistSongs);
         break;
       }
       default:
@@ -276,37 +281,41 @@ function AudioPlayer({
     await dispatch(getSongs());
   };
 
-  // const [shuffle, setShuffle] = useState(false)
-
-  // const [queue, setQueue] = useState([])
-  // let nextSong;
-  // let previousSong;
-
-  // useEffect(() => {
-  //   let currentSong = queue.find(song => song.id === nowPlaying.id)
-  //   let currentIndex = queue.indexOf(currentSong)
-  //   nextSong = queue[currentIndex + 1]
-  //   previousSong = queue[currentIndex - 1]
-  // }, [nowPlaying])
+  // const [shuffle, setShuffle] = useState(false);
 
   // const shuffleFunction = () => {
-  //   let queueCopy = [...queue]
+  //   let queueCopy = [...queue];
   //   for (let i = 0; i < queueCopy.length; i++) {
   //     let j = Math.floor(Math.random()*queueCopy.length);
   //     [queueCopy[i], queueCopy[j]] = [queueCopy[j], queueCopy[i]]
   //   }
-  //   setQueue(queueCopy)
+  //   console.log(queueCopy, "NEW QUEUE")
+  //   setQueue(queueCopy);
   // }
-
+  
   // const shuffleToggle = () => {
+  //   const shuffleIcon = document.querySelector(".fa-random");
+
   //   if (!shuffle) {
-  //     shuffleFunction()
-  //     setShuffle(true)
+  //     shuffleFunction();
+  //     setShuffle(true);
+  //     shuffleIcon?.style?.setProperty('color', 'var(--green)');
   //   } else {
-  //     setQueue([...albumSongs])
-  //     setShuffle(false)
+  //     setQueue([...staticQueue]);
+  //     console.log(staticQueue, "ORIGINAL QUEUE")
+  //     setShuffle(false);
+  //     shuffleIcon?.style?.setProperty('color', 'var(--white)');
   //   }
   // }
+
+  // useEffect(() => {
+  //   let currentSong = queue.find(song => song.id === nowPlaying.id);
+  //   let currentIndex = queue.indexOf(currentSong);
+  //   nextSong = queue[currentIndex + 1];
+  //   previousSong = queue[currentIndex - 1];
+  //   console.log(nextSong, "NEXT SONG")
+  //   console.log(previousSong, "PREVIOUS SONG")
+  // }, [nowPlaying])
 
   return (
     <>
@@ -341,7 +350,7 @@ function AudioPlayer({
       <div className={`${nowPlaying ? 'playbar-controls-div-playing' : 'playbar-controls-div-not-playing'}`}>
         <div className="playbar-controls-buttons-div">
           {/* <div className="playbar-controls-button-div">
-            <button disabled={!nowPlaying ? true : false}>
+            <button disabled={!nowPlaying ? true : false} onClick={shuffleToggle}>
               <i className="fas fa-random"></i>
             </button>
           </div> */}

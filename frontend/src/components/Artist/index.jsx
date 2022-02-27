@@ -32,6 +32,7 @@ function Artist({
   const userPlaylists = allPlaylists.filter((playlist) => playlist?.userId === sessionUser?.id);
 
   const [showDropdown, setShowDropdown] = useState(false);
+  const [playerButton, setPlayerButton] = useState('https://i.imgur.com/7QSCa6X.png');
   // const [showPlaylistOptions, setShowPlaylistOptions] = useState(false)
 
   // useEffect to grab the audio to ensure it's loaded first to avoid grabbing a null audio element
@@ -53,24 +54,33 @@ function Artist({
       document.removeEventListener('mousedown', checkDropdownClickOff);
     };
   }, [showDropdown]);
+  
 
   const artistPlayerButtonClick = () => {
-    const previousValue = isPlaying;
-    setIsPlaying(!previousValue);
-    // If not is playing, then play and begin animation of time change
-
-    if (!previousValue) {
-      if (!nowPlaying) {
-        setNowPlaying(artistSongs[0]);
-      }
+    if (!artistSongs.includes(nowPlaying)) {
+      setNowPlaying(artistSongs[0]);
+      setPlayerButton('https://i.imgur.com/QtT4j0R.png')
       setIsPlaying(true);
       audio.play();
-      // Else pause and stop animation of time change
-    } else {
-      audio.pause();
+      return;
+    }
+
+    if (isPlaying) {
       setIsPlaying(false);
+      audio.pause();
+    } else {
+      setIsPlaying(true);
+      audio.play();
     }
   };
+
+  useEffect(() => {
+    if (isPlaying === false) {
+      setPlayerButton('https://i.imgur.com/7QSCa6X.png')
+    } else if (isPlaying === true && artistSongs.includes(nowPlaying)) {
+      setPlayerButton('https://i.imgur.com/QtT4j0R.png')
+    }
+  }, [isPlaying])
 
   let artistSongsByPopularity = artistSongs.sort((a, b) => b.Users.length - a.Users.length);
 
@@ -116,7 +126,7 @@ function Artist({
       </div>
 
       <div className="artist-page-buttons-div">
-        <img className="big-player-button" src={!isPlaying ? 'https://i.imgur.com/7QSCa6X.png' : 'https://i.imgur.com/QtT4j0R.png'} onClick={artistPlayerButtonClick} alt="player-button" />
+        <img className="big-player-button" src={playerButton} onClick={artistPlayerButtonClick} alt="player-button" />
 
         <button className="artist-follow-button" onClick={handleArtistFollow} type="button">
           {!artistFollowed ? 'Follow' : 'Following'}

@@ -300,10 +300,12 @@ function SongDiv({
                   <span>Add to playlist</span>
                   <i className="fas fa-caret-right" />
                   <div className={setPlaylistSelectorPosition()}>
-                    <ul className={revealPlaylists ? 'playlist-selector' : 'hidden'}>
+                    <ul className={revealPlaylists ? 'playlist-selector-list' : 'hidden'}>
                       {userPlaylists?.slice(0).map((playlist) => (
                         <li className="playlist-item" key={playlist?.id} id={playlist?.id} onClick={(e) => (addSongToPlaylist(e))} role="presentation">
-                          <span className="playlist-item-name">{playlist?.name}</span>
+                          <span className="playlist-item-name">
+                            {playlist?.name}
+                          </span>
                         </li>
                       ))}
                     </ul>

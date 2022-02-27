@@ -243,7 +243,7 @@ li.playlist-item:hover {
   padding: 4px;
 }
 
-.playlist-selector {
+.playlist-selector-list {
   position: relative;
   background: #282828;
   height: fit-content;
@@ -251,7 +251,7 @@ li.playlist-item:hover {
   border-radius: 3px;
   max-height: 409px;
   overflow-y: auto;
-  box-shadow: 0px 3px 19px 4px var(--black);
+  box-shadow: 0px 3px 19px 2px var(--black);
   font-size: 16px;
   color: var(--white);
   width: 100%;

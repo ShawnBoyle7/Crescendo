@@ -136,8 +136,15 @@
   cursor: pointer;
 }
 
-.album-dropdown-options {
+/* DROPDOWN STYLING BEGINS */
+
+.album-dropdown-master-container {
+  position: relative;
+}
+
+.album-dropdown-container {
   position: absolute;
+  top: 50px;
   width: 161px;
   background-color: #282828;
   border-radius: 4px;
@@ -149,61 +156,22 @@
   z-index: 1;
 }
 
-.album-dropdown-option-playlist {
-  position: relative;
-  display: flex;
-  align-items: center;
-  height: 2.3em;
-  padding-left: 0.75em;
-  border-radius: 2px;
-  font-size: 0.95em;
-  font-weight: 400;
-  letter-spacing: normal;
-  line-height: 16px;
-  text-transform: none;
-  gap: 27.5%;
-}
-
-.album-dropdown-option-playlist:hover {
-  background: rgba(255, 255, 255, 0.15);
-  cursor: pointer;
-}
-
-.album-dropdown-playlist-options-div {
+.album-page-playlist-selector-container {
   position: absolute;
-  left: 188px;
+  left: 186px;
+  bottom: -1vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  overflow-y: auto;
-  max-height: calc(80vh - 10px);
+  justify-content: flex-end;
+  height: 500px;
+  z-index: 5;
+  min-width: 185px;
   max-width: 350px;
-  min-width: 160px;
+  max-height: calc(100vh - 24px);
   padding: 4px;
-  background-color: #282828;
-  box-shadow: 0 16px 24px rgba(0,0,0,.3),0 6px 8px rgba(0,0,0,.2);
-  border-radius: 4px;
-  font-size: 0.95em;
-  font-weight: 400;
-  letter-spacing: normal;
-  
-  text-transform: none;
-  line-height: 16px;
 }
 
-.album-dropdown-playlist-option {
-  display: flex;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  height: 40px;
-  padding: 12px;
-  padding-inline-end: 8px;
-}
-
-.album-dropdown-playlist-option:hover {
-  background: rgba(255, 255, 255, 0.15);
-  cursor: pointer;
-}
+/* DROPDOWN STYLING ENDS */
 
 /* Songs Section */
 

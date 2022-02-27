@@ -168,26 +168,27 @@ function Album({
             <i id={!liked ? 'heart-default' : 'heart-liked'} className="far fa-heart" />
           </button>
         </div>
-        <div className="album-dropdown-div" onClick={handleDropdown} ref={dropdownRef}>
+        <div className="album-dropdown-master-container" onClick={handleDropdown} ref={dropdownRef}>
           <i className="fas fa-ellipsis-h" />
           {showDropdown
               && (
-              <div className="album-dropdown-options" onClick={(e) => e.stopPropagation()}>
+                <div className="album-dropdown-container" onClick={(e) => e.stopPropagation()}>
                 <div
-                  className="album-dropdown-option-playlist"
+                  className="song-dropdown-option"
                   onMouseEnter={() => setShowPlaylistOptions(true)}
                   onMouseLeave={() => setShowPlaylistOptions(false)}
-                >
-                  Add to playlist
+                  >
+                  <span>Add to playlist</span>
                   <i className="fas fa-caret-right" />
-
                   { showPlaylistOptions
                       && (
-                      <div className="album-dropdown-playlist-options-div">
-                        <ul>
-                          {userPlaylists?.map((userPlaylist) => (
-                            <li id={userPlaylist?.id} className="album-dropdown-playlist-option" onClick={addAlbumToPlaylist} key={userPlaylist.id}>
-                              {userPlaylist?.name}
+                      <div className="album-page-playlist-selector-container">
+                        <ul className="playlist-selector-list">
+                          {userPlaylists?.slice(0).map((playlist) => (
+                            <li id={playlist?.id} className="playlist-item" onClick={addAlbumToPlaylist} key={playlist.id}>
+                              <span className="playlist-item-name">
+                                {playlist?.name}
+                              </span>
                             </li>
                           ))}
                         </ul>

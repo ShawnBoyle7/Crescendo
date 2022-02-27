@@ -119,6 +119,7 @@ function Album({
 
   const addAlbumToPlaylist = async (e) => {
     e.preventDefault();
+    setShowDropdown(false);
 
     const newPlaylistSongs = await (albumSongs?.map(async (song) => {
       const payload = {

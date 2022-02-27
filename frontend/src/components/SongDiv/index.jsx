@@ -302,7 +302,7 @@ function SongDiv({
                   <div className={setPlaylistSelectorPosition()}>
                     <ul className={revealPlaylists ? 'playlist-selector-list' : 'hidden'}>
                       {userPlaylists?.slice(0).map((playlist) => (
-                        <li className="playlist-item" key={playlist?.id} id={playlist?.id} onClick={(e) => (addSongToPlaylist(e))} role="presentation">
+                        <li className="playlist-item" key={playlist?.id} id={playlist?.id} onClick={addSongToPlaylist} role="presentation">
                           <span className="playlist-item-name">
                             {playlist?.name}
                           </span>

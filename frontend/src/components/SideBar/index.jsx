@@ -1,15 +1,14 @@
 
-import React, { useCallback } from 'react';
-import {
-  useHistory, useLocation, Link,
-} from 'react-router-dom';
-import debounce from 'lodash.debounce';
+import React, { useState } from 'react';
+import { useHistory, useLocation, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { createPlaylist, getPlaylists } from '../../store/playlists';
 import { getUsers } from '../../store/users';
 import './SideBar.css';
 
 function SideBar() {
+  const [canCreatePlaylist, setCanCreatePlaylist] = useState(true);
+
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -25,6 +24,10 @@ function SideBar() {
   const playlistName = userPlaylists.length ? `New Playlist #${userPlaylists.length + 1}` : `New Playlist #${1}`;
 
   const newPlaylist = async () => {
+    if (!canCreatePlaylist) return;
+
+    setCanCreatePlaylist(false);
+
     const formValues = {
       name: playlistName,
       userId: sessionUserId,
@@ -35,9 +38,9 @@ function SideBar() {
     await dispatch(getUsers());
     await dispatch(getPlaylists());
     history.push(`/playlists/${playlist.id}`);
-  };
 
-  const debouncedNewPlaylist = useCallback(debounce(() => newPlaylist(), 500), [allPlaylists]);
+    setCanCreatePlaylist(true);
+  };
 
   return (
     <div className="side-bar">
@@ -80,7 +83,7 @@ function SideBar() {
       <div className="side-bar-personal-navigation-div">
         <button
           className="side-bar-personal-navigation-button"
-          onClick={debouncedNewPlaylist}
+          onClick={newPlaylist}
           type="button"
         >
           <i className="fas fa-plus-square" />

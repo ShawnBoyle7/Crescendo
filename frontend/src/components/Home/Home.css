@@ -45,9 +45,8 @@
 .artists-div {
   display: flex;
   justify-content: space-around;
+  gap: 0 20px;
 }
-
- /* Albums */
 
 .albums-section {
   grid-area: albums;
@@ -57,4 +56,5 @@
 .albums-div {
   display: flex;
   justify-content: space-around;
+  gap: 0 20px;
 }

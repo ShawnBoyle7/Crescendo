@@ -12,7 +12,10 @@ function Playlist({
   const history = useHistory();
 
   useEffect(() => {
-    document.querySelector('.playlist-page').addEventListener('scroll', (e) => {
+    const playlistPage = document.querySelector('.playlist-page')
+    
+    playlistPage.addEventListener('scroll', (e) => {
+      console.log(e.currentTarget.scrollTop)
       const nav = document.querySelector('nav');
 
       if (e.target.scrollTop === 0) {
@@ -183,11 +186,13 @@ function Playlist({
     return renderPlaylist;
   };
 
+  const playlistImage = playlist?.Songs.length && playlist?.Songs[0].Album?.imgUrl ? playlist?.Songs[0].Album?.imgUrl : 'https://i.imgur.com/pZ6CUjL.png'
+
   return (
     <div className="playlist-page">
       <div className={path === 'playlists' ? 'playlist-page-header' : 'liked-songs-page-header'}>
         <div className={path === 'playlists' ? 'art-div' : 'hidden'}>
-          <img className={path === 'playlists' ? 'playlist-art' : 'hidden'} src={playlist?.Songs.length && playlist?.Songs[0].Album?.imgUrl ? playlist?.Songs[0].Album?.imgUrl : 'https://i.imgur.com/pZ6CUjL.png'} alt="" />
+          <img className={path === 'playlists' ? 'playlist-art' : 'hidden'} src={playlistImage} alt="" />
           <img className={path === 'library' ? 'liked-songs-art' : 'hidden'} src="https://static.scientificamerican.com/sciam/cache/file/1522565C-B65E-4BC4-BFA608296192A0D3_source.jpg" alt="" />
         </div>
 

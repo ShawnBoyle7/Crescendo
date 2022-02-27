@@ -23,6 +23,7 @@ function DeletePlaylistConfirmation({ playlistId, setShowDeleteModal }) {
     <>
       <h2>
         Delete
+        {' '}
         {playlist?.name}
         ?
       </h2>

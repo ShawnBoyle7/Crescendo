@@ -77,22 +77,22 @@ function SongDiv({
     switch (path) {
       case 'playlists':
         if (playlists.find((playlist) => playlist?.id === sessionUser?.id)) {
-          className = 'song-dropdown-options';
+          className = 'playlist-page-song-dropdown-container';
         } else {
-          className = 'song-dropdown-default';
+          className = 'song-dropdown-container';
         }
         break;
       case 'artists':
-        className = 'song-dropdown-default';
+        className = 'song-dropdown-container';
         break;
       case 'albums':
-        className = 'song-dropdown-default';
+        className = 'song-dropdown-container';
         break;
       case 'library':
-        className = 'song-dropdown-default';
+        className = 'song-dropdown-container';
         break;
       case 'search':
-        className = 'song-dropdown-default';
+        className = 'song-dropdown-container';
         break;
       default:
         return '';
@@ -117,7 +117,7 @@ function SongDiv({
   };
 
   const handleMouseEnter = (e) => {
-    if (e.target.className === 'add-to-playlist') {
+    if (e.target.className === 'add-to-playlist-option') {
       setRevealPlaylists(true);
     } else if (e.target.className === 'song-dropdown-option') {
       setRevealPlaylists(false);
@@ -126,10 +126,10 @@ function SongDiv({
 
   const setPlaylistSelectorPosition = () => {
     if (revealPlaylists) {
-      if (detectPageType() === 'song-dropdown-options') {
-        return 'playlist-selector-container';
+      if (detectPageType() === 'playlist-page-dropdown') {
+        return 'playlist-page-playlist-selector-container';
       }
-      return 'playlist-selector-container-other';
+      return 'playlist-selector-container';
     }
     return 'hidden';
   };
@@ -296,14 +296,16 @@ function SongDiv({
                   Remove from this playlist
                 </div>
 
-                <div className="add-to-playlist" onMouseEnter={((e) => handleMouseEnter(e))} ref={playlistsRef}>
+                <div className="add-to-playlist-option" onMouseEnter={((e) => handleMouseEnter(e))} ref={playlistsRef}>
                   <span>Add to playlist</span>
                   <i className="fas fa-caret-right" />
                   <div className={setPlaylistSelectorPosition()}>
-                    <ul className={revealPlaylists ? 'playlist-selector' : 'hidden'}>
+                    <ul className={revealPlaylists ? 'playlist-selector-list' : 'hidden'}>
                       {userPlaylists?.slice(0).map((playlist) => (
-                        <li className="playlist-item" key={playlist?.id} id={playlist?.id} onClick={(e) => (addSongToPlaylist(e))} role="presentation">
-                          <span>{playlist?.name}</span>
+                        <li className="playlist-item" key={playlist?.id} id={playlist?.id} onClick={addSongToPlaylist} role="presentation">
+                          <span className="playlist-item-name">
+                            {playlist?.name}
+                          </span>
                         </li>
                       ))}
                     </ul>

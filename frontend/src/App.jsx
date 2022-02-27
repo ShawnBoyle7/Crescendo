@@ -56,10 +56,11 @@ function App() {
       await dispatch(getSongs());
       setIsLoaded(true);
       history.listen(() => {
-        document.querySelector('.application').scrollTop = 0;
         const nav = document.querySelector('nav');
         nav?.classList.add('top-navigation-bar-default');
         nav?.classList.remove('top-navigation-bar-scrolled');
+        document.querySelector('.playlist-page')?.scrollTo(0, 0)
+        document.querySelector('.album-page')?.scrollTo(0, 0)
       });
     })();
   }, [dispatch, history]);

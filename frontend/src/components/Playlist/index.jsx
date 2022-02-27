@@ -12,7 +12,10 @@ function Playlist({
   const history = useHistory();
 
   useEffect(() => {
-    document.querySelector('.playlist-page').addEventListener('scroll', (e) => {
+    const playlistPage = document.querySelector('.playlist-page')
+    
+    playlistPage.addEventListener('scroll', (e) => {
+      console.log(e.currentTarget.scrollTop)
       const nav = document.querySelector('nav');
 
       if (e.target.scrollTop === 0) {

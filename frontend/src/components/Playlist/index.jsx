@@ -15,7 +15,6 @@ function Playlist({
     const playlistPage = document.querySelector('.playlist-page')
     
     playlistPage.addEventListener('scroll', (e) => {
-      console.log(e.currentTarget.scrollTop)
       const nav = document.querySelector('nav');
 
       if (e.target.scrollTop === 0) {
@@ -50,6 +49,7 @@ function Playlist({
   const [showDropdown, setShowDropdown] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [playerButton, setPlayerButton] = useState('https://i.imgur.com/7QSCa6X.png');
 
   // useEffect to grab the audio to ensure it's loaded first to avoid grabbing a null audio element
   let audio;
@@ -81,21 +81,31 @@ function Playlist({
 
   const playlistPlayerButtonClick = () => {
     if (playlist.Songs.length) {
-      const previousValue = isPlaying;
-      setIsPlaying(!previousValue);
-      // If not is playing, then play and begin animation of time change
-
-      if (!previousValue) {
-        if (!nowPlaying) {
-          setNowPlaying(playlistSongs[0]);
-        }
+      if (!playlistSongs.includes(nowPlaying)) {
+        setNowPlaying(playlistSongs[0]);
+        setPlayerButton('https://i.imgur.com/QtT4j0R.png')
+        setIsPlaying(true);
         audio.play();
-        // Else pause and stop animation of time change
-      } else {
+        return;
+      }
+  
+      if (isPlaying) {
+        setIsPlaying(false);
         audio.pause();
+      } else {
+        setIsPlaying(true);
+        audio.play();
       }
     }
   };
+
+  useEffect(() => {
+    if (isPlaying === false) {
+      setPlayerButton('https://i.imgur.com/7QSCa6X.png')
+    } else if (isPlaying === true && playlistSongs.includes(nowPlaying)) {
+      setPlayerButton('https://i.imgur.com/QtT4j0R.png')
+    }
+  }, [isPlaying])
 
   const handleEdit = () => {
     setShowEditModal(true);
@@ -216,7 +226,7 @@ function Playlist({
         <img
           className="big-player-button"
           onClick={playlistPlayerButtonClick}
-          src={!isPlaying ? 'https://i.imgur.com/7QSCa6X.png' : 'https://i.imgur.com/QtT4j0R.png'}
+          src={playerButton}
           alt="player-button"
         />
 

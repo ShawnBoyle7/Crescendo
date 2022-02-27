@@ -65,9 +65,17 @@ function App() {
     })();
   }, [dispatch, history]);
 
+  useEffect(() => {
+    if (!sessionUser) {
+      setIsPlaying(false);
+      setNowPlaying('');
+    }
+  }, [sessionUser])
+  
   if (!isLoaded) {
     return null;
   }
+
 
   return (
     <>

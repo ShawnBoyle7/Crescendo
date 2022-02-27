@@ -22,7 +22,7 @@ function Splash() {
 
   return (
     <div className="splash">
-      <nav className="nav-placeholder">
+      <div className="splash-auth-bar">
         <NavLink to="/signup">
           <button className="signup-link-button" type="button">
             SIGN UP
@@ -33,7 +33,7 @@ function Splash() {
             LOG IN
           </button>
         </NavLink>
-      </nav>
+      </div>
 
       <div className="splash-content">
         <div className="splash-elements">

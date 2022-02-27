@@ -31,10 +31,10 @@ function SideBar() {
       description: '',
     };
 
-    await dispatch(createPlaylist(formValues));
+    const playlist = await dispatch(createPlaylist(formValues));
     await dispatch(getUsers());
     await dispatch(getPlaylists());
-    history.push(`/playlists/${userPlaylists.length + 1}`);
+    history.push(`/playlists/${playlist.id}`);
   };
 
   const debouncedNewPlaylist = useCallback(debounce(() => newPlaylist(), 500), [allPlaylists]);

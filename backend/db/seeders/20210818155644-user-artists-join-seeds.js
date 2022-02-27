@@ -3,6 +3,30 @@ module.exports = {
     'user_artist_joins',
     [
       {
+        artistId: 2, userId: 1, createdAt: new Date(), updatedAt: new Date(),
+      },
+      {
+        artistId: 2, userId: 2, createdAt: new Date(), updatedAt: new Date(),
+      },
+      {
+        artistId: 3, userId: 1, createdAt: new Date(), updatedAt: new Date(),
+      },
+      {
+        artistId: 3, userId: 2, createdAt: new Date(), updatedAt: new Date(),
+      },
+      {
+        artistId: 9, userId: 1, createdAt: new Date(), updatedAt: new Date(),
+      },
+      {
+        artistId: 9, userId: 2, createdAt: new Date(), updatedAt: new Date(),
+      },
+      {
+        artistId: 4, userId: 1, createdAt: new Date(), updatedAt: new Date(),
+      },
+      {
+        artistId: 4, userId: 2, createdAt: new Date(), updatedAt: new Date(),
+      },
+      {
         artistId: 1, userId: 1, createdAt: new Date(), updatedAt: new Date(),
       },
       {
@@ -10,15 +34,6 @@ module.exports = {
       },
       {
         artistId: 1, userId: 3, createdAt: new Date(), updatedAt: new Date(),
-      },
-      {
-        artistId: 2, userId: 1, createdAt: new Date(), updatedAt: new Date(),
-      },
-      {
-        artistId: 4, userId: 1, createdAt: new Date(), updatedAt: new Date(),
-      },
-      {
-        artistId: 4, userId: 2, createdAt: new Date(), updatedAt: new Date(),
       },
     ],
   ),

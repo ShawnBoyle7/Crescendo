@@ -3,19 +3,34 @@ module.exports = {
     'user_album_joins',
     [
       {
+        albumId: 1, userId: 1, createdAt: new Date(), updatedAt: new Date(),
+      },
+      {
         albumId: 1, userId: 2, createdAt: new Date(), updatedAt: new Date(),
-      },
-      {
-        albumId: 1, userId: 3, createdAt: new Date(), updatedAt: new Date(),
-      },
-      {
-        albumId: 2, userId: 1, createdAt: new Date(), updatedAt: new Date(),
       },
       {
         albumId: 4, userId: 1, createdAt: new Date(), updatedAt: new Date(),
       },
       {
         albumId: 4, userId: 2, createdAt: new Date(), updatedAt: new Date(),
+      },
+      {
+        albumId: 9, userId: 1, createdAt: new Date(), updatedAt: new Date(),
+      },
+      {
+        albumId: 9, userId: 2, createdAt: new Date(), updatedAt: new Date(),
+      },
+      {
+        albumId: 9, userId: 3, createdAt: new Date(), updatedAt: new Date(),
+      },
+      {
+        albumId: 3, userId: 1, createdAt: new Date(), updatedAt: new Date(),
+      },
+      {
+        albumId: 3, userId: 2, createdAt: new Date(), updatedAt: new Date(),
+      },
+      {
+        albumId: 2, userId: 1, createdAt: new Date(), updatedAt: new Date(),
       },
     ],
   ),

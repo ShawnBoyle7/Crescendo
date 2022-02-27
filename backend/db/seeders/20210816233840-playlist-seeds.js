@@ -6,13 +6,10 @@ module.exports = {
         name: 'Rock', userId: 1, description: '', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'Pop', userId: 1, description: '', createdAt: new Date(), updatedAt: new Date(),
+        name: 'Vibe Check', userId: 1, description: '', createdAt: new Date(), updatedAt: new Date(),
       },
       {
-        name: 'Anime', userId: 1, description: '', createdAt: new Date(), updatedAt: new Date(),
-      },
-      {
-        name: 'Rap', userId: 1, description: '', createdAt: new Date(), updatedAt: new Date(),
+        name: 'FLOW Nation', userId: 1, description: '', createdAt: new Date(), updatedAt: new Date(),
       },
       {
         name: '2000\'s', userId: 1, description: '', createdAt: new Date(), updatedAt: new Date(),

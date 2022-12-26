@@ -176,6 +176,9 @@ function AudioPlayer({
     }
   };
 
+  // Value for dynamic volume icon
+  const volumeValue = document.getElementById("volumeValue")?.value;
+
   // Update volume when dragging the input range slider
   const changeVolume = (e) => {
     // Set volume state variable to target value
@@ -341,7 +344,7 @@ function AudioPlayer({
           </div>
           <div className="playbar-heart-div">
             <button className="far fa-heart" onClick={likeCurrentSong} type="button">
-              <i id={!liked ? 'heart-default' : 'heart-liked'} />
+              <i id={!liked ? 'heart-default' : 'heart-liked'} className="far fa-heart" />
             </button>
           </div>
         </div>
@@ -388,8 +391,12 @@ function AudioPlayer({
       </div>
 
       <div className="playbar-volume-div">
-        <i onClick={muteToggle} className="fas fa-volume" />
-        <input className="volume-bar" type="range" min="0" step="0.02" max="1" ref={volumeBar} value={volume} onChange={changeVolume} />
+        <i class="material-icons" onClick={muteToggle}>
+          {Number(volumeValue) >= 0.50 && "volume_up"}
+          {(Number(volumeValue) < 0.50 && volumeValue > 0) && "volume_down"}
+          {Number(volumeValue) === 0 && "volume_mute"}
+        </i>
+        <input id="volumeValue" className="volume-bar" type="range" min="0" step="0.02" max="1" ref={volumeBar} value={volume} onChange={changeVolume} />
       </div>
     </>
   );

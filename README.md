@@ -12,7 +12,7 @@
 
 ## Introduction
 
-Crescendo is a full-stack Spotify clone. If you're not familiar with Spotify, it's an application centralized around listening, organizing, and discovering music. I love music, so I thought, why not clone Spotify? With Crescendo, you can centralize your interests by adding artists & albums you love to your library. You can create and add your favorite songs to playlists, which you can view in the sidebar or your library. While using the application, you can use the entire functionality you'd expect from Spotify's audio player (sans Shuffle, coming soon) for a music session. You have full control over playing the next or previous song, and and looping a song, album, or playlist.
+Crescendo is a full-stack Spotify clone. If you're not familiar with Spotify, it's an application centralized around listening, organizing, and discovering music. I love music, so I thought, why not clone Spotify? With Crescendo, you can centralize your interests by adding artists & albums you love to your library. You can create and add your favorite songs to playlists, which you can view in the sidebar or your library. While using the application, you can use the entire functionality you'd expect from Spotify's audio player (sans Shuffle, coming soon) for a music session. You have full control over playing the next or previous song, as well as looping a song, album, or playlist.
 
 ## Browse Crescendo [here!](https://crescendo-application.herokuapp.com/)
 
